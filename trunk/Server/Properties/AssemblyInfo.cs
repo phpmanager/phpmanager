@@ -1,8 +1,11 @@
-//------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
+//-----------------------------------------------------------------------
+// <copyright>
+// Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
+//
+// This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//------------------------------------------------------------------------------
+//----------------------------------------------------------------------- 
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -16,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RuslanY.net")]
 [assembly: AssemblyProduct("PHPManager")]
-[assembly: AssemblyCopyright("Copyright © RuslanY.net 2010")]
+[assembly: AssemblyCopyright("Copyright © Ruslan Yakushev 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
