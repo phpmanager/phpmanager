@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManager", "PHPManager.csproj", "{BEA18085-3850-46AA-822E-61D06CAB84E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManagerClient", "..\PHPManagerClient\PHPManagerClient.csproj", "{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phpinitest", "..\phpinitest\phpinitest.csproj", "{4D91C2F2-138B-4F54-A913-FD3AC29BB1DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testwinform", "..\testwinform\testwinform.csproj", "{7903BEFB-E270-48E9-AF2B-FBAF354DA4A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D91C2F2-138B-4F54-A913-FD3AC29BB1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D91C2F2-138B-4F54-A913-FD3AC29BB1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D91C2F2-138B-4F54-A913-FD3AC29BB1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D91C2F2-138B-4F54-A913-FD3AC29BB1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7903BEFB-E270-48E9-AF2B-FBAF354DA4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7903BEFB-E270-48E9-AF2B-FBAF354DA4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7903BEFB-E270-48E9-AF2B-FBAF354DA4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7903BEFB-E270-48E9-AF2B-FBAF354DA4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddPHPSetting" xml:space="preserve">
+    <value>Add PHP Setting</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DisableExtension" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="EditPHPSetting" xml:space="preserve">
+    <value>Edit PHP Setting</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Edit...</value>
+  </data>
+  <data name="EnableExtension" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="GettingExtensions" xml:space="preserve">
+    <value>Getting extensions</value>
+  </data>
+  <data name="GettingSettings" xml:space="preserve">
+    <value>Getting settings</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GoBackTask" xml:space="preserve">
+    <value>Back to main page</value>
+  </data>
+  <data name="NameActionColumnText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NoPHPFilesInDirectory" xml:space="preserve">
+    <value>The directory does not contain required PHP files: php-cgi.exe and php.ini.</value>
+  </data>
+  <data name="OpenPHPIniFile" xml:space="preserve">
+    <value>Open php.ini</value>
+  </data>
+  <data name="PHPExtensionConfigure" xml:space="preserve">
+    <value>Configure extension's settings</value>
+  </data>
+  <data name="PHPExtensionEnableDisable" xml:space="preserve">
+    <value>Enable or disable an extension</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsPageDescription" xml:space="preserve">
+    <value>Enable or disable PHP extensions and configure PHP extensions settings.</value>
+  </data>
+  <data name="PHPExtensionsPageFileNameColumnText" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="PHPExtensionsPageLongDescription" xml:space="preserve">
+    <value>Enable or disable PHP extensions and configure PHP extensions settings.</value>
+  </data>
+  <data name="PHPExtensionsPageNameColumnText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PHPExtensionsPageStateColumnText" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="PHPExtensionsPageTitle" xml:space="preserve">
+    <value>PHP Extensions</value>
+  </data>
+  <data name="PHPInfoLongDescription" xml:space="preserve">
+    <value>Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes.</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>Get the output of the phpinfo() function</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>phpinfo() output</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>Refresh phpinfo</value>
+  </data>
+  <data name="PHPInfoSelectDomain" xml:space="preserve">
+    <value>Select domain...</value>
+  </data>
+  <data name="PHPIniFileDoesNotExist" xml:space="preserve">
+    <value>php.ini file does not exist</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this setting?</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>PHP runtime configuration and settings</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enabled and disable PHP extensions.</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>PHP Manager</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsAllSettingsTask" xml:space="preserve">
+    <value>Manage all PHP runtime settings</value>
+  </data>
+  <data name="PHPSettingsApplyRecommendedTask" xml:space="preserve">
+    <value>Apply recommended settings</value>
+  </data>
+  <data name="PHPSettingsErrorReportingTask" xml:space="preserve">
+    <value>Configure error reporting</value>
+  </data>
+  <data name="PHPSettingsLongDescription" xml:space="preserve">
+    <value>Check and edit PHP runtime settings, such as error logging, include directories, session, security and more</value>
+  </data>
+  <data name="PHPSettingsPageAddDirectiveTask" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="PHPSettingsPageDescription" xml:space="preserve">
+    <value>Configure all php settings</value>
+  </data>
+  <data name="PHPSettingsPageLongDescription" xml:space="preserve">
+    <value>Configure all php settings</value>
+  </data>
+  <data name="PHPSettingsPageNameColumnText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PHPSettingsPageSectionColumnText" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="PHPSettingsPageTitle" xml:space="preserve">
+    <value>PHP Settings</value>
+  </data>
+  <data name="PHPSettingsPageValueColumnText" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="PHPSettingsTitle" xml:space="preserve">
+    <value>PHP Settings</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupChangeVersion" xml:space="preserve">
+    <value>Change PHP version</value>
+  </data>
+  <data name="PHPSetupCheckPHPInfoTask" xml:space="preserve">
+    <value>Check phpinfo()</value>
+  </data>
+  <data name="PHPSetupLongDescription" xml:space="preserve">
+    <value>Use this feature to configure IIS to work with PHP, to check that PHP and IIS are configured correctly and to select the PHP version, if more than one version is installed on the server.</value>
+  </data>
+  <data name="PHPSetupPageDescription" xml:space="preserve">
+    <value>Configure IIS to properly work with PHP</value>
+  </data>
+  <data name="PHPSetupPageTitle" xml:space="preserve">
+    <value>PHP Setup</value>
+  </data>
+  <data name="PHPSetupRegisterPHPTask" xml:space="preserve">
+    <value>Register new PHP version</value>
+  </data>
+  <data name="PHPSetupSelectFolderDescription" xml:space="preserve">
+    <value>Select a folder where PHP runtime binaries and PHP configuration file are located.</value>
+  </data>
+  <data name="RemoveTitle" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SectionActionColumnText" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="SelectDomainDomainLabel" xml:space="preserve">
+    <value>&amp;Domain:</value>
+  </data>
+  <data name="SelectDomainSelectADomainFirst" xml:space="preserve">
+    <value>Select a domain name used for this site.</value>
+  </data>
+  <data name="SelectDomainTitle" xml:space="preserve">
+    <value>Choose Domain</value>
+  </data>
+  <data name="SelectSiteSelectASiteFirst" xml:space="preserve">
+    <value>To use this feature, you must first select a site.</value>
+  </data>
+  <data name="SelectSiteSiteLabel" xml:space="preserve">
+    <value>&amp;Site:</value>
+  </data>
+  <data name="SelectSiteTitle" xml:space="preserve">
+    <value>Choose Site</value>
+  </data>
+  <data name="SettingLearnMoreLinkLabel" xml:space="preserve">
+    <value>Learn more about this setting</value>
+  </data>
+  <data name="SettingNameLabel" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="SettingSectionLabel" xml:space="preserve">
+    <value>Section:</value>
+  </data>
+  <data name="SettingValueLabel" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="StateActionColumnText" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="ValueActionColumnText" xml:space="preserve">
+    <value>Value</value>
+  </data>
+</root>
