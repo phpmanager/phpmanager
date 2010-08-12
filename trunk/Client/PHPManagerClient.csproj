@@ -50,24 +50,24 @@
   <ItemGroup>
     <Compile Include="Config\PHPIniFile.cs" />
     <Compile Include="Config\PHPConfigInfo.cs" />
-    <Compile Include="PHPExtensions\PHPExtensionsPage.cs">
+    <Compile Include="Extensions\PHPExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PHPSettings\AddEditSettingDialog.cs">
+    <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PHPSettings\PHPSettingsPage.cs">
+    <Compile Include="Settings\PHPSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PHPSetup\RegisterPHPDialog.cs">
+    <Compile Include="Setup\RegisterPHPDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PHPSetup\ChangeVersionDialog.cs">
+    <Compile Include="Setup\ChangeVersionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="PHPSetup\PHPInfoPage.cs">
+    <Compile Include="Setup\PHPInfoPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="PHPModule.cs" />
