@@ -73,7 +73,7 @@ namespace Web.Management.PHP.PHPSettings
             {
                 if (_sectionGrouping == null)
                 {
-                    _sectionGrouping = new ModuleListPageGrouping(SectionString, Resources.SectionActionColumnText);
+                    _sectionGrouping = new ModuleListPageGrouping(SectionString, Resources.PHPSettingsPageSectionField);
                 }
 
                 return new ModuleListPageGrouping[] { _sectionGrouping };
@@ -107,9 +107,9 @@ namespace Web.Management.PHP.PHPSettings
                 if (_searchFields == null)
                 {
                     _searchFields = new ModuleListPageSearchField[]{
-                        new ModuleListPageSearchField(NameString, Resources.NameActionColumnText),
-                        new ModuleListPageSearchField(ValueString, Resources.ValueActionColumnText),
-                        new ModuleListPageSearchField(SectionString, Resources.SectionActionColumnText)};
+                        new ModuleListPageSearchField(NameString, Resources.PHPSettingsPageNameField),
+                        new ModuleListPageSearchField(ValueString, Resources.PHPSettingsPageValueField),
+                        new ModuleListPageSearchField(SectionString, Resources.PHPSettingsPageSectionField)};
                 }
 
                 return _searchFields;
@@ -220,7 +220,7 @@ namespace Web.Management.PHP.PHPSettings
 
         private void GetSettings()
         {
-            StartAsyncTask(Resources.GettingSettings, OnGetSettings, OnGetSettingsCompleted);
+            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
         private void GoBack()
@@ -231,15 +231,15 @@ namespace Web.Management.PHP.PHPSettings
         protected override void InitializeListPage()
         {
             _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.PHPSettingsPageNameColumnText;
+            _nameColumn.Text = Resources.PHPSettingsPageNameField;
             _nameColumn.Width = 180;
 
             _valueColumn = new ColumnHeader();
-            _valueColumn.Text = Resources.PHPSettingsPageValueColumnText;
+            _valueColumn.Text = Resources.PHPSettingsPageValueField;
             _valueColumn.Width = 180;
 
             _sectionColumn = new ColumnHeader();
-            _sectionColumn.Text = Resources.PHPSettingsPageSectionColumnText;
+            _sectionColumn.Text = Resources.PHPSettingsPageSectionField;
             _sectionColumn.Width = 100;
 
             ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _valueColumn, _sectionColumn });
@@ -380,7 +380,7 @@ namespace Web.Management.PHP.PHPSettings
                 }
                 else
                 {
-                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.PHPIniFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.ErrorPHPIniFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -443,18 +443,18 @@ namespace Web.Management.PHP.PHPSettings
             {
                 List<TaskItem> tasks = new List<TaskItem>();
 
-                tasks.Add(new MethodTaskItem("AddSetting", Resources.PHPSettingsPageAddDirectiveTask, "Edit"));
+                tasks.Add(new MethodTaskItem("AddSetting", Resources.PHPSettingsPageAddSettingTask, "Edit"));
 
                 if (_page.SelectedItem != null)
                 {
-                    tasks.Add(new MethodTaskItem("EditSetting", Resources.EditTitle, "Edit", null));
-                    tasks.Add(new MethodTaskItem("RemoveSetting", Resources.RemoveTitle, "Edit", null, Resources.Delete16));
+                    tasks.Add(new MethodTaskItem("EditSetting", Resources.PHPSettingsPageEditTask, "Edit", null));
+                    tasks.Add(new MethodTaskItem("RemoveSetting", Resources.PHPSettingsPageRemoveTask, "Edit", null, Resources.Delete16));
                 }
 
                 if (_page.Connection.IsLocalConnection) {
-                    tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.OpenPHPIniFile, "Tasks", null));
+                    tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.AllPagesOpenPHPIniTask, "Tasks", null));
                 }
-                tasks.Add(new MethodTaskItem("GoBack", Resources.GoBackTask, "Tasks", null, Resources.GoBack16));
+                tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 
                 return tasks;
             }

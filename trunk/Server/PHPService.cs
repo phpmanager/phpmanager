@@ -225,7 +225,7 @@ namespace Web.Management.PHP
             }
             catch(ArgumentException)
             {
-                RaiseException("NoPHPFilesInDirectory");
+                RaiseException("ErrorNoPHPFilesInDirectory");
             }
         }
 

@@ -48,7 +48,7 @@ namespace Web.Management.PHP
             //PHPInfo page
             ModulePageInfo modulePageInfo = new ModulePageInfo(this,
                 typeof(PHPInfoPage), Resources.PHPInfoPageTitle, Resources.PHPInfoPageDescription,
-                Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPInfoLongDescription);
+                Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPInfoPageLongDescription);
 
             controlPanel.RegisterPage(modulePageInfo);
 
@@ -68,12 +68,9 @@ namespace Web.Management.PHP
 
 
             //PHPPage - PHP feature start page
-            modulePageInfo = new ModulePageInfo(this, typeof(PHPPage),
-                                                                Resources.PHPPageTitle,
-                                                                Resources.PHPPageDescription,
-                                                                Resources.PHPLogo16,
-                                                                Resources.PHPLogo32,
-                                                                Resources.PHPPageLongDescription);
+            modulePageInfo = new ModulePageInfo(this, 
+                typeof(PHPPage), Resources.PHPPageTitle, Resources.PHPPageDescription,
+                Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPPageLongDescription);
 
             controlPanel.RegisterPage(ControlPanelCategoryInfo.Iis, modulePageInfo);
             controlPanel.RegisterPage(ControlPanelCategoryInfo.ApplicationDevelopment, modulePageInfo);

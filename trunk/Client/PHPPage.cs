@@ -151,20 +151,20 @@ namespace Web.Management.PHP
             // Summary labels
             //
             _versionNameLabel = new Label();
-            _versionNameLabel.Text = "PHP version:";
+            _versionNameLabel.Text = Resources.PHPPageVersion;
             _versionValueLabel = new Label();
 
             _executableNameLabel = new Label();
-            _executableNameLabel.Text = "PHP executable:";
+            _executableNameLabel.Text = Resources.PHPPageExecutable;
             _executableValueLabel = new Label();
 
             _configPathNameLabel = new Label();
-            _configPathNameLabel.Text = "Configuration file:";
+            _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
             _configPathValueLabel = new Label();
             _recommendedConfigLabel = new Label();
 
             _extPathNameLabel = new Label();
-            _extPathNameLabel.Text = "Extensions path:";
+            _extPathNameLabel.Text = Resources.PHPPageExtensionsPath;
             _extPathValueLabel = new Label();
             _enabledExtLabel = new Label();
 
@@ -175,16 +175,16 @@ namespace Web.Management.PHP
             _phpSetupItem.RightToLeftLayout = this.RightToLeftLayout;
             _phpSetupItem.RightToLeft = this.RightToLeft;
             _phpSetupItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPSetupItemTitleClick);
-            _phpSetupItem.Title = Resources.PHPSetupPageTitle;
+            _phpSetupItem.Title = Resources.PHPSetupItemTitle;
             _phpSetupItem.TitleFont = titleFont;
             _phpSetupItem.Image = Resources.PHPSetup32;
 
             _phpSetupItem.AddInfoRow(_versionNameLabel, _versionValueLabel);
             _phpSetupItem.AddInfoRow(_executableNameLabel, _executableValueLabel);
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
-                                    Resources.PHPSetupRegisterPHPTask,
-                                    Resources.PHPSetupChangeVersion,
-                                    Resources.PHPSetupCheckPHPInfoTask);
+                                    Resources.PHPSetupItemRegisterPHPTask,
+                                    Resources.PHPSetupItemChangeVersionTask,
+                                    Resources.PHPSetupItemCheckPHPInfoTask);
 
             Controls.Add(_phpSetupItem);
 
@@ -195,16 +195,16 @@ namespace Web.Management.PHP
             _phpSettingsItem.RightToLeftLayout = this.RightToLeftLayout;
             _phpSettingsItem.RightToLeft = this.RightToLeft;
             _phpSettingsItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPSettingsItemTitleClick);
-            _phpSettingsItem.Title = Resources.PHPSettingsTitle;
+            _phpSettingsItem.Title = Resources.PHPSettingsItemTitle;
             _phpSettingsItem.TitleFont = titleFont;
             _phpSettingsItem.Image = Resources.PHPSettings32;
 
             _phpSettingsItem.AddInfoRow(_configPathNameLabel, _configPathValueLabel);
             _phpSettingsItem.AddSpanRow(_recommendedConfigLabel);
             _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
-                                    Resources.PHPSettingsApplyRecommendedTask,
-                                    Resources.PHPSettingsErrorReportingTask,
-                                    Resources.PHPSettingsAllSettingsTask);
+                                    Resources.PHPSettingsItemApplyRecommendedTask,
+                                    Resources.PHPSettingsItemErrorReportingTask,
+                                    Resources.PHPSettingsItemAllSettingsTask);
 
             Controls.Add(_phpSettingsItem);
 
@@ -215,15 +215,15 @@ namespace Web.Management.PHP
             _phpExtensionItem.RightToLeftLayout = this.RightToLeftLayout;
             _phpExtensionItem.RightToLeft = this.RightToLeft;
             _phpExtensionItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPExtensionItemTitleClick);
-            _phpExtensionItem.Title = Resources.PHPExtensionsPageTitle;
+            _phpExtensionItem.Title = Resources.PHPExtensionsItemTitle;
             _phpExtensionItem.TitleFont = titleFont;
             _phpExtensionItem.Image = Resources.PHPExtensions32;
 
             _phpExtensionItem.AddInfoRow(_extPathNameLabel, _extPathValueLabel);
             _phpExtensionItem.AddSpanRow(_enabledExtLabel);
             _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
-                                    Resources.PHPExtensionEnableDisable,
-                                    Resources.PHPExtensionConfigure);
+                                    Resources.PHPExtensionItemEnableTask,
+                                    Resources.PHPExtensionItemConfigureTask);
             
             // Update the information summaries for each PHPPageItemControl
             UpdateInfo();
@@ -402,23 +402,30 @@ namespace Web.Management.PHP
 
         private void UpdateInfo()
         {
-            PHPConfigInfo configInfo = Module.Proxy.GetPHPConfigInfo();
-
-            if (configInfo == null)
+            try
             {
-                _versionValueLabel.Text = "None";
-                _executableValueLabel.Text = "None";
-                _configPathValueLabel.Text = "None";
-                _extPathValueLabel.Text = "None";
+                PHPConfigInfo configInfo = Module.Proxy.GetPHPConfigInfo();
+                if (configInfo == null)
+                {
+                    _versionValueLabel.Text = Resources.PHPPageNone;
+                    _executableValueLabel.Text = Resources.PHPPageNone;
+                    _configPathValueLabel.Text = Resources.PHPPageNone;
+                    _extPathValueLabel.Text = Resources.PHPPageNone;
+                }
+                else
+                {
+                    _versionValueLabel.Text = configInfo.Version;
+                    _executableValueLabel.Text = configInfo.ScriptProcessor;
+                    // TODO: Need to add real values here
+                    _configPathValueLabel.Text = @"C:\PHP\5211NTS\php.ini";
+                    _recommendedConfigLabel.Text = "Recommended configuration is set";
+                    _extPathValueLabel.Text = @"C:\PHP\5211NTS\ext\";
+                    _enabledExtLabel.Text = "There are 6 extensions enabled";
+                }
             }
-            else
+            catch(Exception ex)
             {
-                _versionValueLabel.Text = configInfo.Version;
-                _executableValueLabel.Text = configInfo.ScriptProcessor;
-                _configPathValueLabel.Text = @"C:\PHP\5211NTS\php.ini";
-                _recommendedConfigLabel.Text = "Recommended configuration is set";
-                _extPathValueLabel.Text = @"C:\PHP\5211NTS\ext\";
-                _enabledExtLabel.Text = "There are 6 extensions enabled";
+                DisplayErrorMessage(ex, Resources.ResourceManager);
             }
 
         }

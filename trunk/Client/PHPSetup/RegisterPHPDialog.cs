@@ -127,7 +127,7 @@ namespace Web.Management.PHP.PHPSetup
             this._contentPanel.ResumeLayout(false);
             this._contentPanel.PerformLayout();
 
-            this.Text = Resources.PHPSetupRegisterPHPTask;
+            this.Text = Resources.RegisterPHPDialogRegisterNew;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -154,7 +154,7 @@ namespace Web.Management.PHP.PHPSetup
         {
             using (FolderBrowserDialog dlg = new FolderBrowserDialog())
             {
-                dlg.Description = Resources.PHPSetupSelectFolderDescription;
+                dlg.Description = Resources.RegisterPHPDialogSelectFolder;
                 dlg.ShowNewFolderButton = false;
 
                 if (dlg.ShowDialog() == DialogResult.OK)

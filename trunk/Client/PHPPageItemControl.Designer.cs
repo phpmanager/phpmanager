@@ -66,7 +66,7 @@ namespace Web.Management.PHP {
             this._tasksLabel.Size = new System.Drawing.Size(0, 13);
             this._tasksLabel.TabIndex = 2;
             this._tasksLabel.TabStop = true;
-            this._tasksLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._tasksLabel_LinkClicked);
+            this._tasksLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnTasksLabelLinkClicked);
             // 
             // _infoTlp
             // 

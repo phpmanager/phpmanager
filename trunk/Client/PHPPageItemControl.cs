@@ -117,11 +117,6 @@ namespace Web.Management.PHP
             }
         }
 
-        private void _tasksLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            _handler((int)e.Link.LinkData);
-        }
-
         public void AddInfoRow(Label labelName, Label labelValue)
         {
             labelName.Dock = labelValue.Dock = DockStyle.Fill;
@@ -213,6 +208,11 @@ namespace Web.Management.PHP
             base.OnRightToLeftChanged(e);
 
             RightToLeftLayout = RightToLeft == RightToLeft.Yes;
+        }
+
+        private void OnTasksLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _handler((int)e.Link.LinkData);
         }
 
     }

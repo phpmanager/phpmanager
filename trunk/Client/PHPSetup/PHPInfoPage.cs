@@ -220,7 +220,7 @@ namespace Web.Management.PHP.PHPSetup
                 return new TaskItem[] {
                     new MethodTaskItem("RefreshPHPInfo", Resources.PHPInfoRefreshPHPInfo, "Set"),
                     new MethodTaskItem("SelectDomain", Resources.PHPInfoSelectDomain, "Set"),
-                    new MethodTaskItem("GoBack", Resources.GoBackTask, "Tasks", null, Resources.GoBack16)
+                    new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16)
                 };
             }
 

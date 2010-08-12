@@ -72,7 +72,7 @@ namespace Web.Management.PHP.PHPExtensions
             {
                 if (_stateGrouping == null)
                 {
-                    _stateGrouping = new ModuleListPageGrouping(StateString, Resources.StateActionColumnText);
+                    _stateGrouping = new ModuleListPageGrouping(StateString, Resources.PHPExtensionsPageStateField);
                 }
 
                 return new ModuleListPageGrouping[] { _stateGrouping };
@@ -106,7 +106,7 @@ namespace Web.Management.PHP.PHPExtensions
                 if (_searchFields == null)
                 {
                     _searchFields = new ModuleListPageSearchField[]{
-                        new ModuleListPageSearchField(NameString, Resources.NameActionColumnText)};
+                        new ModuleListPageSearchField(NameString, Resources.PHPSettingsPageNameField)};
                 }
 
                 return _searchFields;
@@ -144,14 +144,14 @@ namespace Web.Management.PHP.PHPExtensions
 
         private void GetExtensions()
         {
-            StartAsyncTask(Resources.GettingExtensions, OnGetExtensions, OnGetExtensionsCompleted);
+            StartAsyncTask(Resources.PHPExtensionsPageGettingExtensions, OnGetExtensions, OnGetExtensionsCompleted);
         }
 
         protected override ListViewGroup[] GetGroups(ModuleListPageGrouping grouping)
         {
             ListViewGroup[] result = new ListViewGroup[2];
-            result[0] = new ListViewGroup("Enabled", "Enabled");
-            result[1] = new ListViewGroup("Disabled", "Disabled");
+            result[0] = new ListViewGroup("Enabled", Resources.PHPExtensionsPageEnabledGroup);
+            result[1] = new ListViewGroup("Disabled", Resources.PHPExtensionsPageDisabledGroup);
 
             return result;
         }
@@ -164,11 +164,11 @@ namespace Web.Management.PHP.PHPExtensions
         protected override void InitializeListPage()
         {
             _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.PHPExtensionsPageNameColumnText;
+            _nameColumn.Text = Resources.PHPExtensionsPageNameField;
             _nameColumn.Width = 160;
 
             _stateColumn = new ColumnHeader();
-            _stateColumn.Text = Resources.PHPExtensionsPageStateColumnText;
+            _stateColumn.Text = Resources.PHPExtensionsPageStateField;
             _stateColumn.Width = 60;
 
             ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _stateColumn });
@@ -293,7 +293,7 @@ namespace Web.Management.PHP.PHPExtensions
                 }
                 else
                 {
-                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.PHPIniFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.ErrorPHPIniFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -350,18 +350,18 @@ namespace Web.Management.PHP.PHPExtensions
                 {
                     if (_page.SelectedItem.Extension.Enabled)
                     {
-                        tasks.Add(new MethodTaskItem("DisableExtension", Resources.DisableExtension, "Edit", null));
+                        tasks.Add(new MethodTaskItem("DisableExtension", Resources.PHPExtensionsPageDisableTask, "Edit", null));
                     }
                     else
                     {
-                        tasks.Add(new MethodTaskItem("EnableExtension", Resources.EnableExtension, "Edit", null));
+                        tasks.Add(new MethodTaskItem("EnableExtension", Resources.PHPExtensionsPageEnableTask, "Edit", null));
                     }
                 }
 
                 if (_page.Connection.IsLocalConnection) {
-                    tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.OpenPHPIniFile, "Tasks", null));
+                    tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.AllPagesOpenPHPIniTask, "Tasks", null));
                 }
-                tasks.Add(new MethodTaskItem("GoBack", Resources.GoBackTask, "Tasks", null, Resources.GoBack16));
+                tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 
                 return tasks;
             }

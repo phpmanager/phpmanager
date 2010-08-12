@@ -63,18 +63,72 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Add PHP Setting.
         /// </summary>
-        internal static string AddPHPSetting {
+        internal static string AddEditSettingDialogAddSetting {
             get {
-                return ResourceManager.GetString("AddPHPSetting", resourceCulture);
+                return ResourceManager.GetString("AddEditSettingDialogAddSetting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot create a temporary php file on a server to check phpinfo()..
+        ///   Looks up a localized string similar to Edit PHP Setting.
         /// </summary>
-        internal static string CannotCreatePHPInfo {
+        internal static string AddEditSettingDialogEditSetting {
             get {
-                return ResourceManager.GetString("CannotCreatePHPInfo", resourceCulture);
+                return ResourceManager.GetString("AddEditSettingDialogEditSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about this setting.
+        /// </summary>
+        internal static string AddEditSettingDialogLearnMore {
+            get {
+                return ResourceManager.GetString("AddEditSettingDialogLearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string AddEditSettingDialogName {
+            get {
+                return ResourceManager.GetString("AddEditSettingDialogName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section:.
+        /// </summary>
+        internal static string AddEditSettingDialogSection {
+            get {
+                return ResourceManager.GetString("AddEditSettingDialogSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value:.
+        /// </summary>
+        internal static string AddEditSettingDialogValue {
+            get {
+                return ResourceManager.GetString("AddEditSettingDialogValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to main page.
+        /// </summary>
+        internal static string AllPagesGoBackTask {
+            get {
+                return ResourceManager.GetString("AllPagesGoBackTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open php.ini.
+        /// </summary>
+        internal static string AllPagesOpenPHPIniTask {
+            get {
+                return ResourceManager.GetString("AllPagesOpenPHPIniTask", resourceCulture);
             }
         }
         
@@ -86,56 +140,20 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable.
+        ///   Looks up a localized string similar to The directory does not contain required PHP files: php-cgi.exe and php.ini..
         /// </summary>
-        internal static string DisableExtension {
+        internal static string ErrorNoPHPFilesInDirectory {
             get {
-                return ResourceManager.GetString("DisableExtension", resourceCulture);
+                return ResourceManager.GetString("ErrorNoPHPFilesInDirectory", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit PHP Setting.
+        ///   Looks up a localized string similar to php.ini file does not exist..
         /// </summary>
-        internal static string EditPHPSetting {
+        internal static string ErrorPHPIniFileDoesNotExist {
             get {
-                return ResourceManager.GetString("EditPHPSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit....
-        /// </summary>
-        internal static string EditTitle {
-            get {
-                return ResourceManager.GetString("EditTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable.
-        /// </summary>
-        internal static string EnableExtension {
-            get {
-                return ResourceManager.GetString("EnableExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Getting extensions.
-        /// </summary>
-        internal static string GettingExtensions {
-            get {
-                return ResourceManager.GetString("GettingExtensions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Getting settings.
-        /// </summary>
-        internal static string GettingSettings {
-            get {
-                return ResourceManager.GetString("GettingSettings", resourceCulture);
+                return ResourceManager.GetString("ErrorPHPIniFileDoesNotExist", resourceCulture);
             }
         }
         
@@ -147,56 +165,20 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back to main page.
-        /// </summary>
-        internal static string GoBackTask {
-            get {
-                return ResourceManager.GetString("GoBackTask", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        internal static string NameActionColumnText {
-            get {
-                return ResourceManager.GetString("NameActionColumnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The directory does not contain required PHP files: php-cgi.exe and php.ini..
-        /// </summary>
-        internal static string NoPHPFilesInDirectory {
-            get {
-                return ResourceManager.GetString("NoPHPFilesInDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open php.ini.
-        /// </summary>
-        internal static string OpenPHPIniFile {
-            get {
-                return ResourceManager.GetString("OpenPHPIniFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Configure extension&apos;s settings.
         /// </summary>
-        internal static string PHPExtensionConfigure {
+        internal static string PHPExtensionItemConfigureTask {
             get {
-                return ResourceManager.GetString("PHPExtensionConfigure", resourceCulture);
+                return ResourceManager.GetString("PHPExtensionItemConfigureTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable or disable an extension.
         /// </summary>
-        internal static string PHPExtensionEnableDisable {
+        internal static string PHPExtensionItemEnableTask {
             get {
-                return ResourceManager.GetString("PHPExtensionEnableDisable", resourceCulture);
+                return ResourceManager.GetString("PHPExtensionItemEnableTask", resourceCulture);
             }
         }
         
@@ -204,6 +186,15 @@ namespace Web.Management.PHP {
             get {
                 object obj = ResourceManager.GetObject("PHPExtensions32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP Extensions.
+        /// </summary>
+        internal static string PHPExtensionsItemTitle {
+            get {
+                return ResourceManager.GetString("PHPExtensionsItemTitle", resourceCulture);
             }
         }
         
@@ -217,16 +208,52 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File name.
+        ///   Looks up a localized string similar to Disabled.
         /// </summary>
-        internal static string PHPExtensionsPageFileNameColumnText {
+        internal static string PHPExtensionsPageDisabledGroup {
             get {
-                return ResourceManager.GetString("PHPExtensionsPageFileNameColumnText", resourceCulture);
+                return ResourceManager.GetString("PHPExtensionsPageDisabledGroup", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable or disable PHP extensions and configure PHP extensions settings..
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        internal static string PHPExtensionsPageDisableTask {
+            get {
+                return ResourceManager.GetString("PHPExtensionsPageDisableTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        internal static string PHPExtensionsPageEnabledGroup {
+            get {
+                return ResourceManager.GetString("PHPExtensionsPageEnabledGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        internal static string PHPExtensionsPageEnableTask {
+            get {
+                return ResourceManager.GetString("PHPExtensionsPageEnableTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting extensions.
+        /// </summary>
+        internal static string PHPExtensionsPageGettingExtensions {
+            get {
+                return ResourceManager.GetString("PHPExtensionsPageGettingExtensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP extensions provide additional functionality to PHP runtime, such as database connectivity, caching, debugging and others. Use this feature to enable or disable PHP extensions and to configure PHP extensions settings..
         /// </summary>
         internal static string PHPExtensionsPageLongDescription {
             get {
@@ -237,18 +264,18 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string PHPExtensionsPageNameColumnText {
+        internal static string PHPExtensionsPageNameField {
             get {
-                return ResourceManager.GetString("PHPExtensionsPageNameColumnText", resourceCulture);
+                return ResourceManager.GetString("PHPExtensionsPageNameField", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to State.
         /// </summary>
-        internal static string PHPExtensionsPageStateColumnText {
+        internal static string PHPExtensionsPageStateField {
             get {
-                return ResourceManager.GetString("PHPExtensionsPageStateColumnText", resourceCulture);
+                return ResourceManager.GetString("PHPExtensionsPageStateField", resourceCulture);
             }
         }
         
@@ -262,20 +289,20 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
-        /// </summary>
-        internal static string PHPInfoLongDescription {
-            get {
-                return ResourceManager.GetString("PHPInfoLongDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Get the output of the phpinfo() function.
         /// </summary>
         internal static string PHPInfoPageDescription {
             get {
                 return ResourceManager.GetString("PHPInfoPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
+        /// </summary>
+        internal static string PHPInfoPageLongDescription {
+            get {
+                return ResourceManager.GetString("PHPInfoPageLongDescription", resourceCulture);
             }
         }
         
@@ -307,15 +334,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to php.ini file does not exist.
-        /// </summary>
-        internal static string PHPIniFileDoesNotExist {
-            get {
-                return ResourceManager.GetString("PHPIniFileDoesNotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this setting?.
         /// </summary>
         internal static string PHPIniSettingDeleteConfirmation {
@@ -339,11 +357,38 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuration file:.
+        /// </summary>
+        internal static string PHPPageConfigurationFile {
+            get {
+                return ResourceManager.GetString("PHPPageConfigurationFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PHP runtime configuration and settings.
         /// </summary>
         internal static string PHPPageDescription {
             get {
                 return ResourceManager.GetString("PHPPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP executable:.
+        /// </summary>
+        internal static string PHPPageExecutable {
+            get {
+                return ResourceManager.GetString("PHPPageExecutable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extensions path:.
+        /// </summary>
+        internal static string PHPPageExtensionsPath {
+            get {
+                return ResourceManager.GetString("PHPPageExtensionsPath", resourceCulture);
             }
         }
         
@@ -366,11 +411,29 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string PHPPageNone {
+            get {
+                return ResourceManager.GetString("PHPPageNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PHP Manager.
         /// </summary>
         internal static string PHPPageTitle {
             get {
                 return ResourceManager.GetString("PHPPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP version:.
+        /// </summary>
+        internal static string PHPPageVersion {
+            get {
+                return ResourceManager.GetString("PHPPageVersion", resourceCulture);
             }
         }
         
@@ -384,45 +447,45 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Manage all PHP runtime settings.
         /// </summary>
-        internal static string PHPSettingsAllSettingsTask {
+        internal static string PHPSettingsItemAllSettingsTask {
             get {
-                return ResourceManager.GetString("PHPSettingsAllSettingsTask", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsItemAllSettingsTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Apply recommended settings.
         /// </summary>
-        internal static string PHPSettingsApplyRecommendedTask {
+        internal static string PHPSettingsItemApplyRecommendedTask {
             get {
-                return ResourceManager.GetString("PHPSettingsApplyRecommendedTask", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsItemApplyRecommendedTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Configure error reporting.
         /// </summary>
-        internal static string PHPSettingsErrorReportingTask {
+        internal static string PHPSettingsItemErrorReportingTask {
             get {
-                return ResourceManager.GetString("PHPSettingsErrorReportingTask", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsItemErrorReportingTask", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check and edit PHP runtime settings, such as error logging, include directories, session, security and more.
+        ///   Looks up a localized string similar to PHP Settings.
         /// </summary>
-        internal static string PHPSettingsLongDescription {
+        internal static string PHPSettingsItemTitle {
             get {
-                return ResourceManager.GetString("PHPSettingsLongDescription", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsItemTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Add....
         /// </summary>
-        internal static string PHPSettingsPageAddDirectiveTask {
+        internal static string PHPSettingsPageAddSettingTask {
             get {
-                return ResourceManager.GetString("PHPSettingsPageAddDirectiveTask", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsPageAddSettingTask", resourceCulture);
             }
         }
         
@@ -436,7 +499,25 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configure all php settings.
+        ///   Looks up a localized string similar to Edit....
+        /// </summary>
+        internal static string PHPSettingsPageEditTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsPageEditTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting settings.
+        /// </summary>
+        internal static string PHPSettingsPageGettingSettings {
+            get {
+                return ResourceManager.GetString("PHPSettingsPageGettingSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure all php settings that are stored in php.ini file. These setting control all aspects of PHP runtime, such error reporting, security, sessions and others..
         /// </summary>
         internal static string PHPSettingsPageLongDescription {
             get {
@@ -447,18 +528,27 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string PHPSettingsPageNameColumnText {
+        internal static string PHPSettingsPageNameField {
             get {
-                return ResourceManager.GetString("PHPSettingsPageNameColumnText", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsPageNameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string PHPSettingsPageRemoveTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsPageRemoveTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Section.
         /// </summary>
-        internal static string PHPSettingsPageSectionColumnText {
+        internal static string PHPSettingsPageSectionField {
             get {
-                return ResourceManager.GetString("PHPSettingsPageSectionColumnText", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsPageSectionField", resourceCulture);
             }
         }
         
@@ -474,18 +564,9 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
-        internal static string PHPSettingsPageValueColumnText {
+        internal static string PHPSettingsPageValueField {
             get {
-                return ResourceManager.GetString("PHPSettingsPageValueColumnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PHP Settings.
-        /// </summary>
-        internal static string PHPSettingsTitle {
-            get {
-                return ResourceManager.GetString("PHPSettingsTitle", resourceCulture);
+                return ResourceManager.GetString("PHPSettingsPageValueField", resourceCulture);
             }
         }
         
@@ -499,189 +580,108 @@ namespace Web.Management.PHP {
         /// <summary>
         ///   Looks up a localized string similar to Change PHP version.
         /// </summary>
-        internal static string PHPSetupChangeVersion {
+        internal static string PHPSetupItemChangeVersionTask {
             get {
-                return ResourceManager.GetString("PHPSetupChangeVersion", resourceCulture);
+                return ResourceManager.GetString("PHPSetupItemChangeVersionTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Check phpinfo().
         /// </summary>
-        internal static string PHPSetupCheckPHPInfoTask {
+        internal static string PHPSetupItemCheckPHPInfoTask {
             get {
-                return ResourceManager.GetString("PHPSetupCheckPHPInfoTask", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use this feature to configure IIS to work with PHP, to check that PHP and IIS are configured correctly and to select the PHP version, if more than one version is installed on the server..
-        /// </summary>
-        internal static string PHPSetupLongDescription {
-            get {
-                return ResourceManager.GetString("PHPSetupLongDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Configure IIS to properly work with PHP.
-        /// </summary>
-        internal static string PHPSetupPageDescription {
-            get {
-                return ResourceManager.GetString("PHPSetupPageDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PHP Setup.
-        /// </summary>
-        internal static string PHPSetupPageTitle {
-            get {
-                return ResourceManager.GetString("PHPSetupPageTitle", resourceCulture);
+                return ResourceManager.GetString("PHPSetupItemCheckPHPInfoTask", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Register new PHP version.
         /// </summary>
-        internal static string PHPSetupRegisterPHPTask {
+        internal static string PHPSetupItemRegisterPHPTask {
             get {
-                return ResourceManager.GetString("PHPSetupRegisterPHPTask", resourceCulture);
+                return ResourceManager.GetString("PHPSetupItemRegisterPHPTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP Setup.
+        /// </summary>
+        internal static string PHPSetupItemTitle {
+            get {
+                return ResourceManager.GetString("PHPSetupItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register new PHP version.
+        /// </summary>
+        internal static string RegisterPHPDialogRegisterNew {
+            get {
+                return ResourceManager.GetString("RegisterPHPDialogRegisterNew", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Select a folder where PHP runtime binaries and PHP configuration file are located..
         /// </summary>
-        internal static string PHPSetupSelectFolderDescription {
+        internal static string RegisterPHPDialogSelectFolder {
             get {
-                return ResourceManager.GetString("PHPSetupSelectFolderDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove.
-        /// </summary>
-        internal static string RemoveTitle {
-            get {
-                return ResourceManager.GetString("RemoveTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Section.
-        /// </summary>
-        internal static string SectionActionColumnText {
-            get {
-                return ResourceManager.GetString("SectionActionColumnText", resourceCulture);
+                return ResourceManager.GetString("RegisterPHPDialogSelectFolder", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to &amp;Domain:.
         /// </summary>
-        internal static string SelectDomainDomainLabel {
+        internal static string SelectDomainDialogDomainLabel {
             get {
-                return ResourceManager.GetString("SelectDomainDomainLabel", resourceCulture);
+                return ResourceManager.GetString("SelectDomainDialogDomainLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Select a domain name used for this site..
         /// </summary>
-        internal static string SelectDomainSelectADomainFirst {
+        internal static string SelectDomainDialogSelectADomainFirst {
             get {
-                return ResourceManager.GetString("SelectDomainSelectADomainFirst", resourceCulture);
+                return ResourceManager.GetString("SelectDomainDialogSelectADomainFirst", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Choose Domain.
         /// </summary>
-        internal static string SelectDomainTitle {
+        internal static string SelectDomainDialogTitle {
             get {
-                return ResourceManager.GetString("SelectDomainTitle", resourceCulture);
+                return ResourceManager.GetString("SelectDomainDialogTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to To use this feature, you must first select a site..
         /// </summary>
-        internal static string SelectSiteSelectASiteFirst {
+        internal static string SelectSiteDialogSelectASiteFirst {
             get {
-                return ResourceManager.GetString("SelectSiteSelectASiteFirst", resourceCulture);
+                return ResourceManager.GetString("SelectSiteDialogSelectASiteFirst", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to &amp;Site:.
         /// </summary>
-        internal static string SelectSiteSiteLabel {
+        internal static string SelectSiteDialogSiteLabel {
             get {
-                return ResourceManager.GetString("SelectSiteSiteLabel", resourceCulture);
+                return ResourceManager.GetString("SelectSiteDialogSiteLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Choose Site.
         /// </summary>
-        internal static string SelectSiteTitle {
+        internal static string SelectSiteDialogTitle {
             get {
-                return ResourceManager.GetString("SelectSiteTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Learn more about this setting.
-        /// </summary>
-        internal static string SettingLearnMoreLinkLabel {
-            get {
-                return ResourceManager.GetString("SettingLearnMoreLinkLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name:.
-        /// </summary>
-        internal static string SettingNameLabel {
-            get {
-                return ResourceManager.GetString("SettingNameLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Section:.
-        /// </summary>
-        internal static string SettingSectionLabel {
-            get {
-                return ResourceManager.GetString("SettingSectionLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value:.
-        /// </summary>
-        internal static string SettingValueLabel {
-            get {
-                return ResourceManager.GetString("SettingValueLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to State.
-        /// </summary>
-        internal static string StateActionColumnText {
-            get {
-                return ResourceManager.GetString("StateActionColumnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value.
-        /// </summary>
-        internal static string ValueActionColumnText {
-            get {
-                return ResourceManager.GetString("ValueActionColumnText", resourceCulture);
+                return ResourceManager.GetString("SelectSiteDialogTitle", resourceCulture);
             }
         }
     }

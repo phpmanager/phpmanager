@@ -36,7 +36,7 @@ namespace Web.Management.PHP.Config
 
         private static void ApplyRecommendedPHPIniSettings(string phpiniPath)
         {
-            // TODO: Add real stuff here
+            // TODO: Add all required settings here
             PHPIniFile file = new PHPIniFile(phpiniPath);
             file.Parse();
 

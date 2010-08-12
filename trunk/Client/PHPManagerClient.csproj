@@ -65,12 +65,6 @@
     <Compile Include="PHPSetup\ChangeVersionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectDomainDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectDomainDialog.designer.cs">
-      <DependentUpon>SelectDomainDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="PHPSetup\PHPInfoPage.cs">
@@ -93,11 +87,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="SelectSiteDialog.cs">
+    <Compile Include="SelectDomainDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectSiteDialog.designer.cs">
-      <DependentUpon>SelectSiteDialog.cs</DependentUpon>
+    <Compile Include="SelectSiteDialog.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="RemoteObject.cs" />
   </ItemGroup>

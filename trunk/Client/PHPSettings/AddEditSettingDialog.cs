@@ -55,7 +55,7 @@ namespace Web.Management.PHP.PHPSettings
             InitializeUI();
 
             // The dialog is used in the "Add setting" mode
-            Text = Resources.AddPHPSetting;
+            Text = Resources.AddEditSettingDialogAddSetting;
 
             _autoCompleteSections = new AutoCompleteStringCollection();
             foreach (string section in sections)
@@ -78,7 +78,7 @@ namespace Web.Management.PHP.PHPSettings
             InitializeUI();
 
             // The dialog is used in the "Edit setting" mode
-            Text = Resources.EditPHPSetting;
+            Text = Resources.AddEditSettingDialogEditSetting;
 
             _nameTextBox.Enabled = false;
             _sectionTextBox.Enabled = false;
@@ -136,7 +136,7 @@ namespace Web.Management.PHP.PHPSettings
             this._nameLabel.Name = "_nameLabel";
             this._nameLabel.Size = new System.Drawing.Size(38, 13);
             this._nameLabel.TabIndex = 0;
-            this._nameLabel.Text = Resources.SettingNameLabel;
+            this._nameLabel.Text = Resources.AddEditSettingDialogName;
             // 
             // _nameTextBox
             // 
@@ -153,7 +153,7 @@ namespace Web.Management.PHP.PHPSettings
             this._valueLabel.Name = "_valueLabel";
             this._valueLabel.Size = new System.Drawing.Size(37, 13);
             this._valueLabel.TabIndex = 2;
-            this._valueLabel.Text = Resources.SettingValueLabel;
+            this._valueLabel.Text = Resources.AddEditSettingDialogValue;
             // 
             // _valueTextBox
             // 
@@ -170,7 +170,7 @@ namespace Web.Management.PHP.PHPSettings
             this._sectionLabel.Name = "_sectionLabel";
             this._sectionLabel.Size = new System.Drawing.Size(46, 13);
             this._sectionLabel.TabIndex = 4;
-            this._sectionLabel.Text = Resources.SettingSectionLabel;
+            this._sectionLabel.Text = Resources.AddEditSettingDialogSection;
             // 
             // _sectionTextBox
             // 
@@ -190,7 +190,7 @@ namespace Web.Management.PHP.PHPSettings
             this._helpLinkLabel.Size = new System.Drawing.Size(143, 13);
             this._helpLinkLabel.TabIndex = 6;
             this._helpLinkLabel.TabStop = true;
-            this._helpLinkLabel.Text = Resources.SettingLearnMoreLinkLabel;
+            this._helpLinkLabel.Text = Resources.AddEditSettingDialogLearnMore;
             this._helpLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnHelpLinkLabelLinkClicked);
             // 
             // AddEditSettingDialog
