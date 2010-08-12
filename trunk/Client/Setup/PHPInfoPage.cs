@@ -16,7 +16,7 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Microsoft.Web.Management.Server;
 
-namespace Web.Management.PHP.PHPSetup
+namespace Web.Management.PHP.Setup
 {
 
     [ModulePageIdentifier(Globals.PHPInfoPageIdentifier)]

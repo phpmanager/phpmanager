@@ -16,9 +16,9 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
-using Web.Management.PHP.PHPExtensions;
-using Web.Management.PHP.PHPSettings;
-using Web.Management.PHP.PHPSetup;
+using Web.Management.PHP.Extensions;
+using Web.Management.PHP.Settings;
+using Web.Management.PHP.Setup;
 
 namespace Web.Management.PHP
 {

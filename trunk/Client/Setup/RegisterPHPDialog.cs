@@ -15,7 +15,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client.Win32;
 
-namespace Web.Management.PHP.PHPSetup
+namespace Web.Management.PHP.Setup
 {
 
     internal sealed class RegisterPHPDialog : 

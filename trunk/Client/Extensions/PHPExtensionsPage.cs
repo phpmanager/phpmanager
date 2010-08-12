@@ -19,7 +19,7 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP.PHPExtensions
+namespace Web.Management.PHP.Extensions
 {
 
     [ModulePageIdentifier(Globals.PHPExtensionsPageIdentifier)]

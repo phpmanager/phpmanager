@@ -16,7 +16,7 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP.PHPSettings
+namespace Web.Management.PHP.Settings
 {
 
     internal sealed class AddEditSettingDialog : 

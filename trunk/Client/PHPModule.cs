@@ -13,9 +13,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Server;
-using Web.Management.PHP.PHPExtensions;
-using Web.Management.PHP.PHPSettings;
-using Web.Management.PHP.PHPSetup;
+using Web.Management.PHP.Extensions;
+using Web.Management.PHP.Settings;
+using Web.Management.PHP.Setup;
 
 namespace Web.Management.PHP
 {
