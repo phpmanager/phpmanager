@@ -69,6 +69,15 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create a temporary php file on a server to check phpinfo()..
+        /// </summary>
+        internal static string CannotCreatePHPInfo {
+            get {
+                return ResourceManager.GetString("CannotCreatePHPInfo", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap Delete16 {
             get {
                 object obj = ResourceManager.GetObject("Delete16", resourceCulture);

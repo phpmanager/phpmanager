@@ -120,6 +120,9 @@
   <data name="AddPHPSetting" xml:space="preserve">
     <value>Add PHP Setting</value>
   </data>
+  <data name="CannotCreatePHPInfo" xml:space="preserve">
+    <value>Cannot create a temporary php file on a server to check phpinfo().</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

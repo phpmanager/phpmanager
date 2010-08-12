@@ -20,7 +20,7 @@ using Web.Management.PHP.PHPSetup;
 namespace Web.Management.PHP
 {
 
-    internal class PHPModule : Module
+    internal sealed class PHPModule : Module
     {
         private PHPModuleProxy _proxy;
 
@@ -36,25 +36,6 @@ namespace Web.Management.PHP
 
                 return _proxy;
             }
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        internal static bool Browse(string url)
-        {
-            if (url != null &&
-                (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase)) ||
-                url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            {
-                try
-                {
-                    Process.Start(url);
-                    return true;
-                }
-                catch
-                {
-                }
-            }
-            return false;
         }
 
         protected override void Initialize(IServiceProvider serviceProvider, ModuleInfo moduleInfo)

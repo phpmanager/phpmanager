@@ -24,33 +24,22 @@ namespace Web.Management.PHP
 {
 
     [ModulePageIdentifier(Globals.PHPPageIdentifier)]
-    internal class PHPPage : ModulePage
+    internal sealed class PHPPage : ModulePage
     {
-        private Label _enabledExtLabel;
-
-        private Label _extPathValueLabel;
-
-        private Label _extPathNameLabel;
-
-        private Label _recommendedConfigLabel;
-
-        private Label _configPathValueLabel;
-
-        private Label _configPathNameLabel;
-
-        private Label _executableValueLabel;
-
-        private Label _executableNameLabel;
-
-        private Label _versionValueLabel;
-
         // Summary labels
+        private Label _enabledExtLabel;
+        private Label _extPathValueLabel;
+        private Label _extPathNameLabel;
+        private Label _recommendedConfigLabel;
+        private Label _configPathValueLabel;
+        private Label _configPathNameLabel;
+        private Label _executableValueLabel;
+        private Label _executableNameLabel;
+        private Label _versionValueLabel;        
         private Label _versionNameLabel;
 
         private PHPPageItemControl _phpExtensionItem;
-
         private PHPPageItemControl _phpSettingsItem;
-
         private PHPPageItemControl _phpSetupItem;
 
         private const int PHPSetupIndex = 1;
@@ -408,7 +397,7 @@ namespace Web.Management.PHP
 
         protected override bool ShowOnlineHelp()
         {
-            return PHPModule.Browse(Globals.PHPPageOnlineHelp);
+            return Helper.Browse(Globals.PHPPageOnlineHelp);
         }
 
         private void UpdateInfo()

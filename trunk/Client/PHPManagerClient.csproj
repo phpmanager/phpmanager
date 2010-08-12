@@ -53,7 +53,7 @@
     <Compile Include="PHPExtensions\PHPExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PHPSettings\EditSettingDialog.cs">
+    <Compile Include="PHPSettings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PHPSettings\PHPSettingsPage.cs">

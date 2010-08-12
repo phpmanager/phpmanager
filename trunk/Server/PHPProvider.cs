@@ -15,7 +15,7 @@ using Microsoft.Web.Management.Server;
 namespace Web.Management.PHP
 {
 
-    internal class PHPProvider : ModuleProvider
+    internal sealed class PHPProvider : ModuleProvider
     {
 
         public override Type ServiceType

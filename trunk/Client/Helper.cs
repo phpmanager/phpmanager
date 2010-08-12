@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Web.Management.PHP
@@ -17,6 +18,24 @@ namespace Web.Management.PHP
 
     internal static class Helper
     {
+
+        internal static bool Browse(string url)
+        {
+            if (url != null &&
+                (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase)) ||
+                url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    Process.Start(url);
+                    return true;
+                }
+                catch
+                {
+                }
+            }
+            return false;
+        }
 
         internal static string EnsureTrailingSlash(string path)
         {

@@ -18,7 +18,7 @@ using Microsoft.Web.Management.Client.Win32;
 namespace Web.Management.PHP.PHPSetup
 {
 
-    internal partial class RegisterPHPDialog : 
+    internal sealed class RegisterPHPDialog : 
 #if VSDesigner
         Form
 #else

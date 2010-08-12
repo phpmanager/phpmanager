@@ -84,17 +84,6 @@ namespace Web.Management.PHP.PHPSetup
             }
         }
 
-        private void _webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (!String.IsNullOrEmpty(_filepath))
-            {
-                Module.Proxy.RemovePHPInfo(_filepath);
-                _filepath = String.Empty;
-                
-                _webBrowser.AllowNavigation = false;
-            }
-        }
-
         private void GoBack()
         {
             Navigate(typeof(PHPPage));
@@ -123,7 +112,7 @@ namespace Web.Management.PHP.PHPSetup
             this._webBrowser.Name = "_webBrowser";
             this._webBrowser.Size = new System.Drawing.Size(296, 284);
             this._webBrowser.TabIndex = 0;
-            this._webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this._webBrowser_DocumentCompleted);
+            this._webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.OnWebBrowserDocumentCompleted);
             // 
             // _panel
             // 
@@ -149,7 +138,31 @@ namespace Web.Management.PHP.PHPSetup
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
-            ShowPHPInfo();
+
+            if (initialActivation)
+            {
+                ShowPHPInfo();
+            }
+        }
+
+        private void OnWebBrowserDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(_filepath))
+            {
+                try
+                {
+                    Module.Proxy.RemovePHPInfo(_filepath);
+                }
+                catch (Exception ex)
+                {
+                    DisplayErrorMessage(ex, Resources.ResourceManager);
+                }
+                finally
+                {
+                    _filepath = String.Empty;
+                    _webBrowser.AllowNavigation = false;
+                }
+            }
         }
 
         private void SelectDomain()
@@ -166,13 +179,19 @@ namespace Web.Management.PHP.PHPSetup
 
         private void ShowPHPInfo()
         {
-            _filepath = Module.Proxy.CreatePHPInfo();
-
-            if (!String.IsNullOrEmpty(_domain))
+            try
             {
-                string url = this.Domain + Path.GetFileName(_filepath);
-                _webBrowser.AllowNavigation = true;
-                _webBrowser.Navigate(url);
+                if (!String.IsNullOrEmpty(_domain))
+                {
+                    _filepath = Module.Proxy.CreatePHPInfo();
+                    string url = this.Domain + Path.GetFileName(_filepath);
+                    _webBrowser.AllowNavigation = true;
+                    _webBrowser.Navigate(url);
+                }
+            }
+            catch(Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
             }
         }
 

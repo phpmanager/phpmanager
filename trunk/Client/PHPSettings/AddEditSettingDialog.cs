@@ -19,7 +19,7 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP.PHPSettings
 {
 
-    internal partial class AddEditSettingDialog : 
+    internal sealed class AddEditSettingDialog : 
 #if VSDesigner
         Form
 #else
@@ -268,7 +268,7 @@ namespace Web.Management.PHP.PHPSettings
 
         protected override void ShowHelp()
         {
-            PHPModule.Browse("http://www.php.net/" + _nameTextBox.Text.Trim());
+            Helper.Browse("http://www.php.net/" + _nameTextBox.Text.Trim());
         }
 
         private void UpdateUI()

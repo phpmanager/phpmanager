@@ -20,7 +20,7 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP.PHPSetup
 {
 
-    internal partial class ChangeVersionDialog :
+    internal sealed class ChangeVersionDialog :
 #if VSDesigner
         Form
 #else

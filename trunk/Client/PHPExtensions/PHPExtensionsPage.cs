@@ -8,7 +8,6 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -24,7 +23,7 @@ namespace Web.Management.PHP.PHPExtensions
 {
 
     [ModulePageIdentifier(Globals.PHPExtensionsPageIdentifier)]
-    internal class PHPExtensionsPage : ModuleListPage, IModuleChildPage
+    internal sealed class PHPExtensionsPage : ModuleListPage, IModuleChildPage
     {
         private ColumnHeader _nameColumn;
         private ColumnHeader _stateColumn;

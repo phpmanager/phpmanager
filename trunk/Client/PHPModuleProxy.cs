@@ -17,7 +17,7 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    internal class PHPModuleProxy : ModuleServiceProxy
+    internal sealed class PHPModuleProxy : ModuleServiceProxy
     {
 
         internal void AddOrUpdateSettings(RemoteObjectCollection<PHPIniSetting> settings)

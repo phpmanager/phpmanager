@@ -18,10 +18,16 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    internal class PHPService : ModuleService
+    internal sealed class PHPService : ModuleService
     {
 
-        [ModuleServiceMethod(PassThrough = true)]
+#if DEBUG
+        private const bool Passthrough = false;
+#else
+        private const bool PassThrough = true;
+#endif
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void AddOrUpdateSettings(object settingsData)
         {
             EnsureServerConnection();
@@ -35,9 +41,11 @@ namespace Web.Management.PHP
             file.Save(file.FileName);
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public string CreatePHPInfo()
         {
+            EnsureServerOrSiteConnection();
+
             string siteName = ManagementUnit.ConfigurationPath.SiteName;
             if (String.IsNullOrEmpty(siteName))
             {
@@ -66,14 +74,7 @@ namespace Web.Management.PHP
             string fileName = randomString.Substring(0, randomString.IndexOf('.')) + ".php";
             string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(vdir.PhysicalPath), fileName);
 
-            try
-            {
-                File.WriteAllText(filePath, @"<?php phpinfo(); ?>");
-            }
-            catch (Exception)
-            {
-                RaiseException("CannotCreatePHPInfoFile");
-            }
+            File.WriteAllText(filePath, @"<?php phpinfo(); ?>");
 
             return filePath;
         }
@@ -86,7 +87,15 @@ namespace Web.Management.PHP
             }
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        private void EnsureServerOrSiteConnection()
+        {
+            if (ManagementUnit.Scope != ManagementScope.Server && ManagementUnit.Scope != ManagementScope.Site)
+            {
+                throw new UnauthorizedAccessException();
+            }
+        }
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetAllPHPVersions()
         {
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
@@ -94,7 +103,7 @@ namespace Web.Management.PHP
             return versions;
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPConfigInfo()
         {
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
@@ -130,7 +139,7 @@ namespace Web.Management.PHP
             return path;
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPIniPhysicalPath()
         {
             if (!ManagementUnit.Context.IsLocalConnection)
@@ -151,7 +160,7 @@ namespace Web.Management.PHP
             return phpIniPath;
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPIniSettings()
         {
             PHPIniFile file = GetPHPIniFile();
@@ -159,7 +168,7 @@ namespace Web.Management.PHP
             return file.GetData();
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetSiteBindings()
         {
             string siteName = ManagementUnit.ConfigurationPath.SiteName;
@@ -188,7 +197,7 @@ namespace Web.Management.PHP
             return list;
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetSites()
         {
 
@@ -204,7 +213,7 @@ namespace Web.Management.PHP
             return sites;
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void RegisterPHPWithIIS(string phpDirectory)
         {
             EnsureServerConnection();
@@ -220,23 +229,17 @@ namespace Web.Management.PHP
             }
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void RemovePHPInfo(string filePath)
         {
             if (!File.Exists(filePath)) {
                 return;
             }
-            try
-            {
-                File.Delete(filePath);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                RaiseException("Cannot delete a temporary file due to insufficient privileges");
-            }
+
+            File.Delete(filePath);
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void RemovePHPIniSetting(object settingData)
         {
             EnsureServerConnection();
@@ -252,14 +255,14 @@ namespace Web.Management.PHP
             }
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void SelectPHPVersion(string name)
         {
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
             phpConfig.SelectPHPHandler(name);
         }
 
-        [ModuleServiceMethod(PassThrough = true)]
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void UpdatePHPExtensions(object extensionsData)
         {
             EnsureServerConnection();
