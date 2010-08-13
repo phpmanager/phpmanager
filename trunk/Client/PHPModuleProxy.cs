@@ -35,11 +35,6 @@ namespace Web.Management.PHP
             return (ArrayList)Invoke("GetAllPHPVersions");
         }
 
-        internal string GetCurrentSiteName()
-        {
-            return (string)Invoke("GetCurrentSiteName");
-        }
-
         internal PHPConfigInfo GetPHPConfigInfo()
         {
             object o = Invoke("GetPHPConfigInfo");

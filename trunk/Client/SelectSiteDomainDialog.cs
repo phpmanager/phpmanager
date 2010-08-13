@@ -237,7 +237,17 @@ namespace Web.Management.PHP
         {
             base.OnLoad(e);
 
-            StartAsyncTask(OnSiteWorkerDoWork, OnSiteWorkerDoWorkCompleted);
+            if (_connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            {
+                StartAsyncTask(OnSiteWorkerDoWork, OnSiteWorkerDoWorkCompleted);
+            }
+            else
+            {
+                _sitesComboBox.Items.Clear();
+                _sitesComboBox.Items.Add(_connection.ConfigurationPath.SiteName);
+                _sitesComboBox.SelectedIndex = 0;
+                _sitesComboBox.Enabled = false;
+            }
         }
 
         private void OnSitesComboBoxSelectedIndexChanged(object sender, EventArgs e)
@@ -247,16 +257,7 @@ namespace Web.Management.PHP
 
         private void OnSiteWorkerDoWork(object sender, DoWorkEventArgs e) 
         {
-            // On a server level we get the list of all the sites
-            // On a site level we get the name of the current site
-            if (_connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
-            {
-                e.Result = _module.Proxy.GetSites();
-            }
-            else
-            {
-                e.Result = _module.Proxy.GetCurrentSiteName();
-            }
+            e.Result = _module.Proxy.GetSites();
         }
 
         private void OnSiteWorkerDoWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -269,19 +270,9 @@ namespace Web.Management.PHP
                 _sitesComboBox.Items.Clear();
 
                 ArrayList sites = e.Result as ArrayList;
-                if (sites != null)
+                foreach (string siteName in sites)
                 {
-                    foreach (string siteName in sites)
-                    {
-                        _sitesComboBox.Items.Add(siteName);
-                    }
-                }
-                else
-                {
-                    string siteName = e.Result as string;
                     _sitesComboBox.Items.Add(siteName);
-                    _sitesComboBox.SelectedIndex = 0;
-                    _sitesComboBox.Enabled = false;
                 }
             }
             catch (Exception ex)

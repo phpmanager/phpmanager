@@ -103,23 +103,6 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public string GetCurrentSiteName()
-        {
-            string siteName = ManagementUnit.ConfigurationPath.SiteName;
-            if (String.IsNullOrEmpty(siteName))
-            {
-                throw new InvalidOperationException();
-            }
-
-            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
-            if (site == null)
-            {
-                throw new InvalidOperationException();
-            }
-            return siteName;
-        }
-
-        [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPConfigInfo()
         {
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
