@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -84,66 +84,6 @@ namespace Web.Management.PHP.Config
                 }
 
                 return _settings;
-            }
-        }
-
-        private static IEnumerable<PHPIniBase> ParseIniFile(TextReader reader)
-        {
-            string section = String.Empty;
-
-            string line = reader.ReadLine();
-            while (line != null)
-            {
-                string tmp = line.Trim();
-
-                // Process comments
-                if (tmp.StartsWith(";", StringComparison.OrdinalIgnoreCase))
-                {
-                    yield return new PHPIniString(line);
-                }
-                // Process section
-                else if (tmp.StartsWith("[", StringComparison.OrdinalIgnoreCase))
-                {
-                    int startindex = tmp.IndexOf('[');
-                    int endindex = tmp.IndexOf(']');
-                    if ((startindex >= 0) && (endindex > startindex))
-                    {
-                        string name = tmp.Substring(startindex + 1, endindex - startindex - 1);
-                        section = name;
-                        yield return new PHPIniSection(line);
-                    }
-                }
-                // Process an extension
-                else if (tmp.StartsWith("extension=", StringComparison.OrdinalIgnoreCase))
-                {
-                    string[] split = tmp.Split(new Char[] { '=' });
-                    if (split.Length == 2)
-                    {
-                        string fileName = split[1].Trim();
-                        yield return new PHPIniExtension(fileName, true, line);
-                    }
-                    else
-                    {
-                        // If extension file is not specified then treat the line as unusable
-                        yield return new PHPIniString(line);
-                    }
-                }
-                // Process a directive
-                else if (!String.IsNullOrEmpty(tmp))
-                {
-                    string[] split = tmp.Split(new Char[] { '=' });
-                    if (split.Length > 1)
-                        yield return new PHPIniSetting(split[0].Trim(), split[1].Trim(new char[] { ' ', '"' }), section, line);
-                    else
-                        yield return new PHPIniSetting(split[0].Trim(), String.Empty, section, line);
-                }
-                else
-                {
-                    // Return empty comment by default
-                    yield return new PHPIniString(line);
-                }
-
-                line = reader.ReadLine();
             }
         }
 
@@ -296,7 +236,82 @@ namespace Web.Management.PHP.Config
             {
                 extensionDir = Path.Combine(Path.GetDirectoryName(FileName), "ext");
             }
-            AddAllAvailableExtensions(extensionDir);
+
+            if (Directory.Exists(extensionDir))
+            {
+                AddAllAvailableExtensions(extensionDir);
+            }
+        }
+
+        private static IEnumerable<PHPIniBase> ParseIniFile(TextReader reader)
+        {
+            string section = String.Empty;
+
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                string tmp = line.Trim();
+
+                // Process comments
+                if (tmp.StartsWith(";", StringComparison.OrdinalIgnoreCase))
+                {
+                    yield return new PHPIniString(line);
+                }
+                // Process section
+                else if (tmp.StartsWith("[", StringComparison.OrdinalIgnoreCase))
+                {
+                    int startindex = tmp.IndexOf('[');
+                    int endindex = tmp.IndexOf(']');
+                    if ((startindex >= 0) && (endindex > startindex))
+                    {
+                        string name = tmp.Substring(startindex + 1, endindex - startindex - 1);
+                        section = name;
+                        yield return new PHPIniSection(line);
+                    }
+                }
+                // Process an extension
+                else if (tmp.StartsWith("extension=", StringComparison.OrdinalIgnoreCase))
+                {
+                    string[] split = tmp.Split(new Char[] { '=' });
+                    if (split.Length == 2)
+                    {
+                        string fileName = split[1].Trim();
+                        yield return new PHPIniExtension(fileName, true, line);
+                    }
+                    else
+                    {
+                        // If extension file is not specified then treat the line as unusable
+                        yield return new PHPIniString(line);
+                    }
+                }
+                // Process a directive
+                else if (!String.IsNullOrEmpty(tmp))
+                {
+                    // Take care of the inline comment
+                    int commentIndex = tmp.IndexOf(';');
+                    if (commentIndex > 0)
+                    {
+                        tmp = tmp.Substring(0, commentIndex);
+                    }
+
+                    string[] split = tmp.Split(new Char[] { '=' });
+                    if (split.Length > 1)
+                    {
+                        yield return new PHPIniSetting(split[0].Trim(), split[1].Trim(new char[] { ' ', '"' }), section, line);
+                    }
+                    else
+                    {
+                        yield return new PHPIniSetting(split[0].Trim(), String.Empty, section, line);
+                    }
+                }
+                else
+                {
+                    // Return empty comment by default
+                    yield return new PHPIniString(line);
+                }
+
+                line = reader.ReadLine();
+            }
         }
 
         internal bool Remove(PHPIniBase entry)
@@ -517,7 +532,15 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateText()
         {
-            Text = Name + " = " + Value;
+            // Wrap the value in quotes if it contains spaces
+            if (Value.IndexOf(' ') > 0)
+            {
+                Text = Name + " = \"" + Value + "\"";
+            }
+            else
+            {
+                Text = Name + " = " + Value;
+            }
         }
     }
 

@@ -89,42 +89,18 @@ namespace Web.Management.PHP
             }
         }
 
-        private void ExecuteSiteAction(int actionIndex, int index)
+        private string GetSiteUrlAndName(out string siteName)
         {
-            string siteName = GetSiteName();
-
-            if (!String.IsNullOrEmpty(siteName))
-            {
-                ManagementConfigurationPath configPath = ManagementConfigurationPath.CreateSiteConfigurationPath(siteName);
-                INavigationService ns = (INavigationService)GetService(typeof(INavigationService));
-                ns.Navigate(Connection, configPath, typeof(PHPPage), new int[] { actionIndex, index });
-
-            }
-        }
-
-        private string GetSiteName()
-        {
-            using (SelectSiteDialog dlg = new SelectSiteDialog(Module))
+            using (SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection, String.Empty))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    return dlg.SiteName;
+                    siteName = dlg.SiteName;
+                    return dlg.DomainName;
                 }
             }
 
-            return null;
-        }
-
-        private string GetSiteUrl()
-        {
-            using (SelectDomainDialog dlg = new SelectDomainDialog(this.Module, this.Connection, String.Empty))
-            {
-                if (ShowDialog(dlg) == DialogResult.OK)
-                {
-                    return dlg.SiteDomain;
-                }
-            }
-
+            siteName = string.Empty;
             return null;
         }
 
@@ -332,32 +308,22 @@ namespace Web.Management.PHP
             }
             else if (index == 2)
             {
-                if (Connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
+                string siteName = null;
+                string siteUrl = GetSiteUrlAndName(out siteName);
+                if (!String.IsNullOrEmpty(siteUrl))
                 {
-                    ExecuteSiteAction(PHPSetupIndex, index);
-                    return;
-                }
-
-                string siteBinding = GetSiteUrl();
-                if (!String.IsNullOrEmpty(siteBinding)) {
-                    Navigate(typeof(PHPInfoPage), siteBinding);
+                    Navigate(typeof(PHPInfoPage), new string[] { siteUrl, siteName });
                 }
             }
         }
 
         private void OnPHPSetupItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (Connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            string siteName = null;
+            string siteUrl = GetSiteUrlAndName(out siteName);
+            if (!String.IsNullOrEmpty(siteUrl))
             {
-                ExecuteSiteAction(PHPSetupTitleIndex, 0);
-
-                return;
-            }
-
-            string siteBinding = GetSiteUrl();
-
-            if (!String.IsNullOrEmpty(siteBinding)) {
-                Navigate(typeof(PHPInfoPage), siteBinding);
+                Navigate(typeof(PHPInfoPage), new string[] { siteUrl, siteName });
             }
         }
 

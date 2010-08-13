@@ -25,14 +25,19 @@ namespace Web.Management.PHP
             Invoke("AddOrUpdateSettings", settings.GetData());
         }
 
-        internal string CreatePHPInfo()
+        internal string CreatePHPInfo(string siteName)
         {
-            return (string)Invoke("CreatePHPInfo");
+            return (string)Invoke("CreatePHPInfo", siteName);
         }
 
         internal ArrayList GetAllPHPVersions()
         {
             return (ArrayList)Invoke("GetAllPHPVersions");
+        }
+
+        internal string GetCurrentSiteName()
+        {
+            return (string)Invoke("GetCurrentSiteName");
         }
 
         internal PHPConfigInfo GetPHPConfigInfo()
@@ -53,9 +58,9 @@ namespace Web.Management.PHP
             return Invoke("GetPHPIniSettings");
         }
 
-        internal ArrayList GetSiteBindings()
+        internal ArrayList GetSiteBindings(string siteName)
         {
-            return (ArrayList)Invoke("GetSiteBindings");
+            return (ArrayList)Invoke("GetSiteBindings", siteName);
         }
 
         internal ArrayList GetSites()

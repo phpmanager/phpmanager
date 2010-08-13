@@ -39,10 +39,6 @@ namespace Web.Management.PHP.Settings
         private string _filterValue;
         private IModulePage _parentPage;
 
-        public PHPSettingsPage()
-        {
-        }
-
         protected override bool CanRefresh
         {
             get

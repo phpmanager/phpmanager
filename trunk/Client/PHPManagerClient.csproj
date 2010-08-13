@@ -53,6 +53,9 @@
     <Compile Include="Extensions\PHPExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SelectSiteDomainDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,12 +89,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="SelectDomainDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectSiteDialog.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="RemoteObject.cs" />
   </ItemGroup>

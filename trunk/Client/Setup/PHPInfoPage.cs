@@ -27,6 +27,7 @@ namespace Web.Management.PHP.Setup
         private Panel _panel;
 
         private string _domain;
+        private string _siteName;
         private string _filepath;
 
         private PHPInfoTaskList _phpinfoTaskList;
@@ -68,6 +69,18 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        public string SiteName
+        {
+            get
+            {
+                return _siteName;
+            }
+            set
+            {
+                _siteName = value;
+            }
+        }
+
         protected override TaskListCollection Tasks
         {
             get
@@ -92,7 +105,9 @@ namespace Web.Management.PHP.Setup
         protected override void Initialize(object navigationData)
         {
             base.Initialize(navigationData);
-            this.Domain = navigationData as string;
+            string[] siteInfo = navigationData as string[];
+            this.Domain = siteInfo[0];
+            this.SiteName = siteInfo[1];
         }
 
         private void InitializeComponent()
@@ -167,11 +182,12 @@ namespace Web.Management.PHP.Setup
 
         private void SelectDomain()
         {
-            using(SelectDomainDialog dlg = new SelectDomainDialog(this.Module, this.Connection, this.Domain))
+            using(SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection, this.Domain))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    this.Domain = dlg.SiteDomain;
+                    this.Domain = dlg.DomainName;
+                    this.SiteName = dlg.SiteName;
                     ShowPHPInfo();
                 }
             }
@@ -183,7 +199,7 @@ namespace Web.Management.PHP.Setup
             {
                 if (!String.IsNullOrEmpty(_domain))
                 {
-                    _filepath = Module.Proxy.CreatePHPInfo();
+                    _filepath = Module.Proxy.CreatePHPInfo(this.SiteName);
                     string url = this.Domain + Path.GetFileName(_filepath);
                     _webBrowser.AllowNavigation = true;
                     _webBrowser.Navigate(url);

@@ -42,11 +42,10 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public string CreatePHPInfo()
+        public string CreatePHPInfo(string siteName)
         {
             EnsureServerOrSiteConnection();
 
-            string siteName = ManagementUnit.ConfigurationPath.SiteName;
             if (String.IsNullOrEmpty(siteName))
             {
                 throw new InvalidOperationException();
@@ -101,6 +100,23 @@ namespace Web.Management.PHP
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
             ArrayList versions = phpConfig.GetAllPHPVersions();
             return versions;
+        }
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
+        public string GetCurrentSiteName()
+        {
+            string siteName = ManagementUnit.ConfigurationPath.SiteName;
+            if (String.IsNullOrEmpty(siteName))
+            {
+                throw new InvalidOperationException();
+            }
+
+            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
+            if (site == null)
+            {
+                throw new InvalidOperationException();
+            }
+            return siteName;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -169,9 +185,8 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public ArrayList GetSiteBindings()
+        public ArrayList GetSiteBindings(string siteName)
         {
-            string siteName = ManagementUnit.ConfigurationPath.SiteName;
             if (String.IsNullOrEmpty(siteName))
             {
                 throw new InvalidOperationException();
@@ -200,7 +215,6 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetSites()
         {
-
             EnsureServerConnection();
 
             SiteCollection siteCollection = ManagementUnit.ReadOnlyServerManager.Sites;

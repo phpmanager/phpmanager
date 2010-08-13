@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,23 +33,61 @@ namespace Web.Management.PHP.Config
             _managementUnit = mgmtUnit;
         }
 
-        private static void ApplyRecommendedPHPIniSettings(string phpiniPath)
+        /// <summary>
+        /// Makes the recommended changes to the PHP settings in php.ini file
+        /// </summary>
+        /// <param name="phpiniPath">Path to php.ini file</param>
+        /// <param name="phpDirectory">Path to the directory where php is installed</param>
+        /// <param name="handlerName">Name of the IIS handler for PHP</param>
+        private static void ApplyRecommendedPHPIniSettings(string phpiniPath, string phpDirectory, string handlerName)
         {
-            // TODO: Add all required settings here
             PHPIniFile file = new PHPIniFile(phpiniPath);
             file.Parse();
 
+            // Set the recommended php.ini settings
             List<PHPIniSetting> settings = new List<PHPIniSetting>();
-            // Set FastCGI Impersonation
-            settings.Add(new PHPIniSetting("fastcgi.impersonate", "1", "PHP"));
+
+            // Set extension directory path
+            string value = Path.Combine(phpDirectory, "ext");
+            settings.Add(new PHPIniSetting("extension_dir", value, "PHP"));
+
+            // Set log_errors
+            settings.Add(new PHPIniSetting("log_errors", "On", "PHP"));
+
+            // Set error_log path
+            value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
+            settings.Add(new PHPIniSetting("error_log", value, "PHP"));
+
+            // Set session path
+            value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+            settings.Add(new PHPIniSetting("session.save_path", value, "PHP"));
+
+            // Set cgi.force_redirect
+            settings.Add(new PHPIniSetting("cgi.force_redirect", "0", "PHP"));
             
-            // Disable FastCGI logging
+            // Set cgi.fix_pathinfo
+            settings.Add(new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP"));
+
+            // Enable fastcgi impersonation
+            settings.Add(new PHPIniSetting("fastcgi.impersonate ", "1", "PHP"));
+            
+            // Disable fastcgi logging
             settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
 
-            // Set error log file path
-            settings.Add(new PHPIniSetting("error_log", @"C:\php", "PHP"));
+            // Set maximum script execution time
+            settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
 
+            // Turn off display errors
+            settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
             file.AddOrUpdateSettings(settings);
+
+            // Enable the most common PHP extensions
+            List<PHPIniExtension> extensions = new List<PHPIniExtension>();
+            extensions.Add(new PHPIniExtension("php_curl.dll", true));
+            extensions.Add(new PHPIniExtension("php_gd2.dll", true));
+            extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+            file.UpdateExtensions(extensions);
+
             file.Save(phpiniPath);
         }
 
@@ -70,6 +107,32 @@ namespace Web.Management.PHP.Config
             {
                 handlersCollection.AddCopy(handler);
             }
+        }
+
+        /// <summary>
+        /// Generates the name for the handler based on the version.
+        /// Ensures that there is no handler exists with that name already.
+        /// </summary>
+        /// <param name="collection">Handlers collection</param>
+        /// <param name="phpVersion">Version of PHP</param>
+        /// <returns>The unique name for the PHP handler</returns>
+        private static string GenerateHandlerName(HandlersCollection collection, string phpVersion)
+        {
+            string prefix = "php-" + phpVersion;
+            string name = prefix;
+
+            for (int i = 1; true; i++)
+            {
+                if (collection[name] != null)
+                {
+                    name = prefix + "_" + i.ToString();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return name;
         }
 
         /// <summary>
@@ -200,15 +263,28 @@ namespace Web.Management.PHP.Config
                     throw new ArgumentException("php-cgi.exe and php.exe do not exist in " + phpDirectory);
                 }
             }
+
+            // Check for existense of php extensions directory
+            string extPath = Path.Combine(phpDirectory, "ext");
+            if (!Directory.Exists(extPath))
+            {
+                throw new ArgumentException("ext directory does not exist in " + phpDirectory);
+            }
             
-            // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended to it
+            // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
+            // or php.ini-production to it
             string phpiniPath = Path.Combine(phpDirectory, "php.ini");
             if (!File.Exists(phpiniPath))
             {
                 string phpiniRecommendedPath = Path.Combine(phpDirectory, "php.ini-recommended");
+                string phpiniProductionPath = Path.Combine(phpDirectory, "php.ini-production");
                 if (File.Exists(phpiniRecommendedPath))
                 {
                     File.Copy(phpiniRecommendedPath, phpiniPath);
+                }
+                else if (File.Exists(phpiniProductionPath))
+                {
+                    File.Copy(phpiniProductionPath, phpiniPath);
                 }
                 else
                 {
@@ -243,9 +319,9 @@ namespace Web.Management.PHP.Config
             
             if (handlerElement == null)
             {
-                // Create a PHP file handler is it does not exist
+                // Create a PHP file handler if it does not exist
                 handlerElement = handlersCollection.CreateElement();
-                handlerElement.Name = "php-" + GetPHPExecutableVersion(phpexePath);
+                handlerElement.Name = GenerateHandlerName(handlersCollection, GetPHPExecutableVersion(phpexePath));
                 handlerElement.Modules = "FastCgiModule";
                 handlerElement.RequireAccess = RequireAccess.Script;
                 handlerElement.Verb = "*";
@@ -263,6 +339,9 @@ namespace Web.Management.PHP.Config
             }
 
             _managementUnit.Update();
+
+            // Make the recommended changes to php.ini file
+            ApplyRecommendedPHPIniSettings(phpiniPath, phpDirectory, handlerElement.Name);
         }
 
         /// <summary>

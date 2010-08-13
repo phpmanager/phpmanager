@@ -310,25 +310,16 @@
   <data name="PHPSettingsPageRemoveTask" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="SelectDomainDialogDomainLabel" xml:space="preserve">
-    <value>&amp;Domain:</value>
-  </data>
-  <data name="SelectDomainDialogSelectADomainFirst" xml:space="preserve">
-    <value>Select a domain name used for this site.</value>
-  </data>
-  <data name="SelectDomainDialogTitle" xml:space="preserve">
-    <value>Choose Domain</value>
-  </data>
-  <data name="SelectSiteDialogSelectASiteFirst" xml:space="preserve">
-    <value>To use this feature, you must first select a site.</value>
-  </data>
-  <data name="SelectSiteDialogSiteLabel" xml:space="preserve">
-    <value>&amp;Site:</value>
-  </data>
-  <data name="SelectSiteDialogTitle" xml:space="preserve">
-    <value>Choose Site</value>
+  <data name="SelectSiteDomainDialogTitle" xml:space="preserve">
+    <value>Choose Site and Domain</value>
   </data>
   <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
     <value>Register new PHP version</value>
+  </data>
+  <data name="SelectSiteDomainDialogSelectADomain" xml:space="preserve">
+    <value>Select a &amp;domain name used for the selected site:</value>
+  </data>
+  <data name="SelectSiteDomainDialogSelectASite" xml:space="preserve">
+    <value>Select a &amp;site where to check PHP configuration:</value>
   </data>
 </root>
