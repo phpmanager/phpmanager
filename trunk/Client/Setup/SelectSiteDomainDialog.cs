@@ -18,7 +18,7 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Microsoft.Web.Management.Server;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Setup
 {
 
     internal sealed class SelectSiteDomainDialog :
@@ -243,7 +243,6 @@ namespace Web.Management.PHP
             }
             else
             {
-                _sitesComboBox.Items.Clear();
                 _sitesComboBox.Items.Add(_connection.ConfigurationPath.SiteName);
                 _sitesComboBox.SelectedIndex = 0;
                 _sitesComboBox.Enabled = false;

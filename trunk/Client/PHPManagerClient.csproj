@@ -53,9 +53,6 @@
     <Compile Include="Extensions\PHPExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SelectSiteDomainDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +88,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="RemoteObject.cs" />
+    <Compile Include="Setup\SelectSiteDomainDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="pubpriv.snk" />
