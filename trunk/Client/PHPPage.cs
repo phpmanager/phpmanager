@@ -91,7 +91,7 @@ namespace Web.Management.PHP
 
         private string GetSiteUrlAndName(out string siteName)
         {
-            using (SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection, String.Empty))
+            using (SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {

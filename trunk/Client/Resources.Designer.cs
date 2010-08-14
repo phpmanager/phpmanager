@@ -325,15 +325,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select domain....
-        /// </summary>
-        internal static string PHPInfoSelectDomain {
-            get {
-                return ResourceManager.GetString("PHPInfoSelectDomain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this setting?.
         /// </summary>
         internal static string PHPIniSettingDeleteConfirmation {

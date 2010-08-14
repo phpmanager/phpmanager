@@ -214,9 +214,6 @@
   <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
     <value>Refresh phpinfo</value>
   </data>
-  <data name="PHPInfoSelectDomain" xml:space="preserve">
-    <value>Select domain...</value>
-  </data>
   <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
     <value>Are you sure you want to delete this setting?</value>
   </data>

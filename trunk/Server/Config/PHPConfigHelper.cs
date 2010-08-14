@@ -14,7 +14,6 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
-using Web.Management.PHP.Config;
 using Web.Management.PHP.FastCgi;
 using Web.Management.PHP.Handlers;
 
@@ -253,31 +252,31 @@ namespace Web.Management.PHP.Config
             string expandedDir = Environment.ExpandEnvironmentVariables(phpDirectory);
 
             // Check for existence of php executable in the specified directory
-            string phpexePath = Path.Combine(phpDirectory, "php-cgi.exe");
+            string phpexePath = Path.Combine(expandedDir, "php-cgi.exe");
             if (!File.Exists(phpexePath))
             {
                 // If php-cgi.exe does not exist then it may be PHP4 installation
-                phpexePath = Path.Combine(phpDirectory, "php.exe");
+                phpexePath = Path.Combine(expandedDir, "php.exe");
                 if (!File.Exists(phpexePath))
                 {
-                    throw new ArgumentException("php-cgi.exe and php.exe do not exist in " + phpDirectory);
+                    throw new ArgumentException("php-cgi.exe and php.exe do not exist in " + expandedDir);
                 }
             }
 
             // Check for existense of php extensions directory
-            string extPath = Path.Combine(phpDirectory, "ext");
+            string extPath = Path.Combine(expandedDir, "ext");
             if (!Directory.Exists(extPath))
             {
-                throw new ArgumentException("ext directory does not exist in " + phpDirectory);
+                throw new ArgumentException("ext directory does not exist in " + expandedDir);
             }
             
             // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
             // or php.ini-production to it
-            string phpiniPath = Path.Combine(phpDirectory, "php.ini");
+            string phpiniPath = Path.Combine(expandedDir, "php.ini");
             if (!File.Exists(phpiniPath))
             {
-                string phpiniRecommendedPath = Path.Combine(phpDirectory, "php.ini-recommended");
-                string phpiniProductionPath = Path.Combine(phpDirectory, "php.ini-production");
+                string phpiniRecommendedPath = Path.Combine(expandedDir, "php.ini-recommended");
+                string phpiniProductionPath = Path.Combine(expandedDir, "php.ini-production");
                 if (File.Exists(phpiniRecommendedPath))
                 {
                     File.Copy(phpiniRecommendedPath, phpiniPath);
@@ -288,7 +287,7 @@ namespace Web.Management.PHP.Config
                 }
                 else
                 {
-                    throw new ArgumentException("php.ini and php.ini recommended do not exist in " + phpDirectory);
+                    throw new ArgumentException("php.ini and php.ini recommended do not exist in " + expandedDir);
                 }
             }
 
@@ -341,7 +340,7 @@ namespace Web.Management.PHP.Config
             _managementUnit.Update();
 
             // Make the recommended changes to php.ini file
-            ApplyRecommendedPHPIniSettings(phpiniPath, phpDirectory, handlerElement.Name);
+            ApplyRecommendedPHPIniSettings(phpiniPath, expandedDir, handlerElement.Name);
         }
 
         /// <summary>

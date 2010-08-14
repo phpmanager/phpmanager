@@ -180,19 +180,6 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        private void SelectDomain()
-        {
-            using(SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection, this.Domain))
-            {
-                if (ShowDialog(dlg) == DialogResult.OK)
-                {
-                    this.Domain = dlg.DomainName;
-                    this.SiteName = dlg.SiteName;
-                    ShowPHPInfo();
-                }
-            }
-        }
-
         private void ShowPHPInfo()
         {
             try
@@ -235,7 +222,6 @@ namespace Web.Management.PHP.Setup
 
                 return new TaskItem[] {
                     new MethodTaskItem("RefreshPHPInfo", Resources.PHPInfoRefreshPHPInfo, "Set"),
-                    new MethodTaskItem("SelectDomain", Resources.PHPInfoSelectDomain, "Set"),
                     new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16)
                 };
             }
@@ -250,11 +236,6 @@ namespace Web.Management.PHP.Setup
                 _page.ShowPHPInfo();
             }
             
-            public void SelectDomain()
-            {
-                _page.SelectDomain();
-            }
-
         }
     }
 }

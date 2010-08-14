@@ -28,9 +28,15 @@ namespace Web.Management.PHP.Setup
         TaskForm
 #endif
     {
+        private Guid PreferenceServiceGuid = new Guid("68a2a947-eeb6-40d9-9e5a-977bf7753bce");
+        private const string ServerSelectSitePreferenceKey = "ServerSitePreferenceKey";
+        private const string ServerSelectDomainPreferenceKey = "ServerDomainPreferenceKey";
+
         private PHPModule _module;
         private Connection _connection;
-        private string _selectedDomain;
+        private string _preferenceDomain;
+        private string _preferenceSite;
+        private PreferencesStore _store;
 
         private ManagementPanel _contentPanel;
         private ComboBox _domainsComboBox;
@@ -43,12 +49,11 @@ namespace Web.Management.PHP.Setup
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public SelectSiteDomainDialog(PHPModule module, Connection connection, string selectedDomain)
+        public SelectSiteDomainDialog(PHPModule module, Connection connection)
             : base(module)
         {
             _module = module;
             _connection = connection;
-            _selectedDomain = selectedDomain;
 
             InitializeComponent();
             InitializeUI();
@@ -77,6 +82,22 @@ namespace Web.Management.PHP.Setup
             get
             {
                 return _domainsComboBox.SelectedItem as string;
+            }
+        }
+
+        private PreferencesStore PreferencesStore
+        {
+            get
+            {
+                if (_store == null)
+                {
+                    IPreferencesService prefService = (IPreferencesService)GetService(typeof(IPreferencesService));
+                    if (prefService != null)
+                    {
+                        _store = prefService.GetPreferencesStore(PreferenceServiceGuid);
+                    }
+                }
+                return _store;
             }
         }
 
@@ -185,8 +206,28 @@ namespace Web.Management.PHP.Setup
             UpdateTaskForm();
         }
 
+        private void LoadServerPreferences(PreferencesStore store)
+        {
+            _preferenceSite = store.GetValue(ServerSelectSitePreferenceKey, String.Empty);
+            _preferenceDomain = store.GetValue(ServerSelectDomainPreferenceKey, String.Empty);
+        }
+
+        private void LoadSitePreferences(PreferencesStore store)
+        {
+            _preferenceDomain = store.GetValue(_connection.ConfigurationPath.SiteName, String.Empty);
+        }
+
         protected override void OnAccept()
         {
+            if (_connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            {
+                SaveServerPreferences(PreferencesStore);
+            }
+            else
+            {
+                SaveSitePreferences(PreferencesStore);
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -217,8 +258,15 @@ namespace Web.Management.PHP.Setup
                     _domainsComboBox.Items.Add(domain);
                 }
 
-                int selectedIndex = _domainsComboBox.Items.IndexOf(_selectedDomain);
-                _domainsComboBox.SelectedIndex = (selectedIndex >= 0) ? selectedIndex : 0;
+                _domainsComboBox.SelectedIndex = 0;
+                if (!String.IsNullOrEmpty(_preferenceDomain))
+                {
+                    int selectedIndex = _domainsComboBox.Items.IndexOf(_preferenceDomain);
+                    if (selectedIndex > 0)
+                    {
+                        _domainsComboBox.SelectedIndex = selectedIndex;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -239,10 +287,12 @@ namespace Web.Management.PHP.Setup
 
             if (_connection.ConfigurationPath.PathType == ConfigurationPathType.Server)
             {
+                LoadServerPreferences(PreferencesStore);
                 StartAsyncTask(OnSiteWorkerDoWork, OnSiteWorkerDoWorkCompleted);
             }
             else
             {
+                LoadSitePreferences(PreferencesStore);
                 _sitesComboBox.Items.Add(_connection.ConfigurationPath.SiteName);
                 _sitesComboBox.SelectedIndex = 0;
                 _sitesComboBox.Enabled = false;
@@ -273,6 +323,15 @@ namespace Web.Management.PHP.Setup
                 {
                     _sitesComboBox.Items.Add(siteName);
                 }
+
+                if (!String.IsNullOrEmpty(_preferenceSite))
+                {
+                    int selectedIndex = _sitesComboBox.Items.IndexOf(_preferenceSite);
+                    if (selectedIndex >= 0)
+                    {
+                        _sitesComboBox.SelectedIndex = selectedIndex;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -285,6 +344,17 @@ namespace Web.Management.PHP.Setup
             }
 
             _sitesComboBox.Focus();
+        }
+
+        private void SaveServerPreferences(PreferencesStore store)
+        {
+            store.SetValue(ServerSelectSitePreferenceKey, SiteName, String.Empty);
+            store.SetValue(ServerSelectDomainPreferenceKey, DomainName, String.Empty);
+        }
+
+        private void SaveSitePreferences(PreferencesStore store)
+        {
+            store.SetValue(_connection.ConfigurationPath.SiteName, DomainName, String.Empty);
         }
 
         //protected override void ShowHelp() {
