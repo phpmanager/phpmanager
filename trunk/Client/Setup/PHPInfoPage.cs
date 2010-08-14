@@ -97,6 +97,16 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                _webBrowser.Dispose();
+            }
+        }
+
         private void GoBack()
         {
             Navigate(typeof(PHPPage));

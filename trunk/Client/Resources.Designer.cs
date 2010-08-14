@@ -366,6 +366,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error log:.
+        /// </summary>
+        internal static string PHPPageErrorLog {
+            get {
+                return ResourceManager.GetString("PHPPageErrorLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PHP executable:.
         /// </summary>
         internal static string PHPPageExecutable {
@@ -393,7 +402,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enabled and disable PHP extensions..
+        ///   Looks up a localized string similar to Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions..
         /// </summary>
         internal static string PHPPageLongDescription {
             get {
@@ -436,20 +445,11 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage all PHP runtime settings.
+        ///   Looks up a localized string similar to Manage all settings.
         /// </summary>
         internal static string PHPSettingsItemAllSettingsTask {
             get {
                 return ResourceManager.GetString("PHPSettingsItemAllSettingsTask", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply recommended settings.
-        /// </summary>
-        internal static string PHPSettingsItemApplyRecommendedTask {
-            get {
-                return ResourceManager.GetString("PHPSettingsItemApplyRecommendedTask", resourceCulture);
             }
         }
         
@@ -459,6 +459,24 @@ namespace Web.Management.PHP {
         internal static string PHPSettingsItemErrorReportingTask {
             get {
                 return ResourceManager.GetString("PHPSettingsItemErrorReportingTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set runtime limits.
+        /// </summary>
+        internal static string PHPSettingsItemLimitsTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsItemLimitsTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure PHP session.
+        /// </summary>
+        internal static string PHPSettingsItemSessionTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsItemSessionTask", resourceCulture);
             }
         }
         
@@ -601,6 +619,15 @@ namespace Web.Management.PHP {
         internal static string PHPSetupItemTitle {
             get {
                 return ResourceManager.GetString("PHPSetupItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify PHP setup.
+        /// </summary>
+        internal static string PHPSetupItemVerifyTask {
+            get {
+                return ResourceManager.GetString("PHPSetupItemVerifyTask", resourceCulture);
             }
         }
         

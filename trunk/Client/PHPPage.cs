@@ -28,9 +28,9 @@ namespace Web.Management.PHP
     {
         // Summary labels
         private Label _enabledExtLabel;
-        private Label _extPathValueLabel;
-        private Label _extPathNameLabel;
-        private Label _recommendedConfigLabel;
+        private Label _availableExtLabel;
+        private Label _errorLogNameLabel;
+        private Label _errorLogValueLabel;
         private Label _configPathValueLabel;
         private Label _configPathNameLabel;
         private Label _executableValueLabel;
@@ -41,14 +41,6 @@ namespace Web.Management.PHP
         private PHPPageItemControl _phpExtensionItem;
         private PHPPageItemControl _phpSettingsItem;
         private PHPPageItemControl _phpSetupItem;
-
-        private const int PHPSetupIndex = 1;
-        private const int PHPSetupTitleIndex = 2;
-        private const int PHPSettingsIndex = 3;
-        private const int PHPSettingsTitleIndex = 4;
-        private const int PHPExtensionsIndex = 5;
-        private const int PHPExtensionsTitleIndex = 6;
-        private int[] _parameters;
 
         private new PHPModule Module
         {
@@ -66,29 +58,6 @@ namespace Web.Management.PHP
             }
         }
 
-        private void ExecuteParameters()
-        {
-            int actionItem = _parameters[0];
-            int index = _parameters[1];
-
-            if (actionItem == PHPSetupIndex)
-            {
-                OnPHPSetupItemClick(index);
-            }
-            else if (actionItem == PHPSettingsIndex)
-            {
-                OnPHPSettingsItemClick(index);
-            }
-            else if (actionItem == PHPSetupTitleIndex)
-            {
-                OnPHPSetupItemTitleClick(this, null);
-            }
-            else if (actionItem == PHPSettingsTitleIndex)
-            {
-                OnPHPSettingsItemTitleClick(this, null);
-            }
-        }
-
         private string GetSiteUrlAndName(out string siteName)
         {
             using (SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection))
@@ -102,17 +71,6 @@ namespace Web.Management.PHP
 
             siteName = string.Empty;
             return null;
-        }
-
-        protected override void Initialize(object navigationData)
-        {
-            base.Initialize(navigationData);
-
-            int[] parameters = navigationData as int[];
-            if (parameters != null)
-            {
-                _parameters = parameters;
-            }
         }
 
         private void InitializeUI()
@@ -137,12 +95,13 @@ namespace Web.Management.PHP
             _configPathNameLabel = new Label();
             _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
             _configPathValueLabel = new Label();
-            _recommendedConfigLabel = new Label();
 
-            _extPathNameLabel = new Label();
-            _extPathNameLabel.Text = Resources.PHPPageExtensionsPath;
-            _extPathValueLabel = new Label();
+            _errorLogNameLabel = new Label();
+            _errorLogNameLabel.Text = Resources.PHPPageErrorLog;
+            _errorLogValueLabel = new Label();
+
             _enabledExtLabel = new Label();
+            _availableExtLabel = new Label();
 
             //
             // PHPSetup
@@ -160,6 +119,7 @@ namespace Web.Management.PHP
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
                                     Resources.PHPSetupItemRegisterPHPTask,
                                     Resources.PHPSetupItemChangeVersionTask,
+                                    Resources.PHPSetupItemVerifyTask,
                                     Resources.PHPSetupItemCheckPHPInfoTask);
 
             Controls.Add(_phpSetupItem);
@@ -176,10 +136,11 @@ namespace Web.Management.PHP
             _phpSettingsItem.Image = Resources.PHPSettings32;
 
             _phpSettingsItem.AddInfoRow(_configPathNameLabel, _configPathValueLabel);
-            _phpSettingsItem.AddSpanRow(_recommendedConfigLabel);
+            _phpSettingsItem.AddInfoRow(_errorLogNameLabel, _errorLogValueLabel);
             _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
-                                    Resources.PHPSettingsItemApplyRecommendedTask,
                                     Resources.PHPSettingsItemErrorReportingTask,
+                                    Resources.PHPSettingsItemSessionTask,
+                                    Resources.PHPSettingsItemLimitsTask,
                                     Resources.PHPSettingsItemAllSettingsTask);
 
             Controls.Add(_phpSettingsItem);
@@ -195,11 +156,10 @@ namespace Web.Management.PHP
             _phpExtensionItem.TitleFont = titleFont;
             _phpExtensionItem.Image = Resources.PHPExtensions32;
 
-            _phpExtensionItem.AddInfoRow(_extPathNameLabel, _extPathValueLabel);
             _phpExtensionItem.AddSpanRow(_enabledExtLabel);
+            _phpExtensionItem.AddSpanRow(_availableExtLabel);
             _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
-                                    Resources.PHPExtensionItemEnableTask,
-                                    Resources.PHPExtensionItemConfigureTask);
+                                    Resources.PHPExtensionItemEnableTask);
             
             // Update the information summaries for each PHPPageItemControl
             UpdateInfo();
@@ -213,14 +173,10 @@ namespace Web.Management.PHP
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
+            
             if (initialActivation)
             {
                 InitializeUI();
-
-                if (_parameters != null)
-                {
-                    BeginInvoke(new MethodInvoker(ExecuteParameters));
-                }
             }
         }
 
@@ -268,11 +224,7 @@ namespace Web.Management.PHP
         {
             if (index == 0)
             {
-                Navigate(typeof(PHPPage), new object());
-            }
-            else if (index == 1)
-            {
-                Navigate(typeof(PHPPage));
+                Navigate(typeof(PHPExtensionsPage));
             }
         }
 
@@ -281,13 +233,11 @@ namespace Web.Management.PHP
             Navigate(typeof(PHPExtensionsPage));
         }
 
-        // TODO: Change the following methods:
-
         private void OnPHPSettingsItemClick(int index)
         {
-            if (index == 2)
+            if (index == 3)
             {
-                Navigate(typeof(PHPSettingsPage), new object());
+                Navigate(typeof(PHPSettingsPage));
             }
         }
 
@@ -306,7 +256,7 @@ namespace Web.Management.PHP
             {
                 SelectPHPVersion();
             }
-            else if (index == 2)
+            else if (index == 3)
             {
                 string siteName = null;
                 string siteUrl = GetSiteUrlAndName(out siteName);
@@ -376,7 +326,7 @@ namespace Web.Management.PHP
                     _versionValueLabel.Text = Resources.PHPPageNone;
                     _executableValueLabel.Text = Resources.PHPPageNone;
                     _configPathValueLabel.Text = Resources.PHPPageNone;
-                    _extPathValueLabel.Text = Resources.PHPPageNone;
+                    _errorLogValueLabel.Text = Resources.PHPPageNone;
                 }
                 else
                 {
@@ -384,16 +334,15 @@ namespace Web.Management.PHP
                     _executableValueLabel.Text = configInfo.ScriptProcessor;
                     // TODO: Need to add real values here
                     _configPathValueLabel.Text = @"C:\PHP\5211NTS\php.ini";
-                    _recommendedConfigLabel.Text = "Recommended configuration is set";
-                    _extPathValueLabel.Text = @"C:\PHP\5211NTS\ext\";
+                    _errorLogValueLabel.Text = @"C:\Windows\Temp\php_errors.log";
                     _enabledExtLabel.Text = "There are 6 extensions enabled";
+                    _availableExtLabel.Text = "There are 25 extensions installed";
                 }
             }
             catch(Exception ex)
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
-
         }
 
     }
