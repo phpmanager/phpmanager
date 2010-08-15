@@ -27,20 +27,24 @@ namespace Web.Management.PHP.Config
     {
         private ManagementUnit _managementUnit;
 
+        private ApplicationElement _currentFastCgiApplication;
+        private HandlerElement _currentPHPHandler;
+        private HandlersCollection _handlersCollection;
+        private FastCgiApplicationCollection _fastCgiApplicationCollection;
+
         public PHPConfigHelper(ManagementUnit mgmtUnit)
         {
             _managementUnit = mgmtUnit;
+            Initialize();
         }
 
-        /// <summary>
-        /// Makes the recommended changes to the PHP settings in php.ini file
-        /// </summary>
-        /// <param name="phpiniPath">Path to php.ini file</param>
-        /// <param name="phpDirectory">Path to the directory where php is installed</param>
-        /// <param name="handlerName">Name of the IIS handler for PHP</param>
-        private static void ApplyRecommendedPHPIniSettings(string phpiniPath, string phpDirectory, string handlerName)
+        private void ApplyRecommendedPHPIniSettings()
         {
-            PHPIniFile file = new PHPIniFile(phpiniPath);
+            string phpDirectory = Path.GetDirectoryName(_currentPHPHandler.ScriptProcessor);
+            string handlerName = _currentPHPHandler.Name;
+            string phpIniPath = GetPHPIniPath();
+
+            PHPIniFile file = new PHPIniFile(phpIniPath);
             file.Parse();
 
             // Set the recommended php.ini settings
@@ -87,34 +91,27 @@ namespace Web.Management.PHP.Config
             extensions.Add(new PHPIniExtension("php_mysql.dll", true));
             file.UpdateExtensions(extensions);
 
-            file.Save(phpiniPath);
+            file.Save(phpIniPath);
         }
 
-        private void CopyInheritedHandlers(HandlersCollection handlersCollection)
+        private void CopyInheritedHandlers()
         {
             if (_managementUnit.ConfigurationPath.PathType == ConfigurationPathType.Server)
             {
                 return;
             }
 
-            HandlerElement[] list = new HandlerElement[handlersCollection.Count];
-            ((ICollection)handlersCollection).CopyTo(list, 0);
+            HandlerElement[] list = new HandlerElement[_handlersCollection.Count];
+            ((ICollection)_handlersCollection).CopyTo(list, 0);
 
-            handlersCollection.Clear();
+            _handlersCollection.Clear();
 
             foreach (HandlerElement handler in list)
             {
-                handlersCollection.AddCopy(handler);
+                _handlersCollection.AddCopy(handler);
             }
         }
 
-        /// <summary>
-        /// Generates the name for the handler based on the version.
-        /// Ensures that there is no handler exists with that name already.
-        /// </summary>
-        /// <param name="collection">Handlers collection</param>
-        /// <param name="phpVersion">Version of PHP</param>
-        /// <returns>The unique name for the PHP handler</returns>
         private static string GenerateHandlerName(HandlersCollection collection, string phpVersion)
         {
             string prefix = "php-" + phpVersion;
@@ -134,17 +131,11 @@ namespace Web.Management.PHP.Config
             return name;
         }
 
-        /// <summary>
-        /// Gets the information about all the PHP versions registered on the current 
-        /// configuration scope.
-        /// </summary>
-        /// <returns>List of string arrays that contain handler name, script processor and version</returns>
         public ArrayList GetAllPHPVersions()
         {
-            HandlersSection handlersSection = GetHandlersSection();
             ArrayList result = new ArrayList();
-
-            foreach (HandlerElement handler in handlersSection.Handlers)
+            
+            foreach (HandlerElement handler in _handlersCollection)
             {
                 if (String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
@@ -155,34 +146,45 @@ namespace Web.Management.PHP.Config
             return result;
         }
 
-        private FastCgiSection GetFastCgiSection()
-        {
-            Configuration appHostConfig = _managementUnit.ServerManager.GetApplicationHostConfiguration();
-            FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
-            return fastCgiSection;
-        }
-
-        private HandlersSection GetHandlersSection()
-        {
-            ManagementConfiguration config = _managementUnit.Configuration;
-            HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
-            return handlersSection;
-        }
-
-        /// <summary>
-        /// Returns the summary of the configuration information for the currently active PHP version
-        /// </summary>
-        /// <returns>The summary of the configuration information</returns>
         public PHPConfigInfo GetPHPConfigInfo()
         {
-            HandlersCollection handlersCollection = GetHandlersSection().Handlers;
-            HandlerElement handler = handlersCollection.GetActiveHandler("*.php");
-            if (handler != null)
+            HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
+            if (handler == null)
             {
-                return new PHPConfigInfo(handler.Name, handler.ScriptProcessor, GetPHPExecutableVersion(handler.ScriptProcessor));
+                // PHP is not enabled
+                return null;
             }
 
-            return null;
+            PHPConfigInfo configInfo = new PHPConfigInfo();
+            configInfo.HandlerName = handler.Name;
+            configInfo.ScriptProcessor = handler.ScriptProcessor;
+            configInfo.Version = GetPHPExecutableVersion(handler.ScriptProcessor);
+            string phpIniPath = GetPHPIniPath();
+
+            if (String.IsNullOrEmpty(phpIniPath))
+            {
+                throw new FileNotFoundException(phpIniPath + " does not exist");
+            }
+
+            configInfo.PHPIniFilePath = phpIniPath;
+
+            PHPIniFile file = new PHPIniFile(phpIniPath);
+            file.Parse();
+
+            PHPIniSetting setting = file.GetSetting("error_log");
+            if (setting != null)
+            {
+                configInfo.ErrorLog = setting.Value;
+            }
+            else
+            {
+                configInfo.ErrorLog = String.Empty;
+            }
+
+            configInfo.EnabledExtCount = file.GetEnabledExtensionsCount();
+            configInfo.InstalledExtCount = file.Extensions.Count;
+
+            return configInfo;
         }
 
         private static string GetPHPExecutableVersion(string phpexePath)
@@ -191,50 +193,60 @@ namespace Web.Management.PHP.Config
             return fileVersionInfo.ProductVersion;
         }
 
-        public string GetPHPIniDirectory()
+        public string GetPHPIniPath()
         {
-            HandlersSection handlersSection = GetHandlersSection();
-            HandlerElement phpHandler = handlersSection.Handlers.GetActiveHandler("*.php");
-            if (phpHandler == null)
+            // PHP is not registered so we do not know the path to php.ini file
+            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
             {
                 return String.Empty;
             }
 
-            return GetPHPIniDirectory(phpHandler);
-        }
-
-        public string GetPHPIniDirectory(HandlerElement phpHandler)
-        {
-            string executable = phpHandler.ScriptProcessor;
-
-            // TODO: handle the case with arguments
-            FastCgiSection fastCgiSection = GetFastCgiSection();
-            ApplicationElement fastCgiApplication = fastCgiSection.Applications.GetApplication(executable, "");
-            if (fastCgiApplication == null)
+            string directoryPath = _currentFastCgiApplication.EnvironmentVariables["PHPRC"].Value;
+            // If PHPRC is not set then use the same path where php-cgi.exe is located
+            if (String.IsNullOrEmpty(directoryPath))
             {
-                return String.Empty;
+                directoryPath = Path.GetDirectoryName(_currentPHPHandler.ScriptProcessor);
             }
 
-            string directoryPath = Path.GetDirectoryName(fastCgiApplication.MonitorChangesTo);
+            string phpIniPath = Path.Combine(directoryPath, "php.ini");
 
-            if (!String.IsNullOrEmpty(directoryPath))
+            if (File.Exists(phpIniPath))
             {
-                return directoryPath;
-            }
-
-            directoryPath = fastCgiApplication.EnvironmentVariables["PHPRC"].Value;
-            if (!String.IsNullOrEmpty(directoryPath))
-            {
-                return directoryPath;
+                return phpIniPath;
             }
 
             return String.Empty;
         }
 
-        private static void MoveHandlerOnTop(HandlersCollection handlersCollection, string handlerName)
+        private void Initialize()
         {
-            HandlerElement handlerElement = handlersCollection[handlerName];
+            // Get the handlers collection
+            ManagementConfiguration config = _managementUnit.Configuration;
+            HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
+            _handlersCollection = handlersSection.Handlers;
 
+            // Get the FastCgi application collection
+            Configuration appHostConfig = _managementUnit.ServerManager.GetApplicationHostConfiguration();
+            FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
+            _fastCgiApplicationCollection = fastCgiSection.Applications;
+
+            // Find the currently active PHP handler and FastCGI application
+            HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
+            if (handler != null)
+            {
+                string executable = handler.ScriptProcessor;
+                
+                ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(executable, "");
+                if (fastCgiApplication != null)
+                {
+                    _currentPHPHandler = handler;
+                    _currentFastCgiApplication = fastCgiApplication;
+                }
+            }
+        }
+
+        private static void MoveHandlerOnTop(HandlersCollection handlersCollection, HandlerElement handlerElement)
+        {
             int index = handlersCollection.IndexOf(handlerElement);
             if (index != 0)
             {
@@ -243,10 +255,6 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        /// <summary>
-        /// Registers PHP with IIS
-        /// </summary>
-        /// <param name="phpDirectory">The directory where PHP runtime binaries are located</param>
         public void RegisterPHPWithIIS(string phpDirectory)
         {
             string expandedDir = Environment.ExpandEnvironmentVariables(phpDirectory);
@@ -291,73 +299,69 @@ namespace Web.Management.PHP.Config
                 }
             }
 
-            // Check if the FastCGI applicaiton for this executable already exists
-            FastCgiSection fastCgiSection = GetFastCgiSection();
-            
-            FastCgiApplicationCollection applicationCollection = fastCgiSection.Applications;
-            ApplicationElement fastCgiApplication = applicationCollection.GetApplication(phpexePath, "");
+            ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(phpexePath, "");
             
             // Create a FastCGI application if it does not exist
             if (fastCgiApplication == null)
             {
-                ApplicationElement applicationElement = applicationCollection.CreateElement();
-                applicationElement.FullPath = phpexePath;
-                applicationElement.MonitorChangesTo = phpiniPath;
-                applicationElement.InstanceMaxRequests = 10000;
+                fastCgiApplication = _fastCgiApplicationCollection.CreateElement();
+                fastCgiApplication.FullPath = phpexePath;
+                fastCgiApplication.MonitorChangesTo = phpiniPath;
+                fastCgiApplication.InstanceMaxRequests = 10000;
 
-                applicationElement.EnvironmentVariables.Add("PHPRC", expandedDir);
-                applicationElement.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");
+                fastCgiApplication.EnvironmentVariables.Add("PHPRC", expandedDir);
+                fastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");
 
-                applicationCollection.Add(applicationElement);
+                _fastCgiApplicationCollection.Add(fastCgiApplication);
             }
 
             // Check if file mapping with this executable already exists
-            HandlersSection handlersSection = GetHandlersSection();
-            HandlersCollection handlersCollection = handlersSection.Handlers;
-            HandlerElement handlerElement = handlersCollection.GetHandler("*.php", phpexePath);
+            HandlerElement handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
             
             if (handlerElement == null)
             {
                 // Create a PHP file handler if it does not exist
-                handlerElement = handlersCollection.CreateElement();
-                handlerElement.Name = GenerateHandlerName(handlersCollection, GetPHPExecutableVersion(phpexePath));
+                handlerElement = _handlersCollection.CreateElement();
+                handlerElement.Name = GenerateHandlerName(_handlersCollection, GetPHPExecutableVersion(phpexePath));
                 handlerElement.Modules = "FastCgiModule";
                 handlerElement.RequireAccess = RequireAccess.Script;
                 handlerElement.Verb = "*";
                 handlerElement.Path = "*.php";
                 handlerElement.ScriptProcessor = phpexePath;
                 handlerElement.ResourceType = ResourceType.Either;
-                handlersCollection.AddAt(0, handlerElement);
+                _handlersCollection.AddAt(0, handlerElement);
             }
             else
             {
                 // Move the existing PHP file handler mapping on top
-                string handlerName = handlerElement.Name;
-                CopyInheritedHandlers(handlersCollection);
-                MoveHandlerOnTop(handlersCollection, handlerName);
+                CopyInheritedHandlers();
+                MoveHandlerOnTop(_handlersCollection, handlerElement);
             }
 
             _managementUnit.Update();
 
+            // Update the references to current php handler and application
+            _currentPHPHandler = handlerElement;
+            _currentFastCgiApplication = fastCgiApplication;
+
             // Make the recommended changes to php.ini file
-            ApplyRecommendedPHPIniSettings(phpiniPath, expandedDir, handlerElement.Name);
+            ApplyRecommendedPHPIniSettings();
         }
 
-        /// <summary>
-        /// Moves the specified PHP handler to the top of the handlers list, thus making it
-        /// an active handler for the current configuration scope. If the current configuration
-        /// scope is not server, then the handlers collection is copied locally.
-        /// </summary>
-        /// <param name="name">Name of the PHP file handler in IIS handlers collection</param>
         public void SelectPHPHandler(string name)
         {
-            HandlersCollection handlersCollection = GetHandlersSection().Handlers;
-            HandlerElement handler = handlersCollection[name];
+            HandlerElement handler = _handlersCollection[name];
             if (handler != null)
             {
-                CopyInheritedHandlers(handlersCollection);
-                MoveHandlerOnTop(handlersCollection, name);
+                CopyInheritedHandlers();
+                MoveHandlerOnTop(_handlersCollection, handler);
+
                 _managementUnit.Update();
+
+                // Update the references to current php handler and application
+                ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.ScriptProcessor, "");
+                _currentFastCgiApplication = fastCgiApplication;
+                _currentPHPHandler = handler;
             }
         }
 

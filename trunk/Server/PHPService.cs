@@ -113,9 +113,10 @@ namespace Web.Management.PHP
 
         private PHPIniFile GetPHPIniFile()
         {
-            string phpiniPath = GetPHPIniPath();
+            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
+            string phpiniPath = phpConfig.GetPHPIniPath();
 
-            if (!File.Exists(phpiniPath))
+            if (String.IsNullOrEmpty(phpiniPath))
             {
                 RaiseException("PHPIniFileNotFound");
             }
@@ -126,18 +127,6 @@ namespace Web.Management.PHP
             return file;
         }
 
-        private string GetPHPIniPath()
-        {
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            string path = phpConfig.GetPHPIniDirectory();
-            if (!String.IsNullOrEmpty(path))
-            {
-                path = Path.Combine(path, "php.ini");
-            }
-
-            return path;
-        }
-
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPIniPhysicalPath()
         {
@@ -146,17 +135,15 @@ namespace Web.Management.PHP
                 return null;
             }
 
-            string phpIniPath = GetPHPIniPath();
-            if (String.IsNullOrEmpty(phpIniPath))
+            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
+            string phpiniPath = phpConfig.GetPHPIniPath();
+
+            if (String.IsNullOrEmpty(phpiniPath))
             {
-                RaiseException("PHPIniPathNotDefined");
-            }
-            if (!File.Exists(phpIniPath))
-            {
-                RaiseException("PHPIniFileDoesNotExist");
+                RaiseException("PHPIniFileNotFound");
             }
 
-            return phpIniPath;
+            return phpiniPath;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

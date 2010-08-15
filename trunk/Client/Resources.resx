@@ -328,4 +328,10 @@
   <data name="PHPPageErrorLog" xml:space="preserve">
     <value>Error log:</value>
   </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>There are {0} extensions enabled.</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>There are {0} extensions installed.</value>
+  </data>
 </root>

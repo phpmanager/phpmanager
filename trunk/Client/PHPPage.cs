@@ -28,7 +28,7 @@ namespace Web.Management.PHP
     {
         // Summary labels
         private Label _enabledExtLabel;
-        private Label _availableExtLabel;
+        private Label _installedExtLabel;
         private Label _errorLogNameLabel;
         private Label _errorLogValueLabel;
         private Label _configPathValueLabel;
@@ -101,7 +101,7 @@ namespace Web.Management.PHP
             _errorLogValueLabel = new Label();
 
             _enabledExtLabel = new Label();
-            _availableExtLabel = new Label();
+            _installedExtLabel = new Label();
 
             //
             // PHPSetup
@@ -157,7 +157,7 @@ namespace Web.Management.PHP
             _phpExtensionItem.Image = Resources.PHPExtensions32;
 
             _phpExtensionItem.AddSpanRow(_enabledExtLabel);
-            _phpExtensionItem.AddSpanRow(_availableExtLabel);
+            _phpExtensionItem.AddSpanRow(_installedExtLabel);
             _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
                                     Resources.PHPExtensionItemEnableTask);
             
@@ -327,16 +327,17 @@ namespace Web.Management.PHP
                     _executableValueLabel.Text = Resources.PHPPageNone;
                     _configPathValueLabel.Text = Resources.PHPPageNone;
                     _errorLogValueLabel.Text = Resources.PHPPageNone;
+                    _enabledExtLabel.Text = Resources.PHPPageNone;
+                    _installedExtLabel.Text = Resources.PHPPageNone;
                 }
                 else
                 {
                     _versionValueLabel.Text = configInfo.Version;
                     _executableValueLabel.Text = configInfo.ScriptProcessor;
-                    // TODO: Need to add real values here
-                    _configPathValueLabel.Text = @"C:\PHP\5211NTS\php.ini";
-                    _errorLogValueLabel.Text = @"C:\Windows\Temp\php_errors.log";
-                    _enabledExtLabel.Text = "There are 6 extensions enabled";
-                    _availableExtLabel.Text = "There are 25 extensions installed";
+                    _configPathValueLabel.Text = configInfo.PHPIniFilePath;
+                    _errorLogValueLabel.Text = configInfo.ErrorLog;
+                    _enabledExtLabel.Text = String.Format(Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
+                    _installedExtLabel.Text = String.Format(Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
                 }
             }
             catch(Exception ex)

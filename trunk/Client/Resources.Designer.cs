@@ -366,6 +366,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are {0} extensions enabled..
+        /// </summary>
+        internal static string PHPPageEnabledExtensions {
+            get {
+                return ResourceManager.GetString("PHPPageEnabledExtensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error log:.
         /// </summary>
         internal static string PHPPageErrorLog {
@@ -389,6 +398,15 @@ namespace Web.Management.PHP {
         internal static string PHPPageExtensionsPath {
             get {
                 return ResourceManager.GetString("PHPPageExtensionsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are {0} extensions installed..
+        /// </summary>
+        internal static string PHPPageInstalledExtensions {
+            get {
+                return ResourceManager.GetString("PHPPageInstalledExtensions", resourceCulture);
             }
         }
         

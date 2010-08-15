@@ -19,7 +19,7 @@ namespace Web.Management.PHP.Config
     internal sealed class PHPIniFile : IRemoteObject
     {
         private object[] _data;
-        private const int IndexDirectives = 0;
+        private const int IndexSettings = 0;
         private const int IndexExtensions = 1;
         private const int Size = 2;
 
@@ -80,7 +80,7 @@ namespace Web.Management.PHP.Config
             {
                 if (_settings == null)
                 {
-                    _settings = new RemoteObjectCollection<PHPIniSetting>((ArrayList)_data[IndexDirectives]);
+                    _settings = new RemoteObjectCollection<PHPIniSetting>((ArrayList)_data[IndexSettings]);
                 }
 
                 return _settings;
@@ -170,7 +170,7 @@ namespace Web.Management.PHP.Config
         {
             if (_settings != null)
             {
-                _data[IndexDirectives] = _settings.GetData();
+                _data[IndexSettings] = _settings.GetData();
             }
             if (_extensions != null)
             {
@@ -180,10 +180,38 @@ namespace Web.Management.PHP.Config
             return _data;
         }
 
+        internal int GetEnabledExtensionsCount()
+        {
+            int result = 0;
+
+            foreach (PHPIniExtension extension in Extensions)
+            {
+                if (extension.Enabled)
+                {
+                    result++;
+                }
+            }
+
+            return result;
+        }
+
         private static string GetExtensionSection(string extensionName)
         {
             string sectionName = Path.GetFileNameWithoutExtension(extensionName).ToUpper();
             return '[' + sectionName + ']';
+        }
+
+        internal PHPIniSetting GetSetting(string name)
+        {
+            foreach (PHPIniSetting setting in Settings)
+            {
+                if (String.Equals(setting.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return setting;
+                }
+            }
+
+            return null;
         }
 
         internal void Parse()
