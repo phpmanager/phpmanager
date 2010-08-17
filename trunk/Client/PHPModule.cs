@@ -59,6 +59,12 @@ namespace Web.Management.PHP
 
             controlPanel.RegisterPage(modulePageInfo);
 
+            modulePageInfo = new ModulePageInfo(this,
+                typeof(ErrorReportingPage), Resources.ErrorReportingPageTitle, Resources.ErrorReportingPageDescription,
+                Resources.PHPLogo16, Resources.PHPLogo32, Resources.ErrorReportingPageLongDescription);
+
+            controlPanel.RegisterPage(modulePageInfo);
+
             //PHP Extensions page
             modulePageInfo = new ModulePageInfo(this,
                 typeof(PHPExtensionsPage), Resources.PHPExtensionsPageTitle, Resources.PHPExtensionsPageDescription,

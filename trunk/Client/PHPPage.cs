@@ -119,7 +119,6 @@ namespace Web.Management.PHP
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
                                     Resources.PHPSetupItemRegisterPHPTask,
                                     Resources.PHPSetupItemChangeVersionTask,
-                                    Resources.PHPSetupItemVerifyTask,
                                     Resources.PHPSetupItemCheckPHPInfoTask);
 
             Controls.Add(_phpSetupItem);
@@ -235,6 +234,10 @@ namespace Web.Management.PHP
 
         private void OnPHPSettingsItemClick(int index)
         {
+            if (index == 0)
+            {
+                Navigate(typeof(ErrorReportingPage));
+            }
             if (index == 3)
             {
                 Navigate(typeof(PHPSettingsPage));
@@ -256,7 +259,7 @@ namespace Web.Management.PHP
             {
                 SelectPHPVersion();
             }
-            else if (index == 3)
+            else if (index == 2)
             {
                 string siteName = null;
                 string siteUrl = GetSiteUrlAndName(out siteName);

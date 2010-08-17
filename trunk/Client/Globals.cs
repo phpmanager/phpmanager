@@ -17,6 +17,7 @@ namespace Web.Management.PHP {
         public const string PHPInfoPageIdentifier = "21a5d44d-3a61-44f1-91ef-5965c6e0e3e2";
         public const string PHPSettingsPageIdentifier = "d021b245-cbd8-48e7-bdfe-7e8a1a457b38";
         public const string PHPExtensionsPageIdentifier = "3449ff77-1f5c-4ba1-80cb-80f12512e367";
+        public const string ErrorReportingPageIdentifier = "f52b2450-4b78-4602-a7e8-c8d9257a2c25";
         public const string PHPPageOnlineHelp = "http://php.iis.net/";
     }
 }

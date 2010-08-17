@@ -56,6 +56,9 @@
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Settings\ErrorReportingPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Settings\PHPSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>

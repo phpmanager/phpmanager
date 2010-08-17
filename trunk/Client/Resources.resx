@@ -322,9 +322,6 @@
   <data name="PHPSettingsItemSessionTask" xml:space="preserve">
     <value>Configure PHP session</value>
   </data>
-  <data name="PHPSetupItemVerifyTask" xml:space="preserve">
-    <value>Verify PHP setup</value>
-  </data>
   <data name="PHPPageErrorLog" xml:space="preserve">
     <value>Error log:</value>
   </data>
@@ -333,5 +330,35 @@
   </data>
   <data name="PHPPageInstalledExtensions" xml:space="preserve">
     <value>There are {0} extensions installed.</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>PHP error reporting and logging</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>Use this feature to configure how PHP reports and logs errors, warnings and information notices.</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>PHP error reporting</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>Development machine</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>This is a development machine. A verbose error reporting will be used. All errors, warnings and informational notices will be output in a web browser and also will be written into a log file.</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>Error log file:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>Production machine</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>This is a production server accessible from the internet. Only errors will be written to a log file. No errors, warnings or notices will be output in a web browser.</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>Select a server type. This will influence how the errors will be reported and logged.</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>Type of server</value>
   </data>
 </root>

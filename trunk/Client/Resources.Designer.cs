@@ -157,6 +157,96 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to PHP error reporting and logging.
+        /// </summary>
+        internal static string ErrorReportingPageDescription {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Development machine.
+        /// </summary>
+        internal static string ErrorReportingPageDevMachine {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageDevMachine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a development machine. A verbose error reporting will be used. All errors, warnings and informational notices will be output in a web browser and also will be written into a log file..
+        /// </summary>
+        internal static string ErrorReportingPageDevMachineDesc {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageDevMachineDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error log file:.
+        /// </summary>
+        internal static string ErrorReportingPageErrorLogFile {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageErrorLogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this feature to configure how PHP reports and logs errors, warnings and information notices..
+        /// </summary>
+        internal static string ErrorReportingPageLongDescription {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production machine.
+        /// </summary>
+        internal static string ErrorReportingPageProdMachine {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageProdMachine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a production server accessible from the internet. Only errors will be written to a log file. No errors, warnings or notices will be output in a web browser..
+        /// </summary>
+        internal static string ErrorReportingPageProdMachineDesc {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageProdMachineDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a server type. This will influence how the errors will be reported and logged..
+        /// </summary>
+        internal static string ErrorReportingPageSelectServerType {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageSelectServerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of server.
+        /// </summary>
+        internal static string ErrorReportingPageServerType {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageServerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP error reporting.
+        /// </summary>
+        internal static string ErrorReportingPageTitle {
+            get {
+                return ResourceManager.GetString("ErrorReportingPageTitle", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap GoBack16 {
             get {
                 object obj = ResourceManager.GetObject("GoBack16", resourceCulture);
@@ -637,15 +727,6 @@ namespace Web.Management.PHP {
         internal static string PHPSetupItemTitle {
             get {
                 return ResourceManager.GetString("PHPSetupItemTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verify PHP setup.
-        /// </summary>
-        internal static string PHPSetupItemVerifyTask {
-            get {
-                return ResourceManager.GetString("PHPSetupItemVerifyTask", resourceCulture);
             }
         }
         
