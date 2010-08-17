@@ -11,7 +11,6 @@ using System;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
-using Microsoft.Web.Management.Server;
 
 namespace Web.Management.PHP.Settings
 {
@@ -28,15 +27,18 @@ namespace Web.Management.PHP.Settings
         private TextBox _errorLogFileTextBox;
         private Button _errorLogBrowseButton;
         private GroupBox _serverTypeGroupBox;
-    
-        protected override bool ApplyChanges()
-        {
-            throw new NotImplementedException();
-        }
 
         protected override bool CanApplyChanges
         {
-            get { throw new NotImplementedException(); }
+            get 
+            {
+                 throw new NotImplementedException();
+            }
+        }
+
+        protected override bool ApplyChanges()
+        {
+            throw new NotImplementedException();
         }
 
         protected override void CancelChanges()
@@ -165,10 +167,6 @@ namespace Web.Management.PHP.Settings
             this.PerformLayout();
 
         }
-
-        private void InitializeUI()
-        {
- 
-        }
     }
+
 }
