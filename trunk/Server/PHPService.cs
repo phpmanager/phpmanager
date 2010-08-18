@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
@@ -198,18 +197,26 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public void RegisterPHPWithIIS(string phpDirectory)
+        public void RegisterPHPWithIIS(string phpExePath)
         {
             EnsureServerConnection();
 
             try
             {
                 PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-                phpConfig.RegisterPHPWithIIS(phpDirectory);
+                phpConfig.RegisterPHPWithIIS(phpExePath);
             }
-            catch(ArgumentException)
+            catch (ArgumentException)
+            {
+                RaiseException("ErrorInvalidPHPExecutablePath");
+            }
+            catch (FileNotFoundException)
             {
                 RaiseException("ErrorNoPHPFilesInDirectory");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                RaiseException("ErrorNoExtDirectory");
             }
         }
 

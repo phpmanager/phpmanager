@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Web.Management.PHP</RootNamespace>
     <AssemblyName>Web.Management.PHP</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>pubpriv.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>phpmgrpublic.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,7 +77,7 @@
     <Compile Include="PHPService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="pubpriv.snk" />
+    <None Include="phpmgrpublic.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -87,6 +89,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
+sn –Vr $(TargetFileName)
 gacutil.exe /if "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

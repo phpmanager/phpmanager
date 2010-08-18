@@ -298,8 +298,8 @@
   <data name="PHPSetupItemTitle" xml:space="preserve">
     <value>PHP Setup</value>
   </data>
-  <data name="RegisterPHPDialogSelectFolder" xml:space="preserve">
-    <value>Select a folder where PHP runtime binaries and PHP configuration file are located.</value>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>Provide a path to the php executable file (php-cgi.exe):</value>
   </data>
   <data name="PHPSettingsPageRemoveTask" xml:space="preserve">
     <value>Remove</value>
@@ -360,5 +360,26 @@
   </data>
   <data name="ErrorReportingPageServerType" xml:space="preserve">
     <value>Type of server</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>The provided path does not point to either php-cgi.exe or php.exe.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>The directory does not contain ext subdirectory with PHP extensions.</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP executable (php-cgi.exe)|php-cgi.exe|All files (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>Select PHP executable file</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>Select PHP version:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>Change PHP version</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>Example: C:\PHP\php-cgi.exe</value>
   </data>
 </root>

@@ -11,11 +11,8 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client.Win32;
-using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Setup
 {
@@ -32,7 +29,6 @@ namespace Web.Management.PHP.Setup
 
         private ManagementPanel _contentPanel;
         private Label _selectVersionLabel;
-        private Label _executableLabel;
         private ComboBox _versionComboBox;
 
         /// <summary>
@@ -51,13 +47,14 @@ namespace Web.Management.PHP.Setup
                 ArrayList versions = _module.Proxy.GetAllPHPVersions();
                 foreach (string[] version in versions)
                 {
-                    _versionComboBox.Items.Add(new PHPVersion( version[0], version[1], version[2]));
+                    _versionComboBox.Items.Add(new PHPVersion(version[0], version[1], version[2]));
                 }
                 _versionComboBox.DisplayMember = "Version";
                 _versionComboBox.SelectedIndex = 0;
                 if (_versionComboBox.Items.Count > 0)
                 {
                     _canAccept = true;
+                    UpdateTaskForm();
                 }
             }
             catch (Exception ex)
@@ -72,18 +69,6 @@ namespace Web.Management.PHP.Setup
             get
             {
                 return _canAccept;
-            }
-        }
-
-        private void _versionComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_versionComboBox.Items.Count > 0)
-            {
-                _canAccept = true;
-                PHPVersion selectedItem = (PHPVersion)_versionComboBox.SelectedItem;
-                _executableLabel.Text = "Executable: " + selectedItem.ScriptProcessor;
-
-                UpdateTaskForm();
             }
         }
 
@@ -104,7 +89,6 @@ namespace Web.Management.PHP.Setup
         {
             this._selectVersionLabel = new System.Windows.Forms.Label();
             this._versionComboBox = new System.Windows.Forms.ComboBox();
-            this._executableLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // _selectVersionLabel
@@ -124,24 +108,13 @@ namespace Web.Management.PHP.Setup
             this._versionComboBox.Name = "_versionComboBox";
             this._versionComboBox.Size = new System.Drawing.Size(326, 21);
             this._versionComboBox.TabIndex = 1;
-            this._versionComboBox.SelectedIndexChanged += new System.EventHandler(this._versionComboBox_SelectedIndexChanged);
             // 
-            // _executableLabel
+            // ChangeVersionDialog
             // 
-            this._executableLabel.AutoSize = true;
-            this._executableLabel.Location = new System.Drawing.Point(0, 54);
-            this._executableLabel.Name = "_executableLabel";
-            this._executableLabel.Size = new System.Drawing.Size(66, 13);
-            this._executableLabel.TabIndex = 2;
-            this._executableLabel.Text = "Executable: ";
-            // 
-            // SelectVersionDialog
-            // 
-            this.ClientSize = new System.Drawing.Size(364, 152);
-            this.Controls.Add(this._executableLabel);
+            this.ClientSize = new System.Drawing.Size(364, 142);
             this.Controls.Add(this._versionComboBox);
             this.Controls.Add(this._selectVersionLabel);
-            this.Name = "SelectVersionDialog";
+            this.Name = "ChangeVersionDialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,12 +129,11 @@ namespace Web.Management.PHP.Setup
             this._contentPanel.Dock = DockStyle.Fill;
             this._contentPanel.Controls.Add(_selectVersionLabel);
             this._contentPanel.Controls.Add(_versionComboBox);
-            this._contentPanel.Controls.Add(_executableLabel);
 
             this._contentPanel.ResumeLayout(false);
             this._contentPanel.PerformLayout();
 
-            this.Text = "Change PHP version";
+            this.Text = Resources.ChangeVersionDialogTitle;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -211,7 +183,7 @@ namespace Web.Management.PHP.Setup
             {
                 get
                 {
-                    return _version;
+                    return _version + " (" + _scriptProcessor + ")";
                 }
             }
         }

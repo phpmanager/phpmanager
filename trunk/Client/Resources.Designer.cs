@@ -132,10 +132,46 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Select PHP version:.
+        /// </summary>
+        internal static string ChangeVersionDialogSelectVersion {
+            get {
+                return ResourceManager.GetString("ChangeVersionDialogSelectVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change PHP version.
+        /// </summary>
+        internal static string ChangeVersionDialogTitle {
+            get {
+                return ResourceManager.GetString("ChangeVersionDialogTitle", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap Delete16 {
             get {
                 object obj = ResourceManager.GetObject("Delete16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided path does not point to either php-cgi.exe or php.exe..
+        /// </summary>
+        internal static string ErrorInvalidPHPExecutablePath {
+            get {
+                return ResourceManager.GetString("ErrorInvalidPHPExecutablePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory does not contain ext subdirectory with PHP extensions..
+        /// </summary>
+        internal static string ErrorNoExtDirectory {
+            get {
+                return ResourceManager.GetString("ErrorNoExtDirectory", resourceCulture);
             }
         }
         
@@ -731,6 +767,33 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example: C:\PHP\php-cgi.exe.
+        /// </summary>
+        internal static string RegisterPHPDialogExample {
+            get {
+                return ResourceManager.GetString("RegisterPHPDialogExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP executable (php-cgi.exe)|php-cgi.exe|All files (*.*)|*.*.
+        /// </summary>
+        internal static string RegisterPHPDialogOpenFileFilter {
+            get {
+                return ResourceManager.GetString("RegisterPHPDialogOpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select PHP executable file.
+        /// </summary>
+        internal static string RegisterPHPDialogOpenFileTitle {
+            get {
+                return ResourceManager.GetString("RegisterPHPDialogOpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register new PHP version.
         /// </summary>
         internal static string RegisterPHPDialogRegisterNew {
@@ -740,11 +803,11 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a folder where PHP runtime binaries and PHP configuration file are located..
+        ///   Looks up a localized string similar to Provide a path to the php executable file (php-cgi.exe):.
         /// </summary>
-        internal static string RegisterPHPDialogSelectFolder {
+        internal static string RegisterPHPDialogSelectPath {
             get {
-                return ResourceManager.GetString("RegisterPHPDialogSelectFolder", resourceCulture);
+                return ResourceManager.GetString("RegisterPHPDialogSelectPath", resourceCulture);
             }
         }
         

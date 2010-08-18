@@ -255,36 +255,37 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        public void RegisterPHPWithIIS(string phpDirectory)
+        public void RegisterPHPWithIIS(string path)
         {
-            string expandedDir = Environment.ExpandEnvironmentVariables(phpDirectory);
+            string phpexePath = Environment.ExpandEnvironmentVariables(path);
+            
+            if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase) &&
+                !String.Equals(Path.GetFileName(phpexePath), "php.exe", StringComparison.OrdinalIgnoreCase))
+            {
+                throw new ArgumentException("The provided php executable path is invalid", phpexePath);
+            }
 
             // Check for existence of php executable in the specified directory
-            string phpexePath = Path.Combine(expandedDir, "php-cgi.exe");
             if (!File.Exists(phpexePath))
             {
-                // If php-cgi.exe does not exist then it may be PHP4 installation
-                phpexePath = Path.Combine(expandedDir, "php.exe");
-                if (!File.Exists(phpexePath))
-                {
-                    throw new ArgumentException("php-cgi.exe and php.exe do not exist in " + expandedDir);
-                }
+                throw new FileNotFoundException("php-cgi.exe and php.exe do not exist");
             }
 
             // Check for existense of php extensions directory
-            string extPath = Path.Combine(expandedDir, "ext");
-            if (!Directory.Exists(extPath))
+            string phpDir = Path.GetDirectoryName(phpexePath);
+            string extDir = Path.Combine(phpDir, "ext");
+            if (!Directory.Exists(extDir))
             {
-                throw new ArgumentException("ext directory does not exist in " + expandedDir);
+                throw new DirectoryNotFoundException("ext directory does not exist in " + phpDir);
             }
             
             // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
             // or php.ini-production to it
-            string phpiniPath = Path.Combine(expandedDir, "php.ini");
+            string phpiniPath = Path.Combine(phpDir, "php.ini");
             if (!File.Exists(phpiniPath))
             {
-                string phpiniRecommendedPath = Path.Combine(expandedDir, "php.ini-recommended");
-                string phpiniProductionPath = Path.Combine(expandedDir, "php.ini-production");
+                string phpiniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
+                string phpiniProductionPath = Path.Combine(phpDir, "php.ini-production");
                 if (File.Exists(phpiniRecommendedPath))
                 {
                     File.Copy(phpiniRecommendedPath, phpiniPath);
@@ -295,7 +296,7 @@ namespace Web.Management.PHP.Config
                 }
                 else
                 {
-                    throw new ArgumentException("php.ini and php.ini recommended do not exist in " + expandedDir);
+                    throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
                 }
             }
 
@@ -309,7 +310,7 @@ namespace Web.Management.PHP.Config
                 fastCgiApplication.MonitorChangesTo = phpiniPath;
                 fastCgiApplication.InstanceMaxRequests = 10000;
 
-                fastCgiApplication.EnvironmentVariables.Add("PHPRC", expandedDir);
+                fastCgiApplication.EnvironmentVariables.Add("PHPRC", phpDir);
                 fastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");
 
                 _fastCgiApplicationCollection.Add(fastCgiApplication);

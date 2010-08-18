@@ -27,7 +27,7 @@ namespace Web.Management.PHP
 
         public override ModuleDefinition GetModuleDefinition(IManagementContext context)
         {
-            return new ModuleDefinition(Name, "Web.Management.PHP.PHPModule, Web.Management.PHP.Client,Version=1.0.0.0,Culture=neutral,PublicKeyToken=0135f7f354f8c066");
+            return new ModuleDefinition(Name, "Web.Management.PHP.PHPModule, Web.Management.PHP.Client,Version=1.0.0.0,Culture=neutral,PublicKeyToken=8175de49a9aec91d");
         }
 
         public override bool SupportsScope(ManagementScope scope)

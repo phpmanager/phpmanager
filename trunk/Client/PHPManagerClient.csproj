@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Web.Management.PHP</RootNamespace>
     <AssemblyName>Web.Management.PHP.Client</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>pubpriv.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>phpmgrpublic.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -96,9 +98,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pubpriv.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -106,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Delete16.png" />
+    <None Include="phpmgrpublic.snk" />
     <None Include="Resources\goBack16.png" />
     <Content Include="Resources\php-extensions32.png" />
     <Content Include="Resources\php-info32.png" />
@@ -124,6 +124,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
+sn –Vr $(TargetFileName)
 gacutil.exe /if "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

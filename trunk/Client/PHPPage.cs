@@ -16,9 +16,6 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
-using Web.Management.PHP.Extensions;
-using Web.Management.PHP.Settings;
-using Web.Management.PHP.Setup;
 
 namespace Web.Management.PHP
 {
@@ -60,7 +57,7 @@ namespace Web.Management.PHP
 
         private string GetSiteUrlAndName(out string siteName)
         {
-            using (SelectSiteDomainDialog dlg = new SelectSiteDomainDialog(this.Module, this.Connection))
+            using (Setup.SelectSiteDomainDialog dlg = new Setup.SelectSiteDomainDialog(this.Module, this.Connection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -223,30 +220,30 @@ namespace Web.Management.PHP
         {
             if (index == 0)
             {
-                Navigate(typeof(PHPExtensionsPage));
+                Navigate(typeof(Extensions.PHPExtensionsPage));
             }
         }
 
         private void OnPHPExtensionItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Navigate(typeof(PHPExtensionsPage));
+            Navigate(typeof(Extensions.PHPExtensionsPage));
         }
 
         private void OnPHPSettingsItemClick(int index)
         {
             if (index == 0)
             {
-                Navigate(typeof(ErrorReportingPage));
+                Navigate(typeof(Settings.ErrorReportingPage));
             }
             if (index == 3)
             {
-                Navigate(typeof(PHPSettingsPage));
+                Navigate(typeof(Settings.PHPSettingsPage));
             }
         }
 
         private void OnPHPSettingsItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Navigate(typeof(PHPSettingsPage));
+            Navigate(typeof(Settings.PHPSettingsPage));
         }
 
         private void OnPHPSetupItemClick(int index)
@@ -265,7 +262,7 @@ namespace Web.Management.PHP
                 string siteUrl = GetSiteUrlAndName(out siteName);
                 if (!String.IsNullOrEmpty(siteUrl))
                 {
-                    Navigate(typeof(PHPInfoPage), new string[] { siteUrl, siteName });
+                    Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
                 }
             }
         }
@@ -276,7 +273,7 @@ namespace Web.Management.PHP
             string siteUrl = GetSiteUrlAndName(out siteName);
             if (!String.IsNullOrEmpty(siteUrl))
             {
-                Navigate(typeof(PHPInfoPage), new string[] { siteUrl, siteName });
+                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
             }
         }
 
@@ -287,7 +284,7 @@ namespace Web.Management.PHP
 
         private void RegisterPHPWithIIS()
         {
-            using (RegisterPHPDialog dlg = new RegisterPHPDialog(this.Module))
+            using (Setup.RegisterPHPDialog dlg = new Setup.RegisterPHPDialog(this.Module))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -299,7 +296,7 @@ namespace Web.Management.PHP
 
         private void SelectPHPVersion()
         {
-            using (ChangeVersionDialog dlg = new ChangeVersionDialog(this.Module))
+            using (Setup.ChangeVersionDialog dlg = new Setup.ChangeVersionDialog(this.Module))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
