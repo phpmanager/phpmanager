@@ -8,9 +8,13 @@
 //----------------------------------------------------------------------- 
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
+using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Settings
 {
@@ -18,6 +22,39 @@ namespace Web.Management.PHP.Settings
     [ModulePageIdentifier(Globals.ErrorReportingPageIdentifier)]
     internal sealed class ErrorReportingPage : ModuleDialogPage
     {
+        private string _errorLogFile = String.Empty;
+        private ErrorReportingPreset _errorReportingPreset = ErrorReportingPreset.Undefined;
+        private bool _hasChanges = false;
+        private PHPIniFile _file;
+
+        private readonly string[] SettingNames = new string[6]{
+            "error_reporting",
+            "display_errors",
+            "track_errors",
+            "html_errors",
+            "log_errors",
+            "fastcgi.logging"
+        };
+        private readonly string[] SettingsDevValues = new string[6]{
+            "E_ALL | E_STRICT",
+            "On",
+            "On",
+            "On",
+            "On",
+            "1"
+        };
+        private readonly string[] SettingsProdValues = new string[6]{
+            "E_ALL & ~E_DEPRECATED",
+            "Off",
+            "Off",
+            "Off",
+            "On",
+            "0"
+        };
+
+
+        enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
+
         private Label _devMachineLabel;
         private Label _selectServerTypeLabel;
         private RadioButton _devMachineRadioButton;
@@ -28,22 +65,129 @@ namespace Web.Management.PHP.Settings
         private Button _errorLogBrowseButton;
         private GroupBox _serverTypeGroupBox;
 
+        private PageTaskList _taskList;
+
         protected override bool CanApplyChanges
         {
             get 
             {
-                 throw new NotImplementedException();
+                return _hasChanges && (_devMachineRadioButton.Checked || _prodMachineRadioButton.Checked);
+            }
+        }
+
+        protected override bool HasChanges
+        {
+            get
+            {
+                return _hasChanges;
+            }
+        }
+
+        private new PHPModule Module
+        {
+            get
+            {
+                return (PHPModule)base.Module;
+            }
+        }
+
+        protected override TaskListCollection Tasks
+        {
+            get
+            {
+                TaskListCollection tasks = base.Tasks;
+                if (_taskList == null)
+                {
+                    _taskList = new PageTaskList(this);
+                }
+
+                tasks.Add(_taskList);
+
+                return tasks;
             }
         }
 
         protected override bool ApplyChanges()
         {
-            throw new NotImplementedException();
+            bool appliedChanges = false;
+
+            string[] settingValues = null;
+
+            Debug.Assert(_devMachineRadioButton.Checked || _prodMachineRadioButton.Checked);
+            if (_devMachineRadioButton.Checked)
+            {
+                settingValues = SettingsDevValues;
+            }
+            else if (_prodMachineRadioButton.Checked)
+            {
+                settingValues = SettingsProdValues;
+            }
+
+            RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
+            for (int i = 0; i < settingValues.Length; i++)
+            {
+                settings.Add(new PHPIniSetting(SettingNames[i], settingValues[i], "PHP"));
+            }
+
+            try
+            {
+                Module.Proxy.AddOrUpdateSettings(settings);
+                appliedChanges = true;
+                
+                // Update the values used for determining if changes have been made
+                _errorLogFile = _errorLogFileTextBox.Text;
+                if (_devMachineRadioButton.Checked)
+                {
+                    _errorReportingPreset = ErrorReportingPreset.Development;
+                }
+                else if (_prodMachineRadioButton.Checked)
+                {
+                    _errorReportingPreset = ErrorReportingPreset.Production;
+                }
+                _hasChanges = false;
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+            finally
+            {
+                Update();
+            }
+
+            return appliedChanges;
         }
 
         protected override void CancelChanges()
         {
-            throw new NotImplementedException();
+            if (_errorReportingPreset == ErrorReportingPreset.Development)
+            {
+                _devMachineRadioButton.Checked = true;
+            }
+            else if (_errorReportingPreset == ErrorReportingPreset.Production)
+            {
+                _prodMachineRadioButton.Checked = true;
+            }
+            else
+            {
+                _devMachineRadioButton.Checked = false;
+                _prodMachineRadioButton.Checked = false;
+            }
+
+            _errorLogFileTextBox.Text = _errorLogFile;
+
+            _hasChanges = false;
+            Update();
+        }
+
+        private void GetSettings()
+        {
+            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
+        }
+
+        private void GoBack()
+        {
+            Navigate(typeof(PHPPage));
         }
 
         protected override void Initialize(object navigationData)
@@ -76,7 +220,7 @@ namespace Web.Management.PHP.Settings
             this._serverTypeGroupBox.Controls.Add(this._devMachineRadioButton);
             this._serverTypeGroupBox.Location = new System.Drawing.Point(4, 12);
             this._serverTypeGroupBox.Name = "_serverTypeGroupBox";
-            this._serverTypeGroupBox.Size = new System.Drawing.Size(593, 222);
+            this._serverTypeGroupBox.Size = new System.Drawing.Size(543, 222);
             this._serverTypeGroupBox.TabIndex = 0;
             this._serverTypeGroupBox.TabStop = false;
             this._serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
@@ -85,7 +229,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._prodMachineLabel.Location = new System.Drawing.Point(37, 150);
             this._prodMachineLabel.Name = "_prodMachineLabel";
-            this._prodMachineLabel.Size = new System.Drawing.Size(521, 48);
+            this._prodMachineLabel.Size = new System.Drawing.Size(500, 48);
             this._prodMachineLabel.TabIndex = 5;
             this._prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
             // 
@@ -104,7 +248,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._devMachineLabel.Location = new System.Drawing.Point(37, 75);
             this._devMachineLabel.Name = "_devMachineLabel";
-            this._devMachineLabel.Size = new System.Drawing.Size(521, 46);
+            this._devMachineLabel.Size = new System.Drawing.Size(500, 46);
             this._devMachineLabel.TabIndex = 3;
             this._devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
             // 
@@ -126,6 +270,7 @@ namespace Web.Management.PHP.Settings
             this._devMachineRadioButton.TabStop = true;
             this._devMachineRadioButton.Text = Resources.ErrorReportingPageDevMachine;
             this._devMachineRadioButton.UseVisualStyleBackColor = true;
+            this._devMachineRadioButton.CheckedChanged += new System.EventHandler(this.OnDevMachineRadioButtonCheckedChanged);
             // 
             // _errorLogFileLabel
             // 
@@ -134,39 +279,194 @@ namespace Web.Management.PHP.Settings
             this._errorLogFileLabel.Name = "_errorLogFileLabel";
             this._errorLogFileLabel.Size = new System.Drawing.Size(65, 13);
             this._errorLogFileLabel.TabIndex = 1;
-            this._errorLogFileLabel.Text = Resources.ErrorReportingPageErrorLogFile;
+            this._errorLogFileLabel.Text = Resources.ErrorReportingErrorLogFile;
             // 
             // _errorLogFileTextBox
             // 
             this._errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
             this._errorLogFileTextBox.Name = "_errorLogFileTextBox";
-            this._errorLogFileTextBox.Size = new System.Drawing.Size(501, 20);
+            this._errorLogFileTextBox.Size = new System.Drawing.Size(509, 20);
             this._errorLogFileTextBox.TabIndex = 2;
+            this._errorLogFileTextBox.TextChanged += new System.EventHandler(this.OnErrorLogFileTextBoxTextChanged);
             // 
             // _errorLogBrowseButton
             // 
-            this._errorLogBrowseButton.Location = new System.Drawing.Point(514, 266);
+            this._errorLogBrowseButton.Location = new System.Drawing.Point(522, 266);
             this._errorLogBrowseButton.Name = "_errorLogBrowseButton";
             this._errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
             this._errorLogBrowseButton.TabIndex = 3;
             this._errorLogBrowseButton.Text = "...";
             this._errorLogBrowseButton.UseVisualStyleBackColor = true;
+            this._errorLogBrowseButton.Click += new System.EventHandler(this.OnErrorLogBrowseButtonClick);
             // 
             // ErrorReportingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScroll = true;
             this.Controls.Add(this._errorLogBrowseButton);
             this.Controls.Add(this._errorLogFileTextBox);
             this.Controls.Add(this._errorLogFileLabel);
             this.Controls.Add(this._serverTypeGroupBox);
             this.Name = "ErrorReportingPage";
-            this.Size = new System.Drawing.Size(600, 338);
+            this.Size = new System.Drawing.Size(550, 360);
             this._serverTypeGroupBox.ResumeLayout(false);
             this._serverTypeGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        protected override void OnActivated(bool initialActivation)
+        {
+            base.OnActivated(initialActivation);
+
+            if (initialActivation)
+            {
+                GetSettings();
+            }
+        }
+
+        private void OnDevMachineRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            if (_errorReportingPreset == ErrorReportingPreset.Development)
+            {
+                _hasChanges = !_devMachineRadioButton.Checked ? true : false;
+            }
+            else
+            {
+                _hasChanges = _devMachineRadioButton.Checked ? true : false;
+            }
+            Update();
+        }
+
+        private void OnErrorLogBrowseButtonClick(object sender, EventArgs e)
+        {
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.Title = Resources.ErrorLogSaveDialogTitle;
+                dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
+                dlg.Filter = Resources.ErrorLogSaveDialogFilter;
+                
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    _errorLogFileTextBox.Text = dlg.FileName;
+                }
+            }
+        }
+
+        private void OnErrorLogFileTextBoxTextChanged(object sender, EventArgs e)
+        {
+            if (!String.Equals(_errorLogFileTextBox.Text, _errorLogFile, StringComparison.OrdinalIgnoreCase))
+            {
+                _hasChanges = true;
+                Update();
+            }
+        }
+
+        private void OnGetSettings(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.GetPHPIniSettings();
+        }
+
+        private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                object o = e.Result;
+
+                _file = new PHPIniFile();
+                _file.SetData(o);
+
+                UpdateUI(_file);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+        }
+
+        private void UpdateUI(PHPIniFile _file)
+        {
+            PHPIniSetting setting = _file.GetSetting(SettingNames[0]);
+            if (setting != null)
+            {
+                if (String.Equals(setting.Value, SettingsDevValues[0]))
+                {
+                    _errorReportingPreset = ErrorReportingPreset.Development;
+                }
+                else if (String.Equals(setting.Value, SettingsProdValues[0]))
+                {
+                    _errorReportingPreset = ErrorReportingPreset.Production;
+                }
+
+                int i = 1;
+                while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < SettingNames.Length)
+                {
+                    setting = _file.GetSetting(SettingNames[i]);
+                    if (setting == null)
+                    {
+                        _errorReportingPreset = ErrorReportingPreset.Undefined;
+                    }
+                    else
+                    {
+                        if (_errorReportingPreset == ErrorReportingPreset.Production &&
+                            !String.Equals(setting.Value, SettingsProdValues[i]))
+                        {
+                            _errorReportingPreset = ErrorReportingPreset.Undefined;
+                        }
+                        if (_errorReportingPreset == ErrorReportingPreset.Development &&
+                            !String.Equals(setting.Value, SettingsDevValues[i]))
+                        {
+                            _errorReportingPreset = ErrorReportingPreset.Undefined;
+                        }
+                    }
+                    i = i + 1;
+                }
+            }
+
+            if (_errorReportingPreset == ErrorReportingPreset.Development)
+            {
+                _devMachineRadioButton.Checked = true;
+            }
+            else if (_errorReportingPreset == ErrorReportingPreset.Production)
+            {
+                _prodMachineRadioButton.Checked = true;
+            }
+
+            setting = _file.GetSetting("error_log");
+            if (setting != null)
+            {
+                _errorLogFile = setting.Value;
+                _errorLogFileTextBox.Text = setting.Value;
+            }
+        }
+
+
+        private class PageTaskList : TaskList
+        {
+            private ErrorReportingPage _page;
+
+            public PageTaskList(ErrorReportingPage page)
+            {
+                _page = page;
+            }
+
+            public override System.Collections.ICollection GetTaskItems()
+            {
+                List<TaskItem> tasks = new List<TaskItem>();
+
+                tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
+
+                return tasks;
+            }
+
+            public void GoBack()
+            {
+                _page.GoBack();
+            }
+
+        }
+
     }
 
 }

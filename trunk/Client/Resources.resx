@@ -338,7 +338,7 @@
     <value>Use this feature to configure how PHP reports and logs errors, warnings and information notices.</value>
   </data>
   <data name="ErrorReportingPageTitle" xml:space="preserve">
-    <value>PHP error reporting</value>
+    <value>PHP Error Reporting</value>
   </data>
   <data name="ErrorReportingPageDevMachine" xml:space="preserve">
     <value>Development machine</value>
@@ -381,5 +381,14 @@
   </data>
   <data name="RegisterPHPDialogExample" xml:space="preserve">
     <value>Example: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>Log file (*.log)|*.log|All files (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>PHP Error Log File</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>Error log file:</value>
   </data>
 </root>

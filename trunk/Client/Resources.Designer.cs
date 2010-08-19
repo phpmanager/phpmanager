@@ -167,6 +167,24 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log file (*.log)|*.log|All files (*.*)|*.*.
+        /// </summary>
+        internal static string ErrorLogSaveDialogFilter {
+            get {
+                return ResourceManager.GetString("ErrorLogSaveDialogFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP Error Log File.
+        /// </summary>
+        internal static string ErrorLogSaveDialogTitle {
+            get {
+                return ResourceManager.GetString("ErrorLogSaveDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The directory does not contain ext subdirectory with PHP extensions..
         /// </summary>
         internal static string ErrorNoExtDirectory {
@@ -190,6 +208,15 @@ namespace Web.Management.PHP {
         internal static string ErrorPHPIniFileDoesNotExist {
             get {
                 return ResourceManager.GetString("ErrorPHPIniFileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error log file:.
+        /// </summary>
+        internal static string ErrorReportingErrorLogFile {
+            get {
+                return ResourceManager.GetString("ErrorReportingErrorLogFile", resourceCulture);
             }
         }
         
@@ -275,7 +302,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PHP error reporting.
+        ///   Looks up a localized string similar to PHP Error Reporting.
         /// </summary>
         internal static string ErrorReportingPageTitle {
             get {
