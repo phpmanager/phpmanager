@@ -230,7 +230,7 @@ namespace Web.Management.PHP.Settings
             this._prodMachineLabel.Location = new System.Drawing.Point(37, 150);
             this._prodMachineLabel.Name = "_prodMachineLabel";
             this._prodMachineLabel.Size = new System.Drawing.Size(500, 48);
-            this._prodMachineLabel.TabIndex = 5;
+            this._prodMachineLabel.TabIndex = 4;
             this._prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
             // 
             // _prodMachineRadioButton
@@ -239,7 +239,7 @@ namespace Web.Management.PHP.Settings
             this._prodMachineRadioButton.Location = new System.Drawing.Point(20, 130);
             this._prodMachineRadioButton.Name = "_prodMachineRadioButton";
             this._prodMachineRadioButton.Size = new System.Drawing.Size(119, 17);
-            this._prodMachineRadioButton.TabIndex = 4;
+            this._prodMachineRadioButton.TabIndex = 3;
             this._prodMachineRadioButton.TabStop = true;
             this._prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
             this._prodMachineRadioButton.UseVisualStyleBackColor = true;
@@ -249,7 +249,7 @@ namespace Web.Management.PHP.Settings
             this._devMachineLabel.Location = new System.Drawing.Point(37, 75);
             this._devMachineLabel.Name = "_devMachineLabel";
             this._devMachineLabel.Size = new System.Drawing.Size(500, 46);
-            this._devMachineLabel.TabIndex = 3;
+            this._devMachineLabel.TabIndex = 2;
             this._devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
             // 
             // _selectServerTypeLabel
@@ -257,7 +257,7 @@ namespace Web.Management.PHP.Settings
             this._selectServerTypeLabel.Location = new System.Drawing.Point(6, 20);
             this._selectServerTypeLabel.Name = "_selectServerTypeLabel";
             this._selectServerTypeLabel.Size = new System.Drawing.Size(458, 23);
-            this._selectServerTypeLabel.TabIndex = 1;
+            this._selectServerTypeLabel.TabIndex = 0;
             this._selectServerTypeLabel.Text = Resources.ErrorReportingPageSelectServerType;
             // 
             // _devMachineRadioButton
@@ -266,7 +266,7 @@ namespace Web.Management.PHP.Settings
             this._devMachineRadioButton.Location = new System.Drawing.Point(20, 55);
             this._devMachineRadioButton.Name = "_devMachineRadioButton";
             this._devMachineRadioButton.Size = new System.Drawing.Size(131, 17);
-            this._devMachineRadioButton.TabIndex = 0;
+            this._devMachineRadioButton.TabIndex = 1;
             this._devMachineRadioButton.TabStop = true;
             this._devMachineRadioButton.Text = Resources.ErrorReportingPageDevMachine;
             this._devMachineRadioButton.UseVisualStyleBackColor = true;

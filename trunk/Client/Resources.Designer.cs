@@ -230,7 +230,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Development machine.
+        ///   Looks up a localized string similar to &amp;Development machine.
         /// </summary>
         internal static string ErrorReportingPageDevMachine {
             get {
@@ -266,7 +266,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Production machine.
+        ///   Looks up a localized string similar to &amp;Production machine.
         /// </summary>
         internal static string ErrorReportingPageProdMachine {
             get {
