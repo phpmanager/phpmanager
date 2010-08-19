@@ -9,12 +9,10 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
-using Microsoft.Web.Management.Server;
 
 namespace Web.Management.PHP.Setup
 {

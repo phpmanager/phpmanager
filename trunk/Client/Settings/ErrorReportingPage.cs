@@ -330,11 +330,11 @@ namespace Web.Management.PHP.Settings
         {
             if (_errorReportingPreset == ErrorReportingPreset.Development)
             {
-                _hasChanges = !_devMachineRadioButton.Checked ? true : false;
+                _hasChanges = !_devMachineRadioButton.Checked;
             }
             else
             {
-                _hasChanges = _devMachineRadioButton.Checked ? true : false;
+                _hasChanges = _devMachineRadioButton.Checked;
             }
             Update();
         }
@@ -388,37 +388,28 @@ namespace Web.Management.PHP.Settings
         private void UpdateUI()
         {
             PHPIniSetting setting = _file.GetSetting(SettingNames[0]);
+            string[] settingValues = null;
+
             if (setting != null)
             {
                 if (String.Equals(setting.Value, SettingsDevValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Development;
+                    settingValues = SettingsDevValues;
                 }
                 else if (String.Equals(setting.Value, SettingsProdValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Production;
+                    settingValues = SettingsProdValues;
                 }
 
                 int i = 1;
                 while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < SettingNames.Length)
                 {
                     setting = _file.GetSetting(SettingNames[i]);
-                    if (setting == null)
+                    if (setting == null || !String.Equals(setting.Value, settingValues[i]))
                     {
                         _errorReportingPreset = ErrorReportingPreset.Undefined;
-                    }
-                    else
-                    {
-                        if (_errorReportingPreset == ErrorReportingPreset.Production &&
-                            !String.Equals(setting.Value, SettingsProdValues[i]))
-                        {
-                            _errorReportingPreset = ErrorReportingPreset.Undefined;
-                        }
-                        if (_errorReportingPreset == ErrorReportingPreset.Development &&
-                            !String.Equals(setting.Value, SettingsDevValues[i]))
-                        {
-                            _errorReportingPreset = ErrorReportingPreset.Undefined;
-                        }
                     }
                     i = i + 1;
                 }
@@ -440,7 +431,6 @@ namespace Web.Management.PHP.Settings
                 _errorLogFileTextBox.Text = setting.Value;
             }
         }
-
 
         private class PageTaskList : TaskList
         {
@@ -464,9 +454,7 @@ namespace Web.Management.PHP.Settings
             {
                 _page.GoBack();
             }
-
         }
-
     }
 
 }
