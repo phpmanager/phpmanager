@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
@@ -316,6 +317,7 @@ namespace Web.Management.PHP
             return Helper.Browse(Globals.PHPPageOnlineHelp);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private void UpdateInfo()
         {
             try
@@ -336,8 +338,8 @@ namespace Web.Management.PHP
                     _executableValueLabel.Text = configInfo.ScriptProcessor;
                     _configPathValueLabel.Text = configInfo.PHPIniFilePath;
                     _errorLogValueLabel.Text = configInfo.ErrorLog;
-                    _enabledExtLabel.Text = String.Format(Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
-                    _installedExtLabel.Text = String.Format(Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
+                    _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
+                    _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
                 }
             }
             catch(Exception ex)

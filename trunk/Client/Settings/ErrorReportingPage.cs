@@ -24,7 +24,7 @@ namespace Web.Management.PHP.Settings
     {
         private string _errorLogFile = String.Empty;
         private ErrorReportingPreset _errorReportingPreset = ErrorReportingPreset.Undefined;
-        private bool _hasChanges = false;
+        private bool _hasChanges;
         private PHPIniFile _file;
 
         private readonly string[] SettingNames = new string[6]{
@@ -377,7 +377,7 @@ namespace Web.Management.PHP.Settings
                 _file = new PHPIniFile();
                 _file.SetData(o);
 
-                UpdateUI(_file);
+                UpdateUI();
             }
             catch (Exception ex)
             {
@@ -385,7 +385,7 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        private void UpdateUI(PHPIniFile _file)
+        private void UpdateUI()
         {
             PHPIniSetting setting = _file.GetSetting(SettingNames[0]);
             if (setting != null)

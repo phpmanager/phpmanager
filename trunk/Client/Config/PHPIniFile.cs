@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -197,7 +198,7 @@ namespace Web.Management.PHP.Config
 
         private static string GetExtensionSection(string extensionName)
         {
-            string sectionName = Path.GetFileNameWithoutExtension(extensionName).ToUpper();
+            string sectionName = Path.GetFileNameWithoutExtension(extensionName).ToUpper(CultureInfo.InvariantCulture);
             return '[' + sectionName + ']';
         }
 

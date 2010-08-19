@@ -21,8 +21,8 @@ namespace Web.Management.PHP
     {
         private const int WS_EX_NOINHERITLAYOUT = 0x100000;
         private const int WS_EX_LAYOUTRTL = 0x400000;
-        private bool _rightToLeftLayout = false;
-        private int _tlpRowCount = 0;
+        private bool _rightToLeftLayout;
+        private int _tlpRowCount;
 
         private Action<int> _handler;
 
