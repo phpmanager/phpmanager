@@ -221,13 +221,13 @@ namespace Web.Management.PHP
         {
             if (index == 0)
             {
-                Navigate(typeof(Extensions.PHPExtensionsPage));
+                Navigate(typeof(Extensions.AllExtensionsPage));
             }
         }
 
         private void OnPHPExtensionItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Navigate(typeof(Extensions.PHPExtensionsPage));
+            Navigate(typeof(Extensions.AllExtensionsPage));
         }
 
         private void OnPHPSettingsItemClick(int index)
@@ -242,13 +242,13 @@ namespace Web.Management.PHP
             }
             if (index == 3)
             {
-                Navigate(typeof(Settings.PHPSettingsPage));
+                Navigate(typeof(Settings.AllSettingsPage));
             }
         }
 
         private void OnPHPSettingsItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Navigate(typeof(Settings.PHPSettingsPage));
+            Navigate(typeof(Settings.AllSettingsPage));
         }
 
         private void OnPHPSetupItemClick(int index)

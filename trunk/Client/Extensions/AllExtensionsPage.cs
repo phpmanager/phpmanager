@@ -23,7 +23,7 @@ namespace Web.Management.PHP.Extensions
 {
 
     [ModulePageIdentifier(Globals.PHPExtensionsPageIdentifier)]
-    internal sealed class PHPExtensionsPage : ModuleListPage, IModuleChildPage
+    internal sealed class AllExtensionsPage : ModuleListPage, IModuleChildPage
     {
         private ColumnHeader _nameColumn;
         private ColumnHeader _stateColumn;
@@ -37,10 +37,6 @@ namespace Web.Management.PHP.Extensions
         private string _filterBy;
         private string _filterValue;
         private IModulePage _parentPage;
-
-        public PHPExtensionsPage()
-        {
-        }
 
         protected override bool CanRefresh
         {
@@ -325,9 +321,9 @@ namespace Web.Management.PHP.Extensions
 
         private class PageTaskList : TaskList
         {
-            private PHPExtensionsPage _page;
+            private AllExtensionsPage _page;
 
-            public PageTaskList(PHPExtensionsPage page)
+            public PageTaskList(AllExtensionsPage page)
             {
                 _page = page;
             }

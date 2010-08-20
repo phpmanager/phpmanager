@@ -52,16 +52,16 @@
   <ItemGroup>
     <Compile Include="Config\PHPIniFile.cs" />
     <Compile Include="Config\PHPConfigInfo.cs" />
-    <Compile Include="Extensions\PHPExtensionsPage.cs">
+    <Compile Include="Extensions\AllExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings\ErrorReportingPage.cs">
+    <Compile Include="Settings\AllSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Settings\PHPSettingsPage.cs">
+    <Compile Include="Settings\ErrorReportingPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings\RuntimeLimitSettings.cs" />

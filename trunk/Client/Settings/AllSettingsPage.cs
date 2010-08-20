@@ -22,7 +22,7 @@ namespace Web.Management.PHP.Settings
 {
 
     [ModulePageIdentifier(Globals.PHPSettingsPageIdentifier)]
-    internal sealed class PHPSettingsPage : ModuleListPage, IModuleChildPage
+    internal sealed class AllSettingsPage : ModuleListPage, IModuleChildPage
     {
         private ColumnHeader _nameColumn;
         private ColumnHeader _valueColumn;
@@ -418,9 +418,9 @@ namespace Web.Management.PHP.Settings
 
         private class PageTaskList : TaskList
         {
-            private PHPSettingsPage _page;
+            private AllSettingsPage _page;
 
-            public PageTaskList(PHPSettingsPage page)
+            public PageTaskList(AllSettingsPage page)
             {
                 _page = page;
             }

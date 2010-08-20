@@ -54,7 +54,7 @@ namespace Web.Management.PHP
 
             //PHP Settings page
             modulePageInfo = new ModulePageInfo(this,
-                typeof(PHPSettingsPage), Resources.PHPSettingsPageTitle, Resources.PHPSettingsPageDescription,
+                typeof(AllSettingsPage), Resources.PHPSettingsPageTitle, Resources.PHPSettingsPageDescription,
                 Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPSettingsPageLongDescription);
 
             controlPanel.RegisterPage(modulePageInfo);
@@ -73,7 +73,7 @@ namespace Web.Management.PHP
 
             //PHP Extensions page
             modulePageInfo = new ModulePageInfo(this,
-                typeof(PHPExtensionsPage), Resources.PHPExtensionsPageTitle, Resources.PHPExtensionsPageDescription,
+                typeof(AllExtensionsPage), Resources.PHPExtensionsPageTitle, Resources.PHPExtensionsPageDescription,
                 Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPExtensionsPageLongDescription);
 
             controlPanel.RegisterPage(modulePageInfo);
