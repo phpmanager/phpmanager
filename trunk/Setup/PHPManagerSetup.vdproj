@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7FDD638AB28F4642ACE92448731FD556"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_938B434E548144CAA354A598974DF8E6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -82,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
+        "OwnerKey" = "8:_7FDD638AB28F4642ACE92448731FD556"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
         "OwnerKey" = "8:_E44348A29A4C48F6BE9B1E513F345476"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -106,7 +118,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7FDD638AB28F4642ACE92448731FD556"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E44348A29A4C48F6BE9B1E513F345476"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D023C0B1EB3A4816BCD28BC4C7546F13"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,25 +160,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D023C0B1EB3A4816BCD28BC4C7546F13"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_22F0F582E9D526DFD26D076A8D5298E2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -153,7 +171,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:..\\bin\\Debug\\PHPManagerSetup.msi"
+        "OutputFilename" = "8:..\\bin\\Debug\\PHPManagerForIIS.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -163,6 +181,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -179,12 +218,48 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3A3468103E1941FDAB6E01F6A3DECFBE"
+            {
+            "Name" = "8:RegisterUIModule"
+            "Condition" = "8:"
+            "Object" = "8:_7FDD638AB28F4642ACE92448731FD556"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_D9144817_6B93_4F1B_9217_542924DEFD21"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E8D18D027E184C0E81C545C2077DFF83"
+            {
+            "Name" = "8:UnregisterUIModule"
+            "Condition" = "8:"
+            "Object" = "8:_7FDD638AB28F4642ACE92448731FD556"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_EE7B2BF2_88AB_45F2_8781_596EC224FB80"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -544,7 +619,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager for IIS"
         "ProductCode" = "8:{24EFCF3E-2617-40AB-82CE-8D0748C13077}"
-        "PackageCode" = "8:{54D70704-4580-4D25-ADF9-15BD9DC90634}"
+        "PackageCode" = "8:{A60B6865-D37A-484F-A418-A11EA236CB35}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -1117,6 +1192,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7FDD638AB28F4642ACE92448731FD556"
+            {
+            "SourcePath" = "8:PHPManagerSetupHelper\\obj\\Debug\\Web.Management.PHP.Setup.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5A59E9E3C6C4D64809C95D1DFFCF0B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
         }
     }
 }

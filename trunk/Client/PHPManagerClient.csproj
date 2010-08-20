@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>phpmgrpublic.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\phpmgrpublic.snk</AssemblyOriginatorKeyFile>
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,10 +44,8 @@
       <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\PHPIniFile.cs" />
@@ -114,7 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Delete16.png" />
-    <None Include="phpmgrpublic.snk" />
+    <None Include="..\phpmgrpublic.snk">
+      <Link>phpmgrpublic.snk</Link>
+    </None>
     <None Include="Resources\goBack16.png" />
     <Content Include="Resources\php-extensions32.png" />
     <Content Include="Resources\php-logo16.png" />
