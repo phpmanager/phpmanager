@@ -319,9 +319,6 @@
   <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
     <value>Set runtime limits</value>
   </data>
-  <data name="PHPSettingsItemSessionTask" xml:space="preserve">
-    <value>Configure PHP session</value>
-  </data>
   <data name="PHPPageErrorLog" xml:space="preserve">
     <value>Error log:</value>
   </data>

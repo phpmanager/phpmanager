@@ -643,15 +643,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configure PHP session.
-        /// </summary>
-        internal static string PHPSettingsItemSessionTask {
-            get {
-                return ResourceManager.GetString("PHPSettingsItemSessionTask", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PHP Settings.
         /// </summary>
         internal static string PHPSettingsItemTitle {

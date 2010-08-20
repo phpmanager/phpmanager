@@ -136,7 +136,6 @@ namespace Web.Management.PHP
             _phpSettingsItem.AddInfoRow(_errorLogNameLabel, _errorLogValueLabel);
             _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
                                     Resources.PHPSettingsItemErrorReportingTask,
-                                    Resources.PHPSettingsItemSessionTask,
                                     Resources.PHPSettingsItemLimitsTask,
                                     Resources.PHPSettingsItemAllSettingsTask);
 
@@ -236,11 +235,11 @@ namespace Web.Management.PHP
             {
                 Navigate(typeof(Settings.ErrorReportingPage));
             }
-            if (index == 2)
+            if (index == 1)
             {
                 Navigate(typeof(Settings.RuntimeLimitsPage));
             }
-            if (index == 3)
+            if (index == 2)
             {
                 Navigate(typeof(Settings.AllSettingsPage));
             }
