@@ -241,6 +241,7 @@ namespace Web.Management.PHP.Settings
             this._prodMachineRadioButton.TabStop = true;
             this._prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
             this._prodMachineRadioButton.UseVisualStyleBackColor = true;
+            this._prodMachineRadioButton.CheckedChanged += new EventHandler(OnProdMachineRadioButtonCheckedChanged);
             // 
             // _devMachineLabel
             // 
@@ -314,6 +315,23 @@ namespace Web.Management.PHP.Settings
 
         }
 
+        private void OnProdMachineRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            bool oldHasChanges = _hasChanges;
+            if (_errorReportingPreset == ErrorReportingPreset.Production)
+            {
+                _hasChanges = !_prodMachineRadioButton.Checked;
+            }
+            else
+            {
+                _hasChanges = _prodMachineRadioButton.Checked;
+            }
+            if (oldHasChanges != _hasChanges)
+            {
+                Update();
+            }
+        }
+
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
@@ -326,6 +344,7 @@ namespace Web.Management.PHP.Settings
 
         private void OnDevMachineRadioButtonCheckedChanged(object sender, EventArgs e)
         {
+            bool oldHasChanges = _hasChanges;
             if (_errorReportingPreset == ErrorReportingPreset.Development)
             {
                 _hasChanges = !_devMachineRadioButton.Checked;
@@ -334,7 +353,10 @@ namespace Web.Management.PHP.Settings
             {
                 _hasChanges = _devMachineRadioButton.Checked;
             }
-            Update();
+            if (oldHasChanges != _hasChanges)
+            {
+                Update();
+            }
         }
 
         private void OnErrorLogBrowseButtonClick(object sender, EventArgs e)
