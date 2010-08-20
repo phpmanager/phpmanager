@@ -22,10 +22,11 @@ namespace Web.Management.PHP.Settings
     [ModulePageIdentifier(Globals.ErrorReportingPageIdentifier)]
     internal sealed class ErrorReportingPage : ModuleDialogPage
     {
+        enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
+
         private string _errorLogFile = String.Empty;
         private ErrorReportingPreset _errorReportingPreset = ErrorReportingPreset.Undefined;
         private bool _hasChanges;
-        private PHPIniFile _file;
 
         private readonly string[] SettingNames = new string[6]{
             "error_reporting",
@@ -51,9 +52,6 @@ namespace Web.Management.PHP.Settings
             "On",
             "0"
         };
-
-
-        enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
 
         private Label _devMachineLabel;
         private Label _selectServerTypeLabel;
@@ -220,7 +218,7 @@ namespace Web.Management.PHP.Settings
             this._serverTypeGroupBox.Controls.Add(this._devMachineRadioButton);
             this._serverTypeGroupBox.Location = new System.Drawing.Point(4, 12);
             this._serverTypeGroupBox.Name = "_serverTypeGroupBox";
-            this._serverTypeGroupBox.Size = new System.Drawing.Size(543, 222);
+            this._serverTypeGroupBox.Size = new System.Drawing.Size(503, 222);
             this._serverTypeGroupBox.TabIndex = 0;
             this._serverTypeGroupBox.TabStop = false;
             this._serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
@@ -229,7 +227,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._prodMachineLabel.Location = new System.Drawing.Point(37, 150);
             this._prodMachineLabel.Name = "_prodMachineLabel";
-            this._prodMachineLabel.Size = new System.Drawing.Size(500, 48);
+            this._prodMachineLabel.Size = new System.Drawing.Size(447, 48);
             this._prodMachineLabel.TabIndex = 4;
             this._prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
             // 
@@ -248,7 +246,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._devMachineLabel.Location = new System.Drawing.Point(37, 75);
             this._devMachineLabel.Name = "_devMachineLabel";
-            this._devMachineLabel.Size = new System.Drawing.Size(500, 46);
+            this._devMachineLabel.Size = new System.Drawing.Size(447, 46);
             this._devMachineLabel.TabIndex = 2;
             this._devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
             // 
@@ -285,13 +283,13 @@ namespace Web.Management.PHP.Settings
             // 
             this._errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
             this._errorLogFileTextBox.Name = "_errorLogFileTextBox";
-            this._errorLogFileTextBox.Size = new System.Drawing.Size(509, 20);
+            this._errorLogFileTextBox.Size = new System.Drawing.Size(469, 20);
             this._errorLogFileTextBox.TabIndex = 2;
             this._errorLogFileTextBox.TextChanged += new System.EventHandler(this.OnErrorLogFileTextBoxTextChanged);
             // 
             // _errorLogBrowseButton
             // 
-            this._errorLogBrowseButton.Location = new System.Drawing.Point(522, 266);
+            this._errorLogBrowseButton.Location = new System.Drawing.Point(482, 267);
             this._errorLogBrowseButton.Name = "_errorLogBrowseButton";
             this._errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
             this._errorLogBrowseButton.TabIndex = 3;
@@ -308,7 +306,7 @@ namespace Web.Management.PHP.Settings
             this.Controls.Add(this._errorLogFileLabel);
             this.Controls.Add(this._serverTypeGroupBox);
             this.Name = "ErrorReportingPage";
-            this.Size = new System.Drawing.Size(550, 360);
+            this.Size = new System.Drawing.Size(510, 360);
             this._serverTypeGroupBox.ResumeLayout(false);
             this._serverTypeGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -374,10 +372,10 @@ namespace Web.Management.PHP.Settings
             {
                 object o = e.Result;
 
-                _file = new PHPIniFile();
-                _file.SetData(o);
+                PHPIniFile file = new PHPIniFile();
+                file.SetData(o);
 
-                UpdateUI();
+                UpdateUI(file);
             }
             catch (Exception ex)
             {
@@ -385,9 +383,9 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        private void UpdateUI()
+        private void UpdateUI(PHPIniFile file)
         {
-            PHPIniSetting setting = _file.GetSetting(SettingNames[0]);
+            PHPIniSetting setting = file.GetSetting(SettingNames[0]);
             string[] settingValues = null;
 
             if (setting != null)
@@ -406,7 +404,7 @@ namespace Web.Management.PHP.Settings
                 int i = 1;
                 while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < SettingNames.Length)
                 {
-                    setting = _file.GetSetting(SettingNames[i]);
+                    setting = file.GetSetting(SettingNames[i]);
                     if (setting == null || !String.Equals(setting.Value, settingValues[i]))
                     {
                         _errorReportingPreset = ErrorReportingPreset.Undefined;
@@ -424,7 +422,7 @@ namespace Web.Management.PHP.Settings
                 _prodMachineRadioButton.Checked = true;
             }
 
-            setting = _file.GetSetting("error_log");
+            setting = file.GetSetting("error_log");
             if (setting != null)
             {
                 _errorLogFile = setting.Value;

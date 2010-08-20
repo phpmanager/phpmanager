@@ -251,6 +251,7 @@ namespace Web.Management.PHP.Config
             if (index != 0)
             {
                 handlersCollection.Remove(handlerElement);
+                Debug.Assert(handlersCollection[handlerElement.Name] == null);
                 handlersCollection.AddCopyAt(0, handlerElement);
             }
         }

@@ -236,6 +236,10 @@ namespace Web.Management.PHP
             {
                 Navigate(typeof(Settings.ErrorReportingPage));
             }
+            if (index == 2)
+            {
+                Navigate(typeof(Settings.RuntimeLimitsPage));
+            }
             if (index == 3)
             {
                 Navigate(typeof(Settings.PHPSettingsPage));

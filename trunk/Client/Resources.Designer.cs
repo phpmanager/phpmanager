@@ -839,6 +839,159 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Handling.
+        /// </summary>
+        internal static string RuntimeLimitsDataHandling {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsDataHandling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Execution Time.
+        /// </summary>
+        internal static string RuntimeLimitsMaxExecutionTime {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxExecutionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsMaxExecutionTimeDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxExecutionTimeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Files To Upload.
+        /// </summary>
+        internal static string RuntimeLimitsMaxFileUploads {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxFileUploads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsMaxFileUploadsDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxFileUploadsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Input Time.
+        /// </summary>
+        internal static string RuntimeLimitsMaxInputTime {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxInputTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsMaxInputTimeDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMaxInputTimeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Limit.
+        /// </summary>
+        internal static string RuntimeLimitsMemoryLimit {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMemoryLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsMemoryLimitDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsMemoryLimitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure PHP runtime limits, including execution timeouts, maximum upload times, etc..
+        /// </summary>
+        internal static string RuntimeLimitsPageDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure PHP runtime limits, such as maximum script execution time, maximum size of uploaded files, request timeouts and others..
+        /// </summary>
+        internal static string RuntimeLimitsPageLongDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsPageLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP Runtime Limits.
+        /// </summary>
+        internal static string RuntimeLimitsPageTitle {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum POST size.
+        /// </summary>
+        internal static string RuntimeLimitsPostMaxSize {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsPostMaxSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsPostMaxSizeDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsPostMaxSizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resource Limits.
+        /// </summary>
+        internal static string RuntimeLimitsResourceLimits {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsResourceLimits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Maximum File Size.
+        /// </summary>
+        internal static string RuntimeLimitsUploadMaxFilesize {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsUploadMaxFilesize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description goes here.
+        /// </summary>
+        internal static string RuntimeLimitsUploadMaxFilesizeDescription {
+            get {
+                return ResourceManager.GetString("RuntimeLimitsUploadMaxFilesizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a &amp;domain name used for the selected site:.
         /// </summary>
         internal static string SelectSiteDomainDialogSelectADomain {

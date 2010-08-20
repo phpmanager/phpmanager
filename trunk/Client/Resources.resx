@@ -391,4 +391,55 @@
   <data name="ErrorReportingErrorLogFile" xml:space="preserve">
     <value>Error log file:</value>
   </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>Maximum Execution Time</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>Configure PHP runtime limits, including execution timeouts, maximum upload times, etc.</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>Configure PHP runtime limits, such as maximum script execution time, maximum size of uploaded files, request timeouts and others.</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>PHP Runtime Limits</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>Data Handling</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>The description goes here</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>Maximum Files To Upload</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>Description goes here</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>Maximum Input Time</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>Some description goes here</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>Memory Limit</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>Some description goes here</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>Maximum POST size</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>Description goes here</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>Resource Limits</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>Upload Maximum File Size</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>Description goes here</value>
+  </data>
 </root>

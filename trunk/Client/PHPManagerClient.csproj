@@ -64,6 +64,11 @@
     <Compile Include="Settings\PHPSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Settings\RuntimeLimitSettings.cs" />
+    <Compile Include="Settings\RuntimeLimitsGlobals.cs" />
+    <Compile Include="Settings\RuntimeLimitsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Setup\RegisterPHPDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +101,10 @@
     <Compile Include="Setup\SelectSiteDomainDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Settings\SettingCategoryAttribute.cs" />
+    <Compile Include="Settings\SettingDescriptionAttribute.cs" />
+    <Compile Include="Settings\SettingDisplayNameAttribute.cs" />
+    <Compile Include="Settings\SettingPropertyGridObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
@@ -108,7 +117,6 @@
     <None Include="phpmgrpublic.snk" />
     <None Include="Resources\goBack16.png" />
     <Content Include="Resources\php-extensions32.png" />
-    <Content Include="Resources\php-info32.png" />
     <Content Include="Resources\php-logo16.png" />
     <Content Include="Resources\php-logo32.png" />
     <Content Include="Resources\php-settings32.png" />
