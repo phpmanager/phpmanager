@@ -21,7 +21,7 @@ namespace Web.Management.PHP.Settings
     internal sealed class RuntimeLimitsPage : ModulePropertiesPage
     {
         // If adding properties here make sure to update the RuntimeLimistGlobal.cs
-        private readonly string [] _settingNames = new string[6]{
+        private readonly string [] _settingNames = {
             "max_execution_time",
             "max_input_time",
             "memory_limit",

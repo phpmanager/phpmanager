@@ -28,7 +28,7 @@ namespace Web.Management.PHP.Settings
         private ErrorReportingPreset _errorReportingPreset = ErrorReportingPreset.Undefined;
         private bool _hasChanges;
 
-        private readonly string[] SettingNames = new string[6]{
+        private readonly string[] SettingNames = {
             "error_reporting",
             "display_errors",
             "track_errors",
@@ -36,7 +36,7 @@ namespace Web.Management.PHP.Settings
             "log_errors",
             "fastcgi.logging"
         };
-        private readonly string[] SettingsDevValues = new string[6]{
+        private readonly string[] SettingsDevValues = {
             "E_ALL | E_STRICT",
             "On",
             "On",
@@ -44,7 +44,7 @@ namespace Web.Management.PHP.Settings
             "On",
             "1"
         };
-        private readonly string[] SettingsProdValues = new string[6]{
+        private readonly string[] SettingsProdValues = {
             "E_ALL & ~E_DEPRECATED",
             "Off",
             "Off",

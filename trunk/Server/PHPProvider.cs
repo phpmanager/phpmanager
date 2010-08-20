@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Web.Management.Server;
+using System.Reflection;
 
 namespace Web.Management.PHP
 {
@@ -27,7 +28,12 @@ namespace Web.Management.PHP
 
         public override ModuleDefinition GetModuleDefinition(IManagementContext context)
         {
-            return new ModuleDefinition(Name, "Web.Management.PHP.PHPModule, Web.Management.PHP.Client,Version=1.0.0.0,Culture=neutral,PublicKeyToken=8175de49a9aec91d");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            AssemblyName assemblyName = assembly.GetName();
+            string assemblyFullName = assemblyName.FullName;
+            string clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP.Client");
+
+            return new ModuleDefinition(Name, "Web.Management.PHP.PHPModule, " + clientAssemblyFullName);
         }
 
         public override bool SupportsScope(ManagementScope scope)
