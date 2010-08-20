@@ -1,15 +1,20 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright>
+// Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
+//
+// This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
+// </copyright>
+//----------------------------------------------------------------------- 
+
 using Microsoft.Web.Management.Server;
 using System.ComponentModel;
-using System.IO;
-using System.Globalization;
 using Microsoft.Web.Management.Client.Win32;
 
 namespace Web.Management.PHP.Settings
 {
     internal sealed class RuntimeLimitSettings : SettingPropertyGridObject
     {
-
 
         PropertyBag _bag;
 
