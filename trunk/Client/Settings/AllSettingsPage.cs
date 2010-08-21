@@ -390,10 +390,6 @@ namespace Web.Management.PHP.Settings
             GetSettings();
         }
 
-        #region IModuleChildPage Members
-
-        #endregion
-
         private void RemovePHPSetting()
         {
             PHPSettingItem item = SelectedItem;

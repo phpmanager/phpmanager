@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -18,7 +18,7 @@ namespace Web.Management.PHP.Settings
 {
 
     [ModulePageIdentifier(Globals.RuntimeLimitsPageIdentifier)]
-    internal sealed class RuntimeLimitsPage : ModulePropertiesPage
+    internal sealed class RuntimeLimitsPage : ModulePropertiesPage, IModuleChildPage
     {
         // If adding properties here make sure to update the RuntimeLimistGlobal.cs
         private readonly string [] _settingNames = {
@@ -33,6 +33,7 @@ namespace Web.Management.PHP.Settings
         private PropertyBag _clone;
         private PropertyBag _bag;
         private PageTaskList _taskList;
+        private IModulePage _parentPage;
 
         protected override bool CanApplyChanges
         {
@@ -55,6 +56,18 @@ namespace Web.Management.PHP.Settings
             get
             {
                 return (PHPModule)base.Module;
+            }
+        }
+
+        public IModulePage ParentPage
+        {
+            get
+            {
+                return _parentPage;
+            }
+            set
+            {
+                _parentPage = value;
             }
         }
 
@@ -167,7 +180,6 @@ namespace Web.Management.PHP.Settings
                 _page.GoBack();
             }
         }
-
 
     }
 }

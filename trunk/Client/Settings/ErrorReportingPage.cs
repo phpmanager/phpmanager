@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -20,8 +20,9 @@ namespace Web.Management.PHP.Settings
 {
 
     [ModulePageIdentifier(Globals.ErrorReportingPageIdentifier)]
-    internal sealed class ErrorReportingPage : ModuleDialogPage
+    internal sealed class ErrorReportingPage : ModuleDialogPage, IModuleChildPage
     {
+
         enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
 
         private string _errorLogFile = String.Empty;
@@ -64,6 +65,7 @@ namespace Web.Management.PHP.Settings
         private GroupBox _serverTypeGroupBox;
 
         private PageTaskList _taskList;
+        private IModulePage _parentPage;
 
         protected override bool CanApplyChanges
         {
@@ -86,6 +88,18 @@ namespace Web.Management.PHP.Settings
             get
             {
                 return (PHPModule)base.Module;
+            }
+        }
+
+        public IModulePage ParentPage
+        {
+            get
+            {
+                return _parentPage;
+            }
+            set
+            {
+                _parentPage = value;
             }
         }
 
@@ -315,23 +329,6 @@ namespace Web.Management.PHP.Settings
 
         }
 
-        private void OnProdMachineRadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            bool oldHasChanges = _hasChanges;
-            if (_errorReportingPreset == ErrorReportingPreset.Production)
-            {
-                _hasChanges = !_prodMachineRadioButton.Checked;
-            }
-            else
-            {
-                _hasChanges = _prodMachineRadioButton.Checked;
-            }
-            if (oldHasChanges != _hasChanges)
-            {
-                Update();
-            }
-        }
-
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
@@ -405,6 +402,23 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        private void OnProdMachineRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            bool oldHasChanges = _hasChanges;
+            if (_errorReportingPreset == ErrorReportingPreset.Production)
+            {
+                _hasChanges = !_prodMachineRadioButton.Checked;
+            }
+            else
+            {
+                _hasChanges = _prodMachineRadioButton.Checked;
+            }
+            if (oldHasChanges != _hasChanges)
+            {
+                Update();
+            }
+        }
+
         private void UpdateUI(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting(SettingNames[0]);
@@ -475,6 +489,7 @@ namespace Web.Management.PHP.Settings
                 _page.GoBack();
             }
         }
+
     }
 
 }

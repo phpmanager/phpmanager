@@ -17,6 +17,7 @@ using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
+using System.ComponentModel;
 
 namespace Web.Management.PHP
 {
@@ -33,7 +34,7 @@ namespace Web.Management.PHP
         private Label _configPathNameLabel;
         private Label _executableValueLabel;
         private Label _executableNameLabel;
-        private Label _versionValueLabel;        
+        private Label _versionValueLabel;
         private Label _versionNameLabel;
 
         private PHPPageItemControl _phpExtensionItem;
@@ -158,7 +159,7 @@ namespace Web.Management.PHP
                                     Resources.PHPExtensionItemEnableTask);
             
             // Update the information summaries for each PHPPageItemControl
-            UpdateInfo();
+            GetSettings();
 
             Padding = new Padding(0, 12, 0, 0);
             Controls.Add(_phpExtensionItem);
@@ -283,7 +284,7 @@ namespace Web.Management.PHP
 
         protected override void Refresh()
         {
-            UpdateInfo();
+            GetSettings();
         }
 
         private void RegisterPHPWithIIS()
@@ -292,7 +293,7 @@ namespace Web.Management.PHP
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    UpdateInfo();
+                    GetSettings();
                     return;
                 }
             }
@@ -304,7 +305,7 @@ namespace Web.Management.PHP
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    UpdateInfo();
+                    GetSettings();
                     return;
                 }
             }
@@ -321,11 +322,21 @@ namespace Web.Management.PHP
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private void UpdateInfo()
+        private void GetSettings()
+        {
+            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
+        }
+
+        private void OnGetSettings(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.GetPHPConfigInfo();
+        }
+
+        private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
-                PHPConfigInfo configInfo = Module.Proxy.GetPHPConfigInfo();
+                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
                 if (configInfo == null)
                 {
                     _versionValueLabel.Text = Resources.PHPPageNone;
@@ -343,9 +354,10 @@ namespace Web.Management.PHP
                     _errorLogValueLabel.Text = configInfo.ErrorLog;
                     _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                     _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
-                }
+                } 
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
