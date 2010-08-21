@@ -324,7 +324,7 @@ namespace Web.Management.PHP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private void GetSettings()
         {
-            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
         private void OnGetSettings(object sender, DoWorkEventArgs e)

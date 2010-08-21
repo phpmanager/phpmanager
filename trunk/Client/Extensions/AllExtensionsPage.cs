@@ -68,7 +68,7 @@ namespace Web.Management.PHP.Extensions
             {
                 if (_stateGrouping == null)
                 {
-                    _stateGrouping = new ModuleListPageGrouping(StateString, Resources.PHPExtensionsPageStateField);
+                    _stateGrouping = new ModuleListPageGrouping(StateString, Resources.AllExtensionsPageStateField);
                 }
 
                 return new ModuleListPageGrouping[] { _stateGrouping };
@@ -102,7 +102,7 @@ namespace Web.Management.PHP.Extensions
                 if (_searchFields == null)
                 {
                     _searchFields = new ModuleListPageSearchField[]{
-                        new ModuleListPageSearchField(NameString, Resources.PHPSettingsPageNameField)};
+                        new ModuleListPageSearchField(NameString, Resources.AllSettingsPageNameField)};
                 }
 
                 return _searchFields;
@@ -140,14 +140,14 @@ namespace Web.Management.PHP.Extensions
 
         private void GetExtensions()
         {
-            StartAsyncTask(Resources.PHPExtensionsPageGettingExtensions, OnGetExtensions, OnGetExtensionsCompleted);
+            StartAsyncTask(Resources.AllExtensionsPageGettingExtensions, OnGetExtensions, OnGetExtensionsCompleted);
         }
 
         protected override ListViewGroup[] GetGroups(ModuleListPageGrouping grouping)
         {
             ListViewGroup[] result = new ListViewGroup[2];
-            result[0] = new ListViewGroup("Enabled", Resources.PHPExtensionsPageEnabledGroup);
-            result[1] = new ListViewGroup("Disabled", Resources.PHPExtensionsPageDisabledGroup);
+            result[0] = new ListViewGroup("Enabled", Resources.AllExtensionsPageEnabledGroup);
+            result[1] = new ListViewGroup("Disabled", Resources.AllExtensionsPageDisabledGroup);
 
             return result;
         }
@@ -160,11 +160,11 @@ namespace Web.Management.PHP.Extensions
         protected override void InitializeListPage()
         {
             _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.PHPExtensionsPageNameField;
+            _nameColumn.Text = Resources.AllExtensionsPageNameField;
             _nameColumn.Width = 160;
 
             _stateColumn = new ColumnHeader();
-            _stateColumn.Text = Resources.PHPExtensionsPageStateField;
+            _stateColumn.Text = Resources.AllExtensionsPageStateField;
             _stateColumn.Width = 60;
 
             ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _stateColumn });
@@ -346,11 +346,11 @@ namespace Web.Management.PHP.Extensions
                 {
                     if (_page.SelectedItem.Extension.Enabled)
                     {
-                        tasks.Add(new MethodTaskItem("DisableExtension", Resources.PHPExtensionsPageDisableTask, "Edit", null));
+                        tasks.Add(new MethodTaskItem("DisableExtension", Resources.AllExtensionsPageDisableTask, "Edit", null));
                     }
                     else
                     {
-                        tasks.Add(new MethodTaskItem("EnableExtension", Resources.PHPExtensionsPageEnableTask, "Edit", null));
+                        tasks.Add(new MethodTaskItem("EnableExtension", Resources.AllExtensionsPageEnableTask, "Edit", null));
                     }
                 }
 

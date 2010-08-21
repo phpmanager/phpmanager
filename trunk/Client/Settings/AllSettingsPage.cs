@@ -69,7 +69,7 @@ namespace Web.Management.PHP.Settings
             {
                 if (_sectionGrouping == null)
                 {
-                    _sectionGrouping = new ModuleListPageGrouping(SectionString, Resources.PHPSettingsPageSectionField);
+                    _sectionGrouping = new ModuleListPageGrouping(SectionString, Resources.AllSettingsPageSectionField);
                 }
 
                 return new ModuleListPageGrouping[] { _sectionGrouping };
@@ -103,9 +103,9 @@ namespace Web.Management.PHP.Settings
                 if (_searchFields == null)
                 {
                     _searchFields = new ModuleListPageSearchField[]{
-                        new ModuleListPageSearchField(NameString, Resources.PHPSettingsPageNameField),
-                        new ModuleListPageSearchField(ValueString, Resources.PHPSettingsPageValueField),
-                        new ModuleListPageSearchField(SectionString, Resources.PHPSettingsPageSectionField)};
+                        new ModuleListPageSearchField(NameString, Resources.AllSettingsPageNameField),
+                        new ModuleListPageSearchField(ValueString, Resources.AllSettingsPageValueField),
+                        new ModuleListPageSearchField(SectionString, Resources.AllSettingsPageSectionField)};
                 }
 
                 return _searchFields;
@@ -216,7 +216,7 @@ namespace Web.Management.PHP.Settings
 
         private void GetSettings()
         {
-            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
         private void GoBack()
@@ -227,15 +227,15 @@ namespace Web.Management.PHP.Settings
         protected override void InitializeListPage()
         {
             _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.PHPSettingsPageNameField;
+            _nameColumn.Text = Resources.AllSettingsPageNameField;
             _nameColumn.Width = 180;
 
             _valueColumn = new ColumnHeader();
-            _valueColumn.Text = Resources.PHPSettingsPageValueField;
+            _valueColumn.Text = Resources.AllSettingsPageValueField;
             _valueColumn.Width = 180;
 
             _sectionColumn = new ColumnHeader();
-            _sectionColumn.Text = Resources.PHPSettingsPageSectionField;
+            _sectionColumn.Text = Resources.AllSettingsPageSectionField;
             _sectionColumn.Width = 100;
 
             ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _valueColumn, _sectionColumn });
@@ -435,12 +435,12 @@ namespace Web.Management.PHP.Settings
             {
                 List<TaskItem> tasks = new List<TaskItem>();
 
-                tasks.Add(new MethodTaskItem("AddSetting", Resources.PHPSettingsPageAddSettingTask, "Edit"));
+                tasks.Add(new MethodTaskItem("AddSetting", Resources.AllSettingsPageAddSettingTask, "Edit"));
 
                 if (_page.SelectedItem != null)
                 {
-                    tasks.Add(new MethodTaskItem("EditSetting", Resources.PHPSettingsPageEditTask, "Edit", null));
-                    tasks.Add(new MethodTaskItem("RemoveSetting", Resources.PHPSettingsPageRemoveTask, "Edit", null, Resources.Delete16));
+                    tasks.Add(new MethodTaskItem("EditSetting", Resources.AllSettingsPageEditTask, "Edit", null));
+                    tasks.Add(new MethodTaskItem("RemoveSetting", Resources.AllSettingsPageRemoveTask, "Edit", null, Resources.Delete16));
                 }
 
                 if (_page.Connection.IsLocalConnection) {

@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -194,7 +194,7 @@ namespace Web.Management.PHP.Settings
 
         private void GetSettings()
         {
-            StartAsyncTask(Resources.PHPSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
         private void GoBack()

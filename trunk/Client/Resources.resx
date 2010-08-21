@@ -142,13 +142,13 @@
   <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
     <value>Edit PHP Setting</value>
   </data>
-  <data name="PHPSettingsPageEditTask" xml:space="preserve">
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
     <value>Edit...</value>
   </data>
   <data name="ErrorPHPIniFileDoesNotExist" xml:space="preserve">
     <value>php.ini file does not exist.</value>
   </data>
-  <data name="PHPSettingsPageGettingSettings" xml:space="preserve">
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
     <value>Getting settings</value>
   </data>
   <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -169,34 +169,34 @@
   <data name="PHPExtensionsItemTitle" xml:space="preserve">
     <value>PHP Extensions</value>
   </data>
-  <data name="PHPExtensionsPageDescription" xml:space="preserve">
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
     <value>Enable or disable PHP extensions and configure PHP extensions settings.</value>
   </data>
-  <data name="PHPExtensionsPageDisabledGroup" xml:space="preserve">
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
     <value>Disabled</value>
   </data>
-  <data name="PHPExtensionsPageDisableTask" xml:space="preserve">
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
     <value>Disable</value>
   </data>
-  <data name="PHPExtensionsPageEnabledGroup" xml:space="preserve">
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
     <value>Enabled</value>
   </data>
-  <data name="PHPExtensionsPageEnableTask" xml:space="preserve">
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
     <value>Enable</value>
   </data>
-  <data name="PHPExtensionsPageGettingExtensions" xml:space="preserve">
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
     <value>Getting extensions</value>
   </data>
-  <data name="PHPExtensionsPageLongDescription" xml:space="preserve">
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
     <value>PHP extensions provide additional functionality to PHP runtime, such as database connectivity, caching, debugging and others. Use this feature to enable or disable PHP extensions and to configure PHP extensions settings.</value>
   </data>
-  <data name="PHPExtensionsPageNameField" xml:space="preserve">
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="PHPExtensionsPageStateField" xml:space="preserve">
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
     <value>State</value>
   </data>
-  <data name="PHPExtensionsPageTitle" xml:space="preserve">
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
     <value>PHP Extensions</value>
   </data>
   <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
@@ -262,25 +262,25 @@
   <data name="PHPSettingsItemTitle" xml:space="preserve">
     <value>PHP Settings</value>
   </data>
-  <data name="PHPSettingsPageAddSettingTask" xml:space="preserve">
+  <data name="AllSettingsPageAddSettingTask" xml:space="preserve">
     <value>Add...</value>
   </data>
-  <data name="PHPSettingsPageDescription" xml:space="preserve">
+  <data name="AllSettingsPageDescription" xml:space="preserve">
     <value>Configure all php settings</value>
   </data>
-  <data name="PHPSettingsPageLongDescription" xml:space="preserve">
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
     <value>Configure all php settings that are stored in php.ini file. These setting control all aspects of PHP runtime, such error reporting, security, sessions and others.</value>
   </data>
-  <data name="PHPSettingsPageNameField" xml:space="preserve">
+  <data name="AllSettingsPageNameField" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="PHPSettingsPageSectionField" xml:space="preserve">
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
     <value>Section</value>
   </data>
-  <data name="PHPSettingsPageTitle" xml:space="preserve">
+  <data name="AllSettingsPageTitle" xml:space="preserve">
     <value>PHP Settings</value>
   </data>
-  <data name="PHPSettingsPageValueField" xml:space="preserve">
+  <data name="AllSettingsPageValueField" xml:space="preserve">
     <value>Value</value>
   </data>
   <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -301,7 +301,7 @@
   <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
     <value>Provide a path to the php executable file (php-cgi.exe):</value>
   </data>
-  <data name="PHPSettingsPageRemoveTask" xml:space="preserve">
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
     <value>Remove</value>
   </data>
   <data name="SelectSiteDomainDialogTitle" xml:space="preserve">
