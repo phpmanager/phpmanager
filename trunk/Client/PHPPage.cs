@@ -8,14 +8,11 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
-using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
 using System.ComponentModel;
 

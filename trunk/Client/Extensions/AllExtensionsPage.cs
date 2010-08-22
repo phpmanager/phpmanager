@@ -314,11 +314,6 @@ namespace Web.Management.PHP.Extensions
             Refresh();
         }
 
-        #region IModuleChildPage Members
-
-        #endregion
-
-
         private class PageTaskList : TaskList
         {
             private AllExtensionsPage _page;
