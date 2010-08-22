@@ -139,7 +139,7 @@ namespace Web.Management.PHP
 
             if (String.IsNullOrEmpty(phpiniPath))
             {
-                RaiseException("PHPIniFileNotFound");
+                RaiseException("ErrorPHPIniNotFound");
             }
 
             return phpiniPath;

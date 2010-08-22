@@ -22,6 +22,15 @@ namespace Web.Management.PHP
     [ModulePageIdentifier(Globals.PHPPageIdentifier)]
     internal sealed class PHPPage : ModulePage
     {
+
+        private const int IndexRegisterPHPTask = 0;
+        private const int IndexChangeVersionTask = 1;
+        private const int IndexCheckPHPInfoTask = 2;
+        private const int IndexErrorReportingTask = 0;
+        private const int IndexLimitsTask = 1;
+        private const int IndexAllSettingsTask = 2;
+        private const int IndexAllExtensionsTask = 0;
+
         // Summary labels
         private Label _enabledExtLabel;
         private Label _installedExtLabel;
@@ -154,12 +163,12 @@ namespace Web.Management.PHP
             _phpExtensionItem.AddSpanRow(_installedExtLabel);
             _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
                                     Resources.PHPExtensionItemEnableTask);
-            
-            // Update the information summaries for each PHPPageItemControl
-            GetSettings();
 
             Padding = new Padding(0, 12, 0, 0);
             Controls.Add(_phpExtensionItem);
+
+            // Update the information summaries for each PHPPageItemControl
+            GetSettings();
 
             ResumeLayout(true);
         }
@@ -216,7 +225,7 @@ namespace Web.Management.PHP
 
         private void OnPHPExtensionItemClick(int index)
         {
-            if (index == 0)
+            if (index == IndexAllExtensionsTask)
             {
                 Navigate(typeof(Extensions.AllExtensionsPage));
             }
@@ -229,15 +238,15 @@ namespace Web.Management.PHP
 
         private void OnPHPSettingsItemClick(int index)
         {
-            if (index == 0)
+            if (index == IndexErrorReportingTask)
             {
                 Navigate(typeof(Settings.ErrorReportingPage));
             }
-            if (index == 1)
+            if (index == IndexLimitsTask)
             {
                 Navigate(typeof(Settings.RuntimeLimitsPage));
             }
-            if (index == 2)
+            if (index == IndexAllSettingsTask)
             {
                 Navigate(typeof(Settings.AllSettingsPage));
             }
@@ -250,15 +259,15 @@ namespace Web.Management.PHP
 
         private void OnPHPSetupItemClick(int index)
         {
-            if (index == 0)
+            if (index == IndexRegisterPHPTask)
             {
                 RegisterPHPWithIIS();
             }
-            else if (index == 1)
+            else if (index == IndexChangeVersionTask)
             {
                 SelectPHPVersion();
             }
-            else if (index == 2)
+            else if (index == IndexCheckPHPInfoTask)
             {
                 string siteName = null;
                 string siteUrl = GetSiteUrlAndName(out siteName);
@@ -331,19 +340,12 @@ namespace Web.Management.PHP
 
         private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            bool isSuccess = false;
+
             try
             {
                 PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
-                if (configInfo == null)
-                {
-                    _versionValueLabel.Text = Resources.PHPPageNone;
-                    _executableValueLabel.Text = Resources.PHPPageNone;
-                    _configPathValueLabel.Text = Resources.PHPPageNone;
-                    _errorLogValueLabel.Text = Resources.PHPPageNone;
-                    _enabledExtLabel.Text = Resources.PHPPageNone;
-                    _installedExtLabel.Text = Resources.PHPPageNone;
-                }
-                else
+                if (configInfo != null)
                 {
                     _versionValueLabel.Text = configInfo.Version;
                     _executableValueLabel.Text = configInfo.ScriptProcessor;
@@ -351,13 +353,47 @@ namespace Web.Management.PHP
                     _errorLogValueLabel.Text = configInfo.ErrorLog;
                     _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                     _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
-                } 
 
+                    if (Connection.Scope == Microsoft.Web.Management.Server.ManagementScope.Server)
+                    {
+                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
+                    }
+                    else
+                    {
+                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
+                    }
+                    _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
+                    _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
+                    _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
+                    _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
+                    _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
+                    _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
+
+                    isSuccess = true;
+                }
             }
             catch (Exception ex)
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
+
+            if (!isSuccess)
+            {
+                _versionValueLabel.Text = Resources.PHPPagePHPNotRegistered;
+                _executableValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _configPathValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _errorLogValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+ 
+                _phpSetupItem.SetTaskState(IndexChangeVersionTask, false);
+                _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, false);
+                _phpSettingsItem.SetTaskState(IndexErrorReportingTask, false);
+                _phpSettingsItem.SetTaskState(IndexLimitsTask, false);
+                _phpSettingsItem.SetTaskState(IndexAllSettingsTask, false);
+                _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
+            }
+
         }
 
     }

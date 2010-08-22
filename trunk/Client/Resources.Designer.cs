@@ -392,6 +392,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS..
+        /// </summary>
+        internal static string ErrorPHPIniNotFound {
+            get {
+                return ResourceManager.GetString("ErrorPHPIniNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error log file:.
         /// </summary>
         internal static string ErrorReportingErrorLogFile {
@@ -636,6 +645,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PHP extensions are not available.
+        /// </summary>
+        internal static string PHPPageExtensionsNotAvailable {
+            get {
+                return ResourceManager.GetString("PHPPageExtensionsNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extensions path:.
         /// </summary>
         internal static string PHPPageExtensionsPath {
@@ -672,11 +690,20 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None.
+        ///   Looks up a localized string similar to Not available.
         /// </summary>
-        internal static string PHPPageNone {
+        internal static string PHPPagePHPNotAvailable {
             get {
-                return ResourceManager.GetString("PHPPageNone", resourceCulture);
+                return ResourceManager.GetString("PHPPagePHPNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available (PHP is not registered on this IIS server).
+        /// </summary>
+        internal static string PHPPagePHPNotRegistered {
+            get {
+                return ResourceManager.GetString("PHPPagePHPNotRegistered", resourceCulture);
             }
         }
         

@@ -38,8 +38,12 @@ namespace Web.Management.PHP
         internal PHPConfigInfo GetPHPConfigInfo()
         {
             object o = Invoke("GetPHPConfigInfo");
-            PHPConfigInfo result = new PHPConfigInfo();
-            result.SetData(o);
+            PHPConfigInfo result = null;
+            if (o != null)
+            {
+                result = new PHPConfigInfo();
+                result.SetData(o);
+            }            
             return result;
         }
 

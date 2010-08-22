@@ -241,8 +241,8 @@
   <data name="PHPPageLongDescription" xml:space="preserve">
     <value>Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions.</value>
   </data>
-  <data name="PHPPageNone" xml:space="preserve">
-    <value>None</value>
+  <data name="PHPPagePHPNotRegistered" xml:space="preserve">
+    <value>Not available (PHP is not registered on this IIS server)</value>
   </data>
   <data name="PHPPageTitle" xml:space="preserve">
     <value>PHP Manager</value>
@@ -438,5 +438,14 @@
   </data>
   <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
     <value>Description goes here</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>PHP extensions are not available</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS.</value>
   </data>
 </root>

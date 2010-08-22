@@ -169,6 +169,15 @@ namespace Web.Management.PHP
             }
         }
 
+        public void SetTaskState(int index, bool enabled)
+        {
+            LinkLabel.Link l = _tasksLabel.Links[index];
+            if (l != null)
+            {
+                l.Enabled = enabled;
+            }
+        }
+
         private Size DoLayout(Size proposedSize, bool performLayout)
         {
             Size descriptionSize = _infoTlp.GetPreferredSize(new Size(proposedSize.Width - _infoTlp.Left, Int32.MaxValue));
