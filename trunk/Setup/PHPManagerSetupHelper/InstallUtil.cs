@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -12,6 +12,7 @@ using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.Setup
 {
+
     public static class InstallUtil
     {
 
@@ -62,7 +63,6 @@ namespace Web.Management.PHP.Setup
 
             return null;
         }
-
 
         /// <summary> 
         /// Removes the specified UI Module by name 

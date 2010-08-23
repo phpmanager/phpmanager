@@ -14,7 +14,7 @@ namespace Web.Management.PHP.Settings
 {
     
     [AttributeUsage(AttributeTargets.Property| AttributeTargets.Event|AttributeTargets.Class)]
-    internal sealed class SettingDescriptionAttribute:DescriptionAttribute {
+    internal sealed class SettingDescriptionAttribute : DescriptionAttribute {
 
         private bool _replaced;
 

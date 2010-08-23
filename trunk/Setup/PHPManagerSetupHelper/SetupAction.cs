@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -13,9 +13,11 @@ using System.Reflection;
 
 namespace Web.Management.PHP.Setup
 {
+
     [RunInstaller(true)]
     public class SetupAction : Installer
     {
+
         public override void Install(System.Collections.IDictionary stateSaver)
         {
             base.Install(stateSaver);

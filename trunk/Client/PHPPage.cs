@@ -8,13 +8,13 @@
 //----------------------------------------------------------------------- 
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Web.Management.PHP.Config;
-using System.ComponentModel;
 
 namespace Web.Management.PHP
 {
@@ -61,6 +61,12 @@ namespace Web.Management.PHP
             {
                 return false;
             }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        private void GetSettings()
+        {
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
         private string GetSiteUrlAndName(out string siteName)
@@ -181,6 +187,69 @@ namespace Web.Management.PHP
             {
                 InitializeUI();
             }
+        }
+
+        private void OnGetSettings(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.GetPHPConfigInfo();
+        }
+
+        private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            bool isSuccess = false;
+
+            try
+            {
+                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
+                if (configInfo != null)
+                {
+                    _versionValueLabel.Text = configInfo.Version;
+                    _executableValueLabel.Text = configInfo.ScriptProcessor;
+                    _configPathValueLabel.Text = configInfo.PHPIniFilePath;
+                    _errorLogValueLabel.Text = configInfo.ErrorLog;
+                    _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
+                    _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
+
+                    if (Connection.Scope == Microsoft.Web.Management.Server.ManagementScope.Server)
+                    {
+                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
+                    }
+                    else
+                    {
+                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
+                    }
+                    _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
+                    _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
+                    _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
+                    _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
+                    _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
+                    _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
+
+                    isSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+
+            if (!isSuccess)
+            {
+                _versionValueLabel.Text = Resources.PHPPagePHPNotRegistered;
+                _executableValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _configPathValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _errorLogValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+ 
+                _phpSetupItem.SetTaskState(IndexChangeVersionTask, false);
+                _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, false);
+                _phpSettingsItem.SetTaskState(IndexErrorReportingTask, false);
+                _phpSettingsItem.SetTaskState(IndexLimitsTask, false);
+                _phpSettingsItem.SetTaskState(IndexAllSettingsTask, false);
+                _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
+            }
+
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -325,75 +394,6 @@ namespace Web.Management.PHP
         protected override bool ShowOnlineHelp()
         {
             return Helper.Browse(Globals.PHPPageOnlineHelp);
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        private void GetSettings()
-        {
-            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
-        }
-
-        private void OnGetSettings(object sender, DoWorkEventArgs e)
-        {
-            e.Result = Module.Proxy.GetPHPConfigInfo();
-        }
-
-        private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            bool isSuccess = false;
-
-            try
-            {
-                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
-                if (configInfo != null)
-                {
-                    _versionValueLabel.Text = configInfo.Version;
-                    _executableValueLabel.Text = configInfo.ScriptProcessor;
-                    _configPathValueLabel.Text = configInfo.PHPIniFilePath;
-                    _errorLogValueLabel.Text = configInfo.ErrorLog;
-                    _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
-                    _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
-
-                    if (Connection.Scope == Microsoft.Web.Management.Server.ManagementScope.Server)
-                    {
-                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
-                    }
-                    else
-                    {
-                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
-                    }
-                    _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
-                    _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
-                    _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
-                    _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
-                    _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
-                    _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
-
-                    isSuccess = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                DisplayErrorMessage(ex, Resources.ResourceManager);
-            }
-
-            if (!isSuccess)
-            {
-                _versionValueLabel.Text = Resources.PHPPagePHPNotRegistered;
-                _executableValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                _configPathValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                _errorLogValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
-                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
- 
-                _phpSetupItem.SetTaskState(IndexChangeVersionTask, false);
-                _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, false);
-                _phpSettingsItem.SetTaskState(IndexErrorReportingTask, false);
-                _phpSettingsItem.SetTaskState(IndexLimitsTask, false);
-                _phpSettingsItem.SetTaskState(IndexAllSettingsTask, false);
-                _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
-            }
-
         }
 
     }
