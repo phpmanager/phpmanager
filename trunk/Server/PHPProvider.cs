@@ -25,6 +25,14 @@ namespace Web.Management.PHP
             }
         }
 
+        public override string FriendlyName
+        {
+            get
+            {
+                return Resources.PHPManagerFriendlyName;
+            }
+        }
+
         public override ModuleDefinition GetModuleDefinition(IManagementContext context)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();

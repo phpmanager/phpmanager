@@ -142,9 +142,16 @@ namespace Web.Management.PHP.Setup
         protected override void OnAccept()
         {
             PHPVersion selectedItem  = (PHPVersion)_versionComboBox.SelectedItem;
-            _module.Proxy.SelectPHPVersion(selectedItem.Name);
 
-            DialogResult = DialogResult.OK;
+            try
+            {
+                _module.Proxy.SelectPHPVersion(selectedItem.Name);
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
             Close();
         }
 

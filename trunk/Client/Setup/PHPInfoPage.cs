@@ -13,6 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
+using System.ComponentModel;
 
 namespace Web.Management.PHP.Setup
 {
@@ -191,26 +192,28 @@ namespace Web.Management.PHP.Setup
 
         private void ShowPHPInfo()
         {
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnShowPHPInfo, OnShowPHPInfoCompleted);
+        }
+
+        private void OnShowPHPInfo(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.CreatePHPInfo(this.SiteName);
+        }
+
+        private void OnShowPHPInfoCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             try
             {
-                if (!String.IsNullOrEmpty(_domain))
-                {
-                    _filepath = Module.Proxy.CreatePHPInfo(this.SiteName);
-                    string url = this.Domain + Path.GetFileName(_filepath);
-                    _webBrowser.AllowNavigation = true;
-                    _webBrowser.Navigate(url);
-                }
+                _filepath = (string)e.Result;
+                string url = this.Domain + Path.GetFileName(_filepath);
+                _webBrowser.AllowNavigation = true;
+                _webBrowser.Navigate(url);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
         }
-
-        #region IModuleChildPage Members
-
-        #endregion
-
 
         private class PHPInfoTaskList : TaskList
         {
