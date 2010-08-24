@@ -72,7 +72,14 @@ namespace Web.Management.PHP
             string fileName = randomString.Substring(0, randomString.IndexOf('.')) + ".php";
             string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(vdir.PhysicalPath), fileName);
 
-            File.WriteAllText(filePath, @"<?php phpinfo(); ?>");
+            try
+            {
+                File.WriteAllText(filePath, @"<?php phpinfo(); ?>");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                RaiseException("ErrorCannotCreatePHPInfo");
+            }
 
             return filePath;
         }

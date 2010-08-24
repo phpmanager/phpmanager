@@ -245,13 +245,12 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private static void MoveHandlerOnTop(HandlersCollection handlersCollection, HandlerElement handlerElement)
+        private static void MoveHandlerOnTop(HandlersCollection handlersCollection, string handlerName)
         {
-            int index = handlersCollection.IndexOf(handlerElement);
-            if (index != 0)
+            HandlerElement handlerElement = handlersCollection[handlerName];
+            if (handlerElement != null)
             {
                 handlersCollection.Remove(handlerElement);
-                Debug.Assert(handlersCollection[handlerElement.Name] == null);
                 handlersCollection.AddCopyAt(0, handlerElement);
             }
         }
@@ -259,6 +258,7 @@ namespace Web.Management.PHP.Config
         public void RegisterPHPWithIIS(string path)
         {
             string phpexePath = Environment.ExpandEnvironmentVariables(path);
+            bool iisUpdateHappened = false;
             
             if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase) &&
                 !String.Equals(Path.GetFileName(phpexePath), "php.exe", StringComparison.OrdinalIgnoreCase))
@@ -317,6 +317,7 @@ namespace Web.Management.PHP.Config
                 fastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");
 
                 _fastCgiApplicationCollection.Add(fastCgiApplication);
+                iisUpdateHappened = true;
             }
 
             // Check if file mapping with this executable already exists
@@ -334,15 +335,20 @@ namespace Web.Management.PHP.Config
                 handlerElement.ScriptProcessor = phpexePath;
                 handlerElement.ResourceType = ResourceType.Either;
                 _handlersCollection.AddAt(0, handlerElement);
+                iisUpdateHappened = true;
             }
-            else
+            else if (_handlersCollection.IndexOf(handlerElement) > 0)
             {
                 // Move the existing PHP file handler mapping on top
                 CopyInheritedHandlers();
-                MoveHandlerOnTop(_handlersCollection, handlerElement);
+                MoveHandlerOnTop(_handlersCollection, handlerElement.Name);
+                iisUpdateHappened = true;
             }
 
-            _managementUnit.Update();
+            if (iisUpdateHappened)
+            {
+                _managementUnit.Update();
+            }
 
             // Update the references to current php handler and application
             _currentPHPHandler = handlerElement;
@@ -355,10 +361,10 @@ namespace Web.Management.PHP.Config
         public void SelectPHPHandler(string name)
         {
             HandlerElement handler = _handlersCollection[name];
-            if (handler != null)
+            if (handler != null && _handlersCollection.IndexOf(handler) > 0)
             {
                 CopyInheritedHandlers();
-                MoveHandlerOnTop(_handlersCollection, handler);
+                MoveHandlerOnTop(_handlersCollection, name);
 
                 _managementUnit.Update();
 

@@ -451,4 +451,7 @@
   <data name="AllPagesPageIsReadOnly" xml:space="preserve">
     <value>These settings are read-only. They can only be changed by a server administrator.</value>
   </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>Cannot create a temporary phpinfo file on the server due to insufficient privileges.</value>
+  </data>
 </root>

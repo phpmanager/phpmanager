@@ -347,6 +347,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot create a temporary phpinfo file on the server due to insufficient privileges..
+        /// </summary>
+        internal static string ErrorCannotCreatePHPInfo {
+            get {
+                return ResourceManager.GetString("ErrorCannotCreatePHPInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided path does not point to either php-cgi.exe or php.exe..
         /// </summary>
         internal static string ErrorInvalidPHPExecutablePath {
