@@ -23,7 +23,7 @@ namespace Web.Management.PHP
 #if DEBUG
         private const bool Passthrough = false;
 #else
-        private const bool PassThrough = true;
+        private const bool Passthrough = true;
 #endif
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

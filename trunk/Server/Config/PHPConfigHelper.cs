@@ -88,7 +88,13 @@ namespace Web.Management.PHP.Config
             List<PHPIniExtension> extensions = new List<PHPIniExtension>();
             extensions.Add(new PHPIniExtension("php_curl.dll", true));
             extensions.Add(new PHPIniExtension("php_gd2.dll", true));
+            extensions.Add(new PHPIniExtension("php_gettext.dll", true));
             extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+            extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
+            extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
+            extensions.Add(new PHPIniExtension("php_openssl.dll", true));
+            extensions.Add(new PHPIniExtension("php_soap.dll", true));
+            extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
             file.UpdateExtensions(extensions);
 
             file.Save(phpIniPath);
@@ -148,22 +154,21 @@ namespace Web.Management.PHP.Config
 
         public PHPConfigInfo GetPHPConfigInfo()
         {
-            HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
-            if (handler == null)
+            // Check if PHP is not registered
+            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
             {
-                // PHP is not enabled
                 return null;
             }
 
             PHPConfigInfo configInfo = new PHPConfigInfo();
-            configInfo.HandlerName = handler.Name;
-            configInfo.ScriptProcessor = handler.ScriptProcessor;
-            configInfo.Version = GetPHPExecutableVersion(handler.ScriptProcessor);
+            configInfo.HandlerName = _currentPHPHandler.Name;
+            configInfo.ScriptProcessor = _currentPHPHandler.ScriptProcessor;
+            configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.ScriptProcessor);
             string phpIniPath = GetPHPIniPath();
 
             if (String.IsNullOrEmpty(phpIniPath))
             {
-                throw new FileNotFoundException(phpIniPath + " does not exist");
+                throw new FileNotFoundException("php.ini file does not exist");
             }
 
             configInfo.PHPIniFilePath = phpIniPath;
