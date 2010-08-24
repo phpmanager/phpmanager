@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EE5F8DC9F9244717AF31FD8F1B47659B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EE39074CAA90947AF85C209F449E103A"
         "MsmSig" = "8:_UNDEFINED"
@@ -559,6 +565,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE5F8DC9F9244717AF31FD8F1B47659B"
+            {
+            "SourcePath" = "8:php-logo16.ico"
+            "TargetName" = "8:php-logo16.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_C5A59E9E3C6C4D64809C95D1DFFCF0B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -642,7 +668,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager for IIS"
         "ProductCode" = "8:{24EFCF3E-2617-40AB-82CE-8D0748C13077}"
-        "PackageCode" = "8:{ADD2FC47-7E7C-448E-8DBF-7173528E13D9}"
+        "PackageCode" = "8:{E43AFA5C-543A-4300-A202-5E112B9A6841}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -658,7 +684,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:PHP Manager for IIS is an IIS extension for managing PHP configuration."
         "ARPURLINFOABOUT" = "8:http://phpmanager.codeplex.com"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_EE5F8DC9F9244717AF31FD8F1B47659B"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"

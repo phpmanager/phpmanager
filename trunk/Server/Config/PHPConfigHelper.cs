@@ -310,6 +310,8 @@ namespace Web.Management.PHP.Config
                 fastCgiApplication.FullPath = phpexePath;
                 fastCgiApplication.MonitorChangesTo = phpiniPath;
                 fastCgiApplication.InstanceMaxRequests = 10000;
+                fastCgiApplication.ActivityTimeout = 300;
+                fastCgiApplication.RequestTimeout = 300;
 
                 fastCgiApplication.EnvironmentVariables.Add("PHPRC", phpDir);
                 fastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");

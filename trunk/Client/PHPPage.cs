@@ -209,6 +209,7 @@ namespace Web.Management.PHP
                     _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                     _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
 
+                    _phpSetupItem.SetTitleState(true);
                     // Allow PHP registration only for server administrators
                     if (Connection.IsUserServerAdministrator)
                     {
@@ -221,10 +222,15 @@ namespace Web.Management.PHP
                     // Site administrators can still change PHP version of check phpinfo()
                     _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
                     _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
+                    
                     // For site administrators these tasks are still available but the pages for those tasks will be read-only
+                    _phpSettingsItem.SetTitleState(true);
                     _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
                     _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
                     _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
+
+                    // For site administrators the extension list is still available but is read only
+                    _phpExtensionItem.SetTitleState(true);
                     _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
 
                     isSuccess = true;
@@ -243,12 +249,20 @@ namespace Web.Management.PHP
                 _errorLogValueLabel.Text = Resources.PHPPagePHPNotAvailable;
                 _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
                 _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
- 
+
+                // Disable all the tasks and the title link. Only the PHP registration task is still enabled
+                _phpSetupItem.SetTitleState(false);
                 _phpSetupItem.SetTaskState(IndexChangeVersionTask, false);
                 _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, false);
+
+                // Disable all the tasks and the title link
+                _phpSettingsItem.SetTitleState(false);
                 _phpSettingsItem.SetTaskState(IndexErrorReportingTask, false);
                 _phpSettingsItem.SetTaskState(IndexLimitsTask, false);
                 _phpSettingsItem.SetTaskState(IndexAllSettingsTask, false);
+
+                // Disalbe all the tasks and the title link
+                _phpExtensionItem.SetTitleState(false);
                 _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
             }
 
@@ -366,7 +380,7 @@ namespace Web.Management.PHP
 
         private void RegisterPHPWithIIS()
         {
-            using (Setup.RegisterPHPDialog dlg = new Setup.RegisterPHPDialog(this.Module))
+            using (Setup.RegisterPHPDialog dlg = new Setup.RegisterPHPDialog(this.Module, Connection.IsLocalConnection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {

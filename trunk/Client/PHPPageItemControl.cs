@@ -224,5 +224,10 @@ namespace Web.Management.PHP
             }
         }
 
+        public void SetTitleState(bool enabled)
+        {
+            _titleLabel.Enabled = enabled;
+        }
+
     }
 }

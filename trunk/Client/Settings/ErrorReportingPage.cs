@@ -266,7 +266,7 @@ namespace Web.Management.PHP.Settings
             this._prodMachineRadioButton.TabStop = true;
             this._prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
             this._prodMachineRadioButton.UseVisualStyleBackColor = true;
-            this._prodMachineRadioButton.CheckedChanged += new EventHandler(OnProdMachineRadioButtonCheckedChanged);
+            this._prodMachineRadioButton.CheckedChanged += new System.EventHandler(this.OnProdMachineRadioButtonCheckedChanged);
             // 
             // _devMachineLabel
             // 
@@ -350,6 +350,18 @@ namespace Web.Management.PHP.Settings
                 _prodMachineLabel.Enabled = false;
                 _errorLogFileTextBox.Enabled = false;
                 _errorLogBrowseButton.Enabled = false;
+            }
+
+            // Only show the auto suggest if it is a local connection.
+            // Otherwise do not show auto suggest and also hide the browse button.
+            if (Connection.IsLocalConnection)
+            {
+                this._errorLogFileTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+                this._errorLogFileTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+            }
+            else
+            {
+                this._errorLogBrowseButton.Visible = false;
             }
         }
 

@@ -133,6 +133,7 @@ namespace Web.Management.PHP.Setup
             this._webBrowser.Location = new System.Drawing.Point(0, 0);
             this._webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this._webBrowser.Name = "_webBrowser";
+            this._webBrowser.ScriptErrorsSuppressed = true;
             this._webBrowser.Size = new System.Drawing.Size(296, 284);
             this._webBrowser.TabIndex = 0;
             this._webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.OnWebBrowserDocumentCompleted);

@@ -24,6 +24,7 @@ namespace Web.Management.PHP.Setup
 #endif
     {
         private PHPModule _module;
+        private bool _isLocalConnection;
 
         private TextBox _dirPathTextBox;
         private Button _browseButton;
@@ -38,9 +39,10 @@ namespace Web.Management.PHP.Setup
         /// </summary>
         private System.ComponentModel.IContainer components = null;
     
-        public RegisterPHPDialog(PHPModule module) : base(module)
+        public RegisterPHPDialog(PHPModule module, bool isLocalConnection) : base(module)
         {
             _module = module;
+            _isLocalConnection = isLocalConnection;
             InitializeComponent();
             InitializeUI();
         }
@@ -127,6 +129,18 @@ namespace Web.Management.PHP.Setup
         {
             _contentPanel = new ManagementPanel();
             _contentPanel.SuspendLayout();
+
+            // Only show the auto suggest if it is a local connection.
+            // Otherwise do not show auto suggest and also hide the browse button.
+            if (_isLocalConnection)
+            {
+                this._dirPathTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+                this._dirPathTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+            }
+            else
+            {
+                this._browseButton.Visible = false;
+            }
 
             this._contentPanel.Location = new System.Drawing.Point(0, 0);
             this._contentPanel.Dock = DockStyle.Fill;
