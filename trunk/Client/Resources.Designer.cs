@@ -223,6 +223,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to These settings are read-only. They can only be changed by a server administrator..
+        /// </summary>
+        internal static string AllPagesPageIsReadOnly {
+            get {
+                return ResourceManager.GetString("AllPagesPageIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add....
         /// </summary>
         internal static string AllSettingsPageAddSettingTask {

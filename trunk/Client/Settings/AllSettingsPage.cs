@@ -76,6 +76,15 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        internal bool IsReadOnly
+        {
+            get
+            {
+                return Connection.ConfigurationPath.PathType == Microsoft.Web.Management.Server.ConfigurationPathType.Site &&
+                        !Connection.IsUserServerAdministrator;
+            }
+        }
+
         private new PHPModule Module
         {
             get
@@ -154,7 +163,7 @@ namespace Web.Management.PHP.Settings
 
         private void EditPHPSetting()
         {
-            if (SelectedItem != null)
+            if (SelectedItem != null && !this.IsReadOnly)
             {
                 using (AddEditSettingDialog dlg = new AddEditSettingDialog(Module, SelectedItem.Setting))
                 {
@@ -434,6 +443,12 @@ namespace Web.Management.PHP.Settings
             public override System.Collections.ICollection GetTaskItems()
             {
                 List<TaskItem> tasks = new List<TaskItem>();
+
+                if (_page.IsReadOnly)
+                {
+                    tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
+                    return tasks;
+                }
 
                 tasks.Add(new MethodTaskItem("AddSetting", Resources.AllSettingsPageAddSettingTask, "Edit"));
 

@@ -448,4 +448,7 @@
   <data name="ErrorPHPIniNotFound" xml:space="preserve">
     <value>The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS.</value>
   </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>These settings are read-only. They can only be changed by a server administrator.</value>
+  </data>
 </root>

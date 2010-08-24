@@ -75,6 +75,15 @@ namespace Web.Management.PHP.Extensions
             }
         }
 
+        internal bool IsReadOnly
+        {
+            get
+            {
+                return Connection.ConfigurationPath.PathType == Microsoft.Web.Management.Server.ConfigurationPathType.Site &&
+                    !Connection.IsUserServerAdministrator;
+            }
+        }
+
         private new PHPModule Module
         {
             get
@@ -336,6 +345,12 @@ namespace Web.Management.PHP.Extensions
             public override System.Collections.ICollection GetTaskItems()
             {
                 List<TaskItem> tasks = new List<TaskItem>();
+
+                if (_page.IsReadOnly)
+                {
+                    tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
+                    return tasks;
+                }
 
                 if (_page.SelectedItem != null)
                 {

@@ -83,6 +83,15 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        internal bool IsReadOnly
+        {
+            get
+            {
+                return Connection.ConfigurationPath.PathType == Microsoft.Web.Management.Server.ConfigurationPathType.Site &&
+                    !Connection.IsUserServerAdministrator;
+            }
+        }
+
         private new PHPModule Module
         {
             get
@@ -207,6 +216,8 @@ namespace Web.Management.PHP.Settings
             base.Initialize(navigationData);
 
             InitializeComponent();
+            InitializeUI();
+
         }
 
         private void InitializeComponent()
@@ -327,6 +338,19 @@ namespace Web.Management.PHP.Settings
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void InitializeUI()
+        {
+            if (this.IsReadOnly)
+            {
+                _devMachineRadioButton.Enabled = false;
+                _devMachineLabel.Enabled = false;
+                _prodMachineRadioButton.Enabled = false;
+                _prodMachineLabel.Enabled = false;
+                _errorLogFileTextBox.Enabled = false;
+                _errorLogBrowseButton.Enabled = false;
+            }
         }
 
         protected override void OnActivated(bool initialActivation)
@@ -478,6 +502,12 @@ namespace Web.Management.PHP.Settings
             public override System.Collections.ICollection GetTaskItems()
             {
                 List<TaskItem> tasks = new List<TaskItem>();
+
+                if (_page.IsReadOnly)
+                {
+                    tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
+                    return tasks;
+                }
 
                 tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 

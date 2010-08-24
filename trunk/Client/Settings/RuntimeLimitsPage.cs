@@ -51,6 +51,15 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        internal bool IsReadOnly
+        {
+            get
+            {
+                return Connection.ConfigurationPath.PathType == Microsoft.Web.Management.Server.ConfigurationPathType.Site &&
+                    !Connection.IsUserServerAdministrator;
+            }
+        }
+
         private new PHPModule Module
         {
             get
@@ -120,7 +129,7 @@ namespace Web.Management.PHP.Settings
             RuntimeLimitSettings settings = TargetObject as RuntimeLimitSettings;
             if (settings == null)
             {
-                settings = new RuntimeLimitSettings(this, _clone);
+                settings = new RuntimeLimitSettings(this, this.IsReadOnly, _clone);
                 TargetObject = settings;
             }
             else
@@ -169,6 +178,12 @@ namespace Web.Management.PHP.Settings
             public override System.Collections.ICollection GetTaskItems()
             {
                 List<TaskItem> tasks = new List<TaskItem>();
+
+                if (_page.IsReadOnly)
+                {
+                    tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
+                    return tasks;
+                }
 
                 tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 

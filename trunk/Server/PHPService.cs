@@ -96,6 +96,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetAllPHPVersions()
         {
+            EnsureServerOrSiteConnection();
+
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
             ArrayList versions = phpConfig.GetAllPHPVersions();
             return versions;
@@ -104,6 +106,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPConfigInfo()
         {
+            EnsureServerOrSiteConnection();
+
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
             PHPConfigInfo result = phpConfig.GetPHPConfigInfo();
 
@@ -117,7 +121,7 @@ namespace Web.Management.PHP
 
             if (String.IsNullOrEmpty(phpiniPath))
             {
-                RaiseException("PHPIniFileNotFound");
+                RaiseException("ErrorPHPIniNotFound");
             }
 
             PHPIniFile file = new PHPIniFile(phpiniPath);
@@ -148,6 +152,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPIniSettings()
         {
+            EnsureServerOrSiteConnection();
+
             PHPIniFile file = GetPHPIniFile();
 
             return file.GetData();
@@ -156,6 +162,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public ArrayList GetSiteBindings(string siteName)
         {
+            EnsureServerOrSiteConnection();
+
             if (String.IsNullOrEmpty(siteName))
             {
                 throw new InvalidOperationException();
@@ -223,6 +231,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public void RemovePHPInfo(string filePath)
         {
+            EnsureServerOrSiteConnection();
+            
             if (!File.Exists(filePath)) {
                 return;
             }
@@ -249,6 +259,8 @@ namespace Web.Management.PHP
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public void SelectPHPVersion(string name)
         {
+            EnsureServerOrSiteConnection();
+            
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
             phpConfig.SelectPHPHandler(name);
         }

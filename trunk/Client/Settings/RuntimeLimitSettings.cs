@@ -5,28 +5,24 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
-using Microsoft.Web.Management.Server;
 using System.ComponentModel;
 using Microsoft.Web.Management.Client.Win32;
+using Microsoft.Web.Management.Server;
 
 namespace Web.Management.PHP.Settings
 {
+
     internal sealed class RuntimeLimitSettings : SettingPropertyGridObject
     {
 
-        PropertyBag _bag;
+        private PropertyBag _bag;
 
-        public RuntimeLimitSettings(ModulePropertiesPage page, PropertyBag bag): base(page)
+        public RuntimeLimitSettings(ModulePropertiesPage page, bool readOnly, PropertyBag bag): base(page, readOnly)
         {
             Initialize(bag);
         }
-
-        internal void Initialize(PropertyBag bag)
-        {
-            _bag = bag;
-        } 
 
         [SettingCategory("RuntimeLimitsResourceLimits")]
         [SettingDisplayName("RuntimeLimitsMaxExecutionTime", "max_execution_time")]
@@ -48,6 +44,29 @@ namespace Web.Management.PHP.Settings
             set
             {
                 _bag[RuntimeLimitsGlobals.MaxExecutionTime] = value;
+            }
+        }
+
+        [SettingCategory("RuntimeLimitsResourceLimits")]
+        [SettingDisplayName("RuntimeLimitsMaxFileUploads", "max_file_uploads")]
+        [SettingDescription("RuntimeLimitsMaxFileUploadsDescription")]
+        [DefaultValue(typeof(string), "20")]
+        public string MaxFileUploads
+        {
+            get
+            {
+                object o = _bag[RuntimeLimitsGlobals.MaxFileUploads];
+                if (o == null)
+                {
+                    return "20";
+                }
+
+                return (string)o;
+
+            }
+            set
+            {
+                _bag[RuntimeLimitsGlobals.MaxFileUploads] = value;
             }
         }
 
@@ -142,28 +161,9 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        [SettingCategory("RuntimeLimitsResourceLimits")]
-        [SettingDisplayName("RuntimeLimitsMaxFileUploads", "max_file_uploads")]
-        [SettingDescription("RuntimeLimitsMaxFileUploadsDescription")]
-        [DefaultValue(typeof(string), "20")]
-        public string MaxFileUploads
+        internal void Initialize(PropertyBag bag)
         {
-            get
-            {
-                object o = _bag[RuntimeLimitsGlobals.MaxFileUploads];
-                if (o == null)
-                {
-                    return "20";
-                }
-
-                return (string)o;
-
-            }
-            set
-            {
-                _bag[RuntimeLimitsGlobals.MaxFileUploads] = value;
-            }
+            _bag = bag;
         }
-
     }
 }

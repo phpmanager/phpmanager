@@ -63,7 +63,6 @@ namespace Web.Management.PHP
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private void GetSettings()
         {
             StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
@@ -210,7 +209,8 @@ namespace Web.Management.PHP
                     _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                     _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
 
-                    if (Connection.Scope == Microsoft.Web.Management.Server.ManagementScope.Server)
+                    // Allow PHP registration only for server administrators
+                    if (Connection.IsUserServerAdministrator)
                     {
                         _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
                     }
@@ -218,8 +218,10 @@ namespace Web.Management.PHP
                     {
                         _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
                     }
+                    // Site administrators can still change PHP version of check phpinfo()
                     _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
                     _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
+                    // For site administrators these tasks are still available but the pages for those tasks will be read-only
                     _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
                     _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
                     _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
