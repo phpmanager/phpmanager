@@ -506,7 +506,6 @@ namespace Web.Management.PHP.Settings
                 if (_page.IsReadOnly)
                 {
                     tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
-                    return tasks;
                 }
 
                 tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));

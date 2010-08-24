@@ -447,20 +447,23 @@ namespace Web.Management.PHP.Settings
                 if (_page.IsReadOnly)
                 {
                     tasks.Add(new MessageTaskItem(MessageTaskItemType.Information, Resources.AllPagesPageIsReadOnly, "Information"));
-                    return tasks;
                 }
-
-                tasks.Add(new MethodTaskItem("AddSetting", Resources.AllSettingsPageAddSettingTask, "Edit"));
-
-                if (_page.SelectedItem != null)
+                else
                 {
-                    tasks.Add(new MethodTaskItem("EditSetting", Resources.AllSettingsPageEditTask, "Edit", null));
-                    tasks.Add(new MethodTaskItem("RemoveSetting", Resources.AllSettingsPageRemoveTask, "Edit", null, Resources.Delete16));
+                    tasks.Add(new MethodTaskItem("AddSetting", Resources.AllSettingsPageAddSettingTask, "Edit"));
+
+                    if (_page.SelectedItem != null)
+                    {
+                        tasks.Add(new MethodTaskItem("EditSetting", Resources.AllSettingsPageEditTask, "Edit", null));
+                        tasks.Add(new MethodTaskItem("RemoveSetting", Resources.AllSettingsPageRemoveTask, "Edit", null, Resources.Delete16));
+                    }
+
+                    if (_page.Connection.IsLocalConnection)
+                    {
+                        tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.AllPagesOpenPHPIniTask, "Tasks", null));
+                    }
                 }
 
-                if (_page.Connection.IsLocalConnection) {
-                    tasks.Add(new MethodTaskItem("OpenPHPIniFile", Resources.AllPagesOpenPHPIniTask, "Tasks", null));
-                }
                 tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 
                 return tasks;
