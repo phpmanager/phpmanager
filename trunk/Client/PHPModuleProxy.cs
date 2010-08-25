@@ -7,11 +7,8 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Microsoft.Web.Management.Client;
-using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP
