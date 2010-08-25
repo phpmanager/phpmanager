@@ -48,6 +48,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssembyInfo.cs">
+      <Link>SharedAssembyInfo.cs</Link>
+    </Compile>
     <Compile Include="Config\PHPIniFile.cs" />
     <Compile Include="Config\PHPConfigInfo.cs" />
     <Compile Include="Extensions\AllExtensionsPage.cs">

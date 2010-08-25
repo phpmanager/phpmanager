@@ -261,7 +261,8 @@ namespace Web.Management.PHP.Config
             }
 
             if (String.IsNullOrEmpty(extensionDir) ||
-                String.Equals(extensionDir, "./"))
+                String.Equals(extensionDir, "./") ||
+                String.Equals(extensionDir, "ext"))
             {
                 extensionDir = Path.Combine(Path.GetDirectoryName(FileName), "ext");
             }

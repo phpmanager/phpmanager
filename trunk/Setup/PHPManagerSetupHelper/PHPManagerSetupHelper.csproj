@@ -35,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -45,6 +46,9 @@
     <Reference Include="System.Configuration.Install" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssembyInfo.cs">
+      <Link>SharedAssembyInfo.cs</Link>
+    </Compile>
     <Compile Include="InstallUtil.cs" />
     <Compile Include="SetupAction.cs">
       <SubType>Component</SubType>

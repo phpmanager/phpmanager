@@ -57,6 +57,9 @@
     <Compile Include="..\Client\RemoteObject.cs">
       <Link>RemoteObject.cs</Link>
     </Compile>
+    <Compile Include="..\SharedAssembyInfo.cs">
+      <Link>SharedAssembyInfo.cs</Link>
+    </Compile>
     <Compile Include="FastCgi\ApplicationCollection.cs" />
     <Compile Include="FastCgi\EnvironmentVariableElement.cs" />
     <Compile Include="FastCgi\EnvironmentVariablesCollection.cs" />
