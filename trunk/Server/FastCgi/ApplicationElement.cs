@@ -115,15 +115,32 @@ namespace Web.Management.PHP.FastCgi
             }
         }
 
+        // When FastCGI update is not installed then this property does not exist
+        // We need to handle this case and eat the exception
         public string MonitorChangesTo
         {
             get
             {
-                return (string)base["monitorChangesTo"];
+                string result = String.Empty;
+                try
+                {
+                    result = (string)base["monitorChangesTo"];
+                }
+                catch
+                {
+                    // Do nothing here...
+                }
+                return result; 
             }
             set
             {
-                base["monitorChangesTo"] = value;
+                try
+                {
+                    base["monitorChangesTo"] = value;
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -175,29 +192,64 @@ namespace Web.Management.PHP.FastCgi
             }
         }
 
+        // When FastCGI update is not installed then this property does not exist
+        // We need to handle this case and eat the exception
         public int SignalBeforeTerminateSeconds
         {
             get
             {
-                return (int)base["signalBeforeTerminateSeconds"];
+                int result = 0;
+                try
+                {
+                    result = (int)base["signalBeforeTerminateSeconds"];
+                }
+                catch
+                {
+                    // Do nothing here
+                }
+                return result;
             }
             set
             {
-                base["signalBeforeTerminateSeconds"] = value;
+                try
+                {
+                    base["signalBeforeTerminateSeconds"] = value;
+                }
+                catch
+                {
+                    // Do nothing here
+                }
             }
         }
 
+        // When FastCGI update is not installed then this property does not exist
+        // We need to handle this case and eat the exception
         public StderrMode StderrMode
         {
             get
             {
-                return ((StderrMode)base["stderrMode"]);
+                StderrMode result = StderrMode.IgnoreAndReturn200;
+                try
+                {
+                    result = ((StderrMode)base["stderrMode"]);
+                }
+                catch
+                {
+                    // Do nothing here
+                }
+                return result;
             }
             set
             {
-                base["stderrMode"] = (int)value;
+                try
+                {
+                    base["stderrMode"] = (int)value;
+                }
+                catch
+                {
+                    // Do nothing here
+                }
             }
         }
-
     }
 }
