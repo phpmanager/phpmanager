@@ -72,7 +72,7 @@ namespace Web.Management.PHP.Config
             settings.Add(new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP"));
 
             // Enable fastcgi impersonation
-            settings.Add(new PHPIniSetting("fastcgi.impersonate ", "1", "PHP"));
+            settings.Add(new PHPIniSetting("fastcgi.impersonate", "1", "PHP"));
             
             // Disable fastcgi logging
             settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
