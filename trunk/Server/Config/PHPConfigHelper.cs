@@ -63,7 +63,7 @@ namespace Web.Management.PHP.Config
 
             // Set session path
             value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-            settings.Add(new PHPIniSetting("session.save_path", value, "PHP"));
+            settings.Add(new PHPIniSetting("session.save_path", value, "Session"));
 
             // Set cgi.force_redirect
             settings.Add(new PHPIniSetting("cgi.force_redirect", "0", "PHP"));
