@@ -301,7 +301,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1115C552E0704546B60092FC5F50C58B"
@@ -332,7 +332,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1D47491D328D43B9AA8D13C5DA86F655"
@@ -394,7 +394,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_63E542608235450D9C9E602A99E34287"
@@ -445,7 +445,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_74EEB2CA38C14B1485C0BE0CD3EE0275"
@@ -476,7 +476,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Setup, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Setup, Version=1.0.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_85E9D480366844E9AF15B81C150CAA3D"
@@ -699,7 +699,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager for IIS"
         "ProductCode" = "8:{FC21C034-068B-4655-88ED-7C7ACD9B2423}"
-        "PackageCode" = "8:{B483D1FD-AF26-4C51-A4EA-ED86A05C922F}"
+        "PackageCode" = "8:{3ABF3EBA-72BF-460F-9913-1DFA325BB9A4}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"

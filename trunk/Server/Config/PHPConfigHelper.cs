@@ -145,7 +145,10 @@ namespace Web.Management.PHP.Config
             {
                 if (String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
-                    result.Add(new string[] { handler.Name, handler.ScriptProcessor, GetPHPExecutableVersion(handler.ScriptProcessor) });
+                    if (File.Exists(handler.ScriptProcessor))
+                    {
+                        result.Add(new string[] { handler.Name, handler.ScriptProcessor, GetPHPExecutableVersion(handler.ScriptProcessor) });
+                    }
                 }
             }
 
@@ -206,9 +209,15 @@ namespace Web.Management.PHP.Config
                 return String.Empty;
             }
 
-            string directoryPath = _currentFastCgiApplication.EnvironmentVariables["PHPRC"].Value;
-            // If PHPRC is not set then use the same path where php-cgi.exe is located
-            if (String.IsNullOrEmpty(directoryPath))
+            // If PHPRC environment variable is set then use the path specified there.
+            // Otherwise use the same path as where PHP executable is located.
+            string directoryPath = String.Empty;
+            EnvironmentVariableElement phpRcElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            if (phpRcElement != null && !String.IsNullOrEmpty(phpRcElement.Value))
+            {
+                directoryPath = phpRcElement.Value;
+            }
+            else
             {
                 directoryPath = Path.GetDirectoryName(_currentPHPHandler.ScriptProcessor);
             }
