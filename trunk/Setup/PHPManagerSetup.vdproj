@@ -124,19 +124,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_85E9D480366844E9AF15B81C150CAA3D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_63E542608235450D9C9E602A99E34287"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1D47491D328D43B9AA8D13C5DA86F655"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,7 +148,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1115C552E0704546B60092FC5F50C58B"
+        "OwnerKey" = "8:_63E542608235450D9C9E602A99E34287"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -160,13 +160,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
+        "OwnerKey" = "8:_1D47491D328D43B9AA8D13C5DA86F655"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
+        "OwnerKey" = "8:_1115C552E0704546B60092FC5F50C58B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -674,7 +674,7 @@
             {
             "Name" = "8:IIS Condition"
             "Condition" = "8:IISREGISTRYVALUE >= \"#7\""
-            "Message" = "8:[VSDIISMSG]"
+            "Message" = "8:PHP Manager for IIS requires IIS7 or higher to be installed"
             "InstallUrl" = "8:http://www.iis.net/"
             }
         }
@@ -699,7 +699,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager for IIS"
         "ProductCode" = "8:{24EFCF3E-2617-40AB-82CE-8D0748C13077}"
-        "PackageCode" = "8:{641DBCF4-C00A-485F-AD3E-9FAD01AF84EA}"
+        "PackageCode" = "8:{DACA35BD-CDE4-4AEF-BF98-591316D31859}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -757,7 +757,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:[Version]"
+                                    "Value" = "8:1.0.0"
                                     }
                                 }
                             }
