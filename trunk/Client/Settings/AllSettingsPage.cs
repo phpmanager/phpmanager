@@ -420,6 +420,16 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        protected override bool ShowHelp()
+        {
+            return ShowOnlineHelp();
+        }
+
+        protected override bool ShowOnlineHelp()
+        {
+            return Helper.Browse(Globals.AllSettingsOnlineHelp);
+        }
+
 
         private class PageTaskList : TaskList
         {

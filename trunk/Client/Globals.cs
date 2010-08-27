@@ -19,6 +19,18 @@ namespace Web.Management.PHP {
         public const string PHPExtensionsPageIdentifier = "3449ff77-1f5c-4ba1-80cb-80f12512e367";
         public const string ErrorReportingPageIdentifier = "f52b2450-4b78-4602-a7e8-c8d9257a2c25";
         public const string RuntimeLimitsPageIdentifier = "4f13ca20-adc1-4fa8-aba7-5d537746d304";
-        public const string PHPPageOnlineHelp = "http://php.iis.net/";
+        
+        public const string PHPPageOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+
+        public const string RegisterPHPOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string ChangeVersionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string SelectSiteDomainOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string PHPInfoPageOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+
+        public const string ErrorReportingOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string RuntimeLimitsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string AllSettingsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        
+        public const string AllExtensionsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
     }
 }

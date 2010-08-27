@@ -323,6 +323,16 @@ namespace Web.Management.PHP.Extensions
             Refresh();
         }
 
+        protected override bool ShowHelp()
+        {
+            return ShowOnlineHelp();
+        }
+
+        protected override bool ShowOnlineHelp()
+        {
+            return Helper.Browse(Globals.AllExtensionsOnlineHelp);
+        }
+
 
         private class PageTaskList : TaskList
         {

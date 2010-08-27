@@ -455,6 +455,16 @@ namespace Web.Management.PHP.Settings
             }
         }
 
+        protected override bool ShowHelp()
+        {
+            return ShowOnlineHelp();
+        }
+
+        protected override bool ShowOnlineHelp()
+        {
+            return Helper.Browse(Globals.ErrorReportingOnlineHelp);
+        }
+
         private void UpdateUI(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting(SettingNames[0]);

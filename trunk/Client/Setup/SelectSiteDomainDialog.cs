@@ -357,8 +357,10 @@ namespace Web.Management.PHP.Setup
             store.SetValue(_connection.ConfigurationPath.SiteName, DomainName, String.Empty);
         }
 
-        //protected override void ShowHelp() {
-        //    PHPModule.Browse(Globals.SelectSiteDialogOnlineHelp);
-        //}
+        protected override void ShowHelp()
+        {
+            Helper.Browse(Globals.SelectSiteDomainOnlineHelp);
+        }
+
     }
 }

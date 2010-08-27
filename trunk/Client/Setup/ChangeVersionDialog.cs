@@ -72,6 +72,14 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        protected override bool CanShowHelp
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -153,6 +161,11 @@ namespace Web.Management.PHP.Setup
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
             Close();
+        }
+
+        protected override void ShowHelp()
+        {
+            Helper.Browse(Globals.ChangeVersionOnlineHelp);
         }
 
 

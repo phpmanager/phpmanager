@@ -210,6 +210,16 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        protected override bool ShowHelp()
+        {
+            return ShowOnlineHelp();
+        }
+
+        protected override bool ShowOnlineHelp()
+        {
+            return Helper.Browse(Globals.PHPInfoPageOnlineHelp);
+        }
+
         private void ShowPHPInfo()
         {
             StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnShowPHPInfo, OnShowPHPInfoCompleted);

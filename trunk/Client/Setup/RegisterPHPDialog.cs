@@ -55,6 +55,14 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        protected override bool CanShowHelp
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -198,5 +206,11 @@ namespace Web.Management.PHP.Setup
 
             UpdateTaskForm();
         }
+
+        protected override void ShowHelp()
+        {
+            Helper.Browse(Globals.RegisterPHPOnlineHelp);
+        }
+
     }
 }

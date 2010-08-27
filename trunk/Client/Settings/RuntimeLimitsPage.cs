@@ -140,6 +140,16 @@ namespace Web.Management.PHP.Settings
             ClearDirty();
         }
 
+        protected override bool ShowHelp()
+        {
+            return ShowOnlineHelp();
+        }
+
+        protected override bool ShowOnlineHelp()
+        {
+            return Helper.Browse(Globals.RuntimeLimitsOnlineHelp);
+        }
+
         protected override PropertyBag UpdateProperties(out bool updateSuccessful)
         {
             updateSuccessful = false;
