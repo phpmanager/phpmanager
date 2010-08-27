@@ -404,31 +404,31 @@
     <value>Data Handling</value>
   </data>
   <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
-    <value>The description goes here</value>
+    <value>Maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server.</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
     <value>Maximum Files To Upload</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
-    <value>Description goes here</value>
+    <value>Maximum number of files that can be uploaded via a single request.</value>
   </data>
   <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
     <value>Maximum Input Time</value>
   </data>
   <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
-    <value>Some description goes here</value>
+    <value>Maximum time in seconds a script is allowed to parse input data, like POST, GET and file uploads.</value>
   </data>
   <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
     <value>Memory Limit</value>
   </data>
   <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
-    <value>Some description goes here</value>
+    <value>Maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server.</value>
   </data>
   <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
     <value>Maximum POST size</value>
   </data>
   <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
-    <value>Description goes here</value>
+    <value>Maximum allowed size of POST data. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize.</value>
   </data>
   <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
     <value>Resource Limits</value>
@@ -437,7 +437,7 @@
     <value>Upload Maximum File Size</value>
   </data>
   <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
-    <value>Description goes here</value>
+    <value>Maximum allowed size for uploaded files.</value>
   </data>
   <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
     <value>PHP extensions are not available</value>

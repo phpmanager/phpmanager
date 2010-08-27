@@ -893,7 +893,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The description goes here.
+        ///   Looks up a localized string similar to Maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server..
         /// </summary>
         internal static string RuntimeLimitsMaxExecutionTimeDescription {
             get {
@@ -911,7 +911,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description goes here.
+        ///   Looks up a localized string similar to Maximum number of files that can be uploaded via a single request..
         /// </summary>
         internal static string RuntimeLimitsMaxFileUploadsDescription {
             get {
@@ -929,7 +929,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some description goes here.
+        ///   Looks up a localized string similar to Maximum time in seconds a script is allowed to parse input data, like POST, GET and file uploads..
         /// </summary>
         internal static string RuntimeLimitsMaxInputTimeDescription {
             get {
@@ -947,7 +947,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some description goes here.
+        ///   Looks up a localized string similar to Maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server..
         /// </summary>
         internal static string RuntimeLimitsMemoryLimitDescription {
             get {
@@ -992,7 +992,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description goes here.
+        ///   Looks up a localized string similar to Maximum allowed size of POST data. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize..
         /// </summary>
         internal static string RuntimeLimitsPostMaxSizeDescription {
             get {
@@ -1019,7 +1019,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description goes here.
+        ///   Looks up a localized string similar to Maximum allowed size for uploaded files..
         /// </summary>
         internal static string RuntimeLimitsUploadMaxFilesizeDescription {
             get {
