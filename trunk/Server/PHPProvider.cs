@@ -44,7 +44,8 @@ namespace Web.Management.PHP
 
         public override bool SupportsScope(ManagementScope scope)
         {
-            return true;
+            return (scope == ManagementScope.Site) ||
+                   (scope == ManagementScope.Server);
         }
     }
 }
