@@ -426,9 +426,6 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        #region IRemoteObject Members
-
-        #endregion
     }
 
     internal abstract class PHPIniBase
@@ -639,18 +636,12 @@ namespace Web.Management.PHP.Config
             Text = "extension=" + Name;
         }
 
-        #region IRemoteObject Members
-
-        #endregion
     }
 
     internal class PHPIniSection : PHPIniBase
     {
+        public PHPIniSection() { }
 
-        public PHPIniSection() {
-             }
-
-        public PHPIniSection(string rawText) : base(rawText) {
-             }
+        public PHPIniSection(string rawText) : base(rawText) { }
     }
 }
