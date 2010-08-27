@@ -9,11 +9,11 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
-using System.ComponentModel;
 
 namespace Web.Management.PHP.Setup
 {
@@ -170,6 +170,26 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        private void OnShowPHPInfo(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.CreatePHPInfo(this.SiteName);
+        }
+
+        private void OnShowPHPInfoCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                _filepath = (string)e.Result;
+                string url = this.Domain + Path.GetFileName(_filepath);
+                _webBrowser.AllowNavigation = true;
+                _webBrowser.Navigate(url);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+        }
+
         private void OnWebBrowserDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (!String.IsNullOrEmpty(_filepath))
@@ -195,25 +215,6 @@ namespace Web.Management.PHP.Setup
             StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnShowPHPInfo, OnShowPHPInfoCompleted);
         }
 
-        private void OnShowPHPInfo(object sender, DoWorkEventArgs e)
-        {
-            e.Result = Module.Proxy.CreatePHPInfo(this.SiteName);
-        }
-
-        private void OnShowPHPInfoCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
-            {
-                _filepath = (string)e.Result;
-                string url = this.Domain + Path.GetFileName(_filepath);
-                _webBrowser.AllowNavigation = true;
-                _webBrowser.Navigate(url);
-            }
-            catch (Exception ex)
-            {
-                DisplayErrorMessage(ex, Resources.ResourceManager);
-            }
-        }
 
         private class PHPInfoTaskList : TaskList
         {

@@ -323,6 +323,7 @@ namespace Web.Management.PHP.Extensions
             Refresh();
         }
 
+
         private class PageTaskList : TaskList
         {
             private AllExtensionsPage _page;

@@ -8,9 +8,8 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.Collections.Generic;
-using Microsoft.Web.Management.Server;
 using System.Reflection;
+using Microsoft.Web.Management.Server;
 
 namespace Web.Management.PHP
 {
@@ -18,18 +17,18 @@ namespace Web.Management.PHP
     internal sealed class PHPProvider : ModuleProvider
     {
 
-        public override Type ServiceType
-        {
-            get {
-                 return typeof(PHPService);
-            }
-        }
-
         public override string FriendlyName
         {
             get
             {
                 return Resources.PHPManagerFriendlyName;
+            }
+        }
+
+        public override Type ServiceType
+        {
+            get {
+                 return typeof(PHPService);
             }
         }
 

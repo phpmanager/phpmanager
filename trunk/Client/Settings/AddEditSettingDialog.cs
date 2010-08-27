@@ -12,7 +12,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
 using Web.Management.PHP.Config;
 

@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -11,6 +11,7 @@ using System;
 
 namespace Web.Management.PHP.Settings
 {
+
     internal static class RuntimeLimitsGlobals
     {
         public const int MaxExecutionTime = 0;
