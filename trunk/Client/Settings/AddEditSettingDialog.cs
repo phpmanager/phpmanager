@@ -90,18 +90,6 @@ namespace Web.Management.PHP.Settings
             UpdateUI();
         }
 
-        internal string SettingName
-        {
-            get
-            {
-                return _settingName;
-            }
-            set
-            {
-                _settingName = value;
-            }
-        }
-
         protected override bool CanAccept
         {
             get
@@ -115,6 +103,18 @@ namespace Web.Management.PHP.Settings
             get
             {
                 return true;
+            }
+        }
+
+        internal string SettingName
+        {
+            get
+            {
+                return _settingName;
+            }
+            set
+            {
+                _settingName = value;
             }
         }
 

@@ -323,7 +323,6 @@ namespace Web.Management.PHP.Extensions
         // Used to select an item by name after refresh
         private void SelectExtensionByName(string name)
         {
-            Debug.Assert(!String.IsNullOrEmpty(name));
             foreach (PHPExtensionItem item in ListView.Items)
             {
                 if (String.Equals(item.Extension.Name, name, StringComparison.OrdinalIgnoreCase))

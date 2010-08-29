@@ -448,7 +448,6 @@ namespace Web.Management.PHP.Settings
         // Used to select an item by name after refresh
         private void SelectSettingByName(string name)
         {
-            Debug.Assert(!String.IsNullOrEmpty(name));
             foreach (PHPSettingItem item in ListView.Items)
             {
                 if (String.Equals(item.Setting.Name, name, StringComparison.OrdinalIgnoreCase))
