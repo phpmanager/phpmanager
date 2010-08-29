@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddEditSettingDialogLearnMore" xml:space="preserve">
+    <value>Learn more about this setting</value>
+  </data>
+  <data name="AddEditSettingDialogName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="AddEditSettingDialogSection" xml:space="preserve">
+    <value>Section:</value>
+  </data>
+  <data name="AddEditSettingDialogValue" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="AddEditSettingDialogAddSetting" xml:space="preserve">
+    <value>Add PHP Setting</value>
+  </data>
+  <data name="AllPagesGoBackTask" xml:space="preserve">
+    <value>Back to main page</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
+    <value>Edit PHP Setting</value>
+  </data>
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
+    <value>Edit...</value>
+  </data>
+  <data name="ErrorPHPIniFileDoesNotExist" xml:space="preserve">
+    <value>php.ini file does not exist.</value>
+  </data>
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
+    <value>Getting settings</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>The directory does not contain required PHP files: php-cgi.exe and php.ini.</value>
+  </data>
+  <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
+    <value>Configure extension's settings</value>
+  </data>
+  <data name="PHPExtensionItemEnableTask" xml:space="preserve">
+    <value>Enable or disable an extension</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsItemTitle" xml:space="preserve">
+    <value>PHP Extensions</value>
+  </data>
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
+    <value>Enable or disable PHP extensions and configure PHP extensions settings.</value>
+  </data>
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
+    <value>Getting extensions</value>
+  </data>
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
+    <value>PHP extensions provide additional functionality to PHP runtime, such as database connectivity, caching, debugging and others. Use this feature to enable or disable PHP extensions and to configure PHP extensions settings.</value>
+  </data>
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
+    <value>PHP Extensions</value>
+  </data>
+  <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
+    <value>Open php.ini</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>Get the output of the phpinfo() function</value>
+  </data>
+  <data name="PHPInfoPageLongDescription" xml:space="preserve">
+    <value>Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes.</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>phpinfo() output</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>Refresh phpinfo</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this setting?</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageConfigurationFile" xml:space="preserve">
+    <value>Configuration file:</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>PHP runtime configuration and settings</value>
+  </data>
+  <data name="PHPPageExecutable" xml:space="preserve">
+    <value>PHP executable:</value>
+  </data>
+  <data name="PHPPageExtensionsPath" xml:space="preserve">
+    <value>Extensions path:</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions.</value>
+  </data>
+  <data name="PHPPagePHPNotRegistered" xml:space="preserve">
+    <value>Not available (PHP is not registered on this IIS server)</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>PHP Manager</value>
+  </data>
+  <data name="PHPPageVersion" xml:space="preserve">
+    <value>PHP version:</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
+    <value>Manage all settings</value>
+  </data>
+  <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
+    <value>Configure error reporting</value>
+  </data>
+  <data name="PHPSettingsItemTitle" xml:space="preserve">
+    <value>PHP Settings</value>
+  </data>
+  <data name="AllSettingsPageAddSettingTask" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="AllSettingsPageDescription" xml:space="preserve">
+    <value>Configure all php settings</value>
+  </data>
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
+    <value>Configure all php settings that are stored in php.ini file. These setting control all aspects of PHP runtime, such error reporting, security, sessions and others.</value>
+  </data>
+  <data name="AllSettingsPageNameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="AllSettingsPageTitle" xml:space="preserve">
+    <value>PHP Settings</value>
+  </data>
+  <data name="AllSettingsPageValueField" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
+    <value>Change PHP version</value>
+  </data>
+  <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
+    <value>Check phpinfo()</value>
+  </data>
+  <data name="PHPSetupItemRegisterPHPTask" xml:space="preserve">
+    <value>Register new PHP version</value>
+  </data>
+  <data name="PHPSetupItemTitle" xml:space="preserve">
+    <value>PHP Setup</value>
+  </data>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>Provide a path to the php executable file (php-cgi.exe):</value>
+  </data>
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SelectSiteDomainDialogTitle" xml:space="preserve">
+    <value>Choose Site and Domain</value>
+  </data>
+  <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
+    <value>Register new PHP version</value>
+  </data>
+  <data name="SelectSiteDomainDialogSelectADomain" xml:space="preserve">
+    <value>Select a &amp;domain name used for the selected site:</value>
+  </data>
+  <data name="SelectSiteDomainDialogSelectASite" xml:space="preserve">
+    <value>Select a &amp;site where to check PHP configuration:</value>
+  </data>
+  <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
+    <value>Set runtime limits</value>
+  </data>
+  <data name="PHPPageErrorLog" xml:space="preserve">
+    <value>Error log:</value>
+  </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>There are {0} extensions enabled.</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>There are {0} extensions installed.</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>PHP error reporting and logging</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>Use this feature to configure how PHP reports and logs errors, warnings and information notices.</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>PHP Error Reporting</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>&amp;Development machine</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>This is a development machine. A verbose error reporting will be used. All errors, warnings and informational notices will be output in a web browser and also will be written into a log file.</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>Error log file:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>&amp;Production machine</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>This is a production server accessible from the internet. Only errors will be written to a log file. No errors, warnings or notices will be output in a web browser.</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>Select a server type. This will influence how the errors will be reported and logged.</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>Type of server</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>The provided path does not point to either php-cgi.exe or php.exe.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>The directory does not contain ext subdirectory with PHP extensions.</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP executable (php-cgi.exe)|php-cgi.exe|All files (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>Select PHP executable file</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>Select PHP version:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>Change PHP version</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>Example: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>Log file (*.log)|*.log|All files (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>PHP Error Log File</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>Error log file:</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>Maximum Execution Time</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>Configure PHP runtime limits, including execution timeouts, maximum upload times, etc.</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>Configure PHP runtime limits, such as maximum script execution time, maximum size of uploaded files, request timeouts and others.</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>PHP Runtime Limits</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>Data Handling</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>Maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server.</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>Maximum Files To Upload</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>Maximum number of files that can be uploaded via a single request.</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>Maximum Input Time</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>Maximum time in seconds a script is allowed to parse input data, like POST, GET and file uploads.</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>Memory Limit</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>Maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server.</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>Maximum POST size</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>Maximum allowed size of POST data. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize.</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>Resource Limits</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>Upload Maximum File Size</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>Maximum allowed size for uploaded files.</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>PHP extensions are not available</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS.</value>
+  </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>These settings are read-only. They can only be changed by a server administrator.</value>
+  </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>Cannot create a temporary phpinfo file on the server due to insufficient privileges.</value>
+  </data>
+</root>
