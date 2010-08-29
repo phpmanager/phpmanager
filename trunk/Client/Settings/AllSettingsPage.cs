@@ -39,6 +39,10 @@ namespace Web.Management.PHP.Settings
         private string _filterValue;
         private IModulePage _parentPage;
 
+        // This is used to remember the name of added/updated setting so that 
+        // it can be re-selected during refresh.
+        private string _updatedSettingName;
+
         protected override bool CanRefresh
         {
             get
@@ -156,6 +160,8 @@ namespace Web.Management.PHP.Settings
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
+                    // Save the name of added setting so that we can select it after refresh
+                    _updatedSettingName = dlg.SettingName;
                     Refresh();
                 }
             }
@@ -169,6 +175,8 @@ namespace Web.Management.PHP.Settings
                 {
                     if (ShowDialog(dlg) == DialogResult.OK)
                     {
+                        // Save the name of edited setting so that we can select it after refresh
+                        _updatedSettingName = dlg.SettingName;
                         Refresh();
                     }
                 }
@@ -252,6 +260,7 @@ namespace Web.Management.PHP.Settings
             ListView.MultiSelect = false;
             ListView.SelectedIndexChanged += new EventHandler(OnListViewSelectedIndexChanged);
             ListView.DoubleClick += new EventHandler(OnListViewDoubleClick);
+            ListView.KeyUp += new KeyEventHandler(OnListViewKeyUp);
         }
 
         private void LoadPHPIni(PHPIniFile file)
@@ -320,6 +329,13 @@ namespace Web.Management.PHP.Settings
                 _file.SetData(o);
 
                 LoadPHPIni(_file);
+
+                // If updated setting name was saved then use it to re-select it after refresh
+                if (!String.IsNullOrEmpty(_updatedSettingName))
+                {
+                    SelectSettingByName(_updatedSettingName);
+                    _updatedSettingName = null;
+                }
             }
             catch (Exception ex)
             {
@@ -349,6 +365,15 @@ namespace Web.Management.PHP.Settings
         private void OnListViewDoubleClick(object sender, EventArgs e)
         {
             EditPHPSetting();
+        }
+
+        private void OnListViewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                RemovePHPSetting();
+                e.Handled = true;
+            }
         }
 
         private void OnListViewSelectedIndexChanged(object sender, EventArgs e)
@@ -416,6 +441,21 @@ namespace Web.Management.PHP.Settings
                     {
                         DisplayErrorMessage(ex, Resources.ResourceManager);
                     }
+                }
+            }
+        }
+
+        // Used to select an item by name after refresh
+        private void SelectSettingByName(string name)
+        {
+            Debug.Assert(!String.IsNullOrEmpty(name));
+            foreach (PHPSettingItem item in ListView.Items)
+            {
+                if (String.Equals(item.Setting.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    item.Selected = true;
+                    item.EnsureVisible();
+                    break;
                 }
             }
         }

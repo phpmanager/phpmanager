@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
@@ -127,7 +128,7 @@ namespace Web.Management.PHP.Config
             {
                 if (collection[name] != null)
                 {
-                    name = prefix + "_" + i.ToString();
+                    name = prefix + "_" + i.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {

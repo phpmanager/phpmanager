@@ -25,6 +25,8 @@ namespace Web.Management.PHP.Settings
         TaskForm
 #endif
     {
+        private string _settingName;
+
         private PHPModule _module;
         private bool _canAccept;
 
@@ -86,6 +88,18 @@ namespace Web.Management.PHP.Settings
             _sectionTextBox.Text = setting.Section;
 
             UpdateUI();
+        }
+
+        internal string SettingName
+        {
+            get
+            {
+                return _settingName;
+            }
+            set
+            {
+                _settingName = value;
+            }
         }
 
         protected override bool CanAccept
@@ -247,6 +261,7 @@ namespace Web.Management.PHP.Settings
                 _module.Proxy.AddOrUpdateSettings(settings);
 
                 DialogResult = DialogResult.OK;
+                SettingName = setting.Name;
                 Close();
             }
             catch (Exception ex)

@@ -38,6 +38,8 @@ namespace Web.Management.PHP.Extensions
         private string _filterValue;
         private IModulePage _parentPage;
 
+        private string _updatedExtensionName;
+
         protected override bool CanRefresh
         {
             get
@@ -180,7 +182,6 @@ namespace Web.Management.PHP.Extensions
 
             ListView.MultiSelect = false;
             ListView.SelectedIndexChanged += new EventHandler(OnListViewSelectedIndexChanged);
-            //ListView.DoubleClick += new EventHandler(OnListViewDoubleClick);
         }
 
         private void LoadExtensions(PHPIniFile file)
@@ -238,6 +239,13 @@ namespace Web.Management.PHP.Extensions
                 _file.SetData(o);
 
                 LoadExtensions(_file);
+
+                // If name of the updated extension was saved then use it to re-select it.
+                if (!String.IsNullOrEmpty(_updatedExtensionName))
+                {
+                    SelectExtensionByName(_updatedExtensionName);
+                    _updatedExtensionName = null;
+                }
             }
             catch (Exception ex)
             {
@@ -312,14 +320,32 @@ namespace Web.Management.PHP.Extensions
             GetExtensions();
         }
 
+        // Used to select an item by name after refresh
+        private void SelectExtensionByName(string name)
+        {
+            Debug.Assert(!String.IsNullOrEmpty(name));
+            foreach (PHPExtensionItem item in ListView.Items)
+            {
+                if (String.Equals(item.Extension.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    item.Selected = true;
+                    item.EnsureVisible();
+                    break;
+                }
+            }
+        }
+
         private void SetExtensionState(bool enabled)
         {
             PHPExtensionItem item = SelectedItem;
+            Debug.Assert(item != null);
             item.Extension.Enabled = enabled;
             RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
             extensions.Add(item.Extension);
             Module.Proxy.UpdatePHPExtensions(extensions);
 
+            // Save the name of the updated extension so that we can select it after refresh
+            _updatedExtensionName = item.Extension.Name;
             Refresh();
         }
 
