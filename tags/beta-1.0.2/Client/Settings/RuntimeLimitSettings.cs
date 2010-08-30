@@ -35,11 +35,10 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.MaxExecutionTime];
                 if (o == null)
                 {
-                    return "30";
+                    o = _bag[RuntimeLimitsGlobals.MaxExecutionTime] = "30";
                 }
 
                 return (string)o;
-
             }
             set
             {
@@ -58,11 +57,10 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.MaxFileUploads];
                 if (o == null)
                 {
-                    return "20";
+                    o =_bag[RuntimeLimitsGlobals.MaxFileUploads] = "20";
                 }
 
                 return (string)o;
-
             }
             set
             {
@@ -81,7 +79,7 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.MaxInputTime];
                 if (o == null)
                 {
-                    return "60";
+                    o = _bag[RuntimeLimitsGlobals.MaxInputTime] = "60";
                 }
 
                 return (string)o;
@@ -103,11 +101,10 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.MemoryLimit];
                 if (o == null)
                 {
-                    return "128M";
+                    o = _bag[RuntimeLimitsGlobals.MemoryLimit] = "128M";
                 }
 
                 return (string)o;
-
             }
             set
             {
@@ -126,11 +123,10 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.PostMaxSize];
                 if (o == null)
                 {
-                    return "8M";
+                    o = _bag[RuntimeLimitsGlobals.PostMaxSize] = "8M";
                 }
 
                 return (string)o;
-
             }
             set
             {
@@ -149,11 +145,10 @@ namespace Web.Management.PHP.Settings
                 object o = _bag[RuntimeLimitsGlobals.UploadMaxFilesize];
                 if (o == null)
                 {
-                    return "2M";
+                    o = _bag[RuntimeLimitsGlobals.UploadMaxFilesize] = "2M";
                 }
 
                 return (string)o;
-
             }
             set
             {
