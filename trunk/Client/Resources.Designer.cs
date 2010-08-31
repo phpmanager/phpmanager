@@ -517,6 +517,15 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP version cannot be changed because some of the IIS handler mappings are locked on a server level..
+        /// </summary>
+        internal static string ErrorSomeHandlersLocked {
+            get {
+                return ResourceManager.GetString("ErrorSomeHandlersLocked", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap GoBack16 {
             get {
                 object obj = ResourceManager.GetObject("GoBack16", resourceCulture);

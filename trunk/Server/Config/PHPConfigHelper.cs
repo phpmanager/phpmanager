@@ -260,14 +260,17 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private static void MoveHandlerOnTop(HandlersCollection handlersCollection, string handlerName)
+        private HandlerElement MakeHandlerActive(string handlerName)
         {
-            HandlerElement handlerElement = handlersCollection[handlerName];
-            if (handlerElement != null)
-            {
-                handlersCollection.Remove(handlerElement);
-                handlersCollection.AddCopyAt(0, handlerElement);
-            }
+            // We have to look up the handler elements by name because we may be working
+            // on the copy of the handlers collection.
+            HandlerElement handlerElement = _handlersCollection[handlerName];
+            HandlerElement activeHandlerElement = _handlersCollection[_currentPHPHandler.Name];
+            Debug.Assert(handlerElement != null && activeHandlerElement != null);
+
+            int activeHandlerIndex = _handlersCollection.IndexOf(activeHandlerElement);
+            _handlersCollection.Remove(handlerElement);
+            return _handlersCollection.AddCopyAt(activeHandlerIndex, handlerElement);
         }
 
         public void RegisterPHPWithIIS(string path)
@@ -337,7 +340,7 @@ namespace Web.Management.PHP.Config
 
             // Check if file mapping with this executable already exists
             HandlerElement handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
-            
+
             if (handlerElement == null)
             {
                 // Create a PHP file handler if it does not exist
@@ -349,14 +352,14 @@ namespace Web.Management.PHP.Config
                 handlerElement.Path = "*.php";
                 handlerElement.ScriptProcessor = phpexePath;
                 handlerElement.ResourceType = ResourceType.Either;
-                _handlersCollection.AddAt(0, handlerElement);
+                handlerElement = _handlersCollection.AddAt(0, handlerElement);
                 iisUpdateHappened = true;
             }
-            else if (_handlersCollection.IndexOf(handlerElement) > 0)
+            else if (handlerElement != _currentPHPHandler)
             {
                 // Move the existing PHP file handler mapping on top
                 CopyInheritedHandlers();
-                MoveHandlerOnTop(_handlersCollection, handlerElement.Name);
+                handlerElement = MakeHandlerActive(handlerElement.Name);
                 iisUpdateHappened = true;
             }
 
@@ -375,18 +378,23 @@ namespace Web.Management.PHP.Config
 
         public void SelectPHPHandler(string name)
         {
+            // PHP is not registered properly so we don't attempt to do anything.
+            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            {
+                return;
+            }
+
             HandlerElement handler = _handlersCollection[name];
-            if (handler != null && _handlersCollection.IndexOf(handler) > 0)
+            // If the handler is already an active PHP handler then no need to do anything.
+            if (handler != null && handler != _currentPHPHandler)
             {
                 CopyInheritedHandlers();
-                MoveHandlerOnTop(_handlersCollection, name);
-
+                handler = MakeHandlerActive(name);
                 _managementUnit.Update();
 
                 // Update the references to current php handler and application
-                ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.ScriptProcessor, "");
-                _currentFastCgiApplication = fastCgiApplication;
                 _currentPHPHandler = handler;
+                _currentFastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.ScriptProcessor, "");
             }
         }
 

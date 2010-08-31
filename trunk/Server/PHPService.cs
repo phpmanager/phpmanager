@@ -267,9 +267,16 @@ namespace Web.Management.PHP
         public void SelectPHPVersion(string name)
         {
             EnsureServerOrSiteConnection();
-            
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            phpConfig.SelectPHPHandler(name);
+
+            try
+            {
+                PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
+                phpConfig.SelectPHPHandler(name);
+            }
+            catch (FileLoadException)
+            {
+                RaiseException("ErrorSomeHandlersLocked");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

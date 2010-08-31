@@ -454,4 +454,7 @@
   <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
     <value>Cannot create a temporary phpinfo file on the server due to insufficient privileges.</value>
   </data>
+  <data name="ErrorSomeHandlersLocked" xml:space="preserve">
+    <value>The PHP version cannot be changed because some of the IIS handler mappings are locked on a server level.</value>
+  </data>
 </root>
