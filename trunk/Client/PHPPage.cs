@@ -146,10 +146,20 @@ namespace Web.Management.PHP
 
             _phpSettingsItem.AddInfoRow(_configPathNameLabel, _configPathValueLabel);
             _phpSettingsItem.AddInfoRow(_errorLogNameLabel, _errorLogValueLabel);
-            _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
-                                    Resources.PHPSettingsItemErrorReportingTask,
-                                    Resources.PHPSettingsItemLimitsTask,
-                                    Resources.PHPSettingsItemAllSettingsTask);
+            if (Connection.IsUserServerAdministrator)
+            {
+                _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
+                                        Resources.PHPSettingsItemErrorReportingTask,
+                                        Resources.PHPSettingsItemLimitsTask,
+                                        Resources.PHPSettingsItemAllSettingsTask);
+            }
+            else
+            {
+                _phpSettingsItem.AddTask(OnPHPSettingsItemClick,
+                                        Resources.PHPSettingsItemReadOnlyErrorReportingTask,
+                                        Resources.PHPSettingsItemReadOnlyLimitsTask,
+                                        Resources.PHPSettingsItemReadOnlyAllSettingsTask);
+            }
 
             Controls.Add(_phpSettingsItem);
 
@@ -166,8 +176,16 @@ namespace Web.Management.PHP
 
             _phpExtensionItem.AddSpanRow(_enabledExtLabel);
             _phpExtensionItem.AddSpanRow(_installedExtLabel);
-            _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
-                                    Resources.PHPExtensionItemEnableTask);
+            if (Connection.IsUserServerAdministrator)
+            {
+                _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
+                                        Resources.PHPExtensionItemEnableTask);
+            }
+            else
+            {
+                _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
+                                        Resources.PHPExtensionItemReadOnlyEnableTask);
+            }
 
             Padding = new Padding(0, 12, 0, 0);
             Controls.Add(_phpExtensionItem);

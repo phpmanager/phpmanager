@@ -551,6 +551,15 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to View enabled and disabled extensions.
+        /// </summary>
+        internal static string PHPExtensionItemReadOnlyEnableTask {
+            get {
+                return ResourceManager.GetString("PHPExtensionItemReadOnlyEnableTask", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap PHPExtensions32 {
             get {
                 object obj = ResourceManager.GetObject("PHPExtensions32", resourceCulture);
@@ -783,6 +792,33 @@ namespace Web.Management.PHP {
         internal static string PHPSettingsItemLimitsTask {
             get {
                 return ResourceManager.GetString("PHPSettingsItemLimitsTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all settings.
+        /// </summary>
+        internal static string PHPSettingsItemReadOnlyAllSettingsTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsItemReadOnlyAllSettingsTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View error reporting.
+        /// </summary>
+        internal static string PHPSettingsItemReadOnlyErrorReportingTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsItemReadOnlyErrorReportingTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View runtime limits.
+        /// </summary>
+        internal static string PHPSettingsItemReadOnlyLimitsTask {
+            get {
+                return ResourceManager.GetString("PHPSettingsItemReadOnlyLimitsTask", resourceCulture);
             }
         }
         

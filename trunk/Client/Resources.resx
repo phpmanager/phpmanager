@@ -457,4 +457,16 @@
   <data name="ErrorSomeHandlersLocked" xml:space="preserve">
     <value>The PHP version cannot be changed because some of the IIS handler mappings are locked on a server level.</value>
   </data>
+  <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
+    <value>View enabled and disabled extensions</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyAllSettingsTask" xml:space="preserve">
+    <value>View all settings</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
+    <value>View error reporting</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
+    <value>View runtime limits</value>
+  </data>
 </root>
