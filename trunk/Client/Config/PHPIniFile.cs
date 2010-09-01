@@ -301,6 +301,9 @@ namespace Web.Management.PHP.Config
                 // Process an extension
                 else if (tmp.StartsWith("extension=", StringComparison.OrdinalIgnoreCase))
                 {
+                    // Take care of the inline comment
+                    tmp = RemoveInlineComment(tmp);
+
                     string[] split = tmp.Split(new Char[] { '=' });
                     if (split.Length == 2)
                     {
@@ -317,11 +320,7 @@ namespace Web.Management.PHP.Config
                 else if (!String.IsNullOrEmpty(tmp))
                 {
                     // Take care of the inline comment
-                    int commentIndex = tmp.IndexOf(';');
-                    if (commentIndex > 0)
-                    {
-                        tmp = tmp.Substring(0, commentIndex);
-                    }
+                    tmp = RemoveInlineComment(tmp);
 
                     string[] split = tmp.Split(new Char[] { '=' });
                     if (split.Length > 1)
@@ -346,6 +345,16 @@ namespace Web.Management.PHP.Config
         internal bool Remove(PHPIniBase entry)
         {
             return RawEntries.Remove(entry);
+        }
+
+        private static string RemoveInlineComment(string line)
+        {
+            int commentIndex = line.IndexOf(';');
+            if (commentIndex > 0)
+            {
+                return line.Substring(0, commentIndex);
+            }
+            return line;
         }
 
         internal void Save(string filename)
@@ -432,8 +441,7 @@ namespace Web.Management.PHP.Config
     {
         private string _text;
 
-        protected PHPIniBase() {
-             }
+        protected PHPIniBase() { }
 
         protected PHPIniBase(string text)
         {
@@ -456,11 +464,9 @@ namespace Web.Management.PHP.Config
     internal class PHPIniString : PHPIniBase
     {
 
-        public PHPIniString() {
-             }
+        public PHPIniString() { }
 
-        public PHPIniString(string rawText) : base(rawText) {
-            }
+        public PHPIniString(string rawText) : base(rawText) { }
     }
 
     internal class PHPIniSetting : PHPIniBase, IRemoteObject
@@ -476,8 +482,7 @@ namespace Web.Management.PHP.Config
             _data = new object[Size];
         }
 
-        public PHPIniSetting(string name, string value, string section) : this(name, value, section, "") {
-            }
+        public PHPIniSetting(string name, string value, string section) : this(name, value, section, String.Empty) { }
 
         public PHPIniSetting(string name, string value, string section, string rawText)
             : base(rawText)
@@ -583,12 +588,7 @@ namespace Web.Management.PHP.Config
             Enabled = false;
         }
 
-        public PHPIniExtension(string filename, bool enabled)
-        {
-            _data = new object[Size];
-            Name = filename;
-            Enabled = enabled;
-        }
+        public PHPIniExtension(string filename, bool enabled): this(filename, enabled, String.Empty) {  }
 
         public PHPIniExtension(string filename, bool enabled, string rawText): base(rawText)
         {
