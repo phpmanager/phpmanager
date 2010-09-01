@@ -304,16 +304,16 @@
   <data name="AllSettingsPageRemoveTask" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="SelectSiteDomainDialogTitle" xml:space="preserve">
-    <value>Choose Site and Domain</value>
+  <data name="SelectSiteAndUrlDialogTitle" xml:space="preserve">
+    <value>Choose Site and URL</value>
   </data>
   <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
     <value>Register new PHP version</value>
   </data>
-  <data name="SelectSiteDomainDialogSelectADomain" xml:space="preserve">
-    <value>Select a &amp;domain name used for the selected site:</value>
+  <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
+    <value>Select a &amp;URL used for the selected site:</value>
   </data>
-  <data name="SelectSiteDomainDialogSelectASite" xml:space="preserve">
+  <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
     <value>Select a &amp;site where to check PHP configuration:</value>
   </data>
   <data name="PHPSettingsItemLimitsTask" xml:space="preserve">

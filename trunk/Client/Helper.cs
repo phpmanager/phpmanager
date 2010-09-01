@@ -122,7 +122,7 @@ namespace Web.Management.PHP
         /// <param name="bindings">Arraylist of string[] {bindingProtocol, bindingInformation}</param>
         /// 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        internal static List<string> GetUrlListFromBindings(string serverName, ArrayList bindings)
+        internal static List<string> GetUrlListFromBindings(string serverName, ArrayList bindings, string relativePath)
         {
             List<string> urls = new List<string>();
 
@@ -131,8 +131,8 @@ namespace Web.Management.PHP
                 string url = Helper.GetURLFromBinding(serverName, (string)b[0], (string)b[1]);
                 try
                 {
-                    Uri uri = new Uri(url);
-                    //Uri uri = new Uri(siteURI, relativePath);
+                    Uri siteURI = new Uri(url);
+                    Uri uri = new Uri(siteURI, relativePath);
 
                     string absoluteURL = uri.AbsoluteUri;
                     urls.Add(EnsureTrailingSlash(absoluteURL));

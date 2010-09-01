@@ -90,9 +90,8 @@ namespace Web.Management.PHP
         {
             Connection connection = (Connection)GetService(typeof(Connection));
 
-            // We only want the module configuration to be available on server and site levels.
-            return (connection.ConfigurationPath.PathType == ConfigurationPathType.Server ||
-                    connection.ConfigurationPath.PathType == ConfigurationPathType.Site);
+            // We want the module configuration to be available on all levels except file.
+            return (connection.ConfigurationPath.PathType != ConfigurationPathType.File);
         }
 
     }

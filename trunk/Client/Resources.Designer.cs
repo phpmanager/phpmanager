@@ -1073,29 +1073,29 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a &amp;domain name used for the selected site:.
-        /// </summary>
-        internal static string SelectSiteDomainDialogSelectADomain {
-            get {
-                return ResourceManager.GetString("SelectSiteDomainDialogSelectADomain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select a &amp;site where to check PHP configuration:.
         /// </summary>
-        internal static string SelectSiteDomainDialogSelectASite {
+        internal static string SelectSiteAndUrlDialogSelectASite {
             get {
-                return ResourceManager.GetString("SelectSiteDomainDialogSelectASite", resourceCulture);
+                return ResourceManager.GetString("SelectSiteAndUrlDialogSelectASite", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Site and Domain.
+        ///   Looks up a localized string similar to Select a &amp;URL used for the selected site:.
         /// </summary>
-        internal static string SelectSiteDomainDialogTitle {
+        internal static string SelectSiteAndUrlDialogSelectAUrl {
             get {
-                return ResourceManager.GetString("SelectSiteDomainDialogTitle", resourceCulture);
+                return ResourceManager.GetString("SelectSiteAndUrlDialogSelectAUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Site and URL.
+        /// </summary>
+        internal static string SelectSiteAndUrlDialogTitle {
+            get {
+                return ResourceManager.GetString("SelectSiteAndUrlDialogTitle", resourceCulture);
             }
         }
     }

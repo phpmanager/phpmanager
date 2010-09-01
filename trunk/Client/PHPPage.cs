@@ -70,12 +70,12 @@ namespace Web.Management.PHP
 
         private string GetSiteUrlAndName(out string siteName)
         {
-            using (Setup.SelectSiteDomainDialog dlg = new Setup.SelectSiteDomainDialog(this.Module, this.Connection))
+            using (Setup.SelectSiteAndUrlDialog dlg = new Setup.SelectSiteAndUrlDialog(this.Module, this.Connection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
                     siteName = dlg.SiteName;
-                    return dlg.DomainName;
+                    return dlg.SelectedUrl;
                 }
             }
 
@@ -372,16 +372,11 @@ namespace Web.Management.PHP
             }
             else if (index == IndexCheckPHPInfoTask)
             {
-                string siteName = null;
-                string siteUrl = GetSiteUrlAndName(out siteName);
-                if (!String.IsNullOrEmpty(siteUrl))
-                {
-                    Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
-                }
+                NavigateToPHPInfo();
             }
         }
 
-        private void OnPHPSetupItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
+        private void NavigateToPHPInfo()
         {
             string siteName = null;
             string siteUrl = GetSiteUrlAndName(out siteName);
@@ -389,6 +384,11 @@ namespace Web.Management.PHP
             {
                 Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
             }
+        }
+
+        private void OnPHPSetupItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NavigateToPHPInfo();
         }
 
         protected override void Refresh()

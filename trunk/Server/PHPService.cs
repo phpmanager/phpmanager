@@ -56,21 +56,21 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            Application app = site.Applications["/"];
-            if (app == null)
+            string navigatorPath = siteName;
+            if (ManagementUnit.ConfigurationPath.PathType != ConfigurationPathType.Server)
             {
-                throw new InvalidOperationException();
+                navigatorPath = ManagementUnit.ConfigurationPath.GetEffectiveConfigurationPath(ManagementUnit.Scope);
             }
 
-            VirtualDirectory vdir = app.VirtualDirectories["/"];
-            if (vdir == null)
+            ManagementContentNavigator navigator = ManagementContentNavigator.Create(ManagementUnit);
+            if (!navigator.MoveToPath(navigatorPath))
             {
                 throw new InvalidOperationException();
             }
 
             string randomString = Path.GetRandomFileName();
             string fileName = randomString.Substring(0, randomString.IndexOf('.')) + ".php";
-            string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(vdir.PhysicalPath), fileName);
+            string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(navigator.PhysicalPath), fileName);
 
             try
             {
