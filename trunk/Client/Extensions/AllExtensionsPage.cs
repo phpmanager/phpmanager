@@ -306,7 +306,7 @@ namespace Web.Management.PHP.Extensions
                 }
                 else
                 {
-                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.ErrorPHPIniFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.ErrorFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

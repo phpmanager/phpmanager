@@ -145,9 +145,6 @@
   <data name="AllSettingsPageEditTask" xml:space="preserve">
     <value>Edit...</value>
   </data>
-  <data name="ErrorPHPIniFileDoesNotExist" xml:space="preserve">
-    <value>php.ini file does not exist.</value>
-  </data>
   <data name="AllSettingsPageGettingSettings" xml:space="preserve">
     <value>Getting settings</value>
   </data>
@@ -468,5 +465,8 @@
   </data>
   <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
     <value>View runtime limits</value>
+  </data>
+  <data name="ErrorFileDoesNotExist" xml:space="preserve">
+    <value>File {0} does not exist.</value>
   </data>
 </root>

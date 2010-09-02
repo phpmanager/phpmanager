@@ -11,6 +11,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client;
 using Microsoft.Web.Management.Client.Win32;
@@ -35,8 +36,8 @@ namespace Web.Management.PHP
         private Label _enabledExtLabel;
         private Label _installedExtLabel;
         private Label _errorLogNameLabel;
-        private Label _errorLogValueLabel;
-        private Label _configPathValueLabel;
+        private LinkLabel _errorLogValueLabel;
+        private LinkLabel _configPathValueLabel;
         private Label _configPathNameLabel;
         private Label _executableValueLabel;
         private Label _executableNameLabel;
@@ -104,11 +105,13 @@ namespace Web.Management.PHP
 
             _configPathNameLabel = new Label();
             _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
-            _configPathValueLabel = new Label();
+            _configPathValueLabel = new LinkLabel();
+            _configPathValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
 
             _errorLogNameLabel = new Label();
             _errorLogNameLabel.Text = Resources.PHPPageErrorLog;
-            _errorLogValueLabel = new Label();
+            _errorLogValueLabel = new LinkLabel();
+            _errorLogValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
 
             _enabledExtLabel = new Label();
             _installedExtLabel = new Label();
@@ -196,6 +199,16 @@ namespace Web.Management.PHP
             ResumeLayout(true);
         }
 
+        private void NavigateToPHPInfo()
+        {
+            string siteName = null;
+            string siteUrl = GetSiteUrlAndName(out siteName);
+            if (!String.IsNullOrEmpty(siteUrl))
+            {
+                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
+            }
+        }
+
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
@@ -222,8 +235,8 @@ namespace Web.Management.PHP
                 {
                     _versionValueLabel.Text = configInfo.Version;
                     _executableValueLabel.Text = configInfo.ScriptProcessor;
-                    _configPathValueLabel.Text = configInfo.PHPIniFilePath;
-                    _errorLogValueLabel.Text = configInfo.ErrorLog;
+                    PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
+                    PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
                     _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                     _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
 
@@ -263,8 +276,9 @@ namespace Web.Management.PHP
             {
                 _versionValueLabel.Text = Resources.PHPPagePHPNotRegistered;
                 _executableValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                _configPathValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                _errorLogValueLabel.Text = Resources.PHPPagePHPNotAvailable;
+                PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
+                PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
+                
                 _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
                 _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
 
@@ -326,6 +340,11 @@ namespace Web.Management.PHP
             }
         }
 
+        private void OnPathLinkLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenPhysicalFile((string)e.Link.LinkData);
+        }
+
         private void OnPHPExtensionItemClick(int index)
         {
             if (index == IndexAllExtensionsTask)
@@ -376,19 +395,56 @@ namespace Web.Management.PHP
             }
         }
 
-        private void NavigateToPHPInfo()
-        {
-            string siteName = null;
-            string siteUrl = GetSiteUrlAndName(out siteName);
-            if (!String.IsNullOrEmpty(siteUrl))
-            {
-                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
-            }
-        }
-
         private void OnPHPSetupItemTitleClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
             NavigateToPHPInfo();
+        }
+
+        internal void OpenPhysicalFile(string physicalPath)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(physicalPath) &&
+                    File.Exists(physicalPath))
+                {
+                    System.Diagnostics.Process.Start(physicalPath);
+                }
+                else
+                {
+                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.ErrorFileDoesNotExist, physicalPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+        }
+
+        private static void PrepareOpenFileLink(LinkLabel linkLabel, string path, bool showLink)
+        {
+            linkLabel.Text = path;
+
+            if (showLink)
+            {
+                if (linkLabel.Links.Count == 0)
+                {
+                    LinkLabel.Link link = new LinkLabel.Link(0, path.Length, path);
+                    linkLabel.Links.Add(link);
+                }
+                else
+                {
+                    LinkLabel.Link link = linkLabel.Links[0];
+                    link.Length = path.Length;
+                    link.LinkData = path;
+                }
+            }
+            else
+            {
+                if (linkLabel.Links.Count > 0)
+                {
+                    linkLabel.Links.Clear();
+                }
+            }
         }
 
         protected override void Refresh()

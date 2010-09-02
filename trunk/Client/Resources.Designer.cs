@@ -356,6 +356,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File {0} does not exist..
+        /// </summary>
+        internal static string ErrorFileDoesNotExist {
+            get {
+                return ResourceManager.GetString("ErrorFileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided path does not point to either php-cgi.exe or php.exe..
         /// </summary>
         internal static string ErrorInvalidPHPExecutablePath {
@@ -397,15 +406,6 @@ namespace Web.Management.PHP {
         internal static string ErrorNoPHPFilesInDirectory {
             get {
                 return ResourceManager.GetString("ErrorNoPHPFilesInDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to php.ini file does not exist..
-        /// </summary>
-        internal static string ErrorPHPIniFileDoesNotExist {
-            get {
-                return ResourceManager.GetString("ErrorPHPIniFileDoesNotExist", resourceCulture);
             }
         }
         
