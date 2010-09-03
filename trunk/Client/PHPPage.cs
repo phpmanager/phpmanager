@@ -431,7 +431,7 @@ namespace Web.Management.PHP
         {
             linkLabel.Text = path;
 
-            if (showLink)
+            if (showLink && !String.IsNullOrEmpty(path))
             {
                 if (linkLabel.Links.Count == 0)
                 {

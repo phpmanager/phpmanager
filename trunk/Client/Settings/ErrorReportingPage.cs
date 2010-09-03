@@ -243,7 +243,7 @@ namespace Web.Management.PHP.Settings
             this._serverTypeGroupBox.Controls.Add(this._devMachineRadioButton);
             this._serverTypeGroupBox.Location = new System.Drawing.Point(4, 12);
             this._serverTypeGroupBox.Name = "_serverTypeGroupBox";
-            this._serverTypeGroupBox.Size = new System.Drawing.Size(503, 222);
+            this._serverTypeGroupBox.Size = new System.Drawing.Size(472, 222);
             this._serverTypeGroupBox.TabIndex = 0;
             this._serverTypeGroupBox.TabStop = false;
             this._serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
@@ -252,7 +252,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._prodMachineLabel.Location = new System.Drawing.Point(37, 150);
             this._prodMachineLabel.Name = "_prodMachineLabel";
-            this._prodMachineLabel.Size = new System.Drawing.Size(447, 48);
+            this._prodMachineLabel.Size = new System.Drawing.Size(413, 48);
             this._prodMachineLabel.TabIndex = 4;
             this._prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
             // 
@@ -272,7 +272,7 @@ namespace Web.Management.PHP.Settings
             // 
             this._devMachineLabel.Location = new System.Drawing.Point(37, 75);
             this._devMachineLabel.Name = "_devMachineLabel";
-            this._devMachineLabel.Size = new System.Drawing.Size(447, 46);
+            this._devMachineLabel.Size = new System.Drawing.Size(413, 46);
             this._devMachineLabel.TabIndex = 2;
             this._devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
             // 
@@ -309,13 +309,13 @@ namespace Web.Management.PHP.Settings
             // 
             this._errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
             this._errorLogFileTextBox.Name = "_errorLogFileTextBox";
-            this._errorLogFileTextBox.Size = new System.Drawing.Size(469, 20);
+            this._errorLogFileTextBox.Size = new System.Drawing.Size(438, 20);
             this._errorLogFileTextBox.TabIndex = 2;
             this._errorLogFileTextBox.TextChanged += new System.EventHandler(this.OnErrorLogFileTextBoxTextChanged);
             // 
             // _errorLogBrowseButton
             // 
-            this._errorLogBrowseButton.Location = new System.Drawing.Point(482, 267);
+            this._errorLogBrowseButton.Location = new System.Drawing.Point(451, 267);
             this._errorLogBrowseButton.Name = "_errorLogBrowseButton";
             this._errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
             this._errorLogBrowseButton.TabIndex = 3;
@@ -332,7 +332,7 @@ namespace Web.Management.PHP.Settings
             this.Controls.Add(this._errorLogFileLabel);
             this.Controls.Add(this._serverTypeGroupBox);
             this.Name = "ErrorReportingPage";
-            this.Size = new System.Drawing.Size(510, 360);
+            this.Size = new System.Drawing.Size(480, 360);
             this._serverTypeGroupBox.ResumeLayout(false);
             this._serverTypeGroupBox.PerformLayout();
             this.ResumeLayout(false);
