@@ -169,25 +169,55 @@ namespace Web.Management.PHP
             }
         }
 
+        public void AddWarning(Label warningLabel)
+        {
+            warningLabel.AutoSize = true;
+            warningLabel.Location = new Point(25, 4);
+            _warningPanel.Controls.Add(warningLabel);
+        }
+
+        public void ShowWarning(bool visible)
+        {
+            _warningPanel.Visible = visible;
+        }
+
         private Size DoLayout(Size proposedSize, bool performLayout)
         {
-            Size descriptionSize = _infoTlp.GetPreferredSize(new Size(proposedSize.Width - _infoTlp.Left, Int32.MaxValue));
             if (performLayout)
             {
                 _titleLabel.Width = ClientRectangle.Width;
-                _infoTlp.Size = descriptionSize;
             }
 
-            int tasksTop = _infoTlp.Top + descriptionSize.Height + 10;
+            int nextTop = _titleLabel.Top + _titleLabel.Height + 8;
+
+            if (_warningPanel.Visible)
+            {
+                Size warningSize = _warningPanel.GetPreferredSize(new Size(proposedSize.Width - _warningPanel.Left, Int32.MaxValue));
+                if (performLayout)
+                {
+                    _warningPanel.Top = nextTop;
+                    _warningPanel.Size = warningSize;
+                }
+                nextTop += _warningPanel.Height + 8;
+            }
+
+            Size infoSize = _infoTlp.GetPreferredSize(new Size(proposedSize.Width - _infoTlp.Left, Int32.MaxValue));
+            if (performLayout)
+            {
+                _infoTlp.Top = nextTop;
+                _infoTlp.Size = infoSize;
+            }
+
+            nextTop += _infoTlp.Height + 10;
 
             Size tasksSize = _tasksLabel.GetPreferredSize(new Size(proposedSize.Width - _tasksLabel.Left, Int32.MaxValue));
             if (performLayout)
             {
-                _tasksLabel.Top = tasksTop;
+                _tasksLabel.Top = nextTop;
                 _tasksLabel.Size = tasksSize;
             }
 
-            int height = tasksSize.Height + tasksTop + 12;
+            int height = tasksSize.Height + nextTop + 12;
 
             return new Size(proposedSize.Width, height);
         }

@@ -124,6 +124,7 @@
     <Content Include="Resources\php-logo32.png" />
     <Content Include="Resources\php-settings32.png" />
     <Content Include="Resources\php-setup32.png" />
+    <Content Include="Resources\warning16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

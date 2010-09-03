@@ -43,6 +43,7 @@ namespace Web.Management.PHP
         private Label _executableNameLabel;
         private Label _versionValueLabel;
         private Label _versionNameLabel;
+        private LinkLabel _warningPHPConfiguration;
 
         private PHPPageItemControl _phpExtensionItem;
         private PHPPageItemControl _phpSettingsItem;
@@ -113,6 +114,8 @@ namespace Web.Management.PHP
             _errorLogValueLabel = new LinkLabel();
             _errorLogValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
 
+            _warningPHPConfiguration = PreparePHPConfigWarning();
+
             _enabledExtLabel = new Label();
             _installedExtLabel = new Label();
 
@@ -133,6 +136,7 @@ namespace Web.Management.PHP
                                     Resources.PHPSetupItemRegisterPHPTask,
                                     Resources.PHPSetupItemChangeVersionTask,
                                     Resources.PHPSetupItemCheckPHPInfoTask);
+            _phpSetupItem.AddWarning(_warningPHPConfiguration);
 
             Controls.Add(_phpSetupItem);
 
@@ -264,6 +268,8 @@ namespace Web.Management.PHP
                     _phpExtensionItem.SetTitleState(true);
                     _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
 
+                    _phpSetupItem.ShowWarning(true);
+
                     isSuccess = true;
                 }
             }
@@ -298,6 +304,7 @@ namespace Web.Management.PHP
                 _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
             }
 
+            PerformLayout();
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -445,6 +452,27 @@ namespace Web.Management.PHP
                     linkLabel.Links.Clear();
                 }
             }
+        }
+
+        private LinkLabel PreparePHPConfigWarning()
+        {
+            LinkLabel result = new LinkLabel();
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            sb.Append(Resources.WarningPHPConfigNotOptimal);
+            int fixItLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
+            sb.Append(Resources.WarningFixIt + Resources.WarningOr);
+            int ignoreLinkStart = fixItLinkStart + Resources.WarningFixIt.Length + Resources.WarningOr.Length;
+            sb.Append(Resources.WarningIgnore + Resources.WarningQuestionMark);
+            
+            result.Text = sb.ToString();
+            
+            LinkLabel.Link fixItLink = new LinkLabel.Link(fixItLinkStart, Resources.WarningFixIt.Length, 0);
+            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, 1);
+            result.Links.Add(fixItLink);
+            result.Links.Add(ignoreLink);
+            
+            return result;
         }
 
         protected override void Refresh()

@@ -1098,5 +1098,57 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("SelectSiteAndUrlDialogTitle", resourceCulture);
             }
         }
+        
+        internal static System.Drawing.Bitmap Warning16 {
+            get {
+                object obj = ResourceManager.GetObject("Warning16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix it.
+        /// </summary>
+        internal static string WarningFixIt {
+            get {
+                return ResourceManager.GetString("WarningFixIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        internal static string WarningIgnore {
+            get {
+                return ResourceManager.GetString("WarningIgnore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  or .
+        /// </summary>
+        internal static string WarningOr {
+            get {
+                return ResourceManager.GetString("WarningOr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IIS and PHP are not configured optimally on this machine. .
+        /// </summary>
+        internal static string WarningPHPConfigNotOptimal {
+            get {
+                return ResourceManager.GetString("WarningPHPConfigNotOptimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ?.
+        /// </summary>
+        internal static string WarningQuestionMark {
+            get {
+                return ResourceManager.GetString("WarningQuestionMark", resourceCulture);
+            }
+        }
     }
 }

@@ -37,7 +37,11 @@ namespace Web.Management.PHP {
             this._titleLabel = new System.Windows.Forms.LinkLabel();
             this._tasksLabel = new System.Windows.Forms.LinkLabel();
             this._infoTlp = new System.Windows.Forms.TableLayoutPanel();
+            this._warningPanel = new System.Windows.Forms.Panel();
+            this._warningPicture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).BeginInit();
+            this._warningPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._warningPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // _pictureBox
@@ -61,7 +65,7 @@ namespace Web.Management.PHP {
             // _tasksLabel
             // 
             this._tasksLabel.AutoSize = true;
-            this._tasksLabel.Location = new System.Drawing.Point(65, 90);
+            this._tasksLabel.Location = new System.Drawing.Point(65, 116);
             this._tasksLabel.Name = "_tasksLabel";
             this._tasksLabel.Size = new System.Drawing.Size(0, 13);
             this._tasksLabel.TabIndex = 2;
@@ -74,18 +78,40 @@ namespace Web.Management.PHP {
             this._infoTlp.BackColor = System.Drawing.Color.Transparent;
             this._infoTlp.ColumnCount = 2;
             this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 336F));
-            this._infoTlp.Location = new System.Drawing.Point(65, 43);
+            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 339F));
+            this._infoTlp.Location = new System.Drawing.Point(65, 69);
             this._infoTlp.Name = "_infoTlp";
             this._infoTlp.RowCount = 1;
             this._infoTlp.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this._infoTlp.Size = new System.Drawing.Size(439, 47);
             this._infoTlp.TabIndex = 3;
             // 
+            // _warningPanel
+            // 
+            this._warningPanel.BackColor = System.Drawing.SystemColors.Info;
+            this._warningPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._warningPanel.Controls.Add(this._warningPicture);
+            this._warningPanel.Location = new System.Drawing.Point(65, 40);
+            this._warningPanel.Name = "_warningPanel";
+            this._warningPanel.Size = new System.Drawing.Size(439, 23);
+            this._warningPanel.TabIndex = 4;
+            this._warningPanel.Visible = false;
+            // 
+            // _warningPicture
+            // 
+            this._warningPicture.Image = global::Web.Management.PHP.Resources.Warning16;
+            this._warningPicture.Location = new System.Drawing.Point(1, 1);
+            this._warningPicture.Name = "_warningPicture";
+            this._warningPicture.Size = new System.Drawing.Size(20, 20);
+            this._warningPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this._warningPicture.TabIndex = 1;
+            this._warningPicture.TabStop = false;
+            // 
             // PHPPageItemControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this._warningPanel);
             this.Controls.Add(this._infoTlp);
             this.Controls.Add(this._tasksLabel);
             this.Controls.Add(this._titleLabel);
@@ -94,6 +120,8 @@ namespace Web.Management.PHP {
             this.Name = "PHPPageItemControl";
             this.Size = new System.Drawing.Size(507, 118);
             ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
+            this._warningPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._warningPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +133,7 @@ namespace Web.Management.PHP {
         private System.Windows.Forms.LinkLabel _titleLabel;
         private System.Windows.Forms.LinkLabel _tasksLabel;
         private System.Windows.Forms.TableLayoutPanel _infoTlp;
+        private System.Windows.Forms.Panel _warningPanel;
+        private System.Windows.Forms.PictureBox _warningPicture;
     }
 }
