@@ -41,7 +41,7 @@ namespace Web.Management.PHP.Config
 
         private void ApplyRecommendedPHPIniSettings()
         {
-            string phpDirectory = Path.GetDirectoryName(_currentPHPHandler.ScriptProcessor);
+            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
             string handlerName = _currentPHPHandler.Name;
             string phpIniPath = GetPHPIniPath();
 
@@ -193,6 +193,8 @@ namespace Web.Management.PHP.Config
             configInfo.EnabledExtCount = file.GetEnabledExtensionsCount();
             configInfo.InstalledExtCount = file.Extensions.Count;
 
+            configInfo.IsConfigOptimal = ValidateConfiguration(file);
+
             return configInfo;
         }
 
@@ -326,7 +328,11 @@ namespace Web.Management.PHP.Config
             {
                 fastCgiApplication = _fastCgiApplicationCollection.CreateElement();
                 fastCgiApplication.FullPath = phpexePath;
-                fastCgiApplication.MonitorChangesTo = phpiniPath;
+                // monitorChangesTo may not exist if FastCGI update is not installed
+                if (fastCgiApplication.MonitorChangesToExists())
+                {
+                    fastCgiApplication.MonitorChangesTo = phpiniPath;
+                }
                 fastCgiApplication.InstanceMaxRequests = 10000;
                 fastCgiApplication.ActivityTimeout = 300;
                 fastCgiApplication.RequestTimeout = 300;
@@ -396,6 +402,145 @@ namespace Web.Management.PHP.Config
                 _currentPHPHandler = handler;
                 _currentFastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.ScriptProcessor, "");
             }
+        }
+
+        private bool ValidateConfiguration(PHPIniFile file)
+        {
+
+            #region IIS FastCGI settings
+
+            // Check if handler mapping is configured for "File or Folder"
+            if (_currentPHPHandler.ResourceType != ResourceType.Either)
+            {
+                return false;
+            }
+
+            // Check if PHP_FCGI_MAX_REQUESTS is set and is bigger than instanceMaxRequests
+            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
+            if (envVariableElement == null)
+            {
+                return false;
+            }
+            else
+            {
+                long maxRequests;
+                if (!Int64.TryParse(envVariableElement.Value, out maxRequests) || 
+                    (maxRequests < _currentFastCgiApplication.InstanceMaxRequests))
+                {
+                    return false;
+                }
+            }
+
+            // Check if PHPRC is set and points to a directory that has php.ini file
+            envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            if (envVariableElement == null)
+            {
+                return false;
+            }
+            else
+            {
+                string path = Path.Combine(envVariableElement.Value, "php.ini");
+                if (!File.Exists(path))
+                {
+                    return false;
+                }
+            }
+
+            // Check if monitorChangesTo setting is supported and is set correctly
+            if (_currentFastCgiApplication.MonitorChangesToExists())
+            {
+                string path = _currentFastCgiApplication.MonitorChangesTo;
+                if (String.IsNullOrEmpty(path) || !File.Exists(path) || 
+                    !String.Equals(file.FileName, path, StringComparison.OrdinalIgnoreCase))
+                {
+                    return false;
+                }
+            }
+
+            #endregion
+
+            #region php.ini settings
+
+            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
+
+            // Check if extention_dir is set to an absolute path
+            string expectedValue = Path.Combine(phpDirectory, "ext");
+            if (!IsExpectedValue(file, "extension_dir", expectedValue))
+            {
+                return false;
+            }
+
+            // Check if log_errors is set to On
+            if (!IsExpectedValue(file, "log_errors", "On"))
+            {
+                return false;
+            }
+
+            // Check if error_log is set to an absolute path and that path exists
+            PHPIniSetting setting = file.GetSetting("error_log");
+            if (setting == null || String.IsNullOrEmpty(setting.Value) || 
+                !IsAbsoluteFilePath(setting.Value, true /* this is supposed to be a file */))
+            {
+                return false;
+            }
+
+            // Check if session path is set to an absolute path and that path exists
+            setting = file.GetSetting("session.save_path");
+            if (setting == null || String.IsNullOrEmpty(setting.Value) ||
+                !IsAbsoluteFilePath(setting.Value, false /* this is supposed to be a directory */))
+            {
+                return false;
+            }
+
+            // Check if cgi.force_redirect is set correctly
+            if (!IsExpectedValue(file, "cgi.force_redirect", "0"))
+            {
+                return false;
+            }
+
+            // Check if cgi.fix_pathinfo is set correctly
+            if (!IsExpectedValue(file, "cgi.fix_pathinfo", "1"))
+            {
+                return false;
+            }
+
+            // Check if fastcgi impersonation is turned on
+            if (!IsExpectedValue(file, "fastcgi.impersonate", "1"))
+            {
+                return false;
+            }
+
+            #endregion
+
+            return true;
+        }
+
+        private static bool IsExpectedValue(PHPIniFile file, string settingName, string expectedValue)
+        {
+            PHPIniSetting setting = file.GetSetting(settingName);
+            if (setting == null || String.IsNullOrEmpty(setting.Value) ||
+                !String.Equals(setting.Value, expectedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsAbsoluteFilePath(string path, bool isFile)
+        {
+            string directory = Environment.ExpandEnvironmentVariables(path);
+            if (Path.IsPathRooted(path))
+            {
+                if (isFile)
+                {
+                    directory = Path.GetDirectoryName(directory);
+                }
+
+                return Directory.Exists(directory);
+            }
+
+            return false;
         }
 
     }

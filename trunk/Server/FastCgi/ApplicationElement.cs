@@ -91,11 +91,11 @@ namespace Web.Management.PHP.FastCgi
             }
         }
 
-        public int InstanceMaxRequests
+        public long InstanceMaxRequests
         {
             get
             {
-                return (int)base["instanceMaxRequests"];
+                return (long)base["instanceMaxRequests"];
             }
             set
             {
@@ -115,32 +115,15 @@ namespace Web.Management.PHP.FastCgi
             }
         }
 
-        // When FastCGI update is not installed then this property does not exist
-        // We need to handle this case and eat the exception
         public string MonitorChangesTo
         {
             get
             {
-                string result = String.Empty;
-                try
-                {
-                    result = (string)base["monitorChangesTo"];
-                }
-                catch
-                {
-                    // Do nothing here...
-                }
-                return result; 
+                return (string)base["monitorChangesTo"];
             }
             set
             {
-                try
-                {
-                    base["monitorChangesTo"] = value;
-                }
-                catch
-                {
-                }
+                base["monitorChangesTo"] = value;
             }
         }
 
@@ -251,5 +234,21 @@ namespace Web.Management.PHP.FastCgi
                 }
             }
         }
+
+        public bool MonitorChangesToExists()
+        {
+            object o;
+
+            try
+            {
+                o = base["monitorChangesTo"];
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

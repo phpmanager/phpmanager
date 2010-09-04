@@ -92,9 +92,10 @@ namespace Web.Management.PHP
             IManagementUIService uiService = (IManagementUIService)GetService(typeof(IManagementUIService));
 
             Font titleFont = (Font)uiService.Styles["PageHeaderTitleFont"];
+            Padding = new Padding(0, 12, 0, 0);
 
             //
-            // Summary labels
+            // All page item labels
             //
             _versionNameLabel = new Label();
             _versionNameLabel.Text = Resources.PHPPageVersion;
@@ -130,16 +131,15 @@ namespace Web.Management.PHP
             _phpSetupItem.TitleFont = titleFont;
             _phpSetupItem.Image = Resources.PHPSetup32;
 
+            _phpSetupItem.AddWarning(_warningPHPConfiguration);
             _phpSetupItem.AddInfoRow(_versionNameLabel, _versionValueLabel);
             _phpSetupItem.AddInfoRow(_executableNameLabel, _executableValueLabel);
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
                                     Resources.PHPSetupItemRegisterPHPTask,
                                     Resources.PHPSetupItemChangeVersionTask,
                                     Resources.PHPSetupItemCheckPHPInfoTask);
-            _phpSetupItem.AddWarning(_warningPHPConfiguration);
 
             Controls.Add(_phpSetupItem);
-
             //
             // PHP Settings
             //
@@ -169,7 +169,6 @@ namespace Web.Management.PHP
             }
 
             Controls.Add(_phpSettingsItem);
-
             //
             // PHP Extensions
             //
@@ -194,7 +193,6 @@ namespace Web.Management.PHP
                                         Resources.PHPExtensionItemReadOnlyEnableTask);
             }
 
-            Padding = new Padding(0, 12, 0, 0);
             Controls.Add(_phpExtensionItem);
 
             // Update the information summaries for each PHPPageItemControl
@@ -230,81 +228,8 @@ namespace Web.Management.PHP
 
         private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            bool isSuccess = false;
-
-            try
-            {
-                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
-                if (configInfo != null)
-                {
-                    _versionValueLabel.Text = configInfo.Version;
-                    _executableValueLabel.Text = configInfo.ScriptProcessor;
-                    PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
-                    PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
-                    _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
-                    _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
-
-                    _phpSetupItem.SetTitleState(true);
-                    // Allow PHP registration only for server administrators
-                    if (Connection.IsUserServerAdministrator)
-                    {
-                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
-                    }
-                    else
-                    {
-                        _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
-                    }
-                    // Site administrators can still change PHP version of check phpinfo()
-                    _phpSetupItem.SetTaskState(IndexChangeVersionTask, true);
-                    _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, true);
-                    
-                    // For site administrators these tasks are still available but the pages for those tasks will be read-only
-                    _phpSettingsItem.SetTitleState(true);
-                    _phpSettingsItem.SetTaskState(IndexErrorReportingTask, true);
-                    _phpSettingsItem.SetTaskState(IndexLimitsTask, true);
-                    _phpSettingsItem.SetTaskState(IndexAllSettingsTask, true);
-
-                    // For site administrators the extension list is still available but is read only
-                    _phpExtensionItem.SetTitleState(true);
-                    _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, true);
-
-                    _phpSetupItem.ShowWarning(true);
-
-                    isSuccess = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                DisplayErrorMessage(ex, Resources.ResourceManager);
-            }
-
-            if (!isSuccess)
-            {
-                _versionValueLabel.Text = Resources.PHPPagePHPNotRegistered;
-                _executableValueLabel.Text = Resources.PHPPagePHPNotAvailable;
-                PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
-                PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
-                
-                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
-                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
-
-                // Disable all the tasks and the title link. Only the PHP registration task is still enabled
-                _phpSetupItem.SetTitleState(false);
-                _phpSetupItem.SetTaskState(IndexChangeVersionTask, false);
-                _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, false);
-
-                // Disable all the tasks and the title link
-                _phpSettingsItem.SetTitleState(false);
-                _phpSettingsItem.SetTaskState(IndexErrorReportingTask, false);
-                _phpSettingsItem.SetTaskState(IndexLimitsTask, false);
-                _phpSettingsItem.SetTaskState(IndexAllSettingsTask, false);
-
-                // Disalbe all the tasks and the title link
-                _phpExtensionItem.SetTitleState(false);
-                _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, false);
-            }
-
-            PerformLayout();
+            PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
+            UpdatePageItemsState(configInfo);
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -468,8 +393,8 @@ namespace Web.Management.PHP
             result.Text = sb.ToString();
             
             LinkLabel.Link fixItLink = new LinkLabel.Link(fixItLinkStart, Resources.WarningFixIt.Length, 0);
-            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, 1);
             result.Links.Add(fixItLink);
+            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, 1);
             result.Links.Add(ignoreLink);
             
             return result;
@@ -512,6 +437,69 @@ namespace Web.Management.PHP
         protected override bool ShowOnlineHelp()
         {
             return Helper.Browse(Globals.PHPPageOnlineHelp);
+        }
+
+        private void UpdatePageItemsState(PHPConfigInfo configInfo)
+        {
+            bool isPHPSetup = (configInfo != null);
+
+            #region PHP Setup Item
+
+            _phpSetupItem.SetTitleState(isPHPSetup);
+            _phpSetupItem.ShowWarning(isPHPSetup && !configInfo.IsConfigOptimal);
+            _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotRegistered;
+            _executableValueLabel.Text = isPHPSetup ? configInfo.ScriptProcessor : Resources.PHPPagePHPNotAvailable;
+            // Allow PHP registration only for server administrators
+            if (Connection.IsUserServerAdministrator)
+            {
+                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
+            }
+            else
+            {
+                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
+            }
+            _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPHPSetup);
+            _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, isPHPSetup);
+
+            #endregion
+
+            #region PHP Settings Item
+
+            _phpSettingsItem.SetTitleState(isPHPSetup);
+            if (isPHPSetup)
+            {
+                PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
+                PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
+            }
+            else
+            {
+                PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
+                PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
+            }
+            _phpSettingsItem.SetTaskState(IndexErrorReportingTask, isPHPSetup);
+            _phpSettingsItem.SetTaskState(IndexLimitsTask, isPHPSetup);
+            _phpSettingsItem.SetTaskState(IndexAllSettingsTask, isPHPSetup);
+
+            #endregion
+
+            #region PHP Extensions Item
+
+            _phpExtensionItem.SetTitleState(isPHPSetup);
+            if (isPHPSetup)
+            {
+                _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
+                _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
+            }
+            else
+            {
+                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+            }
+            _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPHPSetup);
+
+            #endregion
+
+            PerformLayout();
         }
 
     }

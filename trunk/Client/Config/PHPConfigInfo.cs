@@ -23,8 +23,9 @@ namespace Web.Management.PHP.Config
         private const int IndexErrorLog = 4;
         private const int IndexEnabledExtCount = 5;
         private const int IndexInstalledExtCount = 6;
+        private const int IndexIsConfigOptimal = 7;
 
-        private const int Size = 7;
+        private const int Size = 8;
 
         public PHPConfigInfo()
         {
@@ -112,6 +113,18 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexVersion] = value;
+            }
+        }
+
+        public bool IsConfigOptimal
+        {
+            get
+            {
+                return (bool)_data[IndexIsConfigOptimal];
+            }
+            set
+            {
+                _data[IndexIsConfigOptimal] = value;
             }
         }
 
