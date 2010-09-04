@@ -526,6 +526,15 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to All the recommended IIS and PHP settings have been applied. The previous version of php.ini file has been saved in {0}..
+        /// </summary>
+        internal static string FixItDialogPHPIniCopy {
+            get {
+                return ResourceManager.GetString("FixItDialogPHPIniCopy", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap GoBack16 {
             get {
                 object obj = ResourceManager.GetObject("GoBack16", resourceCulture);

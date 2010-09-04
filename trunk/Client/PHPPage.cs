@@ -31,6 +31,8 @@ namespace Web.Management.PHP
         private const int IndexLimitsTask = 1;
         private const int IndexAllSettingsTask = 2;
         private const int IndexAllExtensionsTask = 0;
+        private const int IndexFixItLink = 0;
+        private const int IndexIgnoreLink = 1;
 
         // Summary labels
         private Label _enabledExtLabel;
@@ -332,6 +334,19 @@ namespace Web.Management.PHP
             NavigateToPHPInfo();
         }
 
+        private void OnWarningLinksClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            int linkData = (int)e.Link.LinkData;
+            if (linkData == IndexFixItLink)
+            {
+                PerformFixItAction();
+            }
+            else if (linkData == IndexIgnoreLink)
+            {
+                PerformIgnoreAction();
+            }
+        }
+
         internal void OpenPhysicalFile(string physicalPath)
         {
             try
@@ -350,6 +365,25 @@ namespace Web.Management.PHP
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
+        }
+
+        private void PerformFixItAction()
+        {
+            try
+            {
+                string phpIniCopyPath = Module.Proxy.ApplyRecommendedSettings();
+                ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.FixItDialogPHPIniCopy, phpIniCopyPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GetSettings();
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager); ;
+            }
+        }
+
+        private void PerformIgnoreAction()
+        {
+            throw new NotImplementedException();
         }
 
         private static void PrepareOpenFileLink(LinkLabel linkLabel, string path, bool showLink)
@@ -392,10 +426,12 @@ namespace Web.Management.PHP
             
             result.Text = sb.ToString();
             
-            LinkLabel.Link fixItLink = new LinkLabel.Link(fixItLinkStart, Resources.WarningFixIt.Length, 0);
+            LinkLabel.Link fixItLink = new LinkLabel.Link(fixItLinkStart, Resources.WarningFixIt.Length, IndexFixItLink);
             result.Links.Add(fixItLink);
-            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, 1);
+            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, IndexIgnoreLink);
             result.Links.Add(ignoreLink);
+
+            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnWarningLinksClicked);
             
             return result;
         }

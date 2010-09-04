@@ -22,6 +22,11 @@ namespace Web.Management.PHP
             Invoke("AddOrUpdateSettings", settings.GetData());
         }
 
+        internal string ApplyRecommendedSettings()
+        {
+            return (string)Invoke("ApplyRecommendedSettings");
+        }
+
         internal string CreatePHPInfo(string siteName)
         {
             return (string)Invoke("CreatePHPInfo", siteName);
@@ -88,5 +93,6 @@ namespace Web.Management.PHP
         {
             Invoke("UpdatePHPExtensions", extensions.GetData());
         }
+
     }
 }

@@ -39,9 +39,9 @@ namespace Web.Management.PHP.Config
             Initialize();
         }
 
-        private void ApplyRecommendedPHPIniSettings()
+        private void ApplyRecommendedPHPIniSettings(bool isNewRegistration)
         {
-            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
+            string phpDirectory = GetPHPDirectory();
             string handlerName = _currentPHPHandler.Name;
             string phpIniPath = GetPHPIniPath();
 
@@ -74,31 +74,87 @@ namespace Web.Management.PHP.Config
 
             // Enable fastcgi impersonation
             settings.Add(new PHPIniSetting("fastcgi.impersonate", "1", "PHP"));
-            
-            // Disable fastcgi logging
-            settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
 
-            // Set maximum script execution time
-            settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
+            if (isNewRegistration)
+            {
+                // Disable fastcgi logging
+                settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
 
-            // Turn off display errors
-            settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
+                // Set maximum script execution time
+                settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
+
+                // Turn off display errors
+                settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
+
+                // Enable the most common PHP extensions
+                List<PHPIniExtension> extensions = new List<PHPIniExtension>();
+                extensions.Add(new PHPIniExtension("php_curl.dll", true));
+                extensions.Add(new PHPIniExtension("php_gd2.dll", true));
+                extensions.Add(new PHPIniExtension("php_gettext.dll", true));
+                extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+                extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
+                extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
+                extensions.Add(new PHPIniExtension("php_openssl.dll", true));
+                extensions.Add(new PHPIniExtension("php_soap.dll", true));
+                extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
+                file.UpdateExtensions(extensions);
+            }
+
             file.AddOrUpdateSettings(settings);
-
-            // Enable the most common PHP extensions
-            List<PHPIniExtension> extensions = new List<PHPIniExtension>();
-            extensions.Add(new PHPIniExtension("php_curl.dll", true));
-            extensions.Add(new PHPIniExtension("php_gd2.dll", true));
-            extensions.Add(new PHPIniExtension("php_gettext.dll", true));
-            extensions.Add(new PHPIniExtension("php_mysql.dll", true));
-            extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
-            extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
-            extensions.Add(new PHPIniExtension("php_openssl.dll", true));
-            extensions.Add(new PHPIniExtension("php_soap.dll", true));
-            extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
-            file.UpdateExtensions(extensions);
-
             file.Save(phpIniPath);
+        }
+
+        public string ApplyRecommendedSettings()
+        {
+            // Check if PHP is not registered
+            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            {
+                throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
+            }
+
+            string phpDirectory = GetPHPDirectory();
+            string phpIniFilePath = Path.Combine(phpDirectory, "php.ini");
+
+            // Set the handler mapping resource type to "File or Folder"
+            _currentPHPHandler.ResourceType = ResourceType.Either;
+
+            // Set PHP_FCGI_MAX_REQUESTS and instanceMaxRequests
+            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
+            if (envVariableElement == null)
+            {
+                _currentFastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", "10000");
+            }
+            else
+            {
+                envVariableElement.Value = "10000";
+            }
+            _currentFastCgiApplication.InstanceMaxRequests = 10000;
+
+            // Set PHPRC
+            envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            if (envVariableElement == null)
+            {
+                _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", phpDirectory);
+            }
+            else
+            {
+                envVariableElement.Value = phpDirectory;
+            }
+
+            // If monitorChangesTo is supported then set it
+            if (_currentFastCgiApplication.MonitorChangesToExists())
+            {
+                _currentFastCgiApplication.MonitorChangesTo = Path.Combine(phpDirectory, "php.ini");
+            }
+
+            _managementUnit.Update();
+
+            // Make a copy of php.ini just in case
+            File.Copy(phpIniFilePath, phpIniFilePath + "-phpmanager", true);
+
+            ApplyRecommendedPHPIniSettings(false /* This is an update to an existing PHP registration */);
+
+            return phpIniFilePath + "-phpmanager";
         }
 
         private void CopyInheritedHandlers()
@@ -198,6 +254,17 @@ namespace Web.Management.PHP.Config
             return configInfo;
         }
 
+        private string GetPHPDirectory()
+        {
+            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
+            if (!phpDirectory.EndsWith(@"\", StringComparison.Ordinal))
+            {
+                phpDirectory += @"\";
+            }
+
+            return phpDirectory;
+        }
+
         private static string GetPHPExecutableVersion(string phpexePath)
         {
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(phpexePath);
@@ -260,6 +327,34 @@ namespace Web.Management.PHP.Config
                     _currentFastCgiApplication = fastCgiApplication;
                 }
             }
+        }
+
+        private static bool IsAbsoluteFilePath(string path, bool isFile)
+        {
+            string directory = Environment.ExpandEnvironmentVariables(path);
+            if (Path.IsPathRooted(path))
+            {
+                if (isFile)
+                {
+                    directory = Path.GetDirectoryName(directory);
+                }
+
+                return Directory.Exists(directory);
+            }
+
+            return false;
+        }
+
+        private static bool IsExpectedSettingValue(PHPIniFile file, string settingName, string expectedValue)
+        {
+            PHPIniSetting setting = file.GetSetting(settingName);
+            if (setting == null || String.IsNullOrEmpty(setting.Value) ||
+                !String.Equals(setting.Value, expectedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private HandlerElement MakeHandlerActive(string handlerName)
@@ -379,7 +474,7 @@ namespace Web.Management.PHP.Config
             _currentFastCgiApplication = fastCgiApplication;
 
             // Make the recommended changes to php.ini file
-            ApplyRecommendedPHPIniSettings();
+            ApplyRecommendedPHPIniSettings(true /* this is a new registration of PHP */);
         }
 
         public void SelectPHPHandler(string name)
@@ -461,17 +556,17 @@ namespace Web.Management.PHP.Config
 
             #region php.ini settings
 
-            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
+            string phpDirectory = GetPHPDirectory();
 
             // Check if extention_dir is set to an absolute path
             string expectedValue = Path.Combine(phpDirectory, "ext");
-            if (!IsExpectedValue(file, "extension_dir", expectedValue))
+            if (!IsExpectedSettingValue(file, "extension_dir", expectedValue))
             {
                 return false;
             }
 
             // Check if log_errors is set to On
-            if (!IsExpectedValue(file, "log_errors", "On"))
+            if (!IsExpectedSettingValue(file, "log_errors", "On"))
             {
                 return false;
             }
@@ -493,19 +588,19 @@ namespace Web.Management.PHP.Config
             }
 
             // Check if cgi.force_redirect is set correctly
-            if (!IsExpectedValue(file, "cgi.force_redirect", "0"))
+            if (!IsExpectedSettingValue(file, "cgi.force_redirect", "0"))
             {
                 return false;
             }
 
             // Check if cgi.fix_pathinfo is set correctly
-            if (!IsExpectedValue(file, "cgi.fix_pathinfo", "1"))
+            if (!IsExpectedSettingValue(file, "cgi.fix_pathinfo", "1"))
             {
                 return false;
             }
 
             // Check if fastcgi impersonation is turned on
-            if (!IsExpectedValue(file, "fastcgi.impersonate", "1"))
+            if (!IsExpectedSettingValue(file, "fastcgi.impersonate", "1"))
             {
                 return false;
             }
@@ -513,34 +608,6 @@ namespace Web.Management.PHP.Config
             #endregion
 
             return true;
-        }
-
-        private static bool IsExpectedValue(PHPIniFile file, string settingName, string expectedValue)
-        {
-            PHPIniSetting setting = file.GetSetting(settingName);
-            if (setting == null || String.IsNullOrEmpty(setting.Value) ||
-                !String.Equals(setting.Value, expectedValue, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool IsAbsoluteFilePath(string path, bool isFile)
-        {
-            string directory = Environment.ExpandEnvironmentVariables(path);
-            if (Path.IsPathRooted(path))
-            {
-                if (isFile)
-                {
-                    directory = Path.GetDirectoryName(directory);
-                }
-
-                return Directory.Exists(directory);
-            }
-
-            return false;
         }
 
     }
