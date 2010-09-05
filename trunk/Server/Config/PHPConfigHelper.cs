@@ -190,6 +190,16 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        private static string EnsureTrailingBackslah(string str)
+        {            
+            if (!str.EndsWith(@"\", StringComparison.Ordinal))
+            {
+                return str + @"\";
+            }
+            
+            return str;
+        }
+
         private static string GenerateHandlerName(HandlersCollection collection, string phpVersion)
         {
             string prefix = "php-" + phpVersion;
@@ -272,12 +282,7 @@ namespace Web.Management.PHP.Config
         private string GetPHPDirectory()
         {
             string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
-            if (!phpDirectory.EndsWith(@"\", StringComparison.Ordinal))
-            {
-                phpDirectory += @"\";
-            }
-
-            return phpDirectory;
+            return EnsureTrailingBackslah(phpDirectory);
         }
 
         private static string GetPHPExecutableVersion(string phpexePath)
@@ -402,11 +407,7 @@ namespace Web.Management.PHP.Config
             }
 
             // Check for existense of php extensions directory
-            string phpDir = Path.GetDirectoryName(phpexePath);
-            if (!phpDir.EndsWith(@"\"))
-            {
-                phpDir += @"\";
-            }
+            string phpDir = EnsureTrailingBackslah(Path.GetDirectoryName(phpexePath));
             string extDir = Path.Combine(phpDir, "ext");
             if (!Directory.Exists(extDir))
             {
