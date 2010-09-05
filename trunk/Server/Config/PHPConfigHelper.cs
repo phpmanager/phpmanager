@@ -435,6 +435,7 @@ namespace Web.Management.PHP.Config
                 }
             }
 
+            bool iisUpdateHappened = false;
             ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(phpexePath, "");
             // Create a FastCGI application if it does not exist
             bool isNewFastCgi = false;
@@ -456,9 +457,10 @@ namespace Web.Management.PHP.Config
 
                 _fastCgiApplicationCollection.Add(fastCgiApplication);
                 isNewFastCgi = true;
+                iisUpdateHappened = true;
             }
                 
-            // Check if file mapping with this executable already exists
+            // Check if handler mapping with this executable already exists
             HandlerElement handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
             // Create a handler mapping if it does not exist
             bool isNewHandler = false;
@@ -473,23 +475,29 @@ namespace Web.Management.PHP.Config
                 handlerElement.Path = "*.php";
                 handlerElement.ScriptProcessor = phpexePath;
                 handlerElement.ResourceType = ResourceType.Either;
-                handlerElement = _handlersCollection.AddAt(0, handlerElement);
+                _handlersCollection.AddAt(0, handlerElement);
                 isNewHandler = true;
+                iisUpdateHappened = true;
             }
             else if (_currentPHPHandler != null && handlerElement != _currentPHPHandler)
             {
                 // Move the existing PHP file handler mapping on top
                 CopyInheritedHandlers();
-                handlerElement = MakeHandlerActive(handlerElement.Name);
+                MakeHandlerActive(handlerElement.Name);
+                iisUpdateHappened = true;
             }
-                
-            _managementUnit.Update();
 
-            // We need to call Initialize() again to set references to current handler and 
-            // fastcgi application and to avoid the read-only exception from IIS config
-            Initialize();
+            if (iisUpdateHappened)
+            {
+                _managementUnit.Update();
+                // We need to call Initialize() again to set references to current handler and 
+                // fastcgi application and to avoid the read-only exception from IIS config
+                Initialize();
+            }
 
-            // Make recommended changes to existing iis configuration 
+            // Make recommended changes to existing iis configuration. This is the case
+            // when either FastCGI application or a handler mapping or both existed for the
+            // specified php-cgi.exe executable.
             if (!isNewFastCgi || !isNewHandler)
             {
                 ApplyRecommendedFastCgiSettings(phpDir);
@@ -514,12 +522,8 @@ namespace Web.Management.PHP.Config
             if (handler != null && handler != _currentPHPHandler)
             {
                 CopyInheritedHandlers();
-                handler = MakeHandlerActive(name);
+                MakeHandlerActive(name);
                 _managementUnit.Update();
-
-                // Update the references to current php handler and application
-                _currentPHPHandler = handler;
-                _currentFastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.ScriptProcessor, "");
             }
         }
 
