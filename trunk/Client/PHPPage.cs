@@ -51,6 +51,13 @@ namespace Web.Management.PHP
         private PHPPageItemControl _phpSettingsItem;
         private PHPPageItemControl _phpSetupItem;
 
+        // The warning can be ignored for the duration of time while IIS manager is opened
+        // This is more reliable than saving it in user preferences. If this is stored in
+        // a preference store and then user registers another PHP version or changes it on
+        // a different config scope, it may happen that this new invalid configuration is 
+        // ignored forever.
+        private static bool _ignoreWarning;
+
         private new PHPModule Module
         {
             get
@@ -198,7 +205,7 @@ namespace Web.Management.PHP
             Controls.Add(_phpExtensionItem);
 
             // Update the information summaries for each PHPPageItemControl
-            GetSettings();
+            Refresh();
 
             ResumeLayout(true);
         }
@@ -373,7 +380,7 @@ namespace Web.Management.PHP
             {
                 string phpIniCopyPath = Module.Proxy.ApplyRecommendedSettings();
                 ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.FixItDialogPHPIniCopy, phpIniCopyPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetSettings();
+                Refresh();
             }
             catch (Exception ex)
             {
@@ -383,7 +390,8 @@ namespace Web.Management.PHP
 
         private void PerformIgnoreAction()
         {
-            throw new NotImplementedException();
+            _ignoreWarning = true;
+            Refresh();
         }
 
         private static void PrepareOpenFileLink(LinkLabel linkLabel, string path, bool showLink)
@@ -447,7 +455,7 @@ namespace Web.Management.PHP
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    GetSettings();
+                    Refresh();
                     return;
                 }
             }
@@ -459,7 +467,7 @@ namespace Web.Management.PHP
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    GetSettings();
+                    Refresh();
                     return;
                 }
             }
@@ -482,18 +490,17 @@ namespace Web.Management.PHP
             #region PHP Setup Item
 
             _phpSetupItem.SetTitleState(isPHPSetup);
-            _phpSetupItem.ShowWarning(isPHPSetup && !configInfo.IsConfigOptimal);
+            // Show warning about non optimal configuration if ...
+            bool displayWarning = isPHPSetup && // ... PHP is setup and ...
+                                  !configInfo.IsConfigOptimal && // ... PHP configuration is not optimal and ...
+                                  !_ignoreWarning && // ... warning is not ignored and ...
+                                  Connection.IsUserServerAdministrator; // ... user is a server administrator.
+            _phpSetupItem.ShowWarning(displayWarning);
             _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotRegistered;
             _executableValueLabel.Text = isPHPSetup ? configInfo.ScriptProcessor : Resources.PHPPagePHPNotAvailable;
             // Allow PHP registration only for server administrators
-            if (Connection.IsUserServerAdministrator)
-            {
-                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, true);
-            }
-            else
-            {
-                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
-            }
+            _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);
+
             _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPHPSetup);
             _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, isPHPSetup);
 
