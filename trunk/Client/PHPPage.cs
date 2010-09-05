@@ -379,7 +379,10 @@ namespace Web.Management.PHP
             try
             {
                 string phpIniCopyPath = Module.Proxy.ApplyRecommendedSettings();
-                ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.FixItDialogPHPIniCopy, phpIniCopyPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!String.IsNullOrEmpty(phpIniCopyPath))
+                {
+                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.FixItDialogPHPIniCopy, phpIniCopyPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 Refresh();
             }
             catch (Exception ex)
