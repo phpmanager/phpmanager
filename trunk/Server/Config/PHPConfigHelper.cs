@@ -76,19 +76,31 @@ namespace Web.Management.PHP.Config
 
             // Set PHPRC
             envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            string monitorChangesTo = PHPIniFilePath;
             if (envVariableElement == null)
             {
                 _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", PHPDirectory);
             }
             else
             {
-                envVariableElement.Value = PHPDirectory;
+                // If PHPRC points to a valid directory with php.ini then use the same path for 
+                // FastCgi monitorChangesTo setting
+                string path = Path.Combine(envVariableElement.Value, "php.ini");
+                if (File.Exists(path))
+                {
+                    monitorChangesTo = path;
+                }
+                else
+                {
+                    // Otherwise set PHPRC to point to current PHP directory
+                    envVariableElement.Value = PHPDirectory;
+                }
             }
 
             // If monitorChangesTo is supported then set it
             if (_currentFastCgiApplication.MonitorChangesToExists())
             {
-                _currentFastCgiApplication.MonitorChangesTo = PHPIniFilePath;
+                _currentFastCgiApplication.MonitorChangesTo = monitorChangesTo;
             }
 
             _managementUnit.Update();

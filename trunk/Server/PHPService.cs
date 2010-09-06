@@ -124,8 +124,16 @@ namespace Web.Management.PHP
         {
             EnsureServerOrSiteConnection();
 
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            PHPConfigInfo result = phpConfig.GetPHPConfigInfo();
+            PHPConfigInfo result = null;
+            try
+            {
+                PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
+                result = phpConfig.GetPHPConfigInfo();
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
 
             return (result != null) ? result.GetData() : null;
         }

@@ -237,8 +237,16 @@ namespace Web.Management.PHP
 
         private void OnGetSettingsCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
-            UpdatePageItemsState(configInfo);
+            try
+            {
+                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
+                UpdatePageItemsState(configInfo);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+                UpdatePageItemsState(null);
+            }
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -387,7 +395,7 @@ namespace Web.Management.PHP
             }
             catch (Exception ex)
             {
-                DisplayErrorMessage(ex, Resources.ResourceManager); ;
+                DisplayErrorMessage(ex, Resources.ResourceManager);
             }
         }
 
