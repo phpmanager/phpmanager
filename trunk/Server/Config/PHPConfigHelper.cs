@@ -32,6 +32,8 @@ namespace Web.Management.PHP.Config
         private HandlerElement _currentPHPHandler;
         private HandlersCollection _handlersCollection;
         private FastCgiApplicationCollection _fastCgiApplicationCollection;
+        private string _phpIniFilePath;
+        private string _phpDirectory;
 
         public PHPConfigHelper(ManagementUnit mgmtUnit)
         {
@@ -39,7 +41,23 @@ namespace Web.Management.PHP.Config
             Initialize();
         }
 
-        private void ApplyRecommendedFastCgiSettings(string phpDirectory)
+        public string PHPDirectory
+        {
+            get
+            {
+                return _phpDirectory;
+            }
+        }
+
+        public string PHPIniFilePath
+        {
+            get
+            {
+                return _phpIniFilePath;
+            }
+        }
+
+        private void ApplyRecommendedFastCgiSettings()
         {
             // Set the handler mapping resource type to "File or Folder"
             _currentPHPHandler.ResourceType = ResourceType.Either;
@@ -60,18 +78,17 @@ namespace Web.Management.PHP.Config
             envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
             if (envVariableElement == null)
             {
-                _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", phpDirectory);
+                _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", PHPDirectory);
             }
             else
             {
-                envVariableElement.Value = phpDirectory;
+                envVariableElement.Value = PHPDirectory;
             }
 
             // If monitorChangesTo is supported then set it
             if (_currentFastCgiApplication.MonitorChangesToExists())
             {
-                string phpIniFilePath = Path.Combine(phpDirectory, "php.ini");
-                _currentFastCgiApplication.MonitorChangesTo = phpIniFilePath;
+                _currentFastCgiApplication.MonitorChangesTo = PHPIniFilePath;
             }
 
             _managementUnit.Update();
@@ -79,15 +96,13 @@ namespace Web.Management.PHP.Config
 
         private void ApplyRecommendedPHPIniSettings(PHPIniFile file, bool isNewRegistration)
         {
-            string phpDirectory = GetPHPDirectory();
             string handlerName = _currentPHPHandler.Name;
-            string phpIniPath = file.FileName;
 
             // Set the recommended php.ini settings
             List<PHPIniSetting> settings = new List<PHPIniSetting>();
 
             // Set extension directory path
-            string value = Path.Combine(phpDirectory, "ext");
+            string value = Path.Combine(PHPDirectory, "ext");
             settings.Add(new PHPIniSetting("extension_dir", value, "PHP"));
 
             // Set log_errors
@@ -136,7 +151,7 @@ namespace Web.Management.PHP.Config
             }
 
             file.AddOrUpdateSettings(settings);
-            file.Save(phpIniPath);
+            file.Save(PHPIniFilePath);
         }
 
         public string ApplyRecommendedSettings()
@@ -149,24 +164,21 @@ namespace Web.Management.PHP.Config
                 throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
             }
 
-            string phpDirectory = GetPHPDirectory();
-            string phpIniFilePath = Path.Combine(phpDirectory, "php.ini");
-            PHPIniFile phpIniFile = new PHPIniFile(phpIniFilePath);
-            phpIniFile.Parse();
-
             // Apply FastCGI settings if they are not already correct
-            if (ValidateFastCgiConfiguration(phpIniFile) != true)
+            if (ValidateFastCgiConfiguration() != true)
             {
-                ApplyRecommendedFastCgiSettings(phpDirectory);
+                ApplyRecommendedFastCgiSettings();
             }
 
+            PHPIniFile phpIniFile = new PHPIniFile(PHPIniFilePath);
+            phpIniFile.Parse();
             // Apply PHP settings only if they are not already correct.
             if (ValidatePHPConfiguration(phpIniFile) != true)
             {
                 // Make a copy of php.ini just in case
-                File.Copy(phpIniFilePath, phpIniFilePath + "-phpmanager", true);
+                File.Copy(PHPIniFilePath, PHPIniFilePath + "-phpmanager", true);
                 ApplyRecommendedPHPIniSettings(phpIniFile,  false /* This is an update to an existing PHP registration */);
-                result = phpIniFilePath + "-phpmanager";
+                result = PHPIniFilePath + "-phpmanager";
             }
 
             return result;
@@ -190,7 +202,7 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private static string EnsureTrailingBackslah(string str)
+        private static string EnsureTrailingBackslash(string str)
         {            
             if (!str.EndsWith(@"\", StringComparison.Ordinal))
             {
@@ -249,16 +261,15 @@ namespace Web.Management.PHP.Config
             configInfo.HandlerName = _currentPHPHandler.Name;
             configInfo.ScriptProcessor = _currentPHPHandler.ScriptProcessor;
             configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.ScriptProcessor);
-            string phpIniPath = GetPHPIniPath();
 
-            if (String.IsNullOrEmpty(phpIniPath))
+            if (String.IsNullOrEmpty(PHPIniFilePath))
             {
                 throw new FileNotFoundException("php.ini file does not exist");
             }
 
-            configInfo.PHPIniFilePath = phpIniPath;
+            configInfo.PHPIniFilePath = PHPIniFilePath;
 
-            PHPIniFile file = new PHPIniFile(phpIniPath);
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             PHPIniSetting setting = file.GetSetting("error_log");
@@ -274,7 +285,7 @@ namespace Web.Management.PHP.Config
             configInfo.EnabledExtCount = file.GetEnabledExtensionsCount();
             configInfo.InstalledExtCount = file.Extensions.Count;
 
-            configInfo.IsConfigOptimal = ValidateFastCgiConfiguration(file) && ValidatePHPConfiguration(file);
+            configInfo.IsConfigOptimal = ValidateFastCgiConfiguration() && ValidatePHPConfiguration(file);
 
             return configInfo;
         }
@@ -282,7 +293,7 @@ namespace Web.Management.PHP.Config
         private string GetPHPDirectory()
         {
             string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
-            return EnsureTrailingBackslah(phpDirectory);
+            return EnsureTrailingBackslash(phpDirectory);
         }
 
         private static string GetPHPExecutableVersion(string phpexePath)
@@ -291,14 +302,8 @@ namespace Web.Management.PHP.Config
             return fileVersionInfo.ProductVersion;
         }
 
-        public string GetPHPIniPath()
+        private string GetPHPIniFilePath()
         {
-            // PHP is not registered so we do not know the path to php.ini file
-            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
-            {
-                return String.Empty;
-            }
-
             // If PHPRC environment variable is set then use the path specified there.
             // Otherwise use the same path as where PHP executable is located.
             string directoryPath = String.Empty;
@@ -345,6 +350,8 @@ namespace Web.Management.PHP.Config
                 {
                     _currentPHPHandler = handler;
                     _currentFastCgiApplication = fastCgiApplication;
+                    _phpIniFilePath = GetPHPIniFilePath();
+                    _phpDirectory = GetPHPDirectory();
                 }
             }
         }
@@ -406,8 +413,8 @@ namespace Web.Management.PHP.Config
                 throw new FileNotFoundException("php-cgi.exe and php.exe do not exist");
             }
 
-            // Check for existense of php extensions directory
-            string phpDir = EnsureTrailingBackslah(Path.GetDirectoryName(phpexePath));
+            // Check for existence of php extensions directory
+            string phpDir = EnsureTrailingBackslash(Path.GetDirectoryName(phpexePath));
             string extDir = Path.Combine(phpDir, "ext");
             if (!Directory.Exists(extDir))
             {
@@ -500,7 +507,7 @@ namespace Web.Management.PHP.Config
             // specified php-cgi.exe executable.
             if (!isNewFastCgi || !isNewHandler)
             {
-                ApplyRecommendedFastCgiSettings(phpDir);
+                ApplyRecommendedFastCgiSettings();
             }
 
             // Make the recommended changes to php.ini file
@@ -527,9 +534,8 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private bool ValidateFastCgiConfiguration(PHPIniFile file)
+        private bool ValidateFastCgiConfiguration()
         {
-
             // Check if handler mapping is configured for "File or Folder"
             if (_currentPHPHandler.ResourceType != ResourceType.Either)
             {
@@ -572,7 +578,7 @@ namespace Web.Management.PHP.Config
             {
                 string path = _currentFastCgiApplication.MonitorChangesTo;
                 if (String.IsNullOrEmpty(path) || !File.Exists(path) || 
-                    !String.Equals(file.FileName, path, StringComparison.OrdinalIgnoreCase))
+                    !String.Equals(PHPIniFilePath, path, StringComparison.OrdinalIgnoreCase))
                 {
                     return false;
                 }
@@ -583,10 +589,8 @@ namespace Web.Management.PHP.Config
 
         private bool ValidatePHPConfiguration(PHPIniFile file)
         {
-            string phpDirectory = GetPHPDirectory();
-
             // Check if extention_dir is set to an absolute path
-            string expectedValue = Path.Combine(phpDirectory, "ext");
+            string expectedValue = Path.Combine(PHPDirectory, "ext");
             if (!IsExpectedSettingValue(file, "extension_dir", expectedValue))
             {
                 return false;

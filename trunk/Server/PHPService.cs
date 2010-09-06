@@ -133,7 +133,7 @@ namespace Web.Management.PHP
         private PHPIniFile GetPHPIniFile()
         {
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            string phpiniPath = phpConfig.GetPHPIniPath();
+            string phpiniPath = phpConfig.PHPIniFilePath;
 
             if (String.IsNullOrEmpty(phpiniPath))
             {
@@ -155,7 +155,7 @@ namespace Web.Management.PHP
             }
 
             PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            string phpiniPath = phpConfig.GetPHPIniPath();
+            string phpiniPath = phpConfig.PHPIniFilePath;
 
             if (String.IsNullOrEmpty(phpiniPath))
             {
