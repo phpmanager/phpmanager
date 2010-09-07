@@ -386,11 +386,7 @@ namespace Web.Management.PHP
         {
             try
             {
-                string phpIniCopyPath = Module.Proxy.ApplyRecommendedSettings();
-                if (!String.IsNullOrEmpty(phpIniCopyPath))
-                {
-                    ShowMessage(String.Format(CultureInfo.CurrentCulture, Resources.FixItDialogPHPIniCopy, phpIniCopyPath), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                Module.Proxy.ApplyRecommendedSettings();
                 Refresh();
             }
             catch (Exception ex)

@@ -22,9 +22,9 @@ namespace Web.Management.PHP
             Invoke("AddOrUpdateSettings", settings.GetData());
         }
 
-        internal string ApplyRecommendedSettings()
+        internal void ApplyRecommendedSettings()
         {
-            return (string)Invoke("ApplyRecommendedSettings");
+            Invoke("ApplyRecommendedSettings");
         }
 
         internal string CreatePHPInfo(string siteName)

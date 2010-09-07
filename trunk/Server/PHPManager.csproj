@@ -51,6 +51,9 @@
     <Compile Include="..\Client\Config\PHPConfigInfo.cs">
       <Link>Config\PHPConfigInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Client\Config\PHPConfigIssue.cs">
+      <Link>Config\PHPConfigIssue.cs</Link>
+    </Compile>
     <Compile Include="..\Client\Config\PHPIniFile.cs">
       <Link>Config\PHPIniFile.cs</Link>
     </Compile>
