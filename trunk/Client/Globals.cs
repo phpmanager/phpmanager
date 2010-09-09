@@ -26,6 +26,7 @@ namespace Web.Management.PHP {
         public const string ChangeVersionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
         public const string SelectSiteDomainOnlineHelp = "http://phpmanager.codeplex.com/documentation";
         public const string PHPInfoPageOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string RecommendedConfigOnlineHelp = "http://phpmanager.codeplex.com/documentation";
 
         public const string ErrorReportingOnlineHelp = "http://phpmanager.codeplex.com/documentation";
         public const string RuntimeLimitsOnlineHelp = "http://phpmanager.codeplex.com/documentation";

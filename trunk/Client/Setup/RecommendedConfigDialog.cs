@@ -274,9 +274,21 @@ namespace Web.Management.PHP.Setup
             {
                 _configIssuesListView.Focus();
                 _configIssuesListView.Items[0].Selected = true;
+                UpdateTaskForm();
             }
+        }
 
-            UpdateTaskForm();
+        protected override bool CanShowHelp
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        protected override void ShowHelp()
+        {
+            Helper.Browse(Globals.RecommendedConfigOnlineHelp);
         }
 
         private void OnConfigIssuesListViewSelectedIndexChanged(object sender, EventArgs e)

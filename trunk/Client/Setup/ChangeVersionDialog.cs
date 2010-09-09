@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client.Win32;
 
@@ -25,7 +26,6 @@ namespace Web.Management.PHP.Setup
 #endif
     {
         private PHPModule _module;
-        private bool _canAccept;
 
         private ManagementPanel _contentPanel;
         private Label _selectVersionLabel;
@@ -43,36 +43,11 @@ namespace Web.Management.PHP.Setup
             InitializeUI();
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            try
-            {
-                ArrayList versions = _module.Proxy.GetAllPHPVersions();
-                foreach (string[] version in versions)
-                {
-                    _versionComboBox.Items.Add(new PHPVersion(version[0], version[1], version[2]));
-                }
-                _versionComboBox.DisplayMember = "Version";
-                _versionComboBox.SelectedIndex = 0;
-                if (_versionComboBox.Items.Count > 0)
-                {
-                    _canAccept = true;
-                    UpdateTaskForm();
-                }
-            }
-            catch (Exception ex)
-            {
-                DisplayErrorMessage(ex, Resources.ResourceManager);
-            }
-        }
-
         protected override bool CanAccept
         {
             get
             {
-                return _canAccept;
+                return (_versionComboBox.Items.Count > 0);
             }
         }
 
@@ -166,6 +141,48 @@ namespace Web.Management.PHP.Setup
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
             Close();
+        }
+
+        private void OnGetVersionsDoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = _module.Proxy.GetAllPHPVersions();
+        }
+
+        private void OnGetVersionsDoWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            _versionComboBox.BeginUpdate();
+            _versionComboBox.SuspendLayout();
+
+            try
+            {
+                ArrayList versions = e.Result as ArrayList;
+                foreach (string[] version in versions)
+                {
+                    _versionComboBox.Items.Add(new PHPVersion(version[0], version[1], version[2]));
+                }
+                _versionComboBox.DisplayMember = "Version";
+                _versionComboBox.SelectedIndex = 0;
+                if (_versionComboBox.Items.Count > 0)
+                {
+                    UpdateTaskForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
+            finally
+            {
+                _versionComboBox.ResumeLayout();
+                _versionComboBox.EndUpdate();
+            }
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            StartAsyncTask(OnGetVersionsDoWork, OnGetVersionsDoWorkCompleted);
         }
 
         protected override void ShowHelp()

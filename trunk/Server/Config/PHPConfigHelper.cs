@@ -116,7 +116,7 @@ namespace Web.Management.PHP.Config
             List<PHPIniSetting> settings = new List<PHPIniSetting>();
 
             // Set extension directory path
-            string value = Path.Combine(PHPDirectory, "ext");
+            string value = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
             settings.Add(new PHPIniSetting("extension_dir", value, "PHP"));
 
             // Set log_errors
@@ -649,6 +649,7 @@ namespace Web.Management.PHP.Config
                                                                     expectedValue,
                                                                     "ConfigIssueExtensionDirIncorrect",
                                                                     "ConfigIssueExtensionDirRecommend");
+                    configIssues.Add(configIssue);
                 }
             }
 
