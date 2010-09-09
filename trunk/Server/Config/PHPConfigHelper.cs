@@ -543,7 +543,7 @@ namespace Web.Management.PHP.Config
             }
 
             // Check if index.php is set as a default document and move it to the top of the list
-            iisUpdateHappened = ApplyRecommendedDefaultDocument(false /* do not commit the changes yet */);
+            iisUpdateHappened = iisUpdateHappened || ApplyRecommendedDefaultDocument(false /* do not commit the changes yet */);
 
             if (iisUpdateHappened)
             {
