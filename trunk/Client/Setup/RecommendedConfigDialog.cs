@@ -104,7 +104,7 @@ namespace Web.Management.PHP.Setup
             this._configIssuesListView.MultiSelect = false;
             this._configIssuesListView.Name = "_configIssuesListView";
             this._configIssuesListView.Size = new System.Drawing.Size(509, 130);
-            this._configIssuesListView.TabIndex = 0;
+            this._configIssuesListView.TabIndex = 1;
             this._configIssuesListView.UseCompatibleStateImageBehavior = false;
             this._configIssuesListView.View = System.Windows.Forms.View.Details;
             this._configIssuesListView.SelectedIndexChanged += new System.EventHandler(this.OnConfigIssuesListViewSelectedIndexChanged);
@@ -131,7 +131,7 @@ namespace Web.Management.PHP.Setup
             this._configIssueLabel.Location = new System.Drawing.Point(0, 6);
             this._configIssueLabel.Name = "_configIssueLabel";
             this._configIssueLabel.Size = new System.Drawing.Size(180, 13);
-            this._configIssueLabel.TabIndex = 1;
+            this._configIssueLabel.TabIndex = 0;
             this._configIssueLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogDetectedIssues;
             // 
             // _recommendationLabel
@@ -141,7 +141,7 @@ namespace Web.Management.PHP.Setup
             this._recommendationLabel.Location = new System.Drawing.Point(0, 246);
             this._recommendationLabel.Name = "_recommendationLabel";
             this._recommendationLabel.Size = new System.Drawing.Size(108, 13);
-            this._recommendationLabel.TabIndex = 2;
+            this._recommendationLabel.TabIndex = 4;
             this._recommendationLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogRecommendation;
             // 
             // _recommendationTextBox
@@ -150,9 +150,8 @@ namespace Web.Management.PHP.Setup
             this._recommendationTextBox.Multiline = true;
             this._recommendationTextBox.Name = "_recommendationTextBox";
             this._recommendationTextBox.ReadOnly = true;
-            this._recommendationTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._recommendationTextBox.Size = new System.Drawing.Size(509, 60);
-            this._recommendationTextBox.TabIndex = 3;
+            this._recommendationTextBox.TabIndex = 5;
             // 
             // _issueDescriptionLabel
             // 
@@ -161,7 +160,7 @@ namespace Web.Management.PHP.Setup
             this._issueDescriptionLabel.Location = new System.Drawing.Point(0, 173);
             this._issueDescriptionLabel.Name = "_issueDescriptionLabel";
             this._issueDescriptionLabel.Size = new System.Drawing.Size(107, 13);
-            this._issueDescriptionLabel.TabIndex = 4;
+            this._issueDescriptionLabel.TabIndex = 2;
             this._issueDescriptionLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogIssueDescription;
             // 
             // _issueDescriptionTextBox
@@ -170,9 +169,8 @@ namespace Web.Management.PHP.Setup
             this._issueDescriptionTextBox.Multiline = true;
             this._issueDescriptionTextBox.Name = "_issueDescriptionTextBox";
             this._issueDescriptionTextBox.ReadOnly = true;
-            this._issueDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._issueDescriptionTextBox.Size = new System.Drawing.Size(509, 41);
-            this._issueDescriptionTextBox.TabIndex = 5;
+            this._issueDescriptionTextBox.TabIndex = 3;
             // 
             // RecommendedConfigDialog
             // 

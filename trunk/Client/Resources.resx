@@ -488,10 +488,10 @@
     <value>Current value</value>
   </data>
   <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
-    <value>Recommendation:</value>
+    <value>&amp;Recommendation:</value>
   </data>
   <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
-    <value>Detected configuration issues:</value>
+    <value>&amp;Detected configuration issues:</value>
   </data>
   <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
     <value>Recommended value</value>
@@ -599,6 +599,15 @@
     <value>The "session.save_path" sets the path to the directory where PHP session data will be stored. It is recommended to use an absolute path to the directory that is writable by the web server.</value>
   </data>
   <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
-    <value>Issue description:</value>
+    <value>&amp;Issue description:</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotSet" xml:space="preserve">
+    <value>index.php is not set as a default document.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
+    <value>Majority of PHP applications use index.php as the default file name for web requests. It is recommended to add index.php to the list of default documents in IIS and ensure that it is the first in the list.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
+    <value>index.php is not the first in the list of IIS default documents.</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -9,22 +9,21 @@
 
 using Microsoft.Web.Administration;
 
-namespace Web.Management.PHP.Handlers
+namespace Web.Management.PHP.DefaultDocument
 {
 
-    internal class HandlersSection : ConfigurationSection
+    internal class FileElement : ConfigurationElement
     {
-        private HandlersCollection _handlers;
 
-        public HandlersCollection Handlers
+        public string Value
         {
             get
             {
-                if (this._handlers == null)
-                {
-                    this._handlers = (HandlersCollection)base.GetCollection(typeof(HandlersCollection));
-                }
-                return this._handlers;
+                return (string)base["value"];
+            }
+            set
+            {
+                base["value"] = value;
             }
         }
     }

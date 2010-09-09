@@ -394,6 +394,33 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to index.php is not the first in the list of IIS default documents..
+        /// </summary>
+        internal static string ConfigIssueDefaultDocumentNotFirst {
+            get {
+                return ResourceManager.GetString("ConfigIssueDefaultDocumentNotFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to index.php is not set as a default document..
+        /// </summary>
+        internal static string ConfigIssueDefaultDocumentNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueDefaultDocumentNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Majority of PHP applications use index.php as the default file name for web requests. It is recommended to add index.php to the list of default documents in IIS and ensure that it is the first in the list..
+        /// </summary>
+        internal static string ConfigIssueDefaultDocumentRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueDefaultDocumentRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;error_log&quot; is using a non-existent directory..
         /// </summary>
         internal static string ConfigIssueErrorLogNotCorrect {
@@ -1190,7 +1217,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detected configuration issues:.
+        ///   Looks up a localized string similar to &amp;Detected configuration issues:.
         /// </summary>
         internal static string RecommendConfigDialogDetectedIssues {
             get {
@@ -1199,7 +1226,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Issue description:.
+        ///   Looks up a localized string similar to &amp;Issue description:.
         /// </summary>
         internal static string RecommendConfigDialogIssueDescription {
             get {
@@ -1208,7 +1235,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recommendation:.
+        ///   Looks up a localized string similar to &amp;Recommendation:.
         /// </summary>
         internal static string RecommendConfigDialogRecommendation {
             get {

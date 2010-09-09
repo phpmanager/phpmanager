@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
+using Web.Management.PHP.DefaultDocument;
 using Web.Management.PHP.FastCgi;
 using Web.Management.PHP.Handlers;
 
@@ -32,6 +33,7 @@ namespace Web.Management.PHP.Config
         private HandlerElement _currentPHPHandler;
         private HandlersCollection _handlersCollection;
         private FastCgiApplicationCollection _fastCgiApplicationCollection;
+        private FilesCollection _defaultDocumentCollection;
         private string _phpIniFilePath;
         private string _phpDirectory;
 
@@ -55,6 +57,33 @@ namespace Web.Management.PHP.Config
             {
                 return _phpIniFilePath;
             }
+        }
+
+        private bool ApplyRecommendedDefaultDocument(bool commitChanges)
+        {
+            bool updateHappened = false;
+
+            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            if (fileElement == null)
+            {
+                fileElement = _defaultDocumentCollection.CreateElement();
+                fileElement.Value = "index.php";
+                _defaultDocumentCollection.AddAt(0, fileElement);
+                updateHappened = true;
+            }
+            else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
+            {
+                CopyIneritedDefaultDocs();
+                MoveIndexPhpOnTop();
+                updateHappened = true;
+            }
+
+            if (commitChanges && updateHappened)
+            {
+                _managementUnit.Update();
+            }
+
+            return updateHappened;
         }
 
         private void ApplyRecommendedFastCgiSettings()
@@ -175,9 +204,28 @@ namespace Web.Management.PHP.Config
             {
                 throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
             }
-            
+
+            ApplyRecommendedDefaultDocument(false /* Do not commit the changes yet. Next function will commit the changes anyway */);
             ApplyRecommendedFastCgiSettings();
             ApplyRecommendedPHPIniSettings(false /* This is an update to an existing PHP registration */);
+        }
+
+        private void CopyIneritedDefaultDocs()
+        {
+            if (_managementUnit.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            {
+                return;
+            }
+
+            FileElement[] list = new FileElement[_defaultDocumentCollection.Count];
+            ((ICollection)_defaultDocumentCollection).CopyTo(list, 0);
+
+            _defaultDocumentCollection.Clear();
+
+            foreach (FileElement f in list)
+            {
+                _defaultDocumentCollection.AddCopy(f);
+            }
         }
 
         private void CopyInheritedHandlers()
@@ -331,10 +379,16 @@ namespace Web.Management.PHP.Config
             HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
             _handlersCollection = handlersSection.Handlers;
 
+            // Get the Default document collection
+            DefaultDocumentSection defaultDocumentSection = (DefaultDocumentSection)config.GetSection("system.webServer/defaultDocument", typeof(DefaultDocumentSection));
+            _defaultDocumentCollection = defaultDocumentSection.Files;
+
             // Get the FastCgi application collection
             Configuration appHostConfig = _managementUnit.ServerManager.GetApplicationHostConfiguration();
             FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
             _fastCgiApplicationCollection = fastCgiSection.Applications;
+
+
 
             // Find the currently active PHP handler and FastCGI application
             HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
@@ -380,6 +434,15 @@ namespace Web.Management.PHP.Config
             int activeHandlerIndex = _handlersCollection.IndexOf(activeHandlerElement);
             _handlersCollection.Remove(handlerElement);
             return _handlersCollection.AddCopyAt(activeHandlerIndex, handlerElement);
+        }
+
+        private FileElement MoveIndexPhpOnTop()
+        {
+            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            Debug.Assert(fileElement != null);
+
+            _defaultDocumentCollection.Remove(fileElement);
+            return _defaultDocumentCollection.AddCopyAt(0, fileElement);
         }
 
         public void RegisterPHPWithIIS(string path)
@@ -479,6 +542,9 @@ namespace Web.Management.PHP.Config
                 iisUpdateHappened = true;
             }
 
+            // Check if index.php is set as a default document and move it to the top of the list
+            iisUpdateHappened = ApplyRecommendedDefaultDocument(false /* do not commit the changes yet */);
+
             if (iisUpdateHappened)
             {
                 _managementUnit.Update();
@@ -535,6 +601,27 @@ namespace Web.Management.PHP.Config
         {
 
             RemoteObjectCollection<PHPConfigIssue> configIssues = new RemoteObjectCollection<PHPConfigIssue>();
+
+            // Check if index.php is set as a default document
+            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            if (fileElement == null)
+            {
+                PHPConfigIssue configIssue = new PHPConfigIssue("Default document",
+                                                                _defaultDocumentCollection[0].Value,
+                                                                "index.php",
+                                                                "ConfigIssueDefaultDocumentNotSet",
+                                                                "ConfigIssueDefaultDocumentRecommend");
+                configIssues.Add(configIssue);
+            }
+            else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
+            {
+                PHPConfigIssue configIssue = new PHPConfigIssue("Default document",
+                                                                _defaultDocumentCollection[0].Value,
+                                                                "index.php",
+                                                                "ConfigIssueDefaultDocumentNotFirst",
+                                                                "ConfigIssueDefaultDocumentRecommend");
+                configIssues.Add(configIssue);
+            }
 
             #region FastCGI configuration
 

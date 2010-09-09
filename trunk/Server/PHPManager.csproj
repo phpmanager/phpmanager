@@ -44,7 +44,6 @@
       <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +62,9 @@
     <Compile Include="..\SharedAssembyInfo.cs">
       <Link>SharedAssembyInfo.cs</Link>
     </Compile>
+    <Compile Include="DefaultDocument\DefaultDocumentSection.cs" />
+    <Compile Include="DefaultDocument\FileElement.cs" />
+    <Compile Include="DefaultDocument\FilesCollection.cs" />
     <Compile Include="FastCgi\ApplicationCollection.cs" />
     <Compile Include="FastCgi\EnvironmentVariableElement.cs" />
     <Compile Include="FastCgi\EnvironmentVariablesCollection.cs" />
