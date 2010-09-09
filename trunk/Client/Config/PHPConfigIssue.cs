@@ -7,32 +7,32 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
-
 namespace Web.Management.PHP.Config
 {
 
     internal class PHPConfigIssue : IRemoteObject
     {
         private object[] _data;
-        private const int Size = 4;
+        private const int Size = 5;
         private const int IndexName = 0;
         private const int IndexCurrentValue = 1;
         private const int IndexRecommendeValue = 2;
-        private const int IndexDescription = 3;
+        private const int IndexIssueDescription = 3;
+        private const int IndexRecommendation = 4;
 
         public PHPConfigIssue()
         {
             _data = new object[Size];
         }
 
-        public PHPConfigIssue(string name, string currentValue, string recommendedValue, string description)
+        public PHPConfigIssue(string name, string currentValue, string recommendedValue, string issueDescription, string recommendation)
         {
             _data = new object[Size];
             SettingName = name;
             CurrentValue = currentValue;
             RecommendedValue = recommendedValue;
-            Description = description;
+            IssueDescription = issueDescription;
+            Recommendation = recommendation;
         }
 
         public string CurrentValue
@@ -47,15 +47,15 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        public string Description
+        public string IssueDescription
         {
             get
             {
-                return (string)_data[IndexDescription];
+                return (string)_data[IndexIssueDescription];
             }
             set
             {
-                _data[IndexDescription] = value;
+                _data[IndexIssueDescription] = value;
             }
         }
 
@@ -80,6 +80,18 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexName] = value;
+            }
+        }
+
+        public string Recommendation
+        {
+            get
+            {
+                return (string)_data[IndexRecommendation];
+            }
+            set
+            {
+                _data[IndexRecommendation] = value;
             }
         }
 

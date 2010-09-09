@@ -137,7 +137,7 @@ namespace Web.Management.PHP
             return GetEnumerator();
         }
 
-        void IRemoteObject.SetData(object o)
+        public void SetData(object o)
         {
             Initialize((ArrayList)o);
         }

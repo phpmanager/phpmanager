@@ -472,22 +472,133 @@
   <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WarningFixIt" xml:space="preserve">
-    <value>Fix it</value>
-  </data>
-  <data name="WarningIgnore" xml:space="preserve">
-    <value>Ignore</value>
-  </data>
-  <data name="WarningOr" xml:space="preserve">
-    <value> or </value>
+  <data name="WarningViewRecommendations" xml:space="preserve">
+    <value>View recommendations.</value>
   </data>
   <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
     <value>IIS and PHP are not configured optimally on this machine. </value>
   </data>
-  <data name="WarningQuestionMark" xml:space="preserve">
-    <value>?</value>
-  </data>
   <data name="FixItDialogPHPIniCopy" xml:space="preserve">
     <value>All the recommended IIS and PHP settings have been applied. The previous version of php.ini file has been saved in {0}.</value>
+  </data>
+  <data name="ConfigIssueNone" xml:space="preserve">
+    <value>&lt;Not set&gt;</value>
+  </data>
+  <data name="RecommendConfigDialogCurrentValue" xml:space="preserve">
+    <value>Current value</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
+    <value>Recommendation:</value>
+  </data>
+  <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
+    <value>Detected configuration issues:</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
+    <value>Recommended value</value>
+  </data>
+  <data name="RecommendConfigDialogSettingName" xml:space="preserve">
+    <value>Setting name</value>
+  </data>
+  <data name="RecommendConfigDialogTitle" xml:space="preserve">
+    <value>Configuration Recommendations</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotCorrect" xml:space="preserve">
+    <value>The PHP directive "cgi.force_redirect" is not set to "0".</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotSet" xml:space="preserve">
+    <value>The PHP directive "cgi.force_redirect" is not set.</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectRecommend" xml:space="preserve">
+    <value>It is recommended to turn "cgi.force_redirect" off when PHP is run on IIS.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotCorrect" xml:space="preserve">
+    <value>The PHP directive "cgi.fix_pathinfo" is not set to "1".</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotSet" xml:space="preserve">
+    <value>The PHP directive "cgi.fix_pathinfo" is not set.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoRecommend" xml:space="preserve">
+    <value>This setting provides real PATH_INFO/ PATH_TRANSLATED support for CGI and FastCGI. It is recommended to enable this support by setting it to "1".</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotCorrect" xml:space="preserve">
+    <value>The PHP directive "error_log" is using a non-existent directory.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotSet" xml:space="preserve">
+    <value>The PHP directive "error_log" is not set.</value>
+  </data>
+  <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
+    <value>The "error_log" specifies the name of the file where script errors should be logged to. It is recommended to set this to an absolute file path and the file should be writable by the web server.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
+    <value>The PHP directive "extension_dir" does not contain an absolute file path.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirNotSet" xml:space="preserve">
+    <value>The PHP directive "extension_dir" is not set.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
+    <value>The "extension_dir" is used to specify a directory path in which PHP should look for dynamically loadable extensions. It is recommended to use absolute directory path for this setting.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
+    <value>The PHP directive "fastcgi.impersonate" is not set to "1".</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotSet" xml:space="preserve">
+    <value>The PHP directive "fastcgi.impersonate" is not set.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
+    <value>FastCGI supports the ability to impersonate security tokens of the calling client. This allows IIS to define the security context that the request runs under. It is recommended to enable impersonation by setting this directive to "1".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
+    <value>The PHP directive "log_errors" directive is not set to "On".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
+    <value>The PHP directive "log_errors" directive is not set.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
+    <value>The "log_errors" controls whether PHP logs errors and warning to a log file. It is recommended to set this to "On".</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
+    <value>The FastCGI setting monitorChangesTo is pointing to a wrong file.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesNotSet" xml:space="preserve">
+    <value>The FastCGI setting monitorChangesTo is not set.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
+    <value>The monitorChangesTo setting is used to configure FastCGI to monitor a file so that when file is changed the FastCGI processes are recycled. It is recommended to set this to point to php.ini file that is loaded by PHP. That way the configuration changes to PHP will take effect immediately after the php.ini is updated.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
+    <value>The value for PHP_FCGI_MAX_REQUESTS is smaller than the value for FastCGI instanceMaxRequests setting.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
+    <value>The environment variable PHP_FCGI_MAX_REQUESTS is not set for PHP processes.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
+    <value>The PHP_FCGI_MAX_REQUESTS environment variable is used to specify the number of requests that PHP executable will handle before it gets recycled. It is recommended that the value for this variable is greater or equal to the value for FastCgi instanceMaxRequests setting. That way the IIS FastCGI process recycling logic will not conflict with PHP recycling behavior.</value>
+  </data>
+  <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
+    <value>The PHPRC environment variable points to a directory that does not contain php.ini file.</value>
+  </data>
+  <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
+    <value>The PHPRC environment variable is not set for PHP processes.</value>
+  </data>
+  <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
+    <value>The PHPRC environment variable is used to specify the directory that contains a PHP configuration file php.ini. PHP will load that configuration file during startup. It is recommended to always set this environment variable per PHP registration, thus avoiding situations when PHP loads wrong configuration file.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
+    <value>The resourceType attribute of an IIS handler for PHP is not set to "Either".</value>
+  </data>
+  <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
+    <value>The IIS handler attribute resourceType is used to specify a condition when handler will be invoked for a web request. When configuring the handler for PHP, it is recommended to set this attribute to "Either" for security reasons. That way the handler will be invoked only if the requested URL maps to a file or a folder on the file system.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
+    <value>The PHP directive "session.save_path" uses a non-existent directory.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
+    <value>The PHP directive "session.save_path" is not set.</value>
+  </data>
+  <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
+    <value>The "session.save_path" sets the path to the directory where PHP session data will be stored. It is recommended to use an absolute path to the directory that is writable by the web server.</value>
+  </data>
+  <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
+    <value>Issue description:</value>
   </data>
 </root>

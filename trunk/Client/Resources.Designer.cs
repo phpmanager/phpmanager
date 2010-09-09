@@ -339,6 +339,303 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;cgi.force_redirect&quot; is not set to &quot;0&quot;..
+        /// </summary>
+        internal static string ConfigIssueCgiForceRedirectNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiForceRedirectNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;cgi.force_redirect&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueCgiForceRedirectNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiForceRedirectNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is recommended to turn &quot;cgi.force_redirect&quot; off when PHP is run on IIS..
+        /// </summary>
+        internal static string ConfigIssueCgiForceRedirectRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiForceRedirectRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;cgi.fix_pathinfo&quot; is not set to &quot;1&quot;..
+        /// </summary>
+        internal static string ConfigIssueCgiPathInfoNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiPathInfoNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;cgi.fix_pathinfo&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueCgiPathInfoNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiPathInfoNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This setting provides real PATH_INFO/ PATH_TRANSLATED support for CGI and FastCGI. It is recommended to enable this support by setting it to &quot;1&quot;..
+        /// </summary>
+        internal static string ConfigIssueCgiPathInfoRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueCgiPathInfoRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;error_log&quot; is using a non-existent directory..
+        /// </summary>
+        internal static string ConfigIssueErrorLogNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueErrorLogNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;error_log&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueErrorLogNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueErrorLogNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;error_log&quot; specifies the name of the file where script errors should be logged to. It is recommended to set this to an absolute file path and the file should be writable by the web server..
+        /// </summary>
+        internal static string ConfigIssueErrorLogRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueErrorLogRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;extension_dir&quot; does not contain an absolute file path..
+        /// </summary>
+        internal static string ConfigIssueExtensionDirIncorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueExtensionDirIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;extension_dir&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueExtensionDirNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueExtensionDirNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;extension_dir&quot; is used to specify a directory path in which PHP should look for dynamically loadable extensions. It is recommended to use absolute directory path for this setting..
+        /// </summary>
+        internal static string ConfigIssueExtensionDirRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueExtensionDirRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;fastcgi.impersonate&quot; is not set to &quot;1&quot;..
+        /// </summary>
+        internal static string ConfigIssueFastCgiImpersonateNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueFastCgiImpersonateNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;fastcgi.impersonate&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueFastCgiImpersonateNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueFastCgiImpersonateNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FastCGI supports the ability to impersonate security tokens of the calling client. This allows IIS to define the security context that the request runs under. It is recommended to enable impersonation by setting this directive to &quot;1&quot;..
+        /// </summary>
+        internal static string ConfigIssueFastCgiImpersonateRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueFastCgiImpersonateRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; directive is not set to &quot;On&quot;..
+        /// </summary>
+        internal static string ConfigIssueLogErrorsNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueLogErrorsNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; directive is not set..
+        /// </summary>
+        internal static string ConfigIssueLogErrorsNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueLogErrorsNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;log_errors&quot; controls whether PHP logs errors and warning to a log file. It is recommended to set this to &quot;On&quot;..
+        /// </summary>
+        internal static string ConfigIssueLogErrorsRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueLogErrorsRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The FastCGI setting monitorChangesTo is pointing to a wrong file..
+        /// </summary>
+        internal static string ConfigIssueMonitorChangesIncorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueMonitorChangesIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The FastCGI setting monitorChangesTo is not set..
+        /// </summary>
+        internal static string ConfigIssueMonitorChangesNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueMonitorChangesNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The monitorChangesTo setting is used to configure FastCGI to monitor a file so that when file is changed the FastCGI processes are recycled. It is recommended to set this to point to php.ini file that is loaded by PHP. That way the configuration changes to PHP will take effect immediately after the php.ini is updated..
+        /// </summary>
+        internal static string ConfigIssueMonitorChangesRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueMonitorChangesRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Not set&gt;.
+        /// </summary>
+        internal static string ConfigIssueNone {
+            get {
+                return ResourceManager.GetString("ConfigIssueNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value for PHP_FCGI_MAX_REQUESTS is smaller than the value for FastCGI instanceMaxRequests setting..
+        /// </summary>
+        internal static string ConfigIssuePHPMaxRequestsIncorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPMaxRequestsIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment variable PHP_FCGI_MAX_REQUESTS is not set for PHP processes..
+        /// </summary>
+        internal static string ConfigIssuePHPMaxRequestsNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPMaxRequestsNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP_FCGI_MAX_REQUESTS environment variable is used to specify the number of requests that PHP executable will handle before it gets recycled. It is recommended that the value for this variable is greater or equal to the value for FastCgi instanceMaxRequests setting. That way the IIS FastCGI process recycling logic will not conflict with PHP recycling behavior..
+        /// </summary>
+        internal static string ConfigIssuePHPMaxRequestsRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPMaxRequestsRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHPRC environment variable points to a directory that does not contain php.ini file..
+        /// </summary>
+        internal static string ConfigIssuePHPRCFileNotExists {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPRCFileNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHPRC environment variable is not set for PHP processes..
+        /// </summary>
+        internal static string ConfigIssuePHPRCNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPRCNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHPRC environment variable is used to specify the directory that contains a PHP configuration file php.ini. PHP will load that configuration file during startup. It is recommended to always set this environment variable per PHP registration, thus avoiding situations when PHP loads wrong configuration file..
+        /// </summary>
+        internal static string ConfigIssuePHPRCRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssuePHPRCRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resourceType attribute of an IIS handler for PHP is not set to &quot;Either&quot;..
+        /// </summary>
+        internal static string ConfigIssueResourceTypeIncorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueResourceTypeIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IIS handler attribute resourceType is used to specify a condition when handler will be invoked for a web request. When configuring the handler for PHP, it is recommended to set this attribute to &quot;Either&quot; for security reasons. That way the handler will be invoked only if the requested URL maps to a file or a folder on the file system..
+        /// </summary>
+        internal static string ConfigIssueResourceTypeRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueResourceTypeRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;session.save_path&quot; uses a non-existent directory..
+        /// </summary>
+        internal static string ConfigIssueSessionPathNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueSessionPathNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;session.save_path&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueSessionPathNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueSessionPathNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;session.save_path&quot; sets the path to the directory where PHP session data will be stored. It is recommended to use an absolute path to the directory that is writable by the web server..
+        /// </summary>
+        internal static string ConfigIssueSessionPathRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueSessionPathRecommend", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap Delete16 {
             get {
                 object obj = ResourceManager.GetObject("Delete16", resourceCulture);
@@ -884,6 +1181,69 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current value.
+        /// </summary>
+        internal static string RecommendConfigDialogCurrentValue {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogCurrentValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detected configuration issues:.
+        /// </summary>
+        internal static string RecommendConfigDialogDetectedIssues {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogDetectedIssues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issue description:.
+        /// </summary>
+        internal static string RecommendConfigDialogIssueDescription {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogIssueDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommendation:.
+        /// </summary>
+        internal static string RecommendConfigDialogRecommendation {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended value.
+        /// </summary>
+        internal static string RecommendConfigDialogRecommendedValue {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogRecommendedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting name.
+        /// </summary>
+        internal static string RecommendConfigDialogSettingName {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration Recommendations.
+        /// </summary>
+        internal static string RecommendConfigDialogTitle {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Example: C:\PHP\php-cgi.exe.
         /// </summary>
         internal static string RegisterPHPDialogExample {
@@ -1116,33 +1476,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fix it.
-        /// </summary>
-        internal static string WarningFixIt {
-            get {
-                return ResourceManager.GetString("WarningFixIt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ignore.
-        /// </summary>
-        internal static string WarningIgnore {
-            get {
-                return ResourceManager.GetString("WarningIgnore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  or .
-        /// </summary>
-        internal static string WarningOr {
-            get {
-                return ResourceManager.GetString("WarningOr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to IIS and PHP are not configured optimally on this machine. .
         /// </summary>
         internal static string WarningPHPConfigNotOptimal {
@@ -1152,11 +1485,11 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ?.
+        ///   Looks up a localized string similar to View recommendations..
         /// </summary>
-        internal static string WarningQuestionMark {
+        internal static string WarningViewRecommendations {
             get {
-                return ResourceManager.GetString("WarningQuestionMark", resourceCulture);
+                return ResourceManager.GetString("WarningViewRecommendations", resourceCulture);
             }
         }
     }

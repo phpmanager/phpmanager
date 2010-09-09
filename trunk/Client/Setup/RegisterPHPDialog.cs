@@ -129,8 +129,9 @@ namespace Web.Management.PHP.Setup
             this.Controls.Add(this._dirPathLabel);
             this.Name = "RegisterPHPDialog";
             this.ResumeLayout(false);
+#if VSDesigner
             this.PerformLayout();
-
+#endif
         }
 
         public void InitializeUI()

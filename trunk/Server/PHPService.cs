@@ -120,6 +120,15 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
+        public object GetConfigIssues()
+        {
+            PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+            RemoteObjectCollection<PHPConfigIssue> configIssues = configHelper.ValidateConfiguration();
+
+            return (configIssues != null) ? configIssues.GetData() : null;
+        }
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPConfigInfo()
         {
             EnsureServerOrSiteConnection();

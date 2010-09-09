@@ -41,6 +41,11 @@ namespace Web.Management.PHP.Setup
             _module = module;
             InitializeComponent();
             InitializeUI();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
 
             try
             {
@@ -61,7 +66,6 @@ namespace Web.Management.PHP.Setup
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
-
         }
 
         protected override bool CanAccept
@@ -124,8 +128,9 @@ namespace Web.Management.PHP.Setup
             this.Controls.Add(this._selectVersionLabel);
             this.Name = "ChangeVersionDialog";
             this.ResumeLayout(false);
+#if VSDesigner
             this.PerformLayout();
-
+#endif
         }
 
         private void InitializeUI()

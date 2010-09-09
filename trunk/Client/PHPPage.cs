@@ -31,8 +31,6 @@ namespace Web.Management.PHP
         private const int IndexLimitsTask = 1;
         private const int IndexAllSettingsTask = 2;
         private const int IndexAllExtensionsTask = 0;
-        private const int IndexFixItLink = 0;
-        private const int IndexIgnoreLink = 1;
 
         // Summary labels
         private Label _enabledExtLabel;
@@ -50,13 +48,6 @@ namespace Web.Management.PHP
         private PHPPageItemControl _phpExtensionItem;
         private PHPPageItemControl _phpSettingsItem;
         private PHPPageItemControl _phpSetupItem;
-
-        // The warning can be ignored for the duration of time while IIS manager is opened
-        // This is more reliable than saving it in user preferences. If this is stored in
-        // a preference store and then user registers another PHP version or changes it on
-        // a different config scope, it may happen that this new invalid configuration is 
-        // ignored forever.
-        private static bool _ignoreWarning;
 
         private new PHPModule Module
         {
@@ -349,16 +340,14 @@ namespace Web.Management.PHP
             NavigateToPHPInfo();
         }
 
-        private void OnWarningLinksClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OnWarningLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            int linkData = (int)e.Link.LinkData;
-            if (linkData == IndexFixItLink)
+            using (Setup.RecommendedConfigDialog dlg = new Setup.RecommendedConfigDialog(Module))
             {
-                PerformFixItAction();
-            }
-            else if (linkData == IndexIgnoreLink)
-            {
-                PerformIgnoreAction();
+                if (ShowDialog(dlg) == DialogResult.OK)
+                {
+                    Refresh();
+                }
             }
         }
 
@@ -380,25 +369,6 @@ namespace Web.Management.PHP
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
-        }
-
-        private void PerformFixItAction()
-        {
-            try
-            {
-                Module.Proxy.ApplyRecommendedSettings();
-                Refresh();
-            }
-            catch (Exception ex)
-            {
-                DisplayErrorMessage(ex, Resources.ResourceManager);
-            }
-        }
-
-        private void PerformIgnoreAction()
-        {
-            _ignoreWarning = true;
-            Refresh();
         }
 
         private static void PrepareOpenFileLink(LinkLabel linkLabel, string path, bool showLink)
@@ -434,19 +404,15 @@ namespace Web.Management.PHP
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
             sb.Append(Resources.WarningPHPConfigNotOptimal);
-            int fixItLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
-            sb.Append(Resources.WarningFixIt + Resources.WarningOr);
-            int ignoreLinkStart = fixItLinkStart + Resources.WarningFixIt.Length + Resources.WarningOr.Length;
-            sb.Append(Resources.WarningIgnore + Resources.WarningQuestionMark);
+            int viewRecommendationsLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
+            sb.Append(Resources.WarningViewRecommendations);
             
             result.Text = sb.ToString();
             
-            LinkLabel.Link fixItLink = new LinkLabel.Link(fixItLinkStart, Resources.WarningFixIt.Length, IndexFixItLink);
+            LinkLabel.Link fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRecommendations.Length, 0);
             result.Links.Add(fixItLink);
-            LinkLabel.Link ignoreLink = new LinkLabel.Link(ignoreLinkStart, Resources.WarningIgnore.Length, IndexIgnoreLink);
-            result.Links.Add(ignoreLink);
 
-            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnWarningLinksClicked);
+            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnWarningLinkClicked);
             
             return result;
         }
@@ -463,7 +429,6 @@ namespace Web.Management.PHP
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
                     Refresh();
-                    return;
                 }
             }
         }
@@ -475,7 +440,6 @@ namespace Web.Management.PHP
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
                     Refresh();
-                    return;
                 }
             }
         }
@@ -500,7 +464,6 @@ namespace Web.Management.PHP
             // Show warning about non optimal configuration if ...
             bool displayWarning = isPHPSetup && // ... PHP is setup and ...
                                   !configInfo.IsConfigOptimal && // ... PHP configuration is not optimal and ...
-                                  !_ignoreWarning && // ... warning is not ignored and ...
                                   Connection.IsUserServerAdministrator; // ... user is a server administrator.
             _phpSetupItem.ShowWarning(displayWarning);
             _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotRegistered;

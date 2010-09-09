@@ -186,6 +186,9 @@ namespace Web.Management.PHP.Setup
             this.Controls.Add(this._urlsComboBox);
             this.Name = "SelectSiteDomainDialog";
             this.ResumeLayout(false);
+#if VSDesigner
+            this.PerformLayout();
+#endif
         }
 
         #endregion

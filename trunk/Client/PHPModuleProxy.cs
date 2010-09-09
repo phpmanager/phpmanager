@@ -17,6 +17,20 @@ namespace Web.Management.PHP
     internal sealed class PHPModuleProxy : ModuleServiceProxy
     {
 
+        internal RemoteObjectCollection<PHPConfigIssue> GetConfigIssues()
+        {
+            object o = Invoke("GetConfigIssues");
+
+            if (o != null)
+            {
+                RemoteObjectCollection<PHPConfigIssue> configIssues = new RemoteObjectCollection<PHPConfigIssue>();
+                configIssues.SetData(o);
+                return configIssues;
+            }
+
+            return null;
+        }
+
         internal void AddOrUpdateSettings(RemoteObjectCollection<PHPIniSetting> settings)
         {
             Invoke("AddOrUpdateSettings", settings.GetData());

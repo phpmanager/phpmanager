@@ -107,6 +107,9 @@
     <Compile Include="Setup\SelectSiteAndUrlDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Setup\RecommendedConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

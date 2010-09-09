@@ -218,8 +218,9 @@ namespace Web.Management.PHP.Settings
             this.Controls.Add(this._nameLabel);
             this.Name = "AddEditSettingDialog";
             this.ResumeLayout(false);
+#if VSDesigner
             this.PerformLayout();
-
+#endif
         }
 
         public void InitializeUI()
