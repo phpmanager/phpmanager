@@ -151,13 +151,21 @@ namespace Web.Management.PHP.Config
             // Set log_errors
             settings.Add(new PHPIniSetting("log_errors", "On", "PHP"));
 
-            // Set error_log path
-            value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
-            settings.Add(new PHPIniSetting("error_log", value, "PHP"));
+            // Set error_log path if it is not set correctly
+            PHPIniSetting currentSetting = file.GetSetting("error_log");
+            if (currentSetting == null || !IsAbsoluteFilePath(currentSetting.Value, true))
+            {
+                value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
+                settings.Add(new PHPIniSetting("error_log", value, "PHP"));
+            }
 
-            // Set session path
-            value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-            settings.Add(new PHPIniSetting("session.save_path", value, "Session"));
+            // Set session path if it is not set correctly
+            currentSetting = file.GetSetting("session.save_path");
+            if (currentSetting == null || !IsAbsoluteFilePath(currentSetting.Value, false))
+            {
+                value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+                settings.Add(new PHPIniSetting("session.save_path", value, "Session"));
+            }
 
             // Set cgi.force_redirect
             settings.Add(new PHPIniSetting("cgi.force_redirect", "0", "PHP"));

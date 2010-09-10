@@ -150,6 +150,8 @@ namespace Web.Management.PHP.Settings
                 settings.Add(new PHPIniSetting(SettingNames[i], settingValues[i], "PHP"));
             }
 
+            settings.Add(new PHPIniSetting("error_log", _errorLogFileTextBox.Text.Trim(), "PHP"));
+
             try
             {
                 Module.Proxy.AddOrUpdateSettings(settings);
