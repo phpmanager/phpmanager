@@ -396,8 +396,6 @@ namespace Web.Management.PHP.Config
             FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
             _fastCgiApplicationCollection = fastCgiSection.Applications;
 
-
-
             // Find the currently active PHP handler and FastCGI application
             HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
             if (handler != null)
@@ -737,7 +735,8 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                if (!String.Equals(setting.Value, expectedValue, StringComparison.OrdinalIgnoreCase))
+                string currentValue = EnsureTrailingBackslash(setting.Value);
+                if (!String.Equals(currentValue, expectedValue, StringComparison.OrdinalIgnoreCase))
                 {
                     PHPConfigIssue configIssue = new PHPConfigIssue("extension_dir",
                                                                     setting.Value,
