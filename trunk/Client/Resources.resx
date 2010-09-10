@@ -610,4 +610,10 @@
   <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
     <value>index.php is not the first in the list of IIS default documents.</value>
   </data>
+  <data name="RecommendConfigDialogApplyButton" xml:space="preserve">
+    <value>&amp;Apply</value>
+  </data>
+  <data name="RecommendConfigDialogCancelButton" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
 </root>

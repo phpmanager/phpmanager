@@ -22,11 +22,12 @@ namespace Web.Management.PHP.Setup
 #if VSDesigner
         Form
 #else
-        TaskForm
+        BaseTaskForm
 #endif
     {
         private PHPModule _module;
-        private ManagementPanel _contentPanel;
+        private Panel _contentPanel;
+        private Panel _buttonsPanel;
 
         private ListView _configIssuesListView;
         private ColumnHeader _nameHeader;
@@ -37,6 +38,10 @@ namespace Web.Management.PHP.Setup
         private TextBox _recommendationTextBox;
         private Label _issueDescriptionLabel;
         private TextBox _issueDescriptionTextBox;
+        private Button _cancelButton;
+        private Button _applyButton;
+
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -47,14 +52,6 @@ namespace Web.Management.PHP.Setup
             _module = module;
             InitializeComponent();
             InitializeUI();
-        }
-
-        protected override bool CanAccept
-        {
-            get
-            {
-                return (_configIssuesListView.Items.Count > 0);
-            }
         }
 
         /// <summary>
@@ -100,10 +97,10 @@ namespace Web.Management.PHP.Setup
             this._currentValueHeader,
             this._recommendedValueHeader});
             this._configIssuesListView.FullRowSelect = true;
-            this._configIssuesListView.Location = new System.Drawing.Point(0, 22);
+            this._configIssuesListView.Location = new System.Drawing.Point(0, 19);
             this._configIssuesListView.MultiSelect = false;
             this._configIssuesListView.Name = "_configIssuesListView";
-            this._configIssuesListView.Size = new System.Drawing.Size(509, 130);
+            this._configIssuesListView.Size = new System.Drawing.Size(480, 130);
             this._configIssuesListView.TabIndex = 1;
             this._configIssuesListView.UseCompatibleStateImageBehavior = false;
             this._configIssuesListView.View = System.Windows.Forms.View.Details;
@@ -128,7 +125,7 @@ namespace Web.Management.PHP.Setup
             // 
             this._configIssueLabel.AutoSize = true;
             this._configIssueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._configIssueLabel.Location = new System.Drawing.Point(0, 6);
+            this._configIssueLabel.Location = new System.Drawing.Point(0, 0);
             this._configIssueLabel.Name = "_configIssueLabel";
             this._configIssueLabel.Size = new System.Drawing.Size(180, 13);
             this._configIssueLabel.TabIndex = 0;
@@ -138,7 +135,7 @@ namespace Web.Management.PHP.Setup
             // 
             this._recommendationLabel.AutoSize = true;
             this._recommendationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._recommendationLabel.Location = new System.Drawing.Point(0, 246);
+            this._recommendationLabel.Location = new System.Drawing.Point(0, 234);
             this._recommendationLabel.Name = "_recommendationLabel";
             this._recommendationLabel.Size = new System.Drawing.Size(108, 13);
             this._recommendationLabel.TabIndex = 4;
@@ -146,18 +143,18 @@ namespace Web.Management.PHP.Setup
             // 
             // _recommendationTextBox
             // 
-            this._recommendationTextBox.Location = new System.Drawing.Point(0, 262);
+            this._recommendationTextBox.Location = new System.Drawing.Point(0, 253);
             this._recommendationTextBox.Multiline = true;
             this._recommendationTextBox.Name = "_recommendationTextBox";
             this._recommendationTextBox.ReadOnly = true;
-            this._recommendationTextBox.Size = new System.Drawing.Size(509, 60);
+            this._recommendationTextBox.Size = new System.Drawing.Size(480, 60);
             this._recommendationTextBox.TabIndex = 5;
             // 
             // _issueDescriptionLabel
             // 
             this._issueDescriptionLabel.AutoSize = true;
             this._issueDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._issueDescriptionLabel.Location = new System.Drawing.Point(0, 173);
+            this._issueDescriptionLabel.Location = new System.Drawing.Point(0, 161);
             this._issueDescriptionLabel.Name = "_issueDescriptionLabel";
             this._issueDescriptionLabel.Size = new System.Drawing.Size(107, 13);
             this._issueDescriptionLabel.TabIndex = 2;
@@ -165,16 +162,16 @@ namespace Web.Management.PHP.Setup
             // 
             // _issueDescriptionTextBox
             // 
-            this._issueDescriptionTextBox.Location = new System.Drawing.Point(0, 190);
+            this._issueDescriptionTextBox.Location = new System.Drawing.Point(0, 180);
             this._issueDescriptionTextBox.Multiline = true;
             this._issueDescriptionTextBox.Name = "_issueDescriptionTextBox";
             this._issueDescriptionTextBox.ReadOnly = true;
-            this._issueDescriptionTextBox.Size = new System.Drawing.Size(509, 41);
+            this._issueDescriptionTextBox.Size = new System.Drawing.Size(480, 40);
             this._issueDescriptionTextBox.TabIndex = 3;
             // 
             // RecommendedConfigDialog
             // 
-            this.ClientSize = new System.Drawing.Size(534, 402);
+            this.ClientSize = new System.Drawing.Size(504, 402);
             this.Controls.Add(this._issueDescriptionTextBox);
             this.Controls.Add(this._issueDescriptionLabel);
             this.Controls.Add(this._recommendationTextBox);
@@ -189,8 +186,38 @@ namespace Web.Management.PHP.Setup
 
         private void InitializeUI()
         {
+            _cancelButton = new System.Windows.Forms.Button();
+            _applyButton = new System.Windows.Forms.Button();
             _contentPanel = new ManagementPanel();
+            _buttonsPanel = new ManagementPanel();
             _contentPanel.SuspendLayout();
+            _buttonsPanel.SuspendLayout();
+
+            // 
+            // _cancelButton
+            // 
+            this._cancelButton.Location = new System.Drawing.Point(417, 0);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.TabIndex = 7;
+            this._cancelButton.Text = Resources.RecommendConfigDialogCancelButton;
+            this._cancelButton.UseVisualStyleBackColor = true;
+            this._cancelButton.Click += new EventHandler(OnCancelButtonClick);
+            // 
+            // _applyButton
+            // 
+            this._applyButton.Location = new System.Drawing.Point(336, 0);
+            this._applyButton.Name = "_applyButton";
+            this._applyButton.Size = new System.Drawing.Size(75, 23);
+            this._applyButton.TabIndex = 6;
+            this._applyButton.Text = Resources.RecommendConfigDialogApplyButton;
+            this._applyButton.UseVisualStyleBackColor = true;
+            this._applyButton.Enabled = false;
+            this._applyButton.Click += new EventHandler(OnApplyButtonClick);
+
+            this._buttonsPanel.Controls.Add(this._applyButton);
+            this._buttonsPanel.Controls.Add(this._cancelButton);
+            this._buttonsPanel.Dock = DockStyle.Bottom;
 
             this._contentPanel.Location = new System.Drawing.Point(0, 0);
             this._contentPanel.Dock = DockStyle.Fill;
@@ -201,17 +228,21 @@ namespace Web.Management.PHP.Setup
             this._contentPanel.Controls.Add(_recommendationLabel);
             this._contentPanel.Controls.Add(_recommendationTextBox);
 
+            SetContent(_contentPanel);
+            SetButtonsPanel(_buttonsPanel);
             this._contentPanel.ResumeLayout(false);
-            this._contentPanel.PerformLayout();
+            this._buttonsPanel.ResumeLayout(false);
 
             this.Text = Resources.RecommendConfigDialogTitle;
-
-            SetContent(_contentPanel);
-            UpdateTaskForm();
-
         }
 
-        protected override void OnAccept()
+        void OnCancelButtonClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        void OnApplyButtonClick(object sender, EventArgs e)
         {
             try
             {
@@ -272,7 +303,7 @@ namespace Web.Management.PHP.Setup
             {
                 _configIssuesListView.Focus();
                 _configIssuesListView.Items[0].Selected = true;
-                UpdateTaskForm();
+                _applyButton.Enabled = true;
             }
         }
 
