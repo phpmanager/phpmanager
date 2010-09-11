@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
 using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.FastCgi

@@ -97,11 +97,11 @@ namespace Web.Management.PHP.Config
             EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
             if (envVariableElement == null)
             {
-                _currentFastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", _currentFastCgiApplication.InstanceMaxRequests.ToString());
+                _currentFastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture));
             }
             else
             {
-                envVariableElement.Value = _currentFastCgiApplication.InstanceMaxRequests.ToString();
+                envVariableElement.Value = _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture);
             }
 
             // Set PHPRC
@@ -676,7 +676,7 @@ namespace Web.Management.PHP.Config
             {
                 PHPConfigIssue configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
                                                                 String.Empty,
-                                                                _currentFastCgiApplication.InstanceMaxRequests.ToString(),
+                                                                _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                 "ConfigIssuePHPMaxRequestsNotSet",
                                                                 "ConfigIssuePHPMaxRequestsRecommend");
                 configIssues.Add(configIssue);
@@ -689,7 +689,7 @@ namespace Web.Management.PHP.Config
                 {
                     PHPConfigIssue configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
                                                                     envVariableElement.Value,
-                                                                    _currentFastCgiApplication.InstanceMaxRequests.ToString(),
+                                                                    _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                     "ConfigIssuePHPMaxRequestsIncorrect",
                                                                     "ConfigIssuePHPMaxRequestsRecommend");
                     configIssues.Add(configIssue);

@@ -414,7 +414,7 @@ namespace Web.Management.PHP
             return result;
         }
 
-        private Label PreparePHPRegistrationWarning(PHPRegistrationType registrationType)
+        private static Label PreparePHPRegistrationWarning(PHPRegistrationType registrationType)
         {
             Label result = new Label();
 

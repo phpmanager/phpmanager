@@ -8,8 +8,6 @@
 //----------------------------------------------------------------------- 
 
 
-using System;
-
 namespace Web.Management.PHP.FastCgi
 {
 

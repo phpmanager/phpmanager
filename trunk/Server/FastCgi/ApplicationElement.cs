@@ -7,8 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
-using System.Collections.Generic;
 using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.FastCgi
@@ -237,11 +235,9 @@ namespace Web.Management.PHP.FastCgi
 
         public bool MonitorChangesToExists()
         {
-            object o;
-
             try
             {
-                o = base["monitorChangesTo"];
+                object o = base["monitorChangesTo"];
                 return true;
             }
             catch
