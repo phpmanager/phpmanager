@@ -190,7 +190,14 @@ namespace Web.Management.PHP.Setup
             {
                 dlg.Title = Resources.RegisterPHPDialogOpenFileTitle;
                 dlg.Filter = Resources.RegisterPHPDialogOpenFileFilter;
-                dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
+                if (!String.IsNullOrEmpty(_dirPathTextBox.Text))
+                {
+                    dlg.InitialDirectory = System.IO.Path.GetDirectoryName(_dirPathTextBox.Text.Trim());
+                }
+                else
+                {
+                    dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
+                }
                 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {

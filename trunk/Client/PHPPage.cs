@@ -9,6 +9,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -472,7 +473,8 @@ namespace Web.Management.PHP
 
         private void UpdatePageItemsState(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            Debug.Assert(configInfo != null);
+            bool isPHPSetup = (configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             #region PHP Setup Item
 

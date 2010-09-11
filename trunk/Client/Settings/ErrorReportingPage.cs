@@ -399,8 +399,15 @@ namespace Web.Management.PHP.Settings
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
                 dlg.Title = Resources.ErrorLogSaveDialogTitle;
-                dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
                 dlg.Filter = Resources.ErrorLogSaveDialogFilter;
+                if (!String.IsNullOrEmpty(_errorLogFileTextBox.Text))
+                {
+                    dlg.InitialDirectory = System.IO.Path.GetDirectoryName(_errorLogFileTextBox.Text.Trim());
+                }
+                else
+                {
+                    dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
+                }
                 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
