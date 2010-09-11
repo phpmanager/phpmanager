@@ -100,7 +100,7 @@ namespace Web.Management.PHP {
             // _warningPicture
             // 
             this._warningPicture.Image = global::Web.Management.PHP.Resources.Warning16;
-            this._warningPicture.Location = new System.Drawing.Point(1, 1);
+            this._warningPicture.Location = new System.Drawing.Point(1, 3);
             this._warningPicture.Name = "_warningPicture";
             this._warningPicture.Size = new System.Drawing.Size(20, 20);
             this._warningPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;

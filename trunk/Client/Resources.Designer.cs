@@ -1068,15 +1068,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not available (PHP is not registered on this IIS server).
-        /// </summary>
-        internal static string PHPPagePHPNotRegistered {
-            get {
-                return ResourceManager.GetString("PHPPagePHPNotRegistered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PHP Manager.
         /// </summary>
         internal static string PHPPageTitle {
@@ -1521,11 +1512,38 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not optimal PHP registration (CGI) is found. Register new PHP version to enable PHP via FastCGI..
+        /// </summary>
+        internal static string WarningPHPConfigCgi {
+            get {
+                return ResourceManager.GetString("WarningPHPConfigCgi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not optimal PHP registration (ISAPI) is found. Register new PHP version to enable PHP via FastCGI..
+        /// </summary>
+        internal static string WarningPHPConfigIsapi {
+            get {
+                return ResourceManager.GetString("WarningPHPConfigIsapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IIS and PHP are not configured optimally on this machine. .
         /// </summary>
         internal static string WarningPHPConfigNotOptimal {
             get {
                 return ResourceManager.GetString("WarningPHPConfigNotOptimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP is not enabled on this server. Register new PHP version to enable PHP via FastCGI..
+        /// </summary>
+        internal static string WarningPHPConfigNotRegistered {
+            get {
+                return ResourceManager.GetString("WarningPHPConfigNotRegistered", resourceCulture);
             }
         }
         

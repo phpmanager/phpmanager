@@ -238,9 +238,6 @@
   <data name="PHPPageLongDescription" xml:space="preserve">
     <value>Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions.</value>
   </data>
-  <data name="PHPPagePHPNotRegistered" xml:space="preserve">
-    <value>Not available (PHP is not registered on this IIS server)</value>
-  </data>
   <data name="PHPPageTitle" xml:space="preserve">
     <value>PHP Manager</value>
   </data>
@@ -615,5 +612,14 @@
   </data>
   <data name="RecommendConfigDialogCancelButton" xml:space="preserve">
     <value>&amp;Cancel</value>
+  </data>
+  <data name="WarningPHPConfigCgi" xml:space="preserve">
+    <value>Not optimal PHP registration (CGI) is found. Register new PHP version to enable PHP via FastCGI.</value>
+  </data>
+  <data name="WarningPHPConfigIsapi" xml:space="preserve">
+    <value>Not optimal PHP registration (ISAPI) is found. Register new PHP version to enable PHP via FastCGI.</value>
+  </data>
+  <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
+    <value>PHP is not enabled on this server. Register new PHP version to enable PHP via FastCGI.</value>
   </data>
 </root>

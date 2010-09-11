@@ -43,7 +43,6 @@ namespace Web.Management.PHP
         private Label _executableNameLabel;
         private Label _versionValueLabel;
         private Label _versionNameLabel;
-        private LinkLabel _warningPHPConfiguration;
 
         private PHPPageItemControl _phpExtensionItem;
         private PHPPageItemControl _phpSettingsItem;
@@ -115,8 +114,6 @@ namespace Web.Management.PHP
             _errorLogValueLabel = new LinkLabel();
             _errorLogValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
 
-            _warningPHPConfiguration = PreparePHPConfigWarning();
-
             _enabledExtLabel = new Label();
             _installedExtLabel = new Label();
 
@@ -131,7 +128,6 @@ namespace Web.Management.PHP
             _phpSetupItem.TitleFont = titleFont;
             _phpSetupItem.Image = Resources.PHPSetup32;
 
-            _phpSetupItem.AddWarning(_warningPHPConfiguration);
             _phpSetupItem.AddInfoRow(_versionNameLabel, _versionValueLabel);
             _phpSetupItem.AddInfoRow(_executableNameLabel, _executableValueLabel);
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
@@ -417,6 +413,26 @@ namespace Web.Management.PHP
             return result;
         }
 
+        private Label PreparePHPRegistrationWarning(PHPRegistrationType registrationType)
+        {
+            Label result = new Label();
+
+            if (registrationType == PHPRegistrationType.Cgi)
+            {
+                result.Text = Resources.WarningPHPConfigCgi;
+            }
+            else if (registrationType == PHPRegistrationType.Isapi)
+            {
+                result.Text = Resources.WarningPHPConfigIsapi;
+            }
+            else if (registrationType == PHPRegistrationType.None)
+            {
+                result.Text = Resources.WarningPHPConfigNotRegistered;
+            }
+
+            return result;
+        }
+
         protected override void Refresh()
         {
             GetSettings();
@@ -456,17 +472,27 @@ namespace Web.Management.PHP
 
         private void UpdatePageItemsState(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null);
+            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             #region PHP Setup Item
 
             _phpSetupItem.SetTitleState(isPHPSetup);
-            // Show warning about non optimal configuration if ...
-            bool displayWarning = isPHPSetup && // ... PHP is setup and ...
-                                  !configInfo.IsConfigOptimal && // ... PHP configuration is not optimal and ...
-                                  Connection.IsUserServerAdministrator; // ... user is a server administrator.
-            _phpSetupItem.ShowWarning(displayWarning);
-            _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotRegistered;
+            _phpSetupItem.ClearWarning();
+            if (isPHPSetup)
+            {
+                // Show warning about non optimal configuration if
+                // PHP configuration is not optimal and
+                // user is a server administrator.
+                if (!configInfo.IsConfigOptimal && Connection.IsUserServerAdministrator)
+                {
+                    _phpSetupItem.SetWarning(PreparePHPConfigWarning());
+                }
+            }
+            else
+            {
+                _phpSetupItem.SetWarning(PreparePHPRegistrationWarning(configInfo.RegistrationType));
+            }
+            _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
             _executableValueLabel.Text = isPHPSetup ? configInfo.ScriptProcessor : Resources.PHPPagePHPNotAvailable;
             // Allow PHP registration only for server administrators
             _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);

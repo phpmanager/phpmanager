@@ -21,6 +21,7 @@ namespace Web.Management.PHP
     {
         private const int WS_EX_NOINHERITLAYOUT = 0x100000;
         private const int WS_EX_LAYOUTRTL = 0x400000;
+        private const string WarningLabelName = "warningLabel";
         private bool _rightToLeftLayout;
         private int _tlpRowCount;
 
@@ -169,16 +170,10 @@ namespace Web.Management.PHP
             }
         }
 
-        public void AddWarning(Label warningLabel)
+        public void ClearWarning()
         {
-            warningLabel.AutoSize = true;
-            warningLabel.Location = new Point(25, 4);
-            _warningPanel.Controls.Add(warningLabel);
-        }
-
-        public void ShowWarning(bool visible)
-        {
-            _warningPanel.Visible = visible;
+            _warningPanel.Controls.RemoveByKey(WarningLabelName);
+            _warningPanel.Visible = false;
         }
 
         private Size DoLayout(Size proposedSize, bool performLayout)
@@ -257,6 +252,18 @@ namespace Web.Management.PHP
         public void SetTitleState(bool enabled)
         {
             _titleLabel.Enabled = enabled;
+        }
+
+        public void SetWarning(Label warningLabel)
+        {
+            warningLabel.AutoSize = true;
+            warningLabel.Location = new Point(25, 6);
+            warningLabel.Name = WarningLabelName;
+            // Remove existing label from the warning panel in case it exists
+            _warningPanel.Controls.RemoveByKey(WarningLabelName);
+            // Add new label to the warning panel
+            _warningPanel.Controls.Add(warningLabel);
+            _warningPanel.Visible = true;
         }
 
     }

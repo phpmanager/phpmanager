@@ -54,6 +54,7 @@
     <Compile Include="Config\PHPConfigIssue.cs" />
     <Compile Include="Config\PHPIniFile.cs" />
     <Compile Include="Config\PHPConfigInfo.cs" />
+    <Compile Include="Config\PHPRegistrationType.cs" />
     <Compile Include="Extensions\AllExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>

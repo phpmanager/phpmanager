@@ -56,6 +56,9 @@
     <Compile Include="..\Client\Config\PHPIniFile.cs">
       <Link>Config\PHPIniFile.cs</Link>
     </Compile>
+    <Compile Include="..\Client\Config\PHPRegistrationType.cs">
+      <Link>Config\PHPRegistrationType.cs</Link>
+    </Compile>
     <Compile Include="..\Client\RemoteObject.cs">
       <Link>RemoteObject.cs</Link>
     </Compile>

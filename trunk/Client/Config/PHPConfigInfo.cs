@@ -16,20 +16,29 @@ namespace Web.Management.PHP.Config
     {
         private object[] _data;
 
-        private const int IndexHandlerName = 0;
-        private const int IndexScriptProcessor = 1;
-        private const int IndexVersion = 2;
-        private const int IndexPHPIniFilePath = 3;
-        private const int IndexErrorLog = 4;
-        private const int IndexEnabledExtCount = 5;
-        private const int IndexInstalledExtCount = 6;
-        private const int IndexIsConfigOptimal = 7;
+        private const int IndexPHPRegistrationType = 0;
+        private const int IndexHandlerName = 1;
+        private const int IndexScriptProcessor = 2;
+        private const int IndexVersion = 3;
+        private const int IndexPHPIniFilePath = 4;
+        private const int IndexErrorLog = 5;
+        private const int IndexEnabledExtCount = 6;
+        private const int IndexInstalledExtCount = 7;
+        private const int IndexIsConfigOptimal = 8;
 
-        private const int Size = 8;
+        private const int Size = 9;
 
         public PHPConfigInfo()
         {
             _data = new object[Size];
+            HandlerName = String.Empty;
+            ScriptProcessor = String.Empty;
+            Version = String.Empty;
+            PHPIniFilePath = String.Empty;
+            ErrorLog = String.Empty;
+            EnabledExtCount = 0;
+            InstalledExtCount = 0;
+            IsConfigOptimal = false;
         }
 
         public int EnabledExtCount
@@ -80,6 +89,18 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        public bool IsConfigOptimal
+        {
+            get
+            {
+                return (bool)_data[IndexIsConfigOptimal];
+            }
+            set
+            {
+                _data[IndexIsConfigOptimal] = value;
+            }
+        }
+
         public string PHPIniFilePath
         {
             get
@@ -89,6 +110,18 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexPHPIniFilePath] = value;
+            }
+        }
+
+        public PHPRegistrationType RegistrationType
+        {
+            get
+            {
+                return (PHPRegistrationType)_data[IndexPHPRegistrationType];
+            }
+            set
+            {
+                _data[IndexPHPRegistrationType] = (int)value;
             }
         }
 
@@ -113,18 +146,6 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexVersion] = value;
-            }
-        }
-
-        public bool IsConfigOptimal
-        {
-            get
-            {
-                return (bool)_data[IndexIsConfigOptimal];
-            }
-            set
-            {
-                _data[IndexIsConfigOptimal] = value;
             }
         }
 

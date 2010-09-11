@@ -27,6 +27,7 @@ namespace Web.Management.PHP.Config
     /// </summary>
     internal sealed class PHPConfigHelper
     {
+
         private ManagementUnit _managementUnit;
 
         private ApplicationElement _currentFastCgiApplication;
@@ -36,6 +37,7 @@ namespace Web.Management.PHP.Config
         private FilesCollection _defaultDocumentCollection;
         private string _phpIniFilePath;
         private string _phpDirectory;
+        private PHPRegistrationType _registrationType;
 
         public PHPConfigHelper(ManagementUnit mgmtUnit)
         {
@@ -208,7 +210,7 @@ namespace Web.Management.PHP.Config
         public void ApplyRecommendedSettings()
         {
             // Check if PHP is not registered
-            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            if (!IsPHPRegistered())
             {
                 throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
             }
@@ -291,7 +293,8 @@ namespace Web.Management.PHP.Config
             {
                 if (String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (File.Exists(handler.ScriptProcessor))
+                    if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
+                        File.Exists(handler.ScriptProcessor))
                     {
                         result.Add(new string[] { handler.Name, handler.ScriptProcessor, GetPHPExecutableVersion(handler.ScriptProcessor) });
                     }
@@ -303,13 +306,17 @@ namespace Web.Management.PHP.Config
 
         public PHPConfigInfo GetPHPConfigInfo()
         {
-            // Check if PHP is not registered
-            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            PHPConfigInfo configInfo = new PHPConfigInfo();
+
+            // If PHP is not registered properly then just return information about
+            // how it registered.
+            if (!IsPHPRegistered())
             {
-                return null;
+                configInfo.RegistrationType = _registrationType;
+                return configInfo;
             }
 
-            PHPConfigInfo configInfo = new PHPConfigInfo();
+            configInfo.RegistrationType = _registrationType;
             configInfo.HandlerName = _currentPHPHandler.Name;
             configInfo.ScriptProcessor = _currentPHPHandler.ScriptProcessor;
             configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.ScriptProcessor);
@@ -396,10 +403,26 @@ namespace Web.Management.PHP.Config
             FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
             _fastCgiApplicationCollection = fastCgiSection.Applications;
 
+            // Assume by default that PHP is not registered
+            _registrationType = PHPRegistrationType.None;
+
             // Find the currently active PHP handler and FastCGI application
             HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
             if (handler != null)
             {
+                if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase))
+                {
+                    _registrationType = PHPRegistrationType.FastCgi;
+                }
+                else if (String.Equals(handler.Modules, "CgiModule", StringComparison.OrdinalIgnoreCase))
+                {
+                    _registrationType = PHPRegistrationType.Cgi;
+                }
+                else if (String.Equals(handler.Modules, "IsapiModule", StringComparison.OrdinalIgnoreCase))
+                {
+                    _registrationType = PHPRegistrationType.Isapi;
+                }
+
                 string executable = handler.ScriptProcessor;
                 
                 ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(executable, "");
@@ -427,6 +450,11 @@ namespace Web.Management.PHP.Config
             }
 
             return false;
+        }
+
+        private bool IsPHPRegistered()
+        {
+            return (_registrationType == PHPRegistrationType.FastCgi);
         }
 
         private HandlerElement MakeHandlerActive(string handlerName)
@@ -574,7 +602,7 @@ namespace Web.Management.PHP.Config
         public void SelectPHPHandler(string name)
         {
             // PHP is not registered properly so we don't attempt to do anything.
-            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            if (!IsPHPRegistered())
             {
                 return;
             }
@@ -592,7 +620,7 @@ namespace Web.Management.PHP.Config
         public RemoteObjectCollection<PHPConfigIssue> ValidateConfiguration()
         {
             // Check if PHP is not registered
-            if (_currentFastCgiApplication == null || _currentPHPHandler == null)
+            if (!IsPHPRegistered())
             {
                 return null;
             }
