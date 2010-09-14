@@ -473,8 +473,7 @@ namespace Web.Management.PHP
 
         private void UpdatePageItemsState(PHPConfigInfo configInfo)
         {
-            Debug.Assert(configInfo != null);
-            bool isPHPSetup = (configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             #region PHP Setup Item
 
@@ -490,14 +489,30 @@ namespace Web.Management.PHP
                     _phpSetupItem.SetWarning(PreparePHPConfigWarning());
                 }
             }
+            else if (configInfo != null)
+            {
+                // Show warning about PHP not being setup or setup incorrectly
+                _phpSetupItem.SetWarning(PreparePHPRegistrationWarning(configInfo.RegistrationType));
+            }
             else
             {
-                _phpSetupItem.SetWarning(PreparePHPRegistrationWarning(configInfo.RegistrationType));
+                // Show warning about failed IIS configuration
+                Label errorLabel = new Label();
+                errorLabel.Text = Resources.ErrorFailedToGetConfiguration;
+                _phpSetupItem.SetWarning(errorLabel);
             }
             _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
             _executableValueLabel.Text = isPHPSetup ? configInfo.ScriptProcessor : Resources.PHPPagePHPNotAvailable;
             // Allow PHP registration only for server administrators
-            _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);
+            if (configInfo != null)
+            {
+                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);
+            }
+            else
+            {
+                // If there is an error in IIS configuration then do not allow new registrations
+                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
+            }
 
             _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPHPSetup);
             _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, isPHPSetup);

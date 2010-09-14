@@ -680,6 +680,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information about PHP cannot be obtained due to invalid IIS configuration..
+        /// </summary>
+        internal static string ErrorFailedToGetConfiguration {
+            get {
+                return ResourceManager.GetString("ErrorFailedToGetConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File {0} does not exist..
         /// </summary>
         internal static string ErrorFileDoesNotExist {

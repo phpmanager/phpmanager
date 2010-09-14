@@ -622,4 +622,7 @@
   <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
     <value>PHP is not enabled on this server. Register new PHP version to enable PHP via FastCGI.</value>
   </data>
+  <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
+    <value>Information about PHP cannot be obtained due to invalid IIS configuration.</value>
+  </data>
 </root>
