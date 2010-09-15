@@ -625,4 +625,7 @@
   <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
     <value>Information about PHP cannot be obtained due to invalid IIS configuration.</value>
   </data>
+  <data name="RecommendConfigDialogDescription" xml:space="preserve">
+    <value>These are the IIS and PHP configuration issues detected on this server. Select the issues that you want to get fixed.</value>
+  </data>
 </root>

@@ -1235,6 +1235,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to These are the IIS and PHP configuration issues detected on this server. Select the issues that you want to get fixed..
+        /// </summary>
+        internal static string RecommendConfigDialogDescription {
+            get {
+                return ResourceManager.GetString("RecommendConfigDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Detected configuration issues:.
         /// </summary>
         internal static string RecommendConfigDialogDetectedIssues {
