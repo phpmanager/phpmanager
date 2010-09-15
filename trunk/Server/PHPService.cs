@@ -41,12 +41,12 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public void ApplyRecommendedSettings()
+        public void ApplyRecommendedSettings(ArrayList configIssueIndexes)
         {
             EnsureServerConnection();
 
             PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
-            configHelper.ApplyRecommendedSettings();
+            configHelper.ApplyRecommendedSettings(configIssueIndexes);
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

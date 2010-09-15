@@ -61,9 +61,118 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private bool ApplyRecommendedDefaultDocument(bool commitChanges)
+        private void ApplyRecommendedFastCgiSettings(ArrayList configIssueIndexes)
         {
-            bool updateHappened = false;
+            bool iisChangeHappened = false;
+
+            foreach (int configIssueIndex in configIssueIndexes)
+            {
+                switch (configIssueIndex)
+                {
+                    case PHPConfigIssueIndex.DefaultDocument:
+                        {
+                            iisChangeHappened = ChangeDefaultDocument() || iisChangeHappened;
+                            break;
+                        }
+                    case PHPConfigIssueIndex.ResourceType:
+                        {
+                            iisChangeHappened = ChangeResourceType() || iisChangeHappened;
+                            break;
+                        }
+                    case PHPConfigIssueIndex.PHPMaxRequests:
+                        {
+                            iisChangeHappened = ChangePHPMaxRequests() || iisChangeHappened;
+                            break;
+                        }
+                    case PHPConfigIssueIndex.PHPRC:
+                        {
+                            iisChangeHappened = ChangePHPRC() || iisChangeHappened;
+                            break;
+                        }
+                    case PHPConfigIssueIndex.MonitorChangesTo:
+                        {
+                            iisChangeHappened = ChangeMonitorChanges() || iisChangeHappened;
+                            break;
+                        }
+                }
+            }
+            if (iisChangeHappened)
+            {
+                _managementUnit.Update();
+            }
+        }
+
+        private void ApplyRecommendedPHPIniSettings(ArrayList configIssueIndexes)
+        {
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            List<PHPIniSetting> settings = new List<PHPIniSetting>();
+
+            foreach (int configIssueIndex in configIssueIndexes)
+            {
+                switch (configIssueIndex)
+                {
+                    case PHPConfigIssueIndex.ExtensionDir:
+                        {
+                            settings.Add(GetToApplyExtensionDir());
+                            break;
+                        }
+                    case PHPConfigIssueIndex.LogErrors:
+                        {
+                            settings.Add(GetToApplyLogErrors());
+                            break;
+                        }
+                    case PHPConfigIssueIndex.ErrorLog:
+                        {
+                            settings.Add(GetToApplyErrorLog(file));
+                            break;
+                        }
+                    case PHPConfigIssueIndex.SessionPath:
+                        {
+                            settings.Add(GetToApplySessionPath(file));
+                            break;
+                        }
+                    case PHPConfigIssueIndex.CgiForceRedirect:
+                        {
+                            settings.Add(GetToApplyCgiForceRedirect());
+                            break;
+                        }
+                    case PHPConfigIssueIndex.CgiPathInfo:
+                        {
+                            settings.Add(GetToApplyCgiPathInfo());
+                            break;
+                        }
+                    case PHPConfigIssueIndex.FastCgiImpersonation:
+                        {
+                            settings.Add(GetToApplyFastCgiImpersonate());
+                            break;
+                        }
+                }
+            }
+
+            if (settings.Count > 0)
+            {
+                file.AddOrUpdateSettings(settings);
+                file.Save(PHPIniFilePath);
+            }
+        }
+
+        public void ApplyRecommendedSettings(ArrayList configIssueIndexes)
+        {
+            // Check if PHP is not registered
+            if (!IsPHPRegistered())
+            {
+                throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
+            }
+
+            ApplyRecommendedFastCgiSettings(configIssueIndexes);
+            ApplyRecommendedPHPIniSettings(configIssueIndexes);
+        }
+
+        private bool ChangeDefaultDocument()
+        {
+            bool changeHappened = false;
 
             FileElement fileElement = _defaultDocumentCollection["index.php"];
             if (fileElement == null)
@@ -71,28 +180,34 @@ namespace Web.Management.PHP.Config
                 fileElement = _defaultDocumentCollection.CreateElement();
                 fileElement.Value = "index.php";
                 _defaultDocumentCollection.AddAt(0, fileElement);
-                updateHappened = true;
+                changeHappened = true;
             }
             else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
             {
                 CopyIneritedDefaultDocs();
                 MoveIndexPhpOnTop();
-                updateHappened = true;
+                changeHappened = true;
             }
 
-            if (commitChanges && updateHappened)
-            {
-                _managementUnit.Update();
-            }
-
-            return updateHappened;
+            return changeHappened;
         }
 
-        private void ApplyRecommendedFastCgiSettings()
+        private bool ChangeMonitorChanges()
         {
-            // Set the handler mapping resource type to "File or Folder"
-            _currentPHPHandler.ResourceType = ResourceType.Either;
+            bool changeHappened = false;
 
+            // If monitorChangesTo is supported then set it
+            if (_currentFastCgiApplication.MonitorChangesToExists())
+            {
+                _currentFastCgiApplication.MonitorChangesTo = PHPIniFilePath;
+                changeHappened = true;
+            }
+
+            return changeHappened;
+        }
+
+        private bool ChangePHPMaxRequests()
+        {
             // Set PHP_FCGI_MAX_REQUESTS to be equal to instanceMaxRequests
             EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
             if (envVariableElement == null)
@@ -104,120 +219,46 @@ namespace Web.Management.PHP.Config
                 envVariableElement.Value = _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture);
             }
 
+            return true;
+        }
+
+        private bool ChangePHPRC()
+        {
+            bool changeHappened = false;
+
             // Set PHPRC
-            envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
-            string monitorChangesTo = PHPIniFilePath;
+            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
             if (envVariableElement == null)
             {
                 _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", PHPDirectory);
+                changeHappened = true;
             }
             else
             {
-                // If PHPRC points to a valid directory with php.ini then use the same path for 
-                // FastCgi monitorChangesTo setting
+                // If PHPRC does not point to a valid directory with php.ini ...
                 string path = Path.Combine(envVariableElement.Value, "php.ini");
-                if (File.Exists(path))
+                if (!File.Exists(path))
                 {
-                    monitorChangesTo = path;
-                }
-                else
-                {
-                    // Otherwise set PHPRC to point to current PHP directory
+                    // ... then set it to current PHP directory
                     envVariableElement.Value = PHPDirectory;
+                    changeHappened = true;
                 }
             }
 
-            // If monitorChangesTo is supported then set it
-            if (_currentFastCgiApplication.MonitorChangesToExists())
-            {
-                _currentFastCgiApplication.MonitorChangesTo = monitorChangesTo;
-            }
-
-            _managementUnit.Update();
+            return changeHappened;
         }
 
-        private void ApplyRecommendedPHPIniSettings(bool isNewRegistration)
+        private bool ChangeResourceType()
         {
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
-            file.Parse();
+            bool changeHappened = false;
 
-            string handlerName = _currentPHPHandler.Name;
-
-            // Set the recommended php.ini settings
-            List<PHPIniSetting> settings = new List<PHPIniSetting>();
-
-            // Set extension directory path
-            string value = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
-            settings.Add(new PHPIniSetting("extension_dir", value, "PHP"));
-
-            // Set log_errors
-            settings.Add(new PHPIniSetting("log_errors", "On", "PHP"));
-
-            // Set error_log path if it is not set correctly
-            PHPIniSetting currentSetting = file.GetSetting("error_log");
-            if (currentSetting == null || !IsAbsoluteFilePath(currentSetting.Value, true))
+            if (_currentPHPHandler.ResourceType != ResourceType.Either)
             {
-                value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
-                settings.Add(new PHPIniSetting("error_log", value, "PHP"));
+                _currentPHPHandler.ResourceType = ResourceType.Either;
+                changeHappened = true;
             }
 
-            // Set session path if it is not set correctly
-            currentSetting = file.GetSetting("session.save_path");
-            if (currentSetting == null || !IsAbsoluteFilePath(currentSetting.Value, false))
-            {
-                value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-                settings.Add(new PHPIniSetting("session.save_path", value, "Session"));
-            }
-
-            // Set cgi.force_redirect
-            settings.Add(new PHPIniSetting("cgi.force_redirect", "0", "PHP"));
-            
-            // Set cgi.fix_pathinfo
-            settings.Add(new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP"));
-
-            // Enable fastcgi impersonation
-            settings.Add(new PHPIniSetting("fastcgi.impersonate", "1", "PHP"));
-
-            if (isNewRegistration)
-            {
-                // Disable fastcgi logging
-                settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
-
-                // Set maximum script execution time
-                settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
-
-                // Turn off display errors
-                settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
-
-                // Enable the most common PHP extensions
-                List<PHPIniExtension> extensions = new List<PHPIniExtension>();
-                extensions.Add(new PHPIniExtension("php_curl.dll", true));
-                extensions.Add(new PHPIniExtension("php_gd2.dll", true));
-                extensions.Add(new PHPIniExtension("php_gettext.dll", true));
-                extensions.Add(new PHPIniExtension("php_mysql.dll", true));
-                extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
-                extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
-                extensions.Add(new PHPIniExtension("php_openssl.dll", true));
-                extensions.Add(new PHPIniExtension("php_soap.dll", true));
-                extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
-                file.UpdateExtensions(extensions);
-            }
-
-            file.AddOrUpdateSettings(settings);
-            file.Save(PHPIniFilePath);
-        }
-
-        public void ApplyRecommendedSettings()
-        {
-            // Check if PHP is not registered
-            if (!IsPHPRegistered())
-            {
-                throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
-            }
-
-            ApplyRecommendedDefaultDocument(false /* Do not commit the changes yet. Next function will commit the changes anyway */);
-            ApplyRecommendedFastCgiSettings();
-            ApplyRecommendedPHPIniSettings(false /* This is an update to an existing PHP registration */);
+            return changeHappened;
         }
 
         private void CopyIneritedDefaultDocs()
@@ -387,6 +428,57 @@ namespace Web.Management.PHP.Config
             return String.Empty;
         }
 
+        private PHPIniSetting GetToApplyCgiForceRedirect()
+        {
+            return new PHPIniSetting("cgi.force_redirect", "0", "PHP");
+        }
+
+        private PHPIniSetting GetToApplyCgiPathInfo()
+        {
+            return new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP");
+        }
+
+        private PHPIniSetting GetToApplyErrorLog(PHPIniFile file)
+        {
+            string handlerName = _currentPHPHandler.Name;
+            PHPIniSetting setting = file.GetSetting("error_log");
+            if (setting == null || !IsAbsoluteFilePath(setting.Value, true))
+            {
+                string value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
+                setting = new PHPIniSetting("error_log", value, "PHP");
+            }
+
+            return setting;
+        }
+
+        private PHPIniSetting GetToApplyExtensionDir()
+        {
+            string value = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
+            return new PHPIniSetting("extension_dir", value, "PHP");
+        }
+
+        private PHPIniSetting GetToApplyFastCgiImpersonate()
+        {
+            return new PHPIniSetting("fastcgi.impersonate", "1", "PHP");
+        }
+
+        private PHPIniSetting GetToApplyLogErrors()
+        {
+            return new PHPIniSetting("log_errors", "On", "PHP");
+        }
+
+        private PHPIniSetting GetToApplySessionPath(PHPIniFile file)
+        {
+            PHPIniSetting setting = file.GetSetting("session.save_path");
+            if (setting == null || !IsAbsoluteFilePath(setting.Value, false))
+            {
+                string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+                setting = new PHPIniSetting("session.save_path", value, "Session");
+            }
+            
+            return setting;
+        }
+
         private void Initialize()
         {
             // Get the handlers collection
@@ -468,6 +560,59 @@ namespace Web.Management.PHP.Config
             int activeHandlerIndex = _handlersCollection.IndexOf(activeHandlerElement);
             _handlersCollection.Remove(handlerElement);
             return _handlersCollection.AddCopyAt(activeHandlerIndex, handlerElement);
+        }
+
+        private void MakeRecommendedFastCgiChanges()
+        {
+            bool iisChangeHappened = false;
+
+            iisChangeHappened = ChangeDefaultDocument() || iisChangeHappened;
+            iisChangeHappened = ChangeResourceType() || iisChangeHappened;
+            iisChangeHappened = ChangePHPMaxRequests() || iisChangeHappened;
+            iisChangeHappened = ChangePHPRC() || iisChangeHappened;
+            iisChangeHappened = ChangeMonitorChanges() || iisChangeHappened;
+
+            if (iisChangeHappened)
+            {
+                _managementUnit.Update();
+            }
+        }
+
+        private void MakeRecommendedPHPIniChanges()
+        {
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            // Set the recommended php.ini settings
+            List<PHPIniSetting> settings = new List<PHPIniSetting>();
+
+            settings.Add(GetToApplyExtensionDir());
+            settings.Add(GetToApplyLogErrors());
+            settings.Add(GetToApplyErrorLog(file));
+            settings.Add(GetToApplySessionPath(file));
+            settings.Add(GetToApplyCgiForceRedirect());
+            settings.Add(GetToApplyCgiPathInfo());
+            settings.Add(GetToApplyFastCgiImpersonate());
+            
+            settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
+            settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
+            settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
+
+            // Enable the most common PHP extensions
+            List<PHPIniExtension> extensions = new List<PHPIniExtension>();
+            extensions.Add(new PHPIniExtension("php_curl.dll", true));
+            extensions.Add(new PHPIniExtension("php_gd2.dll", true));
+            extensions.Add(new PHPIniExtension("php_gettext.dll", true));
+            extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+            extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
+            extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
+            extensions.Add(new PHPIniExtension("php_openssl.dll", true));
+            extensions.Add(new PHPIniExtension("php_soap.dll", true));
+            extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
+
+            file.UpdateExtensions(extensions);
+            file.AddOrUpdateSettings(settings);
+            file.Save(PHPIniFilePath);
         }
 
         private FileElement MoveIndexPhpOnTop()
@@ -577,7 +722,7 @@ namespace Web.Management.PHP.Config
             }
 
             // Check if index.php is set as a default document and move it to the top of the list
-            iisUpdateHappened = ApplyRecommendedDefaultDocument(false /* do not commit the changes yet */) || iisUpdateHappened;
+            iisUpdateHappened = ChangeDefaultDocument() || iisUpdateHappened;
 
             if (iisUpdateHappened)
             {
@@ -592,11 +737,11 @@ namespace Web.Management.PHP.Config
             // specified php-cgi.exe executable.
             if (!isNewFastCgi || !isNewHandler)
             {
-                ApplyRecommendedFastCgiSettings();
+                MakeRecommendedFastCgiChanges();
             }
 
             // Make the recommended changes to php.ini file
-            ApplyRecommendedPHPIniSettings(true /* this is a new registration of PHP */);
+            MakeRecommendedPHPIniChanges();
         }
 
         public void SelectPHPHandler(string name)
@@ -629,7 +774,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 "0",
                                                                 "ConfigIssueCgiForceRedirectNotSet",
-                                                                "ConfigIssueCgiForceRedirectRecommend");
+                                                                "ConfigIssueCgiForceRedirectRecommend",
+                                                                PHPConfigIssueIndex.CgiForceRedirect);
             }
             else if (!String.Equals(setting.Value, "0", StringComparison.OrdinalIgnoreCase))
             {
@@ -637,7 +783,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 "0",
                                                                 "ConfigIssueCgiForceRedirectNotCorrect",
-                                                                "ConfigIssueCgiForceRedirectRecommend");
+                                                                "ConfigIssueCgiForceRedirectRecommend",
+                                                                PHPConfigIssueIndex.CgiForceRedirect);
             }
 
             return configIssue;
@@ -655,7 +802,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 "1",
                                                                 "ConfigIssueCgiPathInfoNotSet",
-                                                                "ConfigIssueCgiPathInfoRecommend");
+                                                                "ConfigIssueCgiPathInfoRecommend",
+                                                                PHPConfigIssueIndex.CgiPathInfo);
             }
             else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
             {
@@ -663,7 +811,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 "1",
                                                                 "ConfigIssueCgiPathInfoNotCorrect",
-                                                                "ConfigIssueCgiPathInfoRecommend");
+                                                                "ConfigIssueCgiPathInfoRecommend",
+                                                                PHPConfigIssueIndex.CgiPathInfo);
             }
 
             return configIssue;
@@ -776,7 +925,8 @@ namespace Web.Management.PHP.Config
                                                                 _defaultDocumentCollection[0].Value,
                                                                 "index.php",
                                                                 "ConfigIssueDefaultDocumentNotSet",
-                                                                "ConfigIssueDefaultDocumentRecommend");
+                                                                "ConfigIssueDefaultDocumentRecommend",
+                                                                PHPConfigIssueIndex.DefaultDocument);
             }
             else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
             {
@@ -784,7 +934,8 @@ namespace Web.Management.PHP.Config
                                                                 _defaultDocumentCollection[0].Value,
                                                                 "index.php",
                                                                 "ConfigIssueDefaultDocumentNotFirst",
-                                                                "ConfigIssueDefaultDocumentRecommend");
+                                                                "ConfigIssueDefaultDocumentRecommend",
+                                                                PHPConfigIssueIndex.DefaultDocument);
             }
             
             return configIssue;
@@ -803,7 +954,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 expectedValue,
                                                                 "ConfigIssueErrorLogNotSet",
-                                                                "ConfigIssueErrorLogRecommend");
+                                                                "ConfigIssueErrorLogRecommend",
+                                                                PHPConfigIssueIndex.ErrorLog);
             }
             else if (!IsAbsoluteFilePath(setting.Value, true /* this is supposed to be a file */))
             {
@@ -811,7 +963,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 expectedValue,
                                                                 "ConfigIssueErrorLogNotCorrect",
-                                                                "ConfigIssueErrorLogRecommend");
+                                                                "ConfigIssueErrorLogRecommend",
+                                                                PHPConfigIssueIndex.ErrorLog);
             }
 
             return configIssue;
@@ -829,7 +982,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 expectedValue,
                                                                 "ConfigIssueExtensionDirNotSet",
-                                                                "ConfigIssueExtensionDirRecommend");
+                                                                "ConfigIssueExtensionDirRecommend",
+                                                                PHPConfigIssueIndex.ExtensionDir);
             }
             else
             {
@@ -840,7 +994,8 @@ namespace Web.Management.PHP.Config
                                                                     setting.Value,
                                                                     expectedValue,
                                                                     "ConfigIssueExtensionDirIncorrect",
-                                                                    "ConfigIssueExtensionDirRecommend");
+                                                                    "ConfigIssueExtensionDirRecommend",
+                                                                    PHPConfigIssueIndex.ExtensionDir);
                 }
             }
 
@@ -859,7 +1014,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 "1",
                                                                 "ConfigIssueFastCgiImpersonateNotSet",
-                                                                "ConfigIssueFastCgiImpersonateRecommend");
+                                                                "ConfigIssueFastCgiImpersonateRecommend",
+                                                                PHPConfigIssueIndex.FastCgiImpersonation);
             }
             else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
             {
@@ -867,7 +1023,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 "1",
                                                                 "ConfigIssueFastCgiImpersonateNotCorrect",
-                                                                "ConfigIssueFastCgiImpersonateRecommend");
+                                                                "ConfigIssueFastCgiImpersonateRecommend",
+                                                                PHPConfigIssueIndex.FastCgiImpersonation);
             }
 
             return configIssue;
@@ -885,7 +1042,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 "On",
                                                                 "ConfigIssueLogErrorsNotSet",
-                                                                "ConfigIssueLogErrorsRecommend");
+                                                                "ConfigIssueLogErrorsRecommend",
+                                                                PHPConfigIssueIndex.LogErrors);
             }
             else if (!String.Equals(setting.Value, "On", StringComparison.OrdinalIgnoreCase))
             {
@@ -893,7 +1051,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 "On",
                                                                 "ConfigIssueLogErrorsNotCorrect",
-                                                                "ConfigIssueLogErrorsRecommend");
+                                                                "ConfigIssueLogErrorsRecommend",
+                                                                PHPConfigIssueIndex.LogErrors);
             }
 
             return configIssue;
@@ -912,7 +1071,8 @@ namespace Web.Management.PHP.Config
                                                                     String.Empty,
                                                                     PHPIniFilePath,
                                                                     "ConfigIssueMonitorChangesNotSet",
-                                                                    "ConfigIssueMonitorChangesRecommend");
+                                                                    "ConfigIssueMonitorChangesRecommend",
+                                                                    PHPConfigIssueIndex.MonitorChangesTo);
                 }
                 else if (!String.Equals(PHPIniFilePath, path, StringComparison.OrdinalIgnoreCase))
                 {
@@ -920,7 +1080,8 @@ namespace Web.Management.PHP.Config
                                                                     path,
                                                                     PHPIniFilePath,
                                                                     "ConfigIssueMonitorChangesIncorrect",
-                                                                    "ConfigIssueMonitorChangesRecommend");
+                                                                    "ConfigIssueMonitorChangesRecommend",
+                                                                    PHPConfigIssueIndex.MonitorChangesTo);
                 }
             }
 
@@ -938,7 +1099,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                 "ConfigIssuePHPMaxRequestsNotSet",
-                                                                "ConfigIssuePHPMaxRequestsRecommend");
+                                                                "ConfigIssuePHPMaxRequestsRecommend",
+                                                                PHPConfigIssueIndex.PHPMaxRequests);
             }
             else
             {
@@ -950,7 +1112,8 @@ namespace Web.Management.PHP.Config
                                                                     envVariableElement.Value,
                                                                     _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                     "ConfigIssuePHPMaxRequestsIncorrect",
-                                                                    "ConfigIssuePHPMaxRequestsRecommend");
+                                                                    "ConfigIssuePHPMaxRequestsRecommend",
+                                                                    PHPConfigIssueIndex.PHPMaxRequests);
                 }
             }
 
@@ -968,7 +1131,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 PHPDirectory,
                                                                 "ConfigIssuePHPRCNotSet",
-                                                                "ConfigIssuePHPRCRecommend");
+                                                                "ConfigIssuePHPRCRecommend",
+                                                                PHPConfigIssueIndex.PHPRC);
             }
             else
             {
@@ -979,7 +1143,8 @@ namespace Web.Management.PHP.Config
                                                                     envVariableElement.Value,
                                                                     PHPDirectory,
                                                                     "ConfigIssuePHPRCFileNotExists",
-                                                                    "ConfigIssuePHPRCRecommend");
+                                                                    "ConfigIssuePHPRCRecommend",
+                                                                    PHPConfigIssueIndex.PHPRC);
                 }
             }
 
@@ -996,7 +1161,8 @@ namespace Web.Management.PHP.Config
                                                                 _currentPHPHandler.ResourceType.ToString(),
                                                                 ResourceType.Either.ToString(),
                                                                 "ConfigIssueResourceTypeIncorrect",
-                                                                "ConfigIssueResourceTypeRecommend");
+                                                                "ConfigIssueResourceTypeRecommend",
+                                                                PHPConfigIssueIndex.ResourceType);
             }
 
             return configIssue;
@@ -1014,7 +1180,8 @@ namespace Web.Management.PHP.Config
                                                                 String.Empty,
                                                                 expectedValue,
                                                                 "ConfigIssueSessionPathNotSet",
-                                                                "ConfigIssueSessionPathRecommend");
+                                                                "ConfigIssueSessionPathRecommend",
+                                                                PHPConfigIssueIndex.SessionPath);
             }
             else if (!IsAbsoluteFilePath(setting.Value, false /* this is supposed to be a directory */))
             {
@@ -1022,7 +1189,8 @@ namespace Web.Management.PHP.Config
                                                                 setting.Value,
                                                                 expectedValue,
                                                                 "ConfigIssueSessionPathNotCorrect",
-                                                                "ConfigIssueSessionPathRecommend");
+                                                                "ConfigIssueSessionPathRecommend",
+                                                                PHPConfigIssueIndex.SessionPath);
             }
 
             return configIssue;

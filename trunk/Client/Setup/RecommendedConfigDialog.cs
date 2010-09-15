@@ -10,6 +10,7 @@
 //#define VSDesigner
 
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client.Win32;
@@ -25,6 +26,11 @@ namespace Web.Management.PHP.Setup
         BaseTaskForm
 #endif
     {
+        private const int TagIssueDescription = 0;
+        private const int TagIssueRecommendation = 1;
+        private const int TagIssueIndex = 2;
+        private const int TagSize = 3;
+
         private PHPModule _module;
         private Panel _contentPanel;
         private Panel _buttonsPanel;
@@ -52,6 +58,14 @@ namespace Web.Management.PHP.Setup
             _module = module;
             InitializeComponent();
             InitializeUI();
+        }
+
+        protected override bool CanShowHelp
+        {
+            get
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -92,6 +106,7 @@ namespace Web.Management.PHP.Setup
             // 
             // _configIssuesListView
             // 
+            this._configIssuesListView.CheckBoxes = true;
             this._configIssuesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._nameHeader,
             this._currentValueHeader,
@@ -236,17 +251,21 @@ namespace Web.Management.PHP.Setup
             this.Text = Resources.RecommendConfigDialogTitle;
         }
 
-        void OnCancelButtonClick(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        void OnApplyButtonClick(object sender, EventArgs e)
+        private void OnApplyButtonClick(object sender, EventArgs e)
         {
             try
             {
-                _module.Proxy.ApplyRecommendedSettings();
+                ArrayList selectedIssues = new ArrayList();
+                foreach (ListViewItem item in _configIssuesListView.Items)
+                {
+                    if (item.Checked)
+                    {
+                        object[] tag = item.Tag as object[];
+                        selectedIssues.Add(tag[TagIssueIndex]);
+                    }
+                }
+
+                _module.Proxy.ApplyRecommendedSettings(selectedIssues);
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -254,6 +273,12 @@ namespace Web.Management.PHP.Setup
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
+        }
+
+        private void OnCancelButtonClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void OnConfigIssuesDoWork(object sender, DoWorkEventArgs e)
@@ -283,8 +308,10 @@ namespace Web.Management.PHP.Setup
                             listViewItem.SubItems.Add(configIssue.CurrentValue);
                         }
                         listViewItem.SubItems.Add(configIssue.RecommendedValue);
-                        listViewItem.Tag = new string[2] { GetResourceStringByName(configIssue.IssueDescription), 
-                                                           GetResourceStringByName(configIssue.Recommendation) };
+                        listViewItem.Tag = new object[TagSize] { GetResourceStringByName(configIssue.IssueDescription), 
+                                                           GetResourceStringByName(configIssue.Recommendation),
+                                                           configIssue.IssueIndex
+                                                         };
                         _configIssuesListView.Items.Add(listViewItem);
                     }
                 }
@@ -307,26 +334,13 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        protected override bool CanShowHelp
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        protected override void ShowHelp()
-        {
-            Helper.Browse(Globals.RecommendedConfigOnlineHelp);
-        }
-
         private void OnConfigIssuesListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             if (_configIssuesListView.SelectedItems.Count > 0)
             {
-                string [] str = _configIssuesListView.SelectedItems[0].Tag as string[];
-                _issueDescriptionTextBox.Text = str[0];
-                _recommendationTextBox.Text = str[1];
+                object [] tag = _configIssuesListView.SelectedItems[0].Tag as object[];
+                _issueDescriptionTextBox.Text = (string)tag[TagIssueDescription];
+                _recommendationTextBox.Text = (string)tag[TagIssueRecommendation];
             }
         }
 
@@ -335,6 +349,11 @@ namespace Web.Management.PHP.Setup
             base.OnLoad(e);
 
             StartAsyncTask(OnConfigIssuesDoWork, OnConfigIssuesDoWorkCompleted);
+        }
+
+        protected override void ShowHelp()
+        {
+            Helper.Browse(Globals.RecommendedConfigOnlineHelp);
         }
 
     }
