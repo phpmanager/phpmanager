@@ -473,12 +473,58 @@ namespace Web.Management.PHP
 
         private void UpdatePageItemsState(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            UpdatePHPSetupItem(configInfo);
+            UpdatePHPSettingsItem(configInfo);
+            UpdatePHPExtensionsItem(configInfo);
 
-            #region PHP Setup Item
+            PerformLayout();
+        }
+
+        private void UpdatePHPExtensionsItem(PHPConfigInfo configInfo)
+        {
+            bool isPHPSetup = (configInfo != null);
+
+            _phpExtensionItem.SetTitleState(isPHPSetup);
+            if (isPHPSetup)
+            {
+                _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
+                _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
+            }
+            else
+            {
+                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
+            }
+            _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPHPSetup);
+        }
+
+        private void UpdatePHPSettingsItem(PHPConfigInfo configInfo)
+        {
+            bool isPHPSetup = (configInfo != null);
+
+            _phpSettingsItem.SetTitleState(isPHPSetup);
+            if (isPHPSetup)
+            {
+                PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
+                PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
+            }
+            else
+            {
+                PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
+                PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
+            }
+            _phpSettingsItem.SetTaskState(IndexErrorReportingTask, isPHPSetup);
+            _phpSettingsItem.SetTaskState(IndexLimitsTask, isPHPSetup);
+            _phpSettingsItem.SetTaskState(IndexAllSettingsTask, isPHPSetup);
+        }
+
+        private void UpdatePHPSetupItem(PHPConfigInfo configInfo)
+        {
+            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             _phpSetupItem.SetTitleState(isPHPSetup);
             _phpSetupItem.ClearWarning();
+
             if (isPHPSetup)
             {
                 // Show warning about non optimal configuration if
@@ -516,46 +562,6 @@ namespace Web.Management.PHP
 
             _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPHPSetup);
             _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, isPHPSetup);
-
-            #endregion
-
-            #region PHP Settings Item
-
-            _phpSettingsItem.SetTitleState(isPHPSetup);
-            if (isPHPSetup)
-            {
-                PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
-                PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
-            }
-            else
-            {
-                PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
-                PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
-            }
-            _phpSettingsItem.SetTaskState(IndexErrorReportingTask, isPHPSetup);
-            _phpSettingsItem.SetTaskState(IndexLimitsTask, isPHPSetup);
-            _phpSettingsItem.SetTaskState(IndexAllSettingsTask, isPHPSetup);
-
-            #endregion
-
-            #region PHP Extensions Item
-
-            _phpExtensionItem.SetTitleState(isPHPSetup);
-            if (isPHPSetup)
-            {
-                _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
-                _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
-            }
-            else
-            {
-                _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
-                _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
-            }
-            _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPHPSetup);
-
-            #endregion
-
-            PerformLayout();
         }
 
     }

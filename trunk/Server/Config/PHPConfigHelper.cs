@@ -617,6 +617,58 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        private PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+            
+            // Check if cgi.force_redirect is set correctly
+            PHPIniSetting setting = file.GetSetting("cgi.force_redirect");
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
+            {
+                configIssue = new PHPConfigIssue("cgi.force_redirect",
+                                                                String.Empty,
+                                                                "0",
+                                                                "ConfigIssueCgiForceRedirectNotSet",
+                                                                "ConfigIssueCgiForceRedirectRecommend");
+            }
+            else if (!String.Equals(setting.Value, "0", StringComparison.OrdinalIgnoreCase))
+            {
+                configIssue = new PHPConfigIssue("cgi.force_redirect",
+                                                                setting.Value,
+                                                                "0",
+                                                                "ConfigIssueCgiForceRedirectNotCorrect",
+                                                                "ConfigIssueCgiForceRedirectRecommend");
+            }
+
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateCgiPathInfo(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+            
+            // Check if cgi.fix_pathinfo is set correctly
+            PHPIniSetting setting = file.GetSetting("cgi.fix_pathinfo");
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
+            {
+                configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
+                                                                String.Empty,
+                                                                "1",
+                                                                "ConfigIssueCgiPathInfoNotSet",
+                                                                "ConfigIssueCgiPathInfoRecommend");
+            }
+            else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
+            {
+                configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
+                                                                setting.Value,
+                                                                "1",
+                                                                "ConfigIssueCgiPathInfoNotCorrect",
+                                                                "ConfigIssueCgiPathInfoRecommend");
+            }
+
+            return configIssue;
+        }
+
         public RemoteObjectCollection<PHPConfigIssue> ValidateConfiguration()
         {
             // Check if PHP is not registered
@@ -635,51 +687,258 @@ namespace Web.Management.PHP.Config
         {
 
             RemoteObjectCollection<PHPConfigIssue> configIssues = new RemoteObjectCollection<PHPConfigIssue>();
+          
+            // IIS and FastCGI settings
+            PHPConfigIssue configIssue = ValidateDefaultDocument();
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+            
+            configIssue = ValidateResourceType();
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
 
+            configIssue = ValidatePHPMaxRequests();
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidatePHPRC();
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateMonitorChanges();
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            // PHP Settings
+            configIssue = ValidateExtensionDir(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateLogErrors(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateErrorLog(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateSessionPath(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateCgiForceRedirect(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateCgiPathInfo(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateFastCgiImpersonate(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            return configIssues;
+        }
+
+        private PHPConfigIssue ValidateDefaultDocument()
+        {
+            PHPConfigIssue configIssue = null;
             // Check if index.php is set as a default document
             FileElement fileElement = _defaultDocumentCollection["index.php"];
             if (fileElement == null)
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("Default document",
+                configIssue = new PHPConfigIssue("Default document",
                                                                 _defaultDocumentCollection[0].Value,
                                                                 "index.php",
                                                                 "ConfigIssueDefaultDocumentNotSet",
                                                                 "ConfigIssueDefaultDocumentRecommend");
-                configIssues.Add(configIssue);
             }
             else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("Default document",
+                configIssue = new PHPConfigIssue("Default document",
                                                                 _defaultDocumentCollection[0].Value,
                                                                 "index.php",
                                                                 "ConfigIssueDefaultDocumentNotFirst",
                                                                 "ConfigIssueDefaultDocumentRecommend");
-                configIssues.Add(configIssue);
             }
+            
+            return configIssue;
+        }
 
-            #region FastCGI configuration
+        private PHPConfigIssue ValidateErrorLog(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
 
-            // Check if handler mapping is configured for "File or Folder"
-            if (_currentPHPHandler.ResourceType != ResourceType.Either)
+            // Check if error_log is set to an absolute path and that path exists
+            PHPIniSetting setting = file.GetSetting("error_log");
+            string expectedValue = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), _currentPHPHandler.Name + "_errors.log");
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("resourceType",
-                                                                _currentPHPHandler.ResourceType.ToString(),
-                                                                ResourceType.Either.ToString(),
-                                                                "ConfigIssueResourceTypeIncorrect",
-                                                                "ConfigIssueResourceTypeRecommend");
-                configIssues.Add(configIssue);
+                configIssue = new PHPConfigIssue("error_log",
+                                                                String.Empty,
+                                                                expectedValue,
+                                                                "ConfigIssueErrorLogNotSet",
+                                                                "ConfigIssueErrorLogRecommend");
+            }
+            else if (!IsAbsoluteFilePath(setting.Value, true /* this is supposed to be a file */))
+            {
+                configIssue = new PHPConfigIssue("error_log",
+                                                                setting.Value,
+                                                                expectedValue,
+                                                                "ConfigIssueErrorLogNotCorrect",
+                                                                "ConfigIssueErrorLogRecommend");
             }
 
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateExtensionDir(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+            
+            PHPIniSetting setting = file.GetSetting("extension_dir");
+            string expectedValue = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
+            {
+                configIssue = new PHPConfigIssue("extension_dir",
+                                                                String.Empty,
+                                                                expectedValue,
+                                                                "ConfigIssueExtensionDirNotSet",
+                                                                "ConfigIssueExtensionDirRecommend");
+            }
+            else
+            {
+                string currentValue = EnsureTrailingBackslash(setting.Value);
+                if (!String.Equals(currentValue, expectedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    configIssue = new PHPConfigIssue("extension_dir",
+                                                                    setting.Value,
+                                                                    expectedValue,
+                                                                    "ConfigIssueExtensionDirIncorrect",
+                                                                    "ConfigIssueExtensionDirRecommend");
+                }
+            }
+
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateFastCgiImpersonate(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+            
+            // Check if fastcgi impersonation is turned on
+            PHPIniSetting setting = file.GetSetting("fastcgi.impersonate");
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
+            {
+                configIssue = new PHPConfigIssue("fastcgi.impersonate",
+                                                                String.Empty,
+                                                                "1",
+                                                                "ConfigIssueFastCgiImpersonateNotSet",
+                                                                "ConfigIssueFastCgiImpersonateRecommend");
+            }
+            else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
+            {
+                configIssue = new PHPConfigIssue("fastcgi.impersonate",
+                                                                setting.Value,
+                                                                "1",
+                                                                "ConfigIssueFastCgiImpersonateNotCorrect",
+                                                                "ConfigIssueFastCgiImpersonateRecommend");
+            }
+
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateLogErrors(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+
+            // Check if log_errors is set to On
+            PHPIniSetting setting = file.GetSetting("log_errors");
+            if (setting == null || String.IsNullOrEmpty(setting.Value))
+            {
+                configIssue = new PHPConfigIssue("log_errors",
+                                                                String.Empty,
+                                                                "On",
+                                                                "ConfigIssueLogErrorsNotSet",
+                                                                "ConfigIssueLogErrorsRecommend");
+            }
+            else if (!String.Equals(setting.Value, "On", StringComparison.OrdinalIgnoreCase))
+            {
+                configIssue = new PHPConfigIssue("log_errors",
+                                                                setting.Value,
+                                                                "On",
+                                                                "ConfigIssueLogErrorsNotCorrect",
+                                                                "ConfigIssueLogErrorsRecommend");
+            }
+
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateMonitorChanges()
+        {
+            PHPConfigIssue configIssue = null;
+            // Check if monitorChangesTo setting is supported and is set correctly
+            if (_currentFastCgiApplication.MonitorChangesToExists())
+            {
+                string path = _currentFastCgiApplication.MonitorChangesTo;
+                if (String.IsNullOrEmpty(path))
+                {
+                    configIssue = new PHPConfigIssue("monitorChangesTo",
+                                                                    String.Empty,
+                                                                    PHPIniFilePath,
+                                                                    "ConfigIssueMonitorChangesNotSet",
+                                                                    "ConfigIssueMonitorChangesRecommend");
+                }
+                else if (!String.Equals(PHPIniFilePath, path, StringComparison.OrdinalIgnoreCase))
+                {
+                    configIssue = new PHPConfigIssue("monitorChangesTo",
+                                                                    path,
+                                                                    PHPIniFilePath,
+                                                                    "ConfigIssueMonitorChangesIncorrect",
+                                                                    "ConfigIssueMonitorChangesRecommend");
+                }
+            }
+
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidatePHPMaxRequests()
+        {
+            PHPConfigIssue configIssue = null;
             // Check if PHP_FCGI_MAX_REQUESTS is set and is bigger than instanceMaxRequests
             EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
             if (envVariableElement == null)
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
+                configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
                                                                 String.Empty,
                                                                 _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                 "ConfigIssuePHPMaxRequestsNotSet",
                                                                 "ConfigIssuePHPMaxRequestsRecommend");
-                configIssues.Add(configIssue);
             }
             else
             {
@@ -687,225 +946,86 @@ namespace Web.Management.PHP.Config
                 if (!Int64.TryParse(envVariableElement.Value, out maxRequests) ||
                     (maxRequests < _currentFastCgiApplication.InstanceMaxRequests))
                 {
-                    PHPConfigIssue configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
+                    configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
                                                                     envVariableElement.Value,
                                                                     _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                     "ConfigIssuePHPMaxRequestsIncorrect",
                                                                     "ConfigIssuePHPMaxRequestsRecommend");
-                    configIssues.Add(configIssue);
                 }
             }
 
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidatePHPRC()
+        {
+            PHPConfigIssue configIssue = null;
             // Check if PHPRC is set and points to a directory that has php.ini file
-            envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
             if (envVariableElement == null)
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("PHPRC", 
+                configIssue = new PHPConfigIssue("PHPRC", 
                                                                 String.Empty,
                                                                 PHPDirectory,
                                                                 "ConfigIssuePHPRCNotSet",
                                                                 "ConfigIssuePHPRCRecommend");
-                configIssues.Add(configIssue);
             }
             else
             {
                 string path = Path.Combine(envVariableElement.Value, "php.ini");
                 if (!File.Exists(path))
                 {
-                    PHPConfigIssue configIssue = new PHPConfigIssue("PHPRC",
+                    configIssue = new PHPConfigIssue("PHPRC",
                                                                     envVariableElement.Value,
                                                                     PHPDirectory,
                                                                     "ConfigIssuePHPRCFileNotExists",
                                                                     "ConfigIssuePHPRCRecommend");
-                    configIssues.Add(configIssue);                   
                 }
             }
 
-            // Check if monitorChangesTo setting is supported and is set correctly
-            if (_currentFastCgiApplication.MonitorChangesToExists())
+            return configIssue;
+        }
+
+        private PHPConfigIssue ValidateResourceType()
+        {
+            PHPConfigIssue configIssue = null;
+            // Check if handler mapping is configured for "File or Folder"
+            if (_currentPHPHandler.ResourceType != ResourceType.Either)
             {
-                string path = _currentFastCgiApplication.MonitorChangesTo;
-                if (String.IsNullOrEmpty(path))
-                {
-                    PHPConfigIssue configIssue = new PHPConfigIssue("monitorChangesTo",
-                                                                    String.Empty,
-                                                                    PHPIniFilePath,
-                                                                    "ConfigIssueMonitorChangesNotSet",
-                                                                    "ConfigIssueMonitorChangesRecommend");
-                    configIssues.Add(configIssue);
-                }
-                else if (!String.Equals(PHPIniFilePath, path, StringComparison.OrdinalIgnoreCase))
-                {
-                    PHPConfigIssue configIssue = new PHPConfigIssue("monitorChangesTo",
-                                                                    path,
-                                                                    PHPIniFilePath,
-                                                                    "ConfigIssueMonitorChangesIncorrect",
-                                                                    "ConfigIssueMonitorChangesRecommend");
-                    configIssues.Add(configIssue);
-                }
+                configIssue = new PHPConfigIssue("resourceType",
+                                                                _currentPHPHandler.ResourceType.ToString(),
+                                                                ResourceType.Either.ToString(),
+                                                                "ConfigIssueResourceTypeIncorrect",
+                                                                "ConfigIssueResourceTypeRecommend");
             }
 
-            #endregion
+            return configIssue;
+        }
 
-            #region PHP configuration
-
-            // Check if extention_dir is set to an absolute path
-            PHPIniSetting setting = file.GetSetting("extension_dir");
-            string expectedValue = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("extension_dir",
-                                                                String.Empty,
-                                                                expectedValue,
-                                                                "ConfigIssueExtensionDirNotSet",
-                                                                "ConfigIssueExtensionDirRecommend");
-                configIssues.Add(configIssue);
-            }
-            else
-            {
-                string currentValue = EnsureTrailingBackslash(setting.Value);
-                if (!String.Equals(currentValue, expectedValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    PHPConfigIssue configIssue = new PHPConfigIssue("extension_dir",
-                                                                    setting.Value,
-                                                                    expectedValue,
-                                                                    "ConfigIssueExtensionDirIncorrect",
-                                                                    "ConfigIssueExtensionDirRecommend");
-                    configIssues.Add(configIssue);
-                }
-            }
-
-            // Check if log_errors is set to On
-            setting = file.GetSetting("log_errors");
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("log_errors",
-                                                                String.Empty,
-                                                                "On",
-                                                                "ConfigIssueLogErrorsNotSet",
-                                                                "ConfigIssueLogErrorsRecommend");
-                configIssues.Add(configIssue);
-            }
-            else if (!String.Equals(setting.Value, "On", StringComparison.OrdinalIgnoreCase))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("log_errors",
-                                                                setting.Value,
-                                                                "On",
-                                                                "ConfigIssueLogErrorsNotCorrect",
-                                                                "ConfigIssueLogErrorsRecommend");
-                configIssues.Add(configIssue);
-            }
-
-            // Check if error_log is set to an absolute path and that path exists
-            setting = file.GetSetting("error_log");
-            expectedValue = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), _currentPHPHandler.Name + "_errors.log");
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("error_log",
-                                                                String.Empty,
-                                                                expectedValue,
-                                                                "ConfigIssueErrorLogNotSet",
-                                                                "ConfigIssueErrorLogRecommend");
-                configIssues.Add(configIssue);
-            }
-            else if (!IsAbsoluteFilePath(setting.Value, true /* this is supposed to be a file */))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("error_log",
-                                                                setting.Value,
-                                                                expectedValue,
-                                                                "ConfigIssueErrorLogNotCorrect",
-                                                                "ConfigIssueErrorLogRecommend");
-                configIssues.Add(configIssue);
-            }
-
+        private PHPConfigIssue ValidateSessionPath(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
             // Check if session path is set to an absolute path and that path exists
-            setting = file.GetSetting("session.save_path");
-            expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+            PHPIniSetting setting = file.GetSetting("session.save_path");
+            string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
             if (setting == null || String.IsNullOrEmpty(setting.Value))
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("session.save_path",
+                configIssue = new PHPConfigIssue("session.save_path",
                                                                 String.Empty,
                                                                 expectedValue,
                                                                 "ConfigIssueSessionPathNotSet",
                                                                 "ConfigIssueSessionPathRecommend");
-                configIssues.Add(configIssue);
             }
             else if (!IsAbsoluteFilePath(setting.Value, false /* this is supposed to be a directory */))
             {
-                PHPConfigIssue configIssue = new PHPConfigIssue("session.save_path",
+                configIssue = new PHPConfigIssue("session.save_path",
                                                                 setting.Value,
                                                                 expectedValue,
                                                                 "ConfigIssueSessionPathNotCorrect",
                                                                 "ConfigIssueSessionPathRecommend");
-                configIssues.Add(configIssue);
             }
 
-            // Check if cgi.force_redirect is set correctly
-            setting = file.GetSetting("cgi.force_redirect");
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("cgi.force_redirect",
-                                                                String.Empty,
-                                                                "0",
-                                                                "ConfigIssueCgiForceRedirectNotSet",
-                                                                "ConfigIssueCgiForceRedirectRecommend");
-                configIssues.Add(configIssue);
-            }
-            else if (!String.Equals(setting.Value, "0", StringComparison.OrdinalIgnoreCase))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("cgi.force_redirect",
-                                                                setting.Value,
-                                                                "0",
-                                                                "ConfigIssueCgiForceRedirectNotCorrect",
-                                                                "ConfigIssueCgiForceRedirectRecommend");
-                configIssues.Add(configIssue);
-            }
-
-            // Check if cgi.fix_pathinfo is set correctly
-            setting = file.GetSetting("cgi.fix_pathinfo");
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
-                                                                String.Empty,
-                                                                "1",
-                                                                "ConfigIssueCgiPathInfoNotSet",
-                                                                "ConfigIssueCgiPathInfoRecommend");
-                configIssues.Add(configIssue);
-            }
-            else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
-                                                                setting.Value,
-                                                                "1",
-                                                                "ConfigIssueCgiPathInfoNotCorrect",
-                                                                "ConfigIssueCgiPathInfoRecommend");
-                configIssues.Add(configIssue);
-            }
-
-            // Check if fastcgi impersonation is turned on
-            setting = file.GetSetting("fastcgi.impersonate");
-            if (setting == null || String.IsNullOrEmpty(setting.Value))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("fastcgi.impersonate",
-                                                                String.Empty,
-                                                                "1",
-                                                                "ConfigIssueFastCgiImpersonateNotSet",
-                                                                "ConfigIssueFastCgiImpersonateRecommend");
-                configIssues.Add(configIssue);
-            }
-            else if (!String.Equals(setting.Value, "1", StringComparison.OrdinalIgnoreCase))
-            {
-                PHPConfigIssue configIssue = new PHPConfigIssue("fastcgi.impersonate",
-                                                                setting.Value,
-                                                                "1",
-                                                                "ConfigIssueFastCgiImpersonateNotCorrect",
-                                                                "ConfigIssueFastCgiImpersonateRecommend");
-                configIssues.Add(configIssue);
-            }
-
-            #endregion
-
-            return configIssues;
+            return configIssue;
         }
 
     }
