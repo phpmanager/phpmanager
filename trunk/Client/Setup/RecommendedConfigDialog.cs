@@ -210,8 +210,6 @@ namespace Web.Management.PHP.Setup
             this.Controls.Add(this._configIssuesListView);
             this.Name = "RecommendedConfigDialog";
             this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
 
         private void InitializeUI()
