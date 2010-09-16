@@ -1208,24 +1208,6 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Apply.
-        /// </summary>
-        internal static string RecommendConfigDialogApplyButton {
-            get {
-                return ResourceManager.GetString("RecommendConfigDialogApplyButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Cancel.
-        /// </summary>
-        internal static string RecommendConfigDialogCancelButton {
-            get {
-                return ResourceManager.GetString("RecommendConfigDialogCancelButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current value.
         /// </summary>
         internal static string RecommendConfigDialogCurrentValue {
