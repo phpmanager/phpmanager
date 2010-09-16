@@ -27,6 +27,7 @@ namespace Web.Management.PHP.Setup
             string assemblyFullName = assemblyName.FullName;
             string clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP");
 
+            InstallUtil.RemoveUIModuleProvider("PHP"); // This is necessary for the upgrade scenario
             InstallUtil.AddUIModuleProvider("PHP", "Web.Management.PHP.PHPProvider, " + clientAssemblyFullName);
         }
 

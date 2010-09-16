@@ -677,13 +677,6 @@
             "Message" = "8:PHP Manager for IIS requires IIS7 or higher to be installed"
             "InstallUrl" = "8:http://www.iis.net/"
             }
-            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_A60CEFA866EF41228E1163842FEC596B"
-            {
-            "Name" = "8:Previous Version"
-            "Condition" = "8:PHPMGRREGKEY <> \"1.0.2\""
-            "Message" = "8:A previous version of PHP Manager for IIS has been detected. Uninstall it prior to installing this version."
-            "InstallUrl" = "8:http://phpmanager.codeplex.com"
-            }
         }
         "Locator"
         {
@@ -694,14 +687,6 @@
             "RegKey" = "8:SYSTEM\\CurrentControlSet\\Services\\W3SVC\\Parameters"
             "Value" = "8:MajorVersion"
             "Property" = "8:IISREGISTRYVALUE"
-            }
-            "{CF66B7F7-B7DA-4B08-A67A-233430638C9C}:_856941C1659D4119A3007ACA5342F171"
-            {
-            "Name" = "8:Search for previous version"
-            "Root" = "2:1"
-            "RegKey" = "8:SOFTWARE\\PHP Manager for IIS"
-            "Value" = "8:Version"
-            "Property" = "8:PHPMGRREGKEY"
             }
         }
         "MsiBootstrapper"
