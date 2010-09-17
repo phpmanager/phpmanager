@@ -705,7 +705,7 @@ namespace Web.Management.PHP.Config
                 handlerElement.Name = GenerateHandlerName(_handlersCollection, GetPHPExecutableVersion(phpexePath));
                 handlerElement.Modules = "FastCgiModule";
                 handlerElement.RequireAccess = RequireAccess.Script;
-                handlerElement.Verb = "*";
+                handlerElement.Verb = "GET,HEAD,POST";
                 handlerElement.Path = "*.php";
                 handlerElement.ScriptProcessor = phpexePath;
                 handlerElement.ResourceType = ResourceType.Either;
