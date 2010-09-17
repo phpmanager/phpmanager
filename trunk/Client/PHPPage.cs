@@ -482,7 +482,7 @@ namespace Web.Management.PHP
 
         private void UpdatePHPExtensionsItem(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null);
+            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             _phpExtensionItem.SetTitleState(isPHPSetup);
             if (isPHPSetup)
@@ -500,7 +500,7 @@ namespace Web.Management.PHP
 
         private void UpdatePHPSettingsItem(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null);
+            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
             _phpSettingsItem.SetTitleState(isPHPSetup);
             if (isPHPSetup)

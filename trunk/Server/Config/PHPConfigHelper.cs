@@ -515,15 +515,18 @@ namespace Web.Management.PHP.Config
                     _registrationType = PHPRegistrationType.Isapi;
                 }
 
-                string executable = handler.ScriptProcessor;
-                
-                ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(executable, "");
-                if (fastCgiApplication != null)
+                if (_registrationType == PHPRegistrationType.FastCgi)
                 {
-                    _currentPHPHandler = handler;
-                    _currentFastCgiApplication = fastCgiApplication;
-                    _phpIniFilePath = GetPHPIniFilePath();
-                    _phpDirectory = GetPHPDirectory();
+                    string executable = handler.ScriptProcessor;
+
+                    ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(executable, "");
+                    if (fastCgiApplication != null)
+                    {
+                        _currentPHPHandler = handler;
+                        _currentFastCgiApplication = fastCgiApplication;
+                        _phpIniFilePath = GetPHPIniFilePath();
+                        _phpDirectory = GetPHPDirectory();
+                    }
                 }
             }
         }
@@ -624,6 +627,31 @@ namespace Web.Management.PHP.Config
             return _defaultDocumentCollection.AddCopyAt(0, fileElement);
         }
 
+        private static string PreparePHPIniFile(string phpDir)
+        {
+            // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
+            // or php.ini-production to it
+            string phpIniFilePath = Path.Combine(phpDir, "php.ini");
+            if (!File.Exists(phpIniFilePath))
+            {
+                string phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
+                string phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
+                if (File.Exists(phpIniRecommendedPath))
+                {
+                    File.Copy(phpIniRecommendedPath, phpIniFilePath);
+                }
+                else if (File.Exists(phpIniProductionPath))
+                {
+                    File.Copy(phpIniProductionPath, phpIniFilePath);
+                }
+                else
+                {
+                    throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
+                }
+            }
+            return phpIniFilePath;
+        }
+
         public void RegisterPHPWithIIS(string path)
         {
             string phpexePath = Environment.ExpandEnvironmentVariables(path);
@@ -647,27 +675,8 @@ namespace Web.Management.PHP.Config
             {
                 throw new DirectoryNotFoundException("ext directory does not exist in " + phpDir);
             }
-            
-            // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
-            // or php.ini-production to it
-            string phpIniFilePath = Path.Combine(phpDir, "php.ini");
-            if (!File.Exists(phpIniFilePath))
-            {
-                string phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
-                string phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
-                if (File.Exists(phpIniRecommendedPath))
-                {
-                    File.Copy(phpIniRecommendedPath, phpIniFilePath);
-                }
-                else if (File.Exists(phpIniProductionPath))
-                {
-                    File.Copy(phpIniProductionPath, phpIniFilePath);
-                }
-                else
-                {
-                    throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
-                }
-            }
+
+            string phpIniFilePath = PreparePHPIniFile(phpDir);
 
             bool iisUpdateHappened = false;
             ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(phpexePath, "");
