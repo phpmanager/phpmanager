@@ -481,12 +481,12 @@ namespace Web.Management.PHP.Settings
 
             if (setting != null)
             {
-                if (String.Equals(setting.Value, SettingsDevValues[0]))
+                if (String.Equals(setting.TrimmedValue, SettingsDevValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Development;
                     settingValues = SettingsDevValues;
                 }
-                else if (String.Equals(setting.Value, SettingsProdValues[0]))
+                else if (String.Equals(setting.TrimmedValue, SettingsProdValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Production;
                     settingValues = SettingsProdValues;
@@ -496,7 +496,7 @@ namespace Web.Management.PHP.Settings
                 while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < SettingNames.Length)
                 {
                     setting = file.GetSetting(SettingNames[i]);
-                    if (setting == null || !String.Equals(setting.Value, settingValues[i]))
+                    if (setting == null || !String.Equals(setting.TrimmedValue, settingValues[i]))
                     {
                         _errorReportingPreset = ErrorReportingPreset.Undefined;
                     }
@@ -516,8 +516,8 @@ namespace Web.Management.PHP.Settings
             setting = file.GetSetting("error_log");
             if (setting != null)
             {
-                _errorLogFile = setting.Value;
-                _errorLogFileTextBox.Text = setting.Value;
+                _errorLogFile = setting.TrimmedValue;
+                _errorLogFileTextBox.Text = setting.TrimmedValue;
             }
         }
 

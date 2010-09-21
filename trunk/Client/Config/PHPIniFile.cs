@@ -325,7 +325,7 @@ namespace Web.Management.PHP.Config
                     string[] split = tmp.Split(new Char[] { '=' });
                     if (split.Length > 1)
                     {
-                        yield return new PHPIniSetting(split[0].Trim(), split[1].Trim(new char[] { ' ', '"' }), section, line);
+                        yield return new PHPIniSetting(split[0].Trim(), split[1].Trim(), section, line);
                     }
                     else
                     {
@@ -529,6 +529,15 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        public string TrimmedValue
+        {
+            get
+            {
+                string result = (string)_data[IndexValue];
+                return result.Trim(new char[] {' ', '"' });
+            }
+        }
+
         public override bool Equals(object obj)
         {
             PHPIniSetting setting = obj as PHPIniSetting;
@@ -563,15 +572,7 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateText()
         {
-            // Wrap the value in quotes if it contains spaces
-            if (Value.IndexOf(' ') > 0)
-            {
-                Text = Name + " = \"" + Value + "\"";
-            }
-            else
-            {
-                Text = Name + " = " + Value;
-            }
+            Text = Name + " = " + Value;
         }
     }
 
