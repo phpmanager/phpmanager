@@ -24,6 +24,7 @@ namespace Web.Management.PHP.Config
         public const int CgiForceRedirect = 9;
         public const int CgiPathInfo = 10;
         public const int FastCgiImpersonation = 11;
+        public const int UploadDir = 12;
     }
 
     internal class PHPConfigIssue : IRemoteObject

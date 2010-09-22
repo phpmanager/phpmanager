@@ -622,4 +622,13 @@
   <data name="RecommendConfigDialogDescription" xml:space="preserve">
     <value>These are the IIS and PHP configuration issues detected on this server. Select the issues that you want to get fixed.</value>
   </data>
+  <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
+    <value>The PHP directive "upload_tmp_dir" points to a directory that does not exist.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
+    <value>The PHP directive "upload_tmp_dir" is not set.</value>
+  </data>
+  <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
+    <value>The "upload_tmp_dir" specifies the temporary directory used for storing files when doing file upload. The directory must be writable by whatever user PHP is running as.</value>
+  </data>
 </root>

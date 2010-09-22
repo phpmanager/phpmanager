@@ -133,6 +133,11 @@ namespace Web.Management.PHP.Config
                             settings.Add(GetToApplySessionPath(file));
                             break;
                         }
+                    case PHPConfigIssueIndex.UploadDir:
+                        {
+                            settings.Add(GetToApplyUploadTmpDir(file));
+                            break;
+                        }
                     case PHPConfigIssueIndex.CgiForceRedirect:
                         {
                             settings.Add(GetToApplyCgiForceRedirect());
@@ -297,6 +302,11 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        private static string DoubleQuotesWrap(string value)
+        {
+            return '"' + value + '"';
+        }
+
         private static string EnsureTrailingBackslash(string str)
         {            
             if (!str.EndsWith(@"\", StringComparison.Ordinal))
@@ -445,7 +455,7 @@ namespace Web.Management.PHP.Config
             if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, true))
             {
                 string value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
-                setting = new PHPIniSetting("error_log", value, "PHP");
+                setting = new PHPIniSetting("error_log", DoubleQuotesWrap(value), "PHP");
             }
 
             return setting;
@@ -454,7 +464,7 @@ namespace Web.Management.PHP.Config
         private PHPIniSetting GetToApplyExtensionDir()
         {
             string value = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
-            return new PHPIniSetting("extension_dir", value, "PHP");
+            return new PHPIniSetting("extension_dir", DoubleQuotesWrap(value), "PHP");
         }
 
         private PHPIniSetting GetToApplyFastCgiImpersonate()
@@ -473,9 +483,21 @@ namespace Web.Management.PHP.Config
             if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
             {
                 string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-                setting = new PHPIniSetting("session.save_path", value, "Session");
+                setting = new PHPIniSetting("session.save_path", DoubleQuotesWrap(value), "Session");
             }
             
+            return setting;
+        }
+
+        private PHPIniSetting GetToApplyUploadTmpDir(PHPIniFile file)
+        {
+            PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
+            if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
+            {
+                string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+                setting = new PHPIniSetting("upload_tmp_dir", DoubleQuotesWrap(value), "PHP");
+            }
+
             return setting;
         }
 
@@ -593,6 +615,7 @@ namespace Web.Management.PHP.Config
             settings.Add(GetToApplyLogErrors());
             settings.Add(GetToApplyErrorLog(file));
             settings.Add(GetToApplySessionPath(file));
+            settings.Add(GetToApplyUploadTmpDir(file));
             settings.Add(GetToApplyCgiForceRedirect());
             settings.Add(GetToApplyCgiPathInfo());
             settings.Add(GetToApplyFastCgiImpersonate());
@@ -741,6 +764,9 @@ namespace Web.Management.PHP.Config
                 Initialize();
             }
 
+            // Make the recommended changes to php.ini file
+            MakeRecommendedPHPIniChanges();
+
             // Make recommended changes to existing iis configuration. This is the case
             // when either FastCGI application or a handler mapping or both existed for the
             // specified php-cgi.exe executable.
@@ -748,9 +774,6 @@ namespace Web.Management.PHP.Config
             {
                 MakeRecommendedFastCgiChanges();
             }
-
-            // Make the recommended changes to php.ini file
-            MakeRecommendedPHPIniChanges();
         }
 
         public void SelectPHPHandler(string name)
@@ -897,6 +920,12 @@ namespace Web.Management.PHP.Config
             }
 
             configIssue = ValidateSessionPath(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
+            configIssue = ValidateUploadTmpDir(file);
             if (configIssue != null)
             {
                 configIssues.Add(configIssue);
@@ -1205,5 +1234,32 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
+        private PHPConfigIssue ValidateUploadTmpDir(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+            // Check if Upload dir is set to an absolute path and that path exists
+            PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
+            string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            {
+                configIssue = new PHPConfigIssue("upload_tmp_dir",
+                                                                String.Empty,
+                                                                expectedValue,
+                                                                "ConfigIssueUploadDirNotSet",
+                                                                "ConfigIssueUploadDirRecommend",
+                                                                PHPConfigIssueIndex.UploadDir);
+            }
+            else if (!IsAbsoluteFilePath(setting.TrimmedValue, false /* this is supposed to be a directory */))
+            {
+                configIssue = new PHPConfigIssue("upload_tmp_dir",
+                                                                setting.TrimmedValue,
+                                                                expectedValue,
+                                                                "ConfigIssueUploadDirNotCorrect",
+                                                                "ConfigIssueUploadDirRecommend",
+                                                                PHPConfigIssueIndex.UploadDir);
+            }
+
+            return configIssue;
+        }
     }
 }

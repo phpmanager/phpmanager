@@ -663,6 +663,33 @@ namespace Web.Management.PHP {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;upload_tmp_dir&quot; points to a directory that does not exist..
+        /// </summary>
+        internal static string ConfigIssueUploadDirNotCorrect {
+            get {
+                return ResourceManager.GetString("ConfigIssueUploadDirNotCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PHP directive &quot;upload_tmp_dir&quot; is not set..
+        /// </summary>
+        internal static string ConfigIssueUploadDirNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueUploadDirNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;upload_tmp_dir&quot; specifies the temporary directory used for storing files when doing file upload. The directory must be writable by whatever user PHP is running as..
+        /// </summary>
+        internal static string ConfigIssueUploadDirRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueUploadDirRecommend", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap Delete16 {
             get {
                 object obj = ResourceManager.GetObject("Delete16", resourceCulture);

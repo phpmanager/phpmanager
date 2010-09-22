@@ -237,7 +237,7 @@ namespace Web.Management.PHP.Config
                         // Get the path to the extension directory - this will be used later
                         if (String.Equals(directive.Name, "extension_dir", StringComparison.OrdinalIgnoreCase))
                         {
-                            extensionDir = directive.Value;
+                            extensionDir = directive.TrimmedValue;
                         }
                     }
                     else

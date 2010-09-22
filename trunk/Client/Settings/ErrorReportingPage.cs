@@ -23,6 +23,7 @@ namespace Web.Management.PHP.Settings
     internal sealed class ErrorReportingPage : ModuleDialogPage, IModuleChildPage
     {
 
+
         enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
 
         private string _errorLogFile = String.Empty;
@@ -150,7 +151,8 @@ namespace Web.Management.PHP.Settings
                 settings.Add(new PHPIniSetting(SettingNames[i], settingValues[i], "PHP"));
             }
 
-            settings.Add(new PHPIniSetting("error_log", _errorLogFileTextBox.Text.Trim(), "PHP"));
+            string errorLogValue = '"' + _errorLogFileTextBox.Text.Trim(new char [] {' ', '"'}) + '"';
+            settings.Add(new PHPIniSetting("error_log", errorLogValue, "PHP"));
 
             try
             {
@@ -388,7 +390,9 @@ namespace Web.Management.PHP.Settings
             {
                 _hasChanges = _devMachineRadioButton.Checked;
             }
-            if (oldHasChanges != _hasChanges)
+            _hasChanges = _hasChanges || oldHasChanges;
+
+            if (_hasChanges)
             {
                 Update();
             }
@@ -458,7 +462,9 @@ namespace Web.Management.PHP.Settings
             {
                 _hasChanges = _prodMachineRadioButton.Checked;
             }
-            if (oldHasChanges != _hasChanges)
+            _hasChanges = _hasChanges || oldHasChanges;
+
+            if (_hasChanges)
             {
                 Update();
             }
