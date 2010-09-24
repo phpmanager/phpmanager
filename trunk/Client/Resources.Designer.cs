@@ -1557,7 +1557,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IIS and PHP are not configured optimally on this machine. .
+        ///   Looks up a localized string similar to IIS and PHP are configured not optimally on this machine. .
         /// </summary>
         internal static string WarningPHPConfigNotOptimal {
             get {

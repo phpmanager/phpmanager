@@ -473,7 +473,7 @@
     <value>View recommendations.</value>
   </data>
   <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
-    <value>IIS and PHP are not configured optimally on this machine. </value>
+    <value>IIS and PHP are configured not optimally on this machine. </value>
   </data>
   <data name="FixItDialogPHPIniCopy" xml:space="preserve">
     <value>All the recommended IIS and PHP settings have been applied. The previous version of php.ini file has been saved in {0}.</value>
