@@ -438,12 +438,12 @@ namespace Web.Management.PHP.Config
             return String.Empty;
         }
 
-        private PHPIniSetting GetToApplyCgiForceRedirect()
+        private static PHPIniSetting GetToApplyCgiForceRedirect()
         {
             return new PHPIniSetting("cgi.force_redirect", "0", "PHP");
         }
 
-        private PHPIniSetting GetToApplyCgiPathInfo()
+        private static PHPIniSetting GetToApplyCgiPathInfo()
         {
             return new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP");
         }
@@ -467,17 +467,17 @@ namespace Web.Management.PHP.Config
             return new PHPIniSetting("extension_dir", DoubleQuotesWrap(value), "PHP");
         }
 
-        private PHPIniSetting GetToApplyFastCgiImpersonate()
+        private static PHPIniSetting GetToApplyFastCgiImpersonate()
         {
             return new PHPIniSetting("fastcgi.impersonate", "1", "PHP");
         }
 
-        private PHPIniSetting GetToApplyLogErrors()
+        private static PHPIniSetting GetToApplyLogErrors()
         {
             return new PHPIniSetting("log_errors", "On", "PHP");
         }
 
-        private PHPIniSetting GetToApplySessionPath(PHPIniFile file)
+        private static PHPIniSetting GetToApplySessionPath(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting("session.save_path");
             if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
@@ -489,7 +489,7 @@ namespace Web.Management.PHP.Config
             return setting;
         }
 
-        private PHPIniSetting GetToApplyUploadTmpDir(PHPIniFile file)
+        private static PHPIniSetting GetToApplyUploadTmpDir(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
             if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
@@ -796,7 +796,7 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)
+        private static PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
             
@@ -824,7 +824,7 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
-        private PHPConfigIssue ValidateCgiPathInfo(PHPIniFile file)
+        private static PHPConfigIssue ValidateCgiPathInfo(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
             
@@ -1042,7 +1042,7 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
-        private PHPConfigIssue ValidateFastCgiImpersonate(PHPIniFile file)
+        private static PHPConfigIssue ValidateFastCgiImpersonate(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
             
@@ -1070,7 +1070,7 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
-        private PHPConfigIssue ValidateLogErrors(PHPIniFile file)
+        private static PHPConfigIssue ValidateLogErrors(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
 
@@ -1208,7 +1208,7 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
-        private PHPConfigIssue ValidateSessionPath(PHPIniFile file)
+        private static PHPConfigIssue ValidateSessionPath(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
             // Check if session path is set to an absolute path and that path exists
@@ -1236,7 +1236,7 @@ namespace Web.Management.PHP.Config
             return configIssue;
         }
 
-        private PHPConfigIssue ValidateUploadTmpDir(PHPIniFile file)
+        private static PHPConfigIssue ValidateUploadTmpDir(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
             // Check if Upload dir is set to an absolute path and that path exists

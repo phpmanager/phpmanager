@@ -15,8 +15,8 @@ namespace Web.Management.PHP.Handlers
 
     internal class HandlerElement : ConfigurationElement
     {
-        private string _executable = null;
-        private string _arguments = null;
+        private string _executable;
+        private string _arguments;
 
         public bool AllowPathInfo
         {
@@ -164,7 +164,7 @@ namespace Web.Management.PHP.Handlers
             }
         }
 
-        private string SplitScriptProcessor(string scriptProcessor, out string arguments)
+        private static string SplitScriptProcessor(string scriptProcessor, out string arguments)
         {
             string[] s = scriptProcessor.Split(new char[] { '|' }, StringSplitOptions.None);
             if (s.Length > 1)
