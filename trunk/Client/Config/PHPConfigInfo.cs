@@ -18,7 +18,7 @@ namespace Web.Management.PHP.Config
 
         private const int IndexPHPRegistrationType = 0;
         private const int IndexHandlerName = 1;
-        private const int IndexScriptProcessor = 2;
+        private const int IndexExecutable = 2;
         private const int IndexVersion = 3;
         private const int IndexPHPIniFilePath = 4;
         private const int IndexErrorLog = 5;
@@ -32,7 +32,7 @@ namespace Web.Management.PHP.Config
         {
             _data = new object[Size];
             HandlerName = String.Empty;
-            ScriptProcessor = String.Empty;
+            Executable = String.Empty;
             Version = String.Empty;
             PHPIniFilePath = String.Empty;
             ErrorLog = String.Empty;
@@ -125,15 +125,15 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        public string ScriptProcessor
+        public string Executable
         {
             get
             {
-                return (string)_data[IndexScriptProcessor];
+                return (string)_data[IndexExecutable];
             }
             set
             {
-                _data[IndexScriptProcessor] = value;
+                _data[IndexExecutable] = value;
             }
         }
 

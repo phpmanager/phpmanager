@@ -5,8 +5,9 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
+using System;
 using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.Handlers
@@ -14,6 +15,8 @@ namespace Web.Management.PHP.Handlers
 
     internal class HandlerElement : ConfigurationElement
     {
+        private string _executable = null;
+        private string _arguments = null;
 
         public bool AllowPathInfo
         {
@@ -24,6 +27,30 @@ namespace Web.Management.PHP.Handlers
             set
             {
                 base["allowPathInfo"] = value;
+            }
+        }
+
+        public string Arguments
+        {
+            get
+            {
+                if (_arguments == null)
+                {
+                    _executable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                }
+                return _arguments;
+            }
+        }
+
+        public string Executable
+        {
+            get
+            {
+                if (_executable == null)
+                {
+                    _executable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                }
+                return _executable;
             }
         }
 
@@ -108,6 +135,8 @@ namespace Web.Management.PHP.Handlers
             set
             {
                 base["scriptProcessor"] = value;
+                _executable = null;
+                _arguments = null;
             }
         }
 
@@ -135,16 +164,18 @@ namespace Web.Management.PHP.Handlers
             }
         }
 
-        //public uint ResponseBufferLimit
-        //{
-        //    get
-        //    {
-        //        return (uint)base["responseBufferLimit"];
-        //    }
-        //    set
-        //    {
-        //        base["responseBufferLimit"] = value;
-        //    }
-        //}
+        private string SplitScriptProcessor(string scriptProcessor, out string arguments)
+        {
+            string[] s = scriptProcessor.Split(new char[] { '|' }, StringSplitOptions.None);
+            if (s.Length > 1)
+            {
+                arguments = s[1];
+            }
+            else
+            {
+                arguments = String.Empty;
+            }
+            return s[0];
+        }
     }
 }

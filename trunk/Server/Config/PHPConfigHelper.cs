@@ -345,9 +345,9 @@ namespace Web.Management.PHP.Config
                 if (String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
                     if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
-                        File.Exists(handler.ScriptProcessor))
+                        File.Exists(handler.Executable))
                     {
-                        result.Add(new string[] { handler.Name, handler.ScriptProcessor, GetPHPExecutableVersion(handler.ScriptProcessor) });
+                        result.Add(new string[] { handler.Name, handler.Executable, GetPHPExecutableVersion(handler.Executable) });
                     }
                 }
             }
@@ -369,8 +369,8 @@ namespace Web.Management.PHP.Config
 
             configInfo.RegistrationType = _registrationType;
             configInfo.HandlerName = _currentPHPHandler.Name;
-            configInfo.ScriptProcessor = _currentPHPHandler.ScriptProcessor;
-            configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.ScriptProcessor);
+            configInfo.Executable = _currentPHPHandler.Executable;
+            configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.Executable);
 
             if (String.IsNullOrEmpty(PHPIniFilePath))
             {
@@ -403,7 +403,7 @@ namespace Web.Management.PHP.Config
 
         private string GetPHPDirectory()
         {
-            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.ScriptProcessor));
+            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.Executable));
             return EnsureTrailingBackslash(phpDirectory);
         }
 
@@ -425,7 +425,7 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                directoryPath = Path.GetDirectoryName(_currentPHPHandler.ScriptProcessor);
+                directoryPath = Path.GetDirectoryName(_currentPHPHandler.Executable);
             }
 
             string phpIniPath = Path.Combine(directoryPath, "php.ini");
@@ -539,15 +539,17 @@ namespace Web.Management.PHP.Config
 
                 if (_registrationType == PHPRegistrationType.FastCgi)
                 {
-                    string executable = handler.ScriptProcessor;
-
-                    ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(executable, "");
+                    ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.Executable, handler.Arguments);
                     if (fastCgiApplication != null)
                     {
                         _currentPHPHandler = handler;
                         _currentFastCgiApplication = fastCgiApplication;
                         _phpIniFilePath = GetPHPIniFilePath();
                         _phpDirectory = GetPHPDirectory();
+                    }
+                    else
+                    {
+                        _registrationType = PHPRegistrationType.None;
                     }
                 }
             }

@@ -548,7 +548,7 @@ namespace Web.Management.PHP
                 _phpSetupItem.SetWarning(errorLabel);
             }
             _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
-            _executableValueLabel.Text = isPHPSetup ? configInfo.ScriptProcessor : Resources.PHPPagePHPNotAvailable;
+            _executableValueLabel.Text = isPHPSetup ? configInfo.Executable : Resources.PHPPagePHPNotAvailable;
             // Allow PHP registration only for server administrators
             if (configInfo != null)
             {
