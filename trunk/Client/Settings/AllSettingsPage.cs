@@ -259,8 +259,8 @@ namespace Web.Management.PHP.Settings
 
             ListView.MultiSelect = false;
             ListView.SelectedIndexChanged += new EventHandler(OnListViewSelectedIndexChanged);
-            ListView.DoubleClick += new EventHandler(OnListViewDoubleClick);
             ListView.KeyUp += new KeyEventHandler(OnListViewKeyUp);
+            ListView.ItemActivate += new EventHandler(OnListViewItemActivate);
         }
 
         private void LoadPHPIni(PHPIniFile file)
@@ -362,7 +362,7 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        private void OnListViewDoubleClick(object sender, EventArgs e)
+        private void OnListViewItemActivate(object sender, EventArgs e)
         {
             EditPHPSetting();
         }
