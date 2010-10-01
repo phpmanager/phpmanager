@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
+using Microsoft.Win32;
 using Web.Management.PHP.DefaultDocument;
 using Web.Management.PHP.FastCgi;
 using Web.Management.PHP.Handlers;
@@ -233,19 +234,21 @@ namespace Web.Management.PHP.Config
 
             // Set PHPRC
             EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            string expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
             if (envVariableElement == null)
             {
-                _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", PHPDirectory);
+                _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", expectedValue);
                 changeHappened = true;
             }
             else
             {
-                // If PHPRC does not point to a valid directory with php.ini ...
-                string path = Path.Combine(envVariableElement.Value, "php.ini");
-                if (!File.Exists(path))
+                // If PHPRC does not point to a valid directory with php.ini or php-cgi-fcgi.ini ...
+                string path_phpini = Path.Combine(envVariableElement.Value, "php.ini");
+                string path_phpsapiini = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
+                if (!File.Exists(path_phpini) && !File.Exists(path_phpsapiini))
                 {
                     // ... then set it to current PHP directory
-                    envVariableElement.Value = PHPDirectory;
+                    envVariableElement.Value = expectedValue;
                     changeHappened = true;
                 }
             }
@@ -415,7 +418,8 @@ namespace Web.Management.PHP.Config
 
         private string GetPHPIniFilePath()
         {
-            // If PHPRC environment variable is set then use the path specified there.
+            // If PHPRC environment variable is set then use the path specified there,
+            // Otherwise try to get the directory path from registry,
             // Otherwise use the same path as where PHP executable is located.
             string directoryPath = String.Empty;
             EnvironmentVariableElement phpRcElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
@@ -425,17 +429,66 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                directoryPath = Path.GetDirectoryName(_currentPHPHandler.Executable);
+                directoryPath = GetPHPIniPathFromRegistry(_currentPHPHandler.Executable);
+                if (String.IsNullOrEmpty(directoryPath))
+                {
+                    directoryPath = Path.GetDirectoryName(_currentPHPHandler.Executable);
+                }
             }
 
-            string phpIniPath = Path.Combine(directoryPath, "php.ini");
+            string phpIniPath = Path.Combine(directoryPath, "php-cgi-fcgi.ini");
 
             if (File.Exists(phpIniPath))
             {
                 return phpIniPath;
             }
+            else
+            {
+                phpIniPath = Path.Combine(directoryPath, "php.ini");
+                if (File.Exists(phpIniPath))
+                {
+                    return phpIniPath;
+                }
+            }
 
             return String.Empty;
+        }
+
+        private static string GetPHPIniPathFromRegistry(string executable)
+        {
+            // Getting the path to php.ini from registry in accordance to the documentation at
+            // http://www.php.net/manual/en/configuration.file.php
+
+            Version version = new Version(GetPHPExecutableVersion(executable));
+            // Try to get the IniFilePath from [HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x.y.z]
+            string phpIniDirectory = TryToGetIniFilePath(version.ToString(3));
+            if (phpIniDirectory != null)
+            {
+                return phpIniDirectory;
+            }
+
+            // Try to get the IniFilePath from [HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x.y]
+            phpIniDirectory = TryToGetIniFilePath(version.ToString(2));
+            if (phpIniDirectory != null)
+            {
+                return phpIniDirectory;
+            }
+
+            // Try to get the IniFilePath from [HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x]
+            phpIniDirectory = TryToGetIniFilePath(version.ToString(1));
+            if (phpIniDirectory != null)
+            {
+                return phpIniDirectory;
+            }
+
+            // Try to get the IniFilePath from [HKEY_LOCAL_MACHINE\SOFTWARE\PHP]
+            phpIniDirectory = TryToGetIniFilePath(null);
+            if (phpIniDirectory != null)
+            {
+                return phpIniDirectory;
+            }
+
+            return null;
         }
 
         private static PHPIniSetting GetToApplyCgiForceRedirect()
@@ -656,22 +709,27 @@ namespace Web.Management.PHP.Config
         {
             // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
             // or php.ini-production to it
-            string phpIniFilePath = Path.Combine(phpDir, "php.ini");
+            string phpIniFilePath = Path.Combine(phpDir, "php-cgi-fcgi.ini");
             if (!File.Exists(phpIniFilePath))
             {
-                string phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
-                string phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
-                if (File.Exists(phpIniRecommendedPath))
+                phpIniFilePath = Path.Combine(phpDir, "php.ini");
+
+                if (!File.Exists(phpIniFilePath))
                 {
-                    File.Copy(phpIniRecommendedPath, phpIniFilePath);
-                }
-                else if (File.Exists(phpIniProductionPath))
-                {
-                    File.Copy(phpIniProductionPath, phpIniFilePath);
-                }
-                else
-                {
-                    throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
+                    string phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
+                    string phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
+                    if (File.Exists(phpIniRecommendedPath))
+                    {
+                        File.Copy(phpIniRecommendedPath, phpIniFilePath);
+                    }
+                    else if (File.Exists(phpIniProductionPath))
+                    {
+                        File.Copy(phpIniProductionPath, phpIniFilePath);
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
+                    }
                 }
             }
             return phpIniFilePath;
@@ -794,6 +852,27 @@ namespace Web.Management.PHP.Config
                 MakeHandlerActive(name);
                 _managementUnit.Update();
             }
+        }
+
+        private static string TryToGetIniFilePath(string version)
+        {
+            string subkey = "SOFTWARE\\PHP";
+            if (!String.IsNullOrEmpty(version))
+            {
+                subkey = subkey + "\\" + version;
+            }
+
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey);
+            if (key != null)
+            {
+                object value = key.GetValue("IniFilePath");
+                if (value != null)
+                {
+                    return (string)value;
+                }
+            }
+
+            return null;
         }
 
         private static PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)
@@ -1165,23 +1244,25 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
             // Check if PHPRC is set and points to a directory that has php.ini file
             EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            string expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
             if (envVariableElement == null)
             {
                 configIssue = new PHPConfigIssue("PHPRC", 
                                                                 String.Empty,
-                                                                PHPDirectory,
+                                                                expectedValue,
                                                                 "ConfigIssuePHPRCNotSet",
                                                                 "ConfigIssuePHPRCRecommend",
                                                                 PHPConfigIssueIndex.PHPRC);
             }
             else
             {
-                string path = Path.Combine(envVariableElement.Value, "php.ini");
-                if (!File.Exists(path))
+                string path_phpini = Path.Combine(envVariableElement.Value, "php.ini");
+                string path_sapiini = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
+                if (!File.Exists(path_phpini) && !File.Exists(path_sapiini))
                 {
                     configIssue = new PHPConfigIssue("PHPRC",
                                                                     envVariableElement.Value,
-                                                                    PHPDirectory,
+                                                                    expectedValue,
                                                                     "ConfigIssuePHPRCFileNotExists",
                                                                     "ConfigIssuePHPRCRecommend",
                                                                     PHPConfigIssueIndex.PHPRC);
