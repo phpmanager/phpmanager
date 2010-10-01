@@ -243,11 +243,11 @@ namespace Web.Management.PHP.Config
             else
             {
                 // If PHPRC does not point to a valid directory with php.ini or php-cgi-fcgi.ini ...
-                string path_phpini = Path.Combine(envVariableElement.Value, "php.ini");
-                string path_phpsapiini = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
-                if (!File.Exists(path_phpini) && !File.Exists(path_phpsapiini))
+                string pathPhpIni = Path.Combine(envVariableElement.Value, "php.ini");
+                string pathPhpSapiIni = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
+                if (!File.Exists(pathPhpIni) && !File.Exists(pathPhpSapiIni))
                 {
-                    // ... then set it to current PHP directory
+                    // ... then set it to the directory where php.ini is loaded from
                     envVariableElement.Value = expectedValue;
                     changeHappened = true;
                 }
@@ -1256,9 +1256,9 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                string path_phpini = Path.Combine(envVariableElement.Value, "php.ini");
-                string path_sapiini = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
-                if (!File.Exists(path_phpini) && !File.Exists(path_sapiini))
+                string pathPhpIni = Path.Combine(envVariableElement.Value, "php.ini");
+                string pathPhpSapiIni = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
+                if (!File.Exists(pathPhpIni) && !File.Exists(pathPhpSapiIni))
                 {
                     configIssue = new PHPConfigIssue("PHPRC",
                                                                     envVariableElement.Value,
