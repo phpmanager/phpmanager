@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
 using Microsoft.Win32;
@@ -320,6 +321,21 @@ namespace Web.Management.PHP.Config
             return str;
         }
 
+        private static Version ExtractVersion(string version_string)
+        {
+            Version result = null;
+
+            Regex r = new Regex(@"^(?<version>\d+\.\d+\.\d+(?:\.\d+)?).*");
+            Match m = r.Match(version_string);
+            if (m.Success)
+            {
+                string version = r.Match(version_string).Result("${version}");
+                result = new Version(version);
+            }
+
+            return result;
+        }
+
         private static string GenerateHandlerName(HandlersCollection collection, string phpVersion)
         {
             string prefix = "php-" + phpVersion;
@@ -459,9 +475,24 @@ namespace Web.Management.PHP.Config
             // Getting the path to php.ini from registry in accordance to the documentation at
             // http://www.php.net/manual/en/configuration.file.php
 
-            Version version = new Version(GetPHPExecutableVersion(executable));
+            // First try to access the version as it is
+            string versionAsIs = GetPHPExecutableVersion(executable);
+            string phpIniDirectory = TryToGetIniFilePath(versionAsIs);
+            if (phpIniDirectory != null)
+            {
+                return phpIniDirectory;
+            }
+
+            // Try to get the properly formatted version 
+            // If cannot then bail out
+            Version version = ExtractVersion(versionAsIs);
+            if (version == null)
+            {
+                return null;
+            }
+
             // Try to get the IniFilePath from [HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x.y.z]
-            string phpIniDirectory = TryToGetIniFilePath(version.ToString(3));
+            phpIniDirectory = TryToGetIniFilePath(version.ToString(3));
             if (phpIniDirectory != null)
             {
                 return phpIniDirectory;
