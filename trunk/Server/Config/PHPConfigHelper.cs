@@ -321,15 +321,15 @@ namespace Web.Management.PHP.Config
             return str;
         }
 
-        private static Version ExtractVersion(string version_string)
+        private static Version ExtractVersion(string versionAsIs)
         {
             Version result = null;
 
             Regex r = new Regex(@"^(?<version>\d+\.\d+\.\d+(?:\.\d+)?).*");
-            Match m = r.Match(version_string);
+            Match m = r.Match(versionAsIs);
             if (m.Success)
             {
-                string version = r.Match(version_string).Result("${version}");
+                string version = r.Match(versionAsIs).Result("${version}");
                 result = new Version(version);
             }
 
