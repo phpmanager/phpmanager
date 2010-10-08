@@ -301,7 +301,7 @@ namespace Web.Management.PHP.Config
                 // Process the settings and extensions
                 else if (!String.IsNullOrEmpty(tmp))
                 {
-                    string[] split = tmp.Split(new Char[] { '=' });
+                    string[] split = tmp.Split(new Char[] { '=' }, 2);
                     string name = split[0].Trim();
                     string value = String.Empty;
 
