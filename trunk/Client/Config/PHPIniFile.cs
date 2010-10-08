@@ -298,38 +298,29 @@ namespace Web.Management.PHP.Config
                         yield return new PHPIniSection(line);
                     }
                 }
-                // Process an extension
-                else if (tmp.StartsWith("extension=", StringComparison.OrdinalIgnoreCase))
-                {
-                    // Take care of the inline comment
-                    tmp = RemoveInlineComment(tmp);
-
-                    string[] split = tmp.Split(new Char[] { '=' });
-                    if (split.Length == 2)
-                    {
-                        string fileName = split[1].Trim();
-                        yield return new PHPIniExtension(fileName, true, line);
-                    }
-                    else
-                    {
-                        // If extension file is not specified then treat the line as unusable
-                        yield return new PHPIniString(line);
-                    }
-                }
-                // Process a directive
+                // Process the settings and extensions
                 else if (!String.IsNullOrEmpty(tmp))
                 {
-                    // Take care of the inline comment
-                    tmp = RemoveInlineComment(tmp);
-
                     string[] split = tmp.Split(new Char[] { '=' });
+                    string name = split[0].Trim();
+                    string value = String.Empty;
+
                     if (split.Length > 1)
                     {
-                        yield return new PHPIniSetting(split[0].Trim(), split[1].Trim(), section, line);
+                        value = RemoveInlineComment(split[1].Trim());
                     }
                     else
                     {
-                        yield return new PHPIniSetting(split[0].Trim(), String.Empty, section, line);
+                        name = RemoveInlineComment(name);
+                    }
+
+                    if (String.Equals(name, "extension", StringComparison.OrdinalIgnoreCase) && !String.IsNullOrEmpty(value))
+                    {
+                        yield return new PHPIniExtension(value, true, line);
+                    }
+                    else
+                    {
+                        yield return new PHPIniSetting(name, value, section, line);
                     }
                 }
                 else
@@ -349,8 +340,15 @@ namespace Web.Management.PHP.Config
 
         private static string RemoveInlineComment(string line)
         {
+            // Take care of the case when value is wrapped in quotes
+            if (line.StartsWith("\"", StringComparison.OrdinalIgnoreCase) &&
+                line.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
+            {
+                return line;
+            }
+
             int commentIndex = line.IndexOf(';');
-            if (commentIndex > 0)
+            if (commentIndex >= 0)
             {
                 return line.Substring(0, commentIndex);
             }

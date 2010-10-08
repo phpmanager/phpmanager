@@ -311,6 +311,11 @@ namespace Web.Management.PHP.Config
             return '"' + value + '"';
         }
 
+        private static string EnsureBackslashes(string str)
+        {
+            return str.Replace('/', '\\');
+        }
+
         private static string EnsureTrailingBackslash(string str)
         {            
             if (!str.EndsWith(@"\", StringComparison.Ordinal))
@@ -1138,6 +1143,7 @@ namespace Web.Management.PHP.Config
             else
             {
                 string currentValue = EnsureTrailingBackslash(setting.TrimmedValue);
+                currentValue = EnsureBackslashes(currentValue);
                 if (!String.Equals(currentValue, expectedValue, StringComparison.OrdinalIgnoreCase))
                 {
                     configIssue = new PHPConfigIssue("extension_dir",
