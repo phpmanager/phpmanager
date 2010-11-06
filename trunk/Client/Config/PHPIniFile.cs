@@ -139,7 +139,18 @@ namespace Web.Management.PHP.Config
                             break;
                         }
 
+                        // This finds the index after the last setting for a given section
                         if (String.Equals(existing.Section, setting.Section, StringComparison.OrdinalIgnoreCase))
+                        {
+                            index = i;
+                        }
+                    }
+                    else
+                    {
+                        // This finds the index after section declaration,
+                        // in case there are no settings defined in that section
+                        PHPIniSection section = b as PHPIniSection;
+                        if ((section != null) && (String.Equals(section.Name, setting.Section, StringComparison.OrdinalIgnoreCase)))
                         {
                             index = i;
                         }
@@ -295,7 +306,7 @@ namespace Web.Management.PHP.Config
                     {
                         string name = tmp.Substring(startindex + 1, endindex - startindex - 1);
                         section = name;
-                        yield return new PHPIniSection(line);
+                        yield return new PHPIniSection(name, line);
                     }
                 }
                 // Process the settings and extensions
@@ -639,8 +650,25 @@ namespace Web.Management.PHP.Config
 
     internal class PHPIniSection : PHPIniBase
     {
+        private string _name;
+
         public PHPIniSection() { }
 
-        public PHPIniSection(string rawText) : base(rawText) { }
+        public PHPIniSection(string name, string rawText) : base(rawText)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
     }
 }
