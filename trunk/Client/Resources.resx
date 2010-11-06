@@ -473,7 +473,7 @@
     <value>View recommendations.</value>
   </data>
   <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
-    <value>IIS and PHP are configured not optimally on this machine. </value>
+    <value>Not optimal PHP configuration is found on this machine. </value>
   </data>
   <data name="FixItDialogPHPIniCopy" xml:space="preserve">
     <value>All the recommended IIS and PHP settings have been applied. The previous version of php.ini file has been saved in {0}.</value>
@@ -614,7 +614,7 @@
     <value>Not optimal PHP registration (ISAPI) is found. Register new PHP version to enable PHP via FastCGI.</value>
   </data>
   <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
-    <value>PHP is not enabled on this server. Register new PHP version to enable PHP via FastCGI.</value>
+    <value>PHP is not enabled. Register new PHP version to enable PHP via FastCGI.</value>
   </data>
   <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
     <value>Information about PHP cannot be obtained due to invalid IIS configuration.</value>
@@ -630,5 +630,11 @@
   </data>
   <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
     <value>The "upload_tmp_dir" specifies the temporary directory used for storing files when doing file upload. The directory must be writable by whatever user PHP is running as.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
+    <value>The PHP directive date.timezone is not set.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
+    <value>It is not safe to rely on the system's timezone settings. It is recommended to explicitly set the timezone information by using date.timezone directive or the date_default_timezone_set() function.</value>
   </data>
 </root>

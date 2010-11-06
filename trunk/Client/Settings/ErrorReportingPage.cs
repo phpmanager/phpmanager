@@ -23,7 +23,6 @@ namespace Web.Management.PHP.Settings
     internal sealed class ErrorReportingPage : ModuleDialogPage, IModuleChildPage
     {
 
-
         enum ErrorReportingPreset { Undefined = 0, Development = 1, Production = 2 };
 
         private string _errorLogFile = String.Empty;

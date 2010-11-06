@@ -394,6 +394,24 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The PHP directive date.timezone is not set..
+        /// </summary>
+        internal static string ConfigIssueDateTimeZoneNotSet {
+            get {
+                return ResourceManager.GetString("ConfigIssueDateTimeZoneNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is not safe to rely on the system&apos;s timezone settings. It is recommended to explicitly set the timezone information by using date.timezone directive or the date_default_timezone_set() function..
+        /// </summary>
+        internal static string ConfigIssueDateTimeZoneRecommend {
+            get {
+                return ResourceManager.GetString("ConfigIssueDateTimeZoneRecommend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to index.php is not the first in the list of IIS default documents..
         /// </summary>
         internal static string ConfigIssueDefaultDocumentNotFirst {
@@ -1557,7 +1575,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IIS and PHP are configured not optimally on this machine. .
+        ///   Looks up a localized string similar to Not optimal PHP configuration is found on this machine. .
         /// </summary>
         internal static string WarningPHPConfigNotOptimal {
             get {
@@ -1566,7 +1584,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PHP is not enabled on this server. Register new PHP version to enable PHP via FastCGI..
+        ///   Looks up a localized string similar to PHP is not enabled. Register new PHP version to enable PHP via FastCGI..
         /// </summary>
         internal static string WarningPHPConfigNotRegistered {
             get {

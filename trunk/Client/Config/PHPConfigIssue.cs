@@ -25,6 +25,7 @@ namespace Web.Management.PHP.Config
         public const int CgiPathInfo = 10;
         public const int FastCgiImpersonation = 11;
         public const int UploadDir = 12;
+        public const int DateTimeZone = 13;
     }
 
     internal class PHPConfigIssue : IRemoteObject

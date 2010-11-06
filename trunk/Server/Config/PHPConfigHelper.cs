@@ -155,6 +155,11 @@ namespace Web.Management.PHP.Config
                             settings.Add(GetToApplyFastCgiImpersonate());
                             break;
                         }
+                    case PHPConfigIssueIndex.DateTimeZone:
+                        {
+                            settings.Add(GetToApplyDateTimeZone(file));
+                            break;
+                        }
                 }
             }
 
@@ -527,6 +532,71 @@ namespace Web.Management.PHP.Config
             return null;
         }
 
+        private static string GetPHPTimeZone()
+        {
+            long ticksPerHour = TimeSpan.TicksPerHour;
+            long ticksPerMinute = TimeSpan.TicksPerMinute;
+            Dictionary<long, string> timezones = new Dictionary<long, string>();
+
+            timezones.Add(-12 * ticksPerHour, "Kwajalein");
+            timezones.Add(-11 * ticksPerHour, "Pacific/Midway");
+            timezones.Add(-10 * ticksPerHour, "Pacific/Honolulu");
+            timezones.Add(-9 * ticksPerHour, "America/Anchorage");
+            timezones.Add(-8 * ticksPerHour, "America/Los_Angeles");
+            timezones.Add(-7 * ticksPerHour, "America/Denver");
+            timezones.Add(-6 * ticksPerHour, "America/Tegucigalpa");
+            timezones.Add(-5 * ticksPerHour, "America/New_York");
+            timezones.Add(-4 * ticksPerHour - 30 * ticksPerMinute, "America/Caracas");
+            timezones.Add(-4 * ticksPerHour, "America/Halifax");
+            timezones.Add(-3 * ticksPerHour - 30 * ticksPerMinute, "America/St_Johns");
+            timezones.Add(-3 * ticksPerHour, "America/Sao_Paulo");
+            timezones.Add(-2 * ticksPerHour, "Atlantic/South_Georgia");
+            timezones.Add(-1 * ticksPerHour, "Atlantic/Azores");
+            timezones.Add(0, "Europe/Dublin");
+            timezones.Add(1 * ticksPerHour, "Europe/Belgrade");
+            timezones.Add(2 * ticksPerHour, "Europe/Minsk");
+            timezones.Add(3 * ticksPerHour, "Asia/Kuwait");
+            timezones.Add(3 * ticksPerHour + 30 * ticksPerMinute, "Asia/Tehran");
+            timezones.Add(4 * ticksPerHour, "Asia/Muscat");
+            timezones.Add(5 * ticksPerHour, "Asia/Yekaterinburg");
+            timezones.Add(5 * ticksPerHour + 30 * ticksPerMinute, "Asia/Kolkata");
+            timezones.Add(5 * ticksPerHour + 45 * ticksPerMinute, "Asia/Katmandu");
+            timezones.Add(6 * ticksPerHour, "Asia/Dhaka");
+            timezones.Add(6 * ticksPerHour + 30 * ticksPerMinute, "Asia/Rangoon");
+            timezones.Add(7 * ticksPerHour, "Asia/Krasnoyarsk");
+            timezones.Add(8 * ticksPerHour, "Asia/Brunei");
+            timezones.Add(9 * ticksPerHour, "Asia/Seoul");
+            timezones.Add(9 * ticksPerHour + 30 * ticksPerMinute, "Australia/Darwin");
+            timezones.Add(10 * ticksPerHour, "Australia/Canberra");
+            timezones.Add(11 * ticksPerHour, "Asia/Magadan");
+            timezones.Add(12 * ticksPerHour, "Pacific/Fiji");
+            timezones.Add(13 * ticksPerHour, "Pacific/Tongatapu");
+
+            DateTime currentTime = DateTime.Now;
+            TimeZone localZone = TimeZone.CurrentTimeZone;
+            TimeSpan offset = localZone.GetUtcOffset(currentTime);
+
+            // Some weird code to handle daylight savings time shifts
+            if (localZone.IsDaylightSavingTime(currentTime))
+            {
+                DaylightTime daylightTime = localZone.GetDaylightChanges(currentTime.Year);
+                if (offset >= TimeSpan.Zero)
+                {
+                    offset += daylightTime.Delta;
+                }
+                else
+                {
+                    offset -= daylightTime.Delta;
+                }
+            }
+
+            // Try to map the offset to one of the PHP time zones. If none found then use UTC time.
+            string phpTimeZone = "Europe/Dublin";
+            timezones.TryGetValue(offset.Ticks, out phpTimeZone);
+
+            return phpTimeZone;
+        }
+
         private static PHPIniSetting GetToApplyCgiForceRedirect()
         {
             return new PHPIniSetting("cgi.force_redirect", "0", "PHP");
@@ -535,6 +605,17 @@ namespace Web.Management.PHP.Config
         private static PHPIniSetting GetToApplyCgiPathInfo()
         {
             return new PHPIniSetting("cgi.fix_pathinfo", "1", "PHP");
+        }
+
+        private static PHPIniSetting GetToApplyDateTimeZone(PHPIniFile file)
+        {
+            PHPIniSetting setting = file.GetSetting("date.timezone");
+            if (setting == null)
+            {
+                setting = new PHPIniSetting("date.timezone", DoubleQuotesWrap(GetPHPTimeZone()), "Date");
+            }
+
+            return setting;
         }
 
         private PHPIniSetting GetToApplyErrorLog(PHPIniFile file)
@@ -707,6 +788,7 @@ namespace Web.Management.PHP.Config
             settings.Add(GetToApplyErrorLog(file));
             settings.Add(GetToApplySessionPath(file));
             settings.Add(GetToApplyUploadTmpDir(file));
+            settings.Add(GetToApplyDateTimeZone(file));
             settings.Add(GetToApplyCgiForceRedirect());
             settings.Add(GetToApplyCgiPathInfo());
             settings.Add(GetToApplyFastCgiImpersonate());
@@ -1066,7 +1148,31 @@ namespace Web.Management.PHP.Config
                 configIssues.Add(configIssue);
             }
 
+            configIssue = ValidateDateTimeZone(file);
+            if (configIssue != null)
+            {
+                configIssues.Add(configIssue);
+            }
+
             return configIssues;
+        }
+
+        private static PHPConfigIssue ValidateDateTimeZone(PHPIniFile file)
+        {
+            PHPConfigIssue configIssue = null;
+
+            PHPIniSetting setting = file.GetSetting("date.timezone");
+            if (setting == null)
+            {
+                configIssue = new PHPConfigIssue("date.timezone",
+                                                               String.Empty,
+                                                               GetPHPTimeZone(),
+                                                               "ConfigIssueDateTimeZoneNotSet",
+                                                               "ConfigIssueDateTimeZoneRecommend",
+                                                               PHPConfigIssueIndex.DateTimeZone);
+            }
+
+            return configIssue;
         }
 
         private PHPConfigIssue ValidateDefaultDocument()
