@@ -1575,7 +1575,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not optimal PHP configuration is found on this machine. .
+        ///   Looks up a localized string similar to Not optimal PHP configuration detected on this machine. .
         /// </summary>
         internal static string WarningPHPConfigNotOptimal {
             get {

@@ -245,7 +245,6 @@ namespace Web.Management.PHP.Settings
             SetContent(_contentPanel);
 
             UpdateTaskForm();
-
         }
 
         protected override void OnAccept()
