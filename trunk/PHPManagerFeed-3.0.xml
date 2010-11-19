@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom WebPI feed for installing PHP Manager -->
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <version>1.0.0</version>
+  <title>PHP Manager Feed for WebPI 3.0</title>
+  <link href="http://ruslany.net/PHPManagerFeed-3.0.xml" />
+  <updated>2010-11-12T16:30:00Z</updated>
+  <author>
+    <name>Ruslan Yakushev</name>
+    <uri>http://ruslany.net</uri>
+  </author>
+  <id>http://ruslany.net/PHPManagerFeed-3.0.xml</id>
+
+  <!--PHP Manager-->
+  <entry>
+    <productId>PHPManager</productId>
+    <title resourceName="Entry_PHPManager_Title">PHP Manager for IIS</title>
+    <version>1.0.4</version>
+    <summary resourceName="Entry_PHPManager_Summary">PHP Manager is an extension for IIS that greatly simplifies installation, configuration and troubleshooting of PHP on IIS 7.</summary>
+    <id>http://phpmanager.codeplex.com/</id>
+    <updated>2010-11-18T12:00:00Z</updated>
+    <longSummary resourceName="Entry_PHPManager_LongSummary">PHP Manager is an extension for IIS that greatly simplifies installation, configuration, management and troubleshooting of one or more PHP versions on IIS 7.</longSummary>
+    <published>2010-10-01T12:00:00Z</published>
+    <productFamily resourceName="StableRelease">Stable Release</productFamily>
+    <link href="http://phpmanager.codeplex.com" />
+    <images>
+      <icon>http://ruslany.net/wp-content/uploads/2010/11/PHPMgrLogo.png</icon>
+    </images>
+    <author>
+      <name>Ruslan Yakushev</name>
+      <uri>http://ruslany.net/</uri>
+    </author>
+    <keywords>
+      <keywordId>Server</keywordId>
+    </keywords>
+    <discoveryHint>
+      <registry>
+        <keyPath>HKEY_LOCAL_MACHINE\SOFTWARE\PHP Manager 1.0 for IIS 7</keyPath>
+        <valueName>Version</valueName>
+        <valueValue>1.0.4</valueValue>
+      </registry>
+    </discoveryHint>
+    <dependency>
+      <or>
+        <dependency>
+          <productId>PHP53</productId>
+        </dependency>
+        <dependency>
+          <productId>PHP52</productId>
+        </dependency>
+      </or>
+    </dependency>
+    <installers>
+      <!-- x86 -->
+      <installer>
+        <id>1</id>
+        <languageId>en</languageId>
+        <architectures>
+            <x86 />
+        </architectures>
+        <osList>
+          <os>
+            <minimumVersion>
+              <osMajorVersion>6</osMajorVersion>
+              <osMinorVersion>0</osMinorVersion>
+              <spMajorVersion>1</spMajorVersion>
+            </minimumVersion>
+            <maximumVersion>
+              <osMajorVersion>6</osMajorVersion>
+              <osMinorVersion>1</osMinorVersion>
+            </maximumVersion>
+            <osTypes>
+              <Server />
+              <HomePremium />
+              <Ultimate />
+              <Enterprise />
+              <Business />
+            </osTypes>
+          </os>
+        </osList>
+        <eulaURL>http://phpmanager.codeplex.com/license</eulaURL>
+        <installerFile>
+          <fileSize>548</fileSize>
+          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=153989</installerURL>
+          <trackingURL>http://go.microsoft.com/fwlink/?LinkId=153670</trackingURL>
+          <sha1>D61973A9BFF2804D4BD96762C97607A34F102B17</sha1>
+        </installerFile>
+        <installCommands>
+          <msiInstall>
+            <msi>%InstallerFile%</msi>
+          </msiInstall>
+        </installCommands>
+        <helpLink>http://phpmanager.codeplex.com/documentation</helpLink>
+      </installer>
+      <!-- x64 -->
+      <installer>
+        <id>2</id>
+        <languageId>en</languageId>
+        <architectures>
+          <x64 />
+        </architectures>
+        <osList>
+          <os>
+            <minimumVersion>
+              <osMajorVersion>6</osMajorVersion>
+              <osMinorVersion>0</osMinorVersion>
+              <spMajorVersion>1</spMajorVersion>
+            </minimumVersion>
+            <maximumVersion>
+              <osMajorVersion>6</osMajorVersion>
+              <osMinorVersion>1</osMinorVersion>
+            </maximumVersion>
+            <osTypes>
+              <Server />
+              <HomePremium />
+              <Ultimate />
+              <Enterprise />
+              <Business />
+            </osTypes>
+          </os>
+        </osList>
+        <eulaURL>http://phpmanager.codeplex.com/license</eulaURL>
+        <installerFile>
+          <fileSize>564</fileSize>
+          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=153990</installerURL>
+          <trackingURL>http://go.microsoft.com/fwlink/?LinkId=153671</trackingURL>
+          <sha1>15D0EF970CD6AABF464F14303602E7189C1B816C</sha1>
+        </installerFile>
+        <installCommands>
+          <msiInstall>
+            <msi>%InstallerFile%</msi>
+          </msiInstall>
+        </installCommands>
+        <helpLink>http://forums.iis.net/1155.aspx</helpLink>
+      </installer>
+    </installers>
+  </entry>
+
+  <!-- define a tab that contains PHPManager -->
+  <tabs>
+    <tab>
+      <pillarTab>
+        <id>PHP</id>
+        <name>PHP</name>
+        <description>PHP Frameworks, tools and utilities</description>
+        <pillar>
+          <id>Tools</id>
+          <name>Tools</name>
+          <description>Tools for running PHP on Windows</description>
+          <groupingId>StableReleaseProductFamilyGrouping</groupingId>
+          <recommended>
+            <productId>PHPManager</productId>
+          </recommended>
+        </pillar>
+      </pillarTab>
+    </tab>
+  </tabs>
+
+  <groupings>
+    <grouping>
+      <id>StableReleaseProductFamilyGrouping</id>
+      <!-- combine products based on their productFamily attributes -->
+      <attribute>productFamily</attribute>
+      <include>
+        <item>Stable Release</item>
+      </include>
+    </grouping>
+  </groupings>
+</feed>
