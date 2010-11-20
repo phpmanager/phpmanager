@@ -129,8 +129,10 @@ namespace Web.Management.PHP.Extensions
             this.Controls.Add(this._pathToExtenionLabel);
             this.Name = "AddExtensionDialog";
             this.ResumeLayout(false);
+            this.ResumeLayout(false);
+#if VSDesigner
             this.PerformLayout();
-
+#endif
         }
 
         private void InitializeUI()

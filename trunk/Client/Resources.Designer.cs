@@ -124,7 +124,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Example: C:\Temp\wincache.dll.
+        ///   Looks up a localized string similar to Example: C:\Temp\php_wincache.dll.
         /// </summary>
         internal static string AddExtensionDialogExample {
             get {

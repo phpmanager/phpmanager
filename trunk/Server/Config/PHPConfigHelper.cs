@@ -22,7 +22,7 @@ using Web.Management.PHP.FastCgi;
 using Web.Management.PHP.Handlers;
 
 namespace Web.Management.PHP.Config
-{   
+{
 
     /// <summary>
     /// Provides functions to register PHP with IIS and to manage IIS and PHP configuration.

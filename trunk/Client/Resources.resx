@@ -653,7 +653,7 @@
     <value>Cannot add PHP extension. The extension file cannot be copied to the PHP extensions directory.</value>
   </data>
   <data name="AddExtensionDialogExample" xml:space="preserve">
-    <value>Example: C:\Temp\wincache.dll</value>
+    <value>Example: C:\Temp\php_wincache.dll</value>
   </data>
   <data name="AddExtensionDialogProvidePath" xml:space="preserve">
     <value>Provide a path to extension's binary file:</value>
