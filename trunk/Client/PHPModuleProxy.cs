@@ -17,6 +17,11 @@ namespace Web.Management.PHP
     internal sealed class PHPModuleProxy : ModuleServiceProxy
     {
 
+        internal void AddExtension(string extensionPath)
+        {
+            Invoke("AddExtension", extensionPath);
+        }
+
         internal void AddOrUpdateSettings(RemoteObjectCollection<PHPIniSetting> settings)
         {
             Invoke("AddOrUpdateSettings", settings.GetData());
@@ -103,9 +108,9 @@ namespace Web.Management.PHP
             Invoke("SelectPHPVersion", name);
         }
 
-        internal void UpdatePHPExtensions(RemoteObjectCollection<PHPIniExtension> extensions)
+        internal void UpdateExtensions(RemoteObjectCollection<PHPIniExtension> extensions)
         {
-            Invoke("UpdatePHPExtensions", extensions.GetData());
+            Invoke("UpdateExtensions", extensions.GetData());
         }
 
     }

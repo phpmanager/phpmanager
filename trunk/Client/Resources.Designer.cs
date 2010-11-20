@@ -115,6 +115,51 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add an extension.
+        /// </summary>
+        internal static string AddExtensionDialogAddExtension {
+            get {
+                return ResourceManager.GetString("AddExtensionDialogAddExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Example: C:\Temp\wincache.dll.
+        /// </summary>
+        internal static string AddExtensionDialogExample {
+            get {
+                return ResourceManager.GetString("AddExtensionDialogExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP extension (php*.dll)|php*.dll|All files (*.*)|*.*.
+        /// </summary>
+        internal static string AddExtensionDialogOpenFileFilter {
+            get {
+                return ResourceManager.GetString("AddExtensionDialogOpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select extension binary file.
+        /// </summary>
+        internal static string AddExtensionDialogOpenFileTitle {
+            get {
+                return ResourceManager.GetString("AddExtensionDialogOpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide a path to extension&apos;s binary file:.
+        /// </summary>
+        internal static string AddExtensionDialogProvidePath {
+            get {
+                return ResourceManager.GetString("AddExtensionDialogProvidePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable or disable PHP extensions and configure PHP extensions settings..
         /// </summary>
         internal static string AllExtensionsPageDescription {
@@ -716,6 +761,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot add PHP extension. The extension file cannot be copied to the PHP extensions directory..
+        /// </summary>
+        internal static string ErrorCannotAddExtension {
+            get {
+                return ResourceManager.GetString("ErrorCannotAddExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create a temporary phpinfo file on the server due to insufficient privileges..
         /// </summary>
         internal static string ErrorCannotCreatePHPInfo {
@@ -917,6 +971,15 @@ namespace Web.Management.PHP {
             get {
                 object obj = ResourceManager.GetObject("GoBack16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add an extension.
+        /// </summary>
+        internal static string PHPExtensionItemAddTask {
+            get {
+                return ResourceManager.GetString("PHPExtensionItemAddTask", resourceCulture);
             }
         }
         

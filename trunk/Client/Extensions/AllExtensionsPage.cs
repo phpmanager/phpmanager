@@ -341,11 +341,17 @@ namespace Web.Management.PHP.Extensions
             item.Extension.Enabled = enabled;
             RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
             extensions.Add(item.Extension);
-            Module.Proxy.UpdatePHPExtensions(extensions);
-
-            // Save the name of the updated extension so that we can select it after refresh
-            _updatedExtensionName = item.Extension.Name;
-            Refresh();
+            try
+            {
+                Module.Proxy.UpdateExtensions(extensions);
+                // Save the name of the updated extension so that we can select it after refresh
+                _updatedExtensionName = item.Extension.Name;
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
+            }
         }
 
         protected override bool ShowHelp()

@@ -33,5 +33,6 @@ namespace Web.Management.PHP {
         public const string AllSettingsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
         
         public const string AllExtensionsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string AddExtensionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
     }
 }

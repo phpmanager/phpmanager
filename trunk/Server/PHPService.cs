@@ -27,17 +27,42 @@ namespace Web.Management.PHP
 #endif
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
+        public void AddExtension(string extensionPath)
+        {
+            EnsureServerConnection();
+
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.AddExtension(extensionPath);
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (Exception)
+            {
+                RaiseException("ErrorCannotAddExtension");
+            }
+        }
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public void AddOrUpdateSettings(object settingsData)
         {
             EnsureServerConnection();
 
-            PHPIniFile file = GetPHPIniFile();
-
             RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
             ((IRemoteObject)settings).SetData(settingsData);
 
-            file.AddOrUpdateSettings(settings);
-            file.Save(file.FileName);
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.AddOrUpdatePHPIniSettings(settings);
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -45,8 +70,15 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
-            configHelper.ApplyRecommendedSettings(configIssueIndexes);
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.ApplyRecommendedSettings(configIssueIndexes);
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -113,17 +145,34 @@ namespace Web.Management.PHP
         public ArrayList GetAllPHPVersions()
         {
             EnsureServerOrSiteConnection();
+            ArrayList versions = null;
 
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            ArrayList versions = phpConfig.GetAllPHPVersions();
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                versions = configHelper.GetAllPHPVersions();
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
+
             return versions;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetConfigIssues()
         {
-            PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
-            RemoteObjectCollection<PHPConfigIssue> configIssues = configHelper.ValidateConfiguration();
+            RemoteObjectCollection<PHPConfigIssue> configIssues = null;
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configIssues = configHelper.ValidateConfiguration();
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
 
             return (configIssues != null) ? configIssues.GetData() : null;
         }
@@ -136,8 +185,8 @@ namespace Web.Management.PHP
             PHPConfigInfo result = null;
             try
             {
-                PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-                result = phpConfig.GetPHPConfigInfo();
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                result = configHelper.GetPHPConfigInfo();
             }
             catch (FileNotFoundException)
             {
@@ -147,22 +196,6 @@ namespace Web.Management.PHP
             return (result != null) ? result.GetData() : null;
         }
 
-        private PHPIniFile GetPHPIniFile()
-        {
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            string phpiniPath = phpConfig.PHPIniFilePath;
-
-            if (String.IsNullOrEmpty(phpiniPath))
-            {
-                RaiseException("ErrorPHPIniNotFound");
-            }
-
-            PHPIniFile file = new PHPIniFile(phpiniPath);
-            file.Parse();
-
-            return file;
-        }
-
         [ModuleServiceMethod(PassThrough = Passthrough)]
         public object GetPHPIniPhysicalPath()
         {
@@ -170,11 +203,15 @@ namespace Web.Management.PHP
             {
                 return null;
             }
+            
+            string phpiniPath = null;
 
-            PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-            string phpiniPath = phpConfig.PHPIniFilePath;
-
-            if (String.IsNullOrEmpty(phpiniPath))
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                phpiniPath = configHelper.PHPIniFilePath;
+            }
+            catch(FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
@@ -187,7 +224,16 @@ namespace Web.Management.PHP
         {
             EnsureServerOrSiteConnection();
 
-            PHPIniFile file = GetPHPIniFile();
+            PHPIniFile file = null;
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                file = configHelper.GetPHPIniFile();
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
 
             return file.GetData();
         }
@@ -244,8 +290,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-                phpConfig.RegisterPHPWithIIS(phpExePath);
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.RegisterPHPWithIIS(phpExePath);
             }
             catch (ArgumentException)
             {
@@ -278,14 +324,17 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            PHPIniFile file = GetPHPIniFile();
-
             PHPIniSetting setting = new PHPIniSetting();
             setting.SetData(settingData);
 
-            if (file.Remove(setting))
+            try
             {
-                file.Save(file.FileName);
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.RemovePHPIniSetting(setting);
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
             }
         }
 
@@ -296,27 +345,36 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper phpConfig = new PHPConfigHelper(ManagementUnit);
-                phpConfig.SelectPHPHandler(name);
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.SelectPHPHandler(name);
             }
             catch (FileLoadException)
             {
                 RaiseException("ErrorSomeHandlersLocked");
             }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public void UpdatePHPExtensions(object extensionsData)
+        public void UpdateExtensions(object extensionsData)
         {
             EnsureServerConnection();
-
-            PHPIniFile file = GetPHPIniFile();
 
             RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
             ((IRemoteObject)extensions).SetData(extensionsData);
 
-            file.UpdateExtensions(extensions);
-            file.Save(file.FileName);
+            try
+            {
+                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                configHelper.UpdateExtensions(extensions);
+            }
+            catch (FileNotFoundException)
+            {
+                RaiseException("ErrorPHPIniNotFound");
+            }
         }
 
     }

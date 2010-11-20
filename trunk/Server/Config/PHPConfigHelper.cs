@@ -63,6 +63,30 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        public void AddExtension(string extensionPath)
+        {
+            Debug.Assert(IsPHPRegistered());
+
+            string filename = Path.GetFileName(extensionPath);
+            File.Copy(extensionPath, PHPDirectory + "ext\\" + filename, true);
+            PHPIniExtension extension = new PHPIniExtension(filename, true);
+
+            RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
+            extensions.Add(extension);
+            UpdateExtensions(extensions);
+        }
+
+        public void AddOrUpdatePHPIniSettings(IEnumerable<PHPIniSetting> settings)
+        {
+            Debug.Assert(IsPHPRegistered());
+
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            file.AddOrUpdateSettings(settings);
+            file.Save(file.FileName);
+        }
+
         private void ApplyRecommendedFastCgiSettings(ArrayList configIssueIndexes)
         {
             bool iisChangeHappened = false;
@@ -367,6 +391,8 @@ namespace Web.Management.PHP.Config
 
         public ArrayList GetAllPHPVersions()
         {
+            Debug.Assert(IsPHPRegistered());
+
             ArrayList result = new ArrayList();
             
             foreach (HandlerElement handler in _handlersCollection)
@@ -440,6 +466,16 @@ namespace Web.Management.PHP.Config
         {
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(phpexePath);
             return fileVersionInfo.ProductVersion;
+        }
+
+        public PHPIniFile GetPHPIniFile()
+        {
+            Debug.Assert(IsPHPRegistered());
+
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            return file;
         }
 
         private string GetPHPIniFilePath()
@@ -715,6 +751,10 @@ namespace Web.Management.PHP.Config
                         _currentPHPHandler = handler;
                         _currentFastCgiApplication = fastCgiApplication;
                         _phpIniFilePath = GetPHPIniFilePath();
+                        if (String.IsNullOrEmpty(_phpIniFilePath))
+                        {
+                            throw new FileNotFoundException("php.ini file cannot be found");
+                        }
                         _phpDirectory = GetPHPDirectory();
                     }
                     else
@@ -954,13 +994,22 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        public void RemovePHPIniSetting(PHPIniSetting setting)
+        {
+            Debug.Assert(IsPHPRegistered());
+
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            if (file.Remove(setting))
+            {
+                file.Save(file.FileName);
+            }
+        }
+
         public void SelectPHPHandler(string name)
         {
-            // PHP is not registered properly so we don't attempt to do anything.
-            if (!IsPHPRegistered())
-            {
-                return;
-            }
+            Debug.Assert(IsPHPRegistered());
 
             HandlerElement handler = _handlersCollection[name];
             // If the handler is already an active PHP handler then no need to do anything.
@@ -991,6 +1040,17 @@ namespace Web.Management.PHP.Config
             }
 
             return null;
+        }
+
+        public void UpdateExtensions(IEnumerable<PHPIniExtension> extensions)
+        {
+            Debug.Assert(IsPHPRegistered());
+
+            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            file.Parse();
+
+            file.UpdateExtensions(extensions);
+            file.Save(file.FileName);
         }
 
         private static PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)

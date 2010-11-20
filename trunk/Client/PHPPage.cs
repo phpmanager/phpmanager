@@ -31,6 +31,7 @@ namespace Web.Management.PHP
         private const int IndexLimitsTask = 1;
         private const int IndexAllSettingsTask = 2;
         private const int IndexAllExtensionsTask = 0;
+        private const int IndexAddExtensionTask = 1;
 
         // Summary labels
         private Label _enabledExtLabel;
@@ -181,7 +182,7 @@ namespace Web.Management.PHP
             if (Connection.IsUserServerAdministrator)
             {
                 _phpExtensionItem.AddTask(OnPHPExtensionItemClick,
-                                        Resources.PHPExtensionItemEnableTask);
+                                        Resources.PHPExtensionItemEnableTask, Resources.PHPExtensionItemAddTask);
             }
             else
             {
@@ -286,6 +287,21 @@ namespace Web.Management.PHP
             if (index == IndexAllExtensionsTask)
             {
                 Navigate(typeof(Extensions.AllExtensionsPage));
+            }
+            if (index == IndexAddExtensionTask)
+            {
+                AddExtension();
+            }
+        }
+
+        private void AddExtension()
+        {
+            using (Extensions.AddExtensionDialog dlg = new Extensions.AddExtensionDialog(this.Module, Connection.IsLocalConnection))
+            {
+                if (ShowDialog(dlg) == DialogResult.OK)
+                {
+                    Refresh();
+                }
             }
         }
 
@@ -495,6 +511,11 @@ namespace Web.Management.PHP
                 _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
             }
             _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPHPSetup);
+
+            if (Connection.IsUserServerAdministrator)
+            {
+                _phpExtensionItem.SetTaskState(IndexAddExtensionTask, isPHPSetup);
+            }
         }
 
         private void UpdatePHPSettingsItem(PHPConfigInfo configInfo)

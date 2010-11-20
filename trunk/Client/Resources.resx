@@ -637,4 +637,25 @@
   <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
     <value>It is not safe to rely on the system's timezone settings. It is recommended to explicitly set the timezone information by using date.timezone directive or the date_default_timezone_set() function.</value>
   </data>
+  <data name="PHPExtensionItemAddTask" xml:space="preserve">
+    <value>Add an extension</value>
+  </data>
+  <data name="AddExtensionDialogAddExtension" xml:space="preserve">
+    <value>Add an extension</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP extension (php*.dll)|php*.dll|All files (*.*)|*.*</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
+    <value>Select extension binary file</value>
+  </data>
+  <data name="ErrorCannotAddExtension" xml:space="preserve">
+    <value>Cannot add PHP extension. The extension file cannot be copied to the PHP extensions directory.</value>
+  </data>
+  <data name="AddExtensionDialogExample" xml:space="preserve">
+    <value>Example: C:\Temp\wincache.dll</value>
+  </data>
+  <data name="AddExtensionDialogProvidePath" xml:space="preserve">
+    <value>Provide a path to extension's binary file:</value>
+  </data>
 </root>
