@@ -27,14 +27,15 @@ namespace Web.Management.PHP
 #endif
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public void AddExtension(string extensionPath)
+        public string AddExtension(string extensionPath)
         {
             EnsureServerConnection();
+            string result = null;
 
             try
             {
                 PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
-                configHelper.AddExtension(extensionPath);
+                result = configHelper.AddExtension(extensionPath);
             }
             catch (FileNotFoundException)
             {
@@ -44,6 +45,8 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorCannotAddExtension");
             }
+
+            return result;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

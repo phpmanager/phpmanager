@@ -149,6 +149,18 @@ namespace Web.Management.PHP.Extensions
             }
         }
 
+        internal void AddExtension()
+        {
+            using (AddExtensionDialog dlg = new AddExtensionDialog(this.Module, Connection.IsLocalConnection))
+            {
+                if (ShowDialog(dlg) == DialogResult.OK)
+                {
+                    _updatedExtensionName = dlg.AddedExtensionName;
+                    Refresh();
+                }
+            }
+        }
+
         private void GetExtensions()
         {
             StartAsyncTask(Resources.AllExtensionsPageGettingExtensions, OnGetExtensions, OnGetExtensionsCompleted);
@@ -166,6 +178,16 @@ namespace Web.Management.PHP.Extensions
         private void GoBack()
         {
             Navigate(typeof(PHPPage));
+        }
+
+        protected override void Initialize(object navigationData)
+        {
+            base.Initialize(navigationData);
+
+            if (navigationData != null)
+            {
+                _updatedExtensionName = navigationData as string;
+            }
         }
 
         protected override void InitializeListPage()
@@ -374,6 +396,11 @@ namespace Web.Management.PHP.Extensions
                 _page = page;
             }
 
+            public void AddExtension()
+            {
+                _page.AddExtension();
+            }
+
             public void DisableExtension()
             {
                 _page.SetExtensionState(false);
@@ -394,6 +421,8 @@ namespace Web.Management.PHP.Extensions
                 }
                 else
                 {
+                    tasks.Add(new MethodTaskItem("AddExtension", Resources.AllPagesAddTask, "Edit", null));
+
                     if (_page.SelectedItem != null)
                     {
                         if (_page.SelectedItem.Extension.Enabled)
@@ -462,5 +491,6 @@ namespace Web.Management.PHP.Extensions
             }
 
         }
+
     }
 }

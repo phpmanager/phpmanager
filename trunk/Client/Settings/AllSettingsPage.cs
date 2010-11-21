@@ -499,7 +499,7 @@ namespace Web.Management.PHP.Settings
                 }
                 else
                 {
-                    tasks.Add(new MethodTaskItem("AddSetting", Resources.AllSettingsPageAddSettingTask, "Edit"));
+                    tasks.Add(new MethodTaskItem("AddSetting", Resources.AllPagesAddTask, "Edit"));
 
                     if (_page.SelectedItem != null)
                     {

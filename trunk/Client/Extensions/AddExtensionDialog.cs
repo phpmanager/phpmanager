@@ -33,11 +33,20 @@ namespace Web.Management.PHP.Extensions
         private Button _browseButton;
         private Label _exampleLabel;
         private Label _pathToExtenionLabel;
+        private string _addedExtensionName;
 
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        public string AddedExtensionName
+        {
+            get
+            {
+                return _addedExtensionName;
+            }
+        }
 
         public AddExtensionDialog(PHPModule module, bool isLocalConnection) : base(module)
         {
@@ -106,7 +115,7 @@ namespace Web.Management.PHP.Extensions
             this._browseButton.Location = new System.Drawing.Point(380, 28);
             this._browseButton.Name = "_browseButton";
             this._browseButton.Size = new System.Drawing.Size(27, 23);
-            this._browseButton.TabIndex = 3;
+            this._browseButton.TabIndex = 2;
             this._browseButton.Text = "...";
             this._browseButton.UseVisualStyleBackColor = true;
             this._browseButton.Click += new System.EventHandler(this.OnBrowseButtonClick);
@@ -117,7 +126,7 @@ namespace Web.Management.PHP.Extensions
             this._exampleLabel.Location = new System.Drawing.Point(0, 53);
             this._exampleLabel.Name = "_exampleLabel";
             this._exampleLabel.Size = new System.Drawing.Size(159, 13);
-            this._exampleLabel.TabIndex = 4;
+            this._exampleLabel.TabIndex = 3;
             this._exampleLabel.Text = Resources.AddExtensionDialogExample;
             // 
             // AddExtensionDialog
@@ -173,7 +182,7 @@ namespace Web.Management.PHP.Extensions
             try
             {
                 string path = _extensionPathTextBox.Text.Trim();
-                _module.Proxy.AddExtension(path);
+                _addedExtensionName = _module.Proxy.AddExtension(path);
 
                 DialogResult = DialogResult.OK;
                 Close();

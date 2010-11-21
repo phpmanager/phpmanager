@@ -256,7 +256,7 @@
   <data name="PHPSettingsItemTitle" xml:space="preserve">
     <value>PHP Settings</value>
   </data>
-  <data name="AllSettingsPageAddSettingTask" xml:space="preserve">
+  <data name="AllPagesAddTask" xml:space="preserve">
     <value>Add...</value>
   </data>
   <data name="AllSettingsPageDescription" xml:space="preserve">

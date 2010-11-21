@@ -17,9 +17,9 @@ namespace Web.Management.PHP
     internal sealed class PHPModuleProxy : ModuleServiceProxy
     {
 
-        internal void AddExtension(string extensionPath)
+        internal string AddExtension(string extensionPath)
         {
-            Invoke("AddExtension", extensionPath);
+            return (string)Invoke("AddExtension", extensionPath);
         }
 
         internal void AddOrUpdateSettings(RemoteObjectCollection<PHPIniSetting> settings)

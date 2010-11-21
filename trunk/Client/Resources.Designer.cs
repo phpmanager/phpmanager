@@ -250,6 +250,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add....
+        /// </summary>
+        internal static string AllPagesAddTask {
+            get {
+                return ResourceManager.GetString("AllPagesAddTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to main page.
         /// </summary>
         internal static string AllPagesGoBackTask {
@@ -273,15 +282,6 @@ namespace Web.Management.PHP {
         internal static string AllPagesPageIsReadOnly {
             get {
                 return ResourceManager.GetString("AllPagesPageIsReadOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add....
-        /// </summary>
-        internal static string AllSettingsPageAddSettingTask {
-            get {
-                return ResourceManager.GetString("AllSettingsPageAddSettingTask", resourceCulture);
             }
         }
         

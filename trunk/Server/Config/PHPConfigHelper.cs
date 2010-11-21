@@ -63,7 +63,7 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        public void AddExtension(string extensionPath)
+        public string AddExtension(string extensionPath)
         {
             Debug.Assert(IsPHPRegistered());
 
@@ -74,6 +74,8 @@ namespace Web.Management.PHP.Config
             RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
             extensions.Add(extension);
             UpdateExtensions(extensions);
+            
+            return extension.Name;
         }
 
         public void AddOrUpdatePHPIniSettings(IEnumerable<PHPIniSetting> settings)

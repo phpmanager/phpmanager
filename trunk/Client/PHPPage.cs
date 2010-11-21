@@ -300,7 +300,7 @@ namespace Web.Management.PHP
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
-                    Refresh();
+                    Navigate(typeof(Extensions.AllExtensionsPage), dlg.AddedExtensionName);
                 }
             }
         }
