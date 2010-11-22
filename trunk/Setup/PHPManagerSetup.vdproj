@@ -704,7 +704,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PHP Manager 1.0 for IIS 7"
+        "ProductName" = "8:PHP Manager 1.1 for IIS 7"
         "ProductCode" = "8:{48E99066-D5B5-470B-893C-72B5AABE8D21}"
         "PackageCode" = "8:{AE1C2635-754C-4EE1-B9DF-B3992D63C01C}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
