@@ -2,21 +2,21 @@
 <!-- Custom WebPI feed for installing PHP Manager -->
 <feed xmlns="http://www.w3.org/2005/Atom">
   <version>1.0.0</version>
-  <title>PHP Manager Feed for WebPI 3.0</title>
-  <link href="http://ruslany.net/PHPManagerFeed-3.0.xml" />
+  <title>PHP Manager Feed for WebPI 2.0</title>
+  <link href="http://ruslany.net/PHPManagerFeed-2.0.xml" />
   <updated>2010-11-12T16:30:00Z</updated>
   <author>
     <name>Ruslan Yakushev</name>
     <uri>http://ruslany.net</uri>
   </author>
-  <id>http://ruslany.net/PHPManagerFeed-3.0.xml</id>
+  <id>http://ruslany.net/PHPManagerFeed-2.0.xml</id>
 
   <!--PHP Manager-->
   <entry>
     <productId>PHPManager</productId>
     <title resourceName="Entry_PHPManager_Title">PHP Manager for IIS</title>
     <version>1.0.3</version>
-    <summary resourceName="Entry_PHPManager_Summary">PHP Manager is an extension for IIS that greatly simplifies installation, configuration and troubleshooting of PHP on IIS 7.</summary>
+    <summary resourceName="Entry_PHPManager_Summary">PHP Manager is an GUI extension for IIS that greatly simplifies installation, configuration and troubleshooting of PHP on IIS 7.</summary>
     <id>http://phpmanager.codeplex.com/</id>
     <updated>2010-11-18T12:00:00Z</updated>
     <longSummary resourceName="Entry_PHPManager_LongSummary">PHP Manager is an extension for IIS that provides a graphical user interface to manage PHP installation on IIS. PHP Manager greatly simplifies installation, configuration, management and troubleshooting of one or more PHP versions on IIS 7.</longSummary>
@@ -30,9 +30,6 @@
       <name>Ruslan Yakushev</name>
       <uri>http://ruslany.net/</uri>
     </author>
-    <keywords>
-      <keywordId>Server</keywordId>
-    </keywords>
     <discoveryHint>
       <registry>
         <keyPath>HKEY_LOCAL_MACHINE\SOFTWARE\PHP Manager 1.0 for IIS 7</keyPath>
@@ -41,14 +38,7 @@
       </registry>
     </discoveryHint>
     <dependency>
-      <or>
-        <dependency>
-          <productId>PHP53</productId>
-        </dependency>
-        <dependency>
-          <productId>PHP52</productId>
-        </dependency>
-      </or>
+      <productId>PHP</productId>
     </dependency>
     <installers>
       <!-- x86 -->
@@ -56,7 +46,7 @@
         <id>1</id>
         <languageId>en</languageId>
         <architectures>
-            <x86 />
+          <x86 />
         </architectures>
         <osList>
           <os>
@@ -131,7 +121,7 @@
             <msi>%InstallerFile%</msi>
           </msiInstall>
         </installCommands>
-        <helpLink>http://forums.iis.net/1155.aspx</helpLink>
+        <helpLink>http://phpmanager.codeplex.com/documentation</helpLink>
       </installer>
     </installers>
   </entry>
