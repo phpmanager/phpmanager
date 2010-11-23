@@ -41,6 +41,10 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorExtensionFileAlreadyExists");
+            }
             catch (Exception)
             {
                 RaiseException("ErrorCannotAddExtension");

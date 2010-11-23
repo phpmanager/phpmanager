@@ -68,7 +68,14 @@ namespace Web.Management.PHP.Config
             Debug.Assert(IsPHPRegistered());
 
             string filename = Path.GetFileName(extensionPath);
-            File.Copy(extensionPath, PHPDirectory + "ext\\" + filename, true);
+            string targetPath = PHPDirectory + "ext\\" + filename;
+
+            if (File.Exists(targetPath))
+            {
+                throw new InvalidOperationException("The extension file " + filename + " already exists at the PHP ext directory");
+            }
+
+            File.Copy(extensionPath, targetPath, false);
             PHPIniExtension extension = new PHPIniExtension(filename, true);
 
             RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();

@@ -658,4 +658,7 @@
   <data name="AddExtensionDialogProvidePath" xml:space="preserve">
     <value>Provide a path to extension's binary file:</value>
   </data>
+  <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
+    <value>This extension already exists in PHP extentions directory. Use "Enable or disable an extension" task to enabe this extension.</value>
+  </data>
 </root>

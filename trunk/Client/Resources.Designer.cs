@@ -779,6 +779,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This extension already exists in PHP extentions directory. Use &quot;Enable or disable an extension&quot; task to enabe this extension..
+        /// </summary>
+        internal static string ErrorExtensionFileAlreadyExists {
+            get {
+                return ResourceManager.GetString("ErrorExtensionFileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information about PHP cannot be obtained due to invalid IIS configuration..
         /// </summary>
         internal static string ErrorFailedToGetConfiguration {
