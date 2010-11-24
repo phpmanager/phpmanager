@@ -38,7 +38,14 @@
       </registry>
     </discoveryHint>
     <dependency>
-      <productId>PHP</productId>
+      <or>
+        <dependency>
+          <productId>PHP</productId>
+        </dependency>
+        <dependency>
+          <productId>LegacyPHP</productId>
+        </dependency>
+      </or>
     </dependency>
     <installers>
       <!-- x86 -->

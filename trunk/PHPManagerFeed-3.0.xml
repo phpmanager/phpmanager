@@ -48,6 +48,15 @@
         <dependency>
           <productId>PHP52</productId>
         </dependency>
+        <dependency>
+          <productId>LegacyPHP53</productId>
+        </dependency>
+        <dependency>
+          <productId>LegacyPHP52</productId>
+        </dependency>
+        <dependency>
+          <productId>LegacyPHP_MSI</productId>
+        </dependency>
       </or>
     </dependency>
     <installers>
