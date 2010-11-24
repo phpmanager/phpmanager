@@ -24,11 +24,11 @@
     <productFamily resourceName="StableRelease">Stable Release</productFamily>
     <link href="http://phpmanager.codeplex.com" />
     <images>
-      <icon>http://ruslany.net/wp-content/uploads/2010/11/PHPMgrLogo.png</icon>
+      <icon>http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=phpmanager&amp;DownloadId=164584&amp;Build=17358</icon>
     </images>
     <author>
-      <name>Ruslan Yakushev</name>
-      <uri>http://ruslany.net/</uri>
+      <name>PHP Manager Project</name>
+      <uri>http://phpmanager.codeplex.com/</uri>
     </author>
     <discoveryHint>
       <registry>
