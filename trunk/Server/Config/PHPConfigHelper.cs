@@ -489,16 +489,27 @@ namespace Web.Management.PHP.Config
 
         private string GetPHPIniFilePath()
         {
-            // If PHPRC environment variable is set then use the path specified there,
-            // Otherwise try to get the directory path from registry,
-            // Otherwise use the same path as where PHP executable is located.
             string directoryPath = String.Empty;
+
+            // If PHPRC environment variable is set per FastCGI process then use the path specified there,
             EnvironmentVariableElement phpRcElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
             if (phpRcElement != null && !String.IsNullOrEmpty(phpRcElement.Value))
             {
                 directoryPath = phpRcElement.Value;
             }
             else
+            {
+                // If system-wide PHPRC environment variable is set then use it
+                string envVar = System.Environment.GetEnvironmentVariable("PHPRC");
+                if (!String.IsNullOrEmpty(envVar))
+                {
+                    directoryPath = envVar;
+                }
+            }
+
+            // Otherwise try to get the directory path from registry,
+            // Otherwise use the same path as where PHP executable is located.
+            if (String.IsNullOrEmpty(directoryPath))
             {
                 directoryPath = GetPHPIniPathFromRegistry(_currentPHPHandler.Executable);
                 if (String.IsNullOrEmpty(directoryPath))
