@@ -36,7 +36,8 @@ namespace Web.Management.PHP.Handlers
             {
                 if (_arguments == null)
                 {
-                    _executable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                    string rawExecutable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                    _executable = Environment.ExpandEnvironmentVariables(rawExecutable);
                 }
                 return _arguments;
             }
@@ -48,7 +49,8 @@ namespace Web.Management.PHP.Handlers
             {
                 if (_executable == null)
                 {
-                    _executable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                    string rawExecutable = SplitScriptProcessor(ScriptProcessor, out _arguments);
+                    _executable = Environment.ExpandEnvironmentVariables(rawExecutable);
                 }
                 return _executable;
             }
