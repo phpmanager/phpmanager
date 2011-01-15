@@ -61,6 +61,11 @@
     <Compile Include="Extensions\AllExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Resources.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +121,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.ru-RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -145,6 +154,8 @@
   <PropertyGroup>
     <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
 sn –Vr $(TargetFileName)
-gacutil.exe /if "$(TargetPath)"</PostBuildEvent>
+gacutil.exe /if "$(TargetPath)"
+sn -Vr $(TargetDir)ru-RU\$(TargetName).resources.dll
+gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -779,7 +779,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This extension already exists in PHP extentions directory. Use &quot;Enable or disable an extension&quot; task to enabe this extension..
+        ///   Looks up a localized string similar to This extension already exists in PHP extentions directory. Use &quot;Enable or disable an extension&quot; task to enable this extension..
         /// </summary>
         internal static string ErrorExtensionFileAlreadyExists {
             get {
@@ -806,7 +806,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The provided path does not point to either php-cgi.exe or php.exe..
+        ///   Looks up a localized string similar to The provided path should point to either php-cgi.exe or php.exe..
         /// </summary>
         internal static string ErrorInvalidPHPExecutablePath {
             get {
@@ -964,15 +964,6 @@ namespace Web.Management.PHP {
         internal static string ErrorSomeHandlersLocked {
             get {
                 return ResourceManager.GetString("ErrorSomeHandlersLocked", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All the recommended IIS and PHP settings have been applied. The previous version of php.ini file has been saved in {0}..
-        /// </summary>
-        internal static string FixItDialogPHPIniCopy {
-            get {
-                return ResourceManager.GetString("FixItDialogPHPIniCopy", resourceCulture);
             }
         }
         

@@ -85,7 +85,7 @@ namespace Web.Management.PHP.Setup
             this._selectVersionLabel.Name = "_selectVersionLabel";
             this._selectVersionLabel.Size = new System.Drawing.Size(102, 13);
             this._selectVersionLabel.TabIndex = 0;
-            this._selectVersionLabel.Text = "Select PHP version:";
+            this._selectVersionLabel.Text = Resources.ChangeVersionDialogSelectVersion;
             // 
             // _versionComboBox
             // 
