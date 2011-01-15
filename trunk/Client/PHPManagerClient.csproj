@@ -61,11 +61,6 @@
     <Compile Include="Extensions\AllExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Resources.ru-RU.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
-    </Compile>
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,8 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.ru-RU.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

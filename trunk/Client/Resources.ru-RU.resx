@@ -326,7 +326,7 @@
     <value>Отчетность и журнал ошибок PHP</value>
   </data>
   <data name="ErrorReportingPageLongDescription" xml:space="preserve">
-    <value>Эта функция используется для контроля над тем, как PHP производит отчетность об ошибках, предупреждениях и информационных событиях.</value>
+    <value>Эта страница используется для контроля за тем, как PHP производит отчетность об ошибках, предупреждениях и информационных событиях.</value>
   </data>
   <data name="ErrorReportingPageTitle" xml:space="preserve">
     <value>Отчетность об ошибках PHP</value>
