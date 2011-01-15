@@ -143,10 +143,10 @@
     <value>Изменить параметр PHP</value>
   </data>
   <data name="AllSettingsPageEditTask" xml:space="preserve">
-    <value>Изменить</value>
+    <value>Изменить...</value>
   </data>
   <data name="AllSettingsPageGettingSettings" xml:space="preserve">
-    <value>Скачивается информация о параметрах</value>
+    <value>Скачивается информация о параметрах.</value>
   </data>
   <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -182,7 +182,7 @@
     <value>Включить</value>
   </data>
   <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
-    <value>Скачивается информация о расширениях</value>
+    <value>Скачивается информация о расширениях.</value>
   </data>
   <data name="AllExtensionsPageLongDescription" xml:space="preserve">
     <value>Расширения предоставляют дополнительную функциональность в PHP, например работу с базами данных, кэширование, отладку и другие. Используйте эту страницу для включения и выключения расширений PHP и для изменения параметров расширений.</value>
@@ -200,19 +200,19 @@
     <value>Открыть php.ini</value>
   </data>
   <data name="PHPInfoPageDescription" xml:space="preserve">
-    <value>Получить выходные данные функции phpinfo()</value>
+    <value>Получить результат функции phpinfo()</value>
   </data>
   <data name="PHPInfoPageLongDescription" xml:space="preserve">
-    <value>Выходные данные функции phpinfo() предоставляют информацию о текущем состоянии PHP. Эта инфромация может быть использована для всесторонней проверки работы PHP и для отладки.</value>
+    <value>Результат функции phpinfo() предоставляет информацию о текущем состоянии PHP. Эта информация может быть использована для всесторонней проверки работы PHP и для отладки.</value>
   </data>
   <data name="PHPInfoPageTitle" xml:space="preserve">
-    <value>Выходные данные phpinfo()</value>
+    <value>Результат phpinfo()</value>
   </data>
   <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
     <value>Обновить phpinfo</value>
   </data>
   <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
-    <value>Вы уверены что хотите удалить этот параметр?</value>
+    <value>Вы уверены, что хотите удалить этот параметр?</value>
   </data>
   <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -236,7 +236,7 @@
     <value> | </value>
   </data>
   <data name="PHPPageLongDescription" xml:space="preserve">
-    <value>Установка, всесторонняя проверка и настройка параметров работы и контроль расширений PHP.</value>
+    <value>Установка, всесторонняя проверка и настройка параметров работы PHP и контроль расширений PHP.</value>
   </data>
   <data name="PHPPageTitle" xml:space="preserve">
     <value>Администратор PHP</value>
@@ -251,7 +251,7 @@
     <value>Контролировать все параметры</value>
   </data>
   <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
-    <value>Настроить отчетность об ошибках</value>
+    <value>Настроить сообщения об ошибках</value>
   </data>
   <data name="PHPSettingsItemTitle" xml:space="preserve">
     <value>Параметры PHP</value>
@@ -263,7 +263,7 @@
     <value>Изменить все параметры PHP</value>
   </data>
   <data name="AllSettingsPageLongDescription" xml:space="preserve">
-    <value>Параметры PHP, хранящиеся в файле php.ini, контролируют различные свойтсва PHP, например отчеты об ошибках, безопасность, сессии и другие.</value>
+    <value>Параметры PHP, хранящиеся в файле php.ini, контролируют различные свойтсва PHP, например сообщения об ошибках, безопасность, сессии и другие.</value>
   </data>
   <data name="AllSettingsPageNameField" xml:space="preserve">
     <value>Название</value>
@@ -305,7 +305,7 @@
     <value>Зарегистрировать новую версию PHP</value>
   </data>
   <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
-    <value>Выберите &amp;URL используемый для выбранного сайта:</value>
+    <value>Выберите &amp;URL используемый выбранным сайтом:</value>
   </data>
   <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
     <value>Выберите &amp;сайт для проверки настройки PHP:</value>
@@ -326,16 +326,16 @@
     <value>Отчетность и журнал ошибок PHP</value>
   </data>
   <data name="ErrorReportingPageLongDescription" xml:space="preserve">
-    <value>Эта страница используется для контроля за тем, как PHP производит отчетность об ошибках, предупреждениях и информационных событиях.</value>
+    <value>Эта страница используется для контроля за тем, как PHP сообщает об ошибках, предупреждениях и информационных событиях.</value>
   </data>
   <data name="ErrorReportingPageTitle" xml:space="preserve">
-    <value>Отчетность об ошибках PHP</value>
+    <value>Сообщения об ошибках PHP</value>
   </data>
   <data name="ErrorReportingPageDevMachine" xml:space="preserve">
     <value>Компьютер для &amp;разработки</value>
   </data>
   <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
-    <value>Это компьютер для разработки. Использовать усиленную отчетность об ошибках. Все ошибки, предупреждения и информационные сведения будут выводиться в веб браузер а также будут записываться в файл журнала ошибок.</value>
+    <value>Это компьютер для разработки. Использовать детальные сообщения об ошибках. Все ошибки, предупреждения и информационные сведения будут выводиться в веб браузер а также будут записываться в файл журнала ошибок.</value>
   </data>
   <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
     <value>Файл журнала ошибок:</value>
@@ -344,10 +344,10 @@
     <value>Компьютер для &amp;производства</value>
   </data>
   <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
-    <value>Это производственный сервер. Ошибки выполнения PHP будут записаны в журнал ошибок. Никакая информация об ошибках и предупреждениях не будет выводится в веб браузер.</value>
+    <value>Это производственный сервер. Ошибки выполнения PHP будут записаны в журнал ошибок. Информация об ошибках и предупреждениях не будет выводится в веб браузер.</value>
   </data>
   <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
-    <value>Выберите тип сервера. На основе этого будет установлен способ отчетности об ошибках.</value>
+    <value>Выберите тип сервера. На основе этого будет установлен уровень сообщений об ошибках.</value>
   </data>
   <data name="ErrorReportingPageServerType" xml:space="preserve">
     <value>Тип сервера</value>
@@ -398,25 +398,25 @@
     <value>Обработка данных</value>
   </data>
   <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
-    <value>Максимальное время в секундах, в течение которого программа PHP может выполняться. Этот параметр помогает предотвратить ситуации когда неправильно написанная программа занимает все ресурсы на сервере.</value>
+    <value>Максимальное время, в секундах, в течение которого программа PHP может выполняться. Этот параметр помогает предотвратить ситуации, когда неправильно написанная программа занимает все ресурсы на сервере.</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
     <value>Максимальное количество файлов для загрузки</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
-    <value>Максимальное количество файлов которое можно загрузить на сервер за один запрос.</value>
+    <value>Максимальное количество файлов, которое можно загрузить на сервер за один запрос.</value>
   </data>
   <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
     <value>Максималное времы ввода</value>
   </data>
   <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
-    <value>Максимальное время в секундах за которое программа PHP может обработать входные данные полученные из запросов POST, GET и из загруженных файлов.</value>
+    <value>Максимальное время, в секундах, за которое программа PHP может обработать входные данные полученные из запросов POST, GET и из загруженных файлов.</value>
   </data>
   <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
     <value>Ограничение памяти</value>
   </data>
   <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
-    <value>Максимальное количество памяти в байтах, которое может быть исползованно программой PHP. Этот параметр позволяет предотвратить ситуации когда неправильно написанная программа занимает всю свободную память на сервере.</value>
+    <value>Максимальное количество памяти, в байтах, которое может быть исползованно программой PHP. Этот параметр позволяет предотвратить ситуации, когда неправильно написанная программа занимает всю свободную память на сервере.</value>
   </data>
   <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
     <value>Максималный размер POST</value>
@@ -458,7 +458,7 @@
     <value>Просмотреть все параметры</value>
   </data>
   <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
-    <value>Просмотреть параметры отчетности об ошибках</value>
+    <value>Просмотреть параметры сообщений об ошибках</value>
   </data>
   <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
     <value>Просмотреть ограничения</value>
@@ -521,7 +521,7 @@
     <value>Значение параметра PHP "error_log" не установлено.</value>
   </data>
   <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
-    <value>Параметр "error_log" указывает путь к файлу куда будут записываться ошибки PHP. Рекомендуется использовать абсолютный путь к файлу как значение для этого параметра. Веб сервер должен иметь доступ на запись в этот файл.</value>
+    <value>Параметр "error_log" указывает путь к файлу, куда будут записываться ошибки PHP. Для этого параметра рекомендуется использовать абсолютный путь к файлу. Веб сервер должен иметь доступ на запись в этот файл.</value>
   </data>
   <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
     <value>Значение параметра PHP "extension_dir" не использует абсолютный путь.</value>
@@ -539,7 +539,7 @@
     <value>Значение параметра PHP "fastcgi.impersonate" не установлено.</value>
   </data>
   <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
-    <value>FastCGI протокол поддерживает имперсонацию контекста безопасности. Это позволяет IIS определять контекст безопасности, под которым выполняется запрос. Рекомендуется включить ипмерсонацию путем выставления значения параметра "fastcgi.impersonate" в "1".</value>
+    <value>Протокол FastCGI поддерживает имперсонацию контекста безопасности. Это позволяет IIS определять контекст безопасности, под которым выполняется запрос. Рекомендуется включить ипмерсонацию путем выставления значения параметра "fastcgi.impersonate" в "1".</value>
   </data>
   <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
     <value>Значение параметра PHP "log_errors" не равно "On".</value>
@@ -563,25 +563,25 @@
     <value>Значение для PHP_FCGI_MAX_REQUESTS меньше, чем значение параметра FastCGI "instanceMaxRequests".</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
-    <value>Переменная среды PHP_FCGI_MAX_REQUESTS не установлена для PHP процессов.</value>
+    <value>Переменная среды PHP_FCGI_MAX_REQUESTS не установлена для процессов PHP.</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
-    <value>Переменная среды PHP_FCGI_MAX_REQUESTS используется, чтобы указать количество запросов, после обработки которых PHP процесс рециркулируется. Рекомендуется, чтобы значение этой переменной было больше чем или равнялось значению параметра FastCGI "instanceMaxRequests". В этом случае логика рециркуляции в FastCGI модуле не будет в конфликте с функциональностью рециркуляции PHP.</value>
+    <value>Переменная среды PHP_FCGI_MAX_REQUESTS используется, чтобы указать количество запросов, после обработки которых процесс PHP рециркулируется. Рекомендуется, чтобы значение этой переменной было больше чем или равнялось значению параметра FastCGI "instanceMaxRequests". В этом случае логика рециркуляции в модуле FastCGI не будет в конфликте с функциональностью рециркуляции PHP.</value>
   </data>
   <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
-    <value>Переменная среды PHPRC указывает на директорию, которая не содержит php.ini файл.</value>
+    <value>Переменная среды PHPRC указывает на директорию, которая не содержит файл php.ini.</value>
   </data>
   <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
-    <value>Переменная среды PHPRC не установлена для PHP процессов.</value>
+    <value>Переменная среды PHPRC не установлена для процессов PHP.</value>
   </data>
   <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
-    <value>Переменная среды PHPRC используется, чтобы указать директорию в которой находится конфигурационный файл php.ini. PHP процессы загружают этот файл во время запуска. Рекомендуется всегда определять эту переменную для каждой PHP регистрации, дабы избежать ситуаций когда PHP загружает неправильный конфигурационный файл.</value>
+    <value>Переменная среды PHPRC используется, чтобы указать директорию в которой находится конфигурационный файл php.ini. Процессы PHP загружают этот файл во время запуска. Рекомендуется всегда определять эту переменную для каждой регистрации PHP, дабы избежать ситуаций когда PHP загружает неправильный конфигурационный файл.</value>
   </data>
   <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
-    <value>Атрибут "resourceType" у IIS обработчика для PHP не выставлен в значение "Either".</value>
+    <value>Атрибут "resourceType" у обработчика IIS для PHP не выставлен в значение "Either".</value>
   </data>
   <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
-    <value>Атрибут "resourceType" у IIS обработчика используется, чтобы задавать условие при котором обработчик будет выбран для веб запроса. При настройке обработчика для PHP запросов рекомендуется выставит этот атрибут в значение "Either" из соображений безопасности. Таким образом обработчик будет выбран только если запрошенный ресурс соответствует файлу или директории.</value>
+    <value>Атрибут "resourceType" у обработчика IIS используется, чтобы задавать условие при котором обработчик будет выбран для веб запроса. При настройке обработчика для запросов PHP рекомендуется выставить этот атрибут в значение "Either" из соображений безопасности. Таким образом, обработчик будет выбран только если запрошенный ресурс соответствует файлу или директории.</value>
   </data>
   <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
     <value>Значение параметра PHP "session.save_path" указывает на несуществующую директорию.</value>
@@ -599,7 +599,7 @@
     <value>index.php не выставлен как документ по умолчанию.</value>
   </data>
   <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
-    <value>Большинство PHP приложений используют index.php как документ по умолчанию для веб запросов. Рекомендуется добавить index.php в список документов по умолчанию в IIS и убедиться, что от находится в начале списка.</value>
+    <value>Большинство приложений PHP используют index.php как документ по умолчанию для веб запросов. Рекомендуется добавить index.php в список документов по умолчанию в IIS и убедиться, что от находится в начале списка.</value>
   </data>
   <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
     <value>index.php не первый в списке документов по умолчанию в IIS.</value>
@@ -641,7 +641,7 @@
     <value>Добавить расширение</value>
   </data>
   <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
-    <value>Расширение PHP (php*.dll)|php*.dll|All files (*.*)|*.*</value>
+    <value>Расширение PHP (php*.dll)|php*.dll|Все файлы (*.*)|*.*</value>
   </data>
   <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
     <value>Выберите файл расширения</value>
@@ -656,6 +656,6 @@
     <value>Укажите путь к файлу расширения:</value>
   </data>
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
-    <value>Это расширение уже существует в директории расширений PHP. Используйте "Включить или выключить" действие чтобы включить это расширение.</value>
+    <value>Это расширение уже существует в директории расширений PHP. Используйте команду "Включить или выключить расширение", чтобы включить это расширение.</value>
   </data>
 </root>

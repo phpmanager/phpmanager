@@ -77,8 +77,8 @@ namespace Web.Management.PHP {
             this._infoTlp.AutoSize = true;
             this._infoTlp.BackColor = System.Drawing.Color.Transparent;
             this._infoTlp.ColumnCount = 2;
-            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 339F));
+            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 291F));
             this._infoTlp.Location = new System.Drawing.Point(65, 69);
             this._infoTlp.Name = "_infoTlp";
             this._infoTlp.RowCount = 1;

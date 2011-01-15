@@ -169,8 +169,8 @@ namespace Web.Management.PHP.Extensions
         protected override ListViewGroup[] GetGroups(ModuleListPageGrouping grouping)
         {
             ListViewGroup[] result = new ListViewGroup[2];
-            result[0] = new ListViewGroup("Enabled", Resources.AllExtensionsPageEnabledGroup);
-            result[1] = new ListViewGroup("Disabled", Resources.AllExtensionsPageDisabledGroup);
+            result[0] = new ListViewGroup(Resources.AllExtensionsPageEnabledGroup, Resources.AllExtensionsPageEnabledGroup);
+            result[1] = new ListViewGroup(Resources.AllExtensionsPageDisabledGroup, Resources.AllExtensionsPageDisabledGroup);
 
             return result;
         }
@@ -486,7 +486,7 @@ namespace Web.Management.PHP.Extensions
             {
                 get
                 {
-                    return _extension.Enabled ? "Enabled" : "Disabled";
+                    return _extension.Enabled ? Resources.AllExtensionsPageEnabledGroup : Resources.AllExtensionsPageDisabledGroup;
                 }
             }
 
