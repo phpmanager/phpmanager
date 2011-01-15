@@ -14,7 +14,6 @@ using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Extensions;
 using Web.Management.PHP.Settings;
 using Web.Management.PHP.Setup;
-using System.Threading;
 
 namespace Web.Management.PHP
 {
@@ -39,8 +38,6 @@ namespace Web.Management.PHP
 
         protected override void Initialize(IServiceProvider serviceProvider, ModuleInfo moduleInfo)
         {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru-RU");
-
             base.Initialize(serviceProvider, moduleInfo);
 
             IControlPanel controlPanel = (IControlPanel)GetService(typeof(IControlPanel));
