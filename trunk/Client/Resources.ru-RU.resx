@@ -146,7 +146,7 @@
     <value>Изменить</value>
   </data>
   <data name="AllSettingsPageGettingSettings" xml:space="preserve">
-    <value>Информация о параметрах скачивается</value>
+    <value>Скачивается информация о параметрах</value>
   </data>
   <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -167,7 +167,7 @@
     <value>Расширения PHP</value>
   </data>
   <data name="AllExtensionsPageDescription" xml:space="preserve">
-    <value>Включает или выключает PHP расширения и изменяет параметры расширений.</value>
+    <value>Включает или выключает расширения PHP и изменяет их параметры.</value>
   </data>
   <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
     <value>Выключено</value>
@@ -182,7 +182,7 @@
     <value>Включить</value>
   </data>
   <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
-    <value>Расширения скачиваются</value>
+    <value>Скачивается информация о расширениях</value>
   </data>
   <data name="AllExtensionsPageLongDescription" xml:space="preserve">
     <value>Расширения предоставляют дополнительную функциональность в PHP, например работу с базами данных, кэширование, отладку и другие. Используйте эту страницу для включения и выключения расширений PHP и для изменения параметров расширений.</value>
@@ -236,10 +236,10 @@
     <value> | </value>
   </data>
   <data name="PHPPageLongDescription" xml:space="preserve">
-    <value>Предоставляет возможность всесторонней проверки и изменения параметров работы PHP. Также позволяет включать и выключать расширения PHP.</value>
+    <value>Установка, всесторонняя проверка и настройка параметров работы и контроль расширений PHP.</value>
   </data>
   <data name="PHPPageTitle" xml:space="preserve">
-    <value>Настройщик PHP</value>
+    <value>Администратор PHP</value>
   </data>
   <data name="PHPPageVersion" xml:space="preserve">
     <value>Версия PHP:</value>
@@ -260,10 +260,10 @@
     <value>Добавить...</value>
   </data>
   <data name="AllSettingsPageDescription" xml:space="preserve">
-    <value>Изменить все php параметры</value>
+    <value>Изменить все параметры PHP</value>
   </data>
   <data name="AllSettingsPageLongDescription" xml:space="preserve">
-    <value>Изменить все php параметры, которые храняться в файле php.ini. Эти параметры контролируют различные свойтсва PHP, например отчеты об ошибках, безопасность, сессии и другие.</value>
+    <value>Параметры PHP, хранящиеся в файле php.ini, контролируют различные свойтсва PHP, например отчеты об ошибках, безопасность, сессии и другие.</value>
   </data>
   <data name="AllSettingsPageNameField" xml:space="preserve">
     <value>Название</value>
@@ -530,7 +530,7 @@
     <value>Значение параметра PHP "extension_dir" не установлено.</value>
   </data>
   <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
-    <value>Параметр "extension_dir" используется для указания директории из которой PHP будет загружать динамические расширения. Рекомендуется использовать абсолютный путь к директории.</value>
+    <value>Параметр "extension_dir" используется для указания директории, из которой PHP будет загружать динамические расширения. Рекомендуется использовать абсолютный путь к директории.</value>
   </data>
   <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
     <value>Значение параметра PHP "fastcgi.impersonate" не равно "1".</value>
@@ -539,7 +539,7 @@
     <value>Значение параметра PHP "fastcgi.impersonate" не установлено.</value>
   </data>
   <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
-    <value>FastCGI протокол поддерживает имперсонацию контекста безопасности. Это позволяет IIS определять контекст безопасности под которым выполняется запрос. Рекомендуется включить ипмерсонацию путем выставления значения параметра "fastcgi.impersonate" в "1".</value>
+    <value>FastCGI протокол поддерживает имперсонацию контекста безопасности. Это позволяет IIS определять контекст безопасности, под которым выполняется запрос. Рекомендуется включить ипмерсонацию путем выставления значения параметра "fastcgi.impersonate" в "1".</value>
   </data>
   <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
     <value>Значение параметра PHP "log_errors" не равно "On".</value>
@@ -557,16 +557,16 @@
     <value>Значение параметра FastCGI "monitorChangesTo" не установлено.</value>
   </data>
   <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
-    <value>Параметр monitorChangesTo используется чтобы указать FastCGI модулю за изменениями какого файла он должен следить. При каждом изменении этого файла FastCGI процессы будут перезапущены. Рекомендуется чтобы значение этого параметра указывало на файл php.ini. Таким образом любое изменение PHP конфигурации будет вступать в действие при каждом обновлении php.ini файла.</value>
+    <value>Параметр monitorChangesTo указавает на файл, за изменениями в котором должен следить модуль FastCGI. При каждом изменении этого файла процессы FastCGI будут перезапущены. Рекомендуется, чтобы значение этого параметра указывало на файл php.ini. Таким образом изменения конфигурации PHP будут вступать в действие при каждом обновлении файла php.ini.</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
-    <value>Значение для PHP_FCGI_MAX_REQUESTS меньше чем значение параметра FastCGI "instanceMaxRequests".</value>
+    <value>Значение для PHP_FCGI_MAX_REQUESTS меньше, чем значение параметра FastCGI "instanceMaxRequests".</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
     <value>Переменная среды PHP_FCGI_MAX_REQUESTS не установлена для PHP процессов.</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
-    <value>Переменная среды PHP_FCGI_MAX_REQUESTS используется чтобы указать количество запросов после обработки которых PHP процесс рециркулируется. Рекомендуется чтобы значение этой переменной было больше чем или равнялось значению для параметра FastCGI "instanceMaxRequests". В этом случае логика рециркуляции в FastCGI модуле не будет в конфликте с функциональностью рециркуляции PHP.</value>
+    <value>Переменная среды PHP_FCGI_MAX_REQUESTS используется, чтобы указать количество запросов, после обработки которых PHP процесс рециркулируется. Рекомендуется, чтобы значение этой переменной было больше чем или равнялось значению параметра FastCGI "instanceMaxRequests". В этом случае логика рециркуляции в FastCGI модуле не будет в конфликте с функциональностью рециркуляции PHP.</value>
   </data>
   <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
     <value>Переменная среды PHPRC указывает на директорию, которая не содержит php.ini файл.</value>
@@ -599,7 +599,7 @@
     <value>index.php не выставлен как документ по умолчанию.</value>
   </data>
   <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
-    <value>Большинство PHP приложений используют index.php как документ по умолчанию для веб запросов. Рекомендуется добавить index.php в список документов по умолчанию в IIS и убедиться что от находится в начале списка.</value>
+    <value>Большинство PHP приложений используют index.php как документ по умолчанию для веб запросов. Рекомендуется добавить index.php в список документов по умолчанию в IIS и убедиться, что от находится в начале списка.</value>
   </data>
   <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
     <value>index.php не первый в списке документов по умолчанию в IIS.</value>
@@ -641,7 +641,7 @@
     <value>Добавить расширение</value>
   </data>
   <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
-    <value>PHP расширение (php*.dll)|php*.dll|All files (*.*)|*.*</value>
+    <value>Расширение PHP (php*.dll)|php*.dll|All files (*.*)|*.*</value>
   </data>
   <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
     <value>Выберите файл расширения</value>
