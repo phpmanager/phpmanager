@@ -129,17 +129,17 @@ namespace Web.Management.PHP.Setup
             // 
             // _nameHeader
             // 
-            this._nameHeader.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogSettingName;
+            this._nameHeader.Text = Resources.RecommendConfigDialogSettingName;
             this._nameHeader.Width = 170;
             // 
             // _currentValueHeader
             // 
-            this._currentValueHeader.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogCurrentValue;
+            this._currentValueHeader.Text = Resources.RecommendConfigDialogCurrentValue;
             this._currentValueHeader.Width = 150;
             // 
             // _recommendedValueHeader
             // 
-            this._recommendedValueHeader.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogRecommendedValue;
+            this._recommendedValueHeader.Text = Resources.RecommendConfigDialogRecommendedValue;
             this._recommendedValueHeader.Width = 150;
             // 
             // _configIssueLabel
@@ -150,7 +150,7 @@ namespace Web.Management.PHP.Setup
             this._configIssueLabel.Name = "_configIssueLabel";
             this._configIssueLabel.Size = new System.Drawing.Size(180, 13);
             this._configIssueLabel.TabIndex = 1;
-            this._configIssueLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogDetectedIssues;
+            this._configIssueLabel.Text = Resources.RecommendConfigDialogDetectedIssues;
             // 
             // _recommendationLabel
             // 
@@ -160,7 +160,7 @@ namespace Web.Management.PHP.Setup
             this._recommendationLabel.Name = "_recommendationLabel";
             this._recommendationLabel.Size = new System.Drawing.Size(108, 13);
             this._recommendationLabel.TabIndex = 5;
-            this._recommendationLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogRecommendation;
+            this._recommendationLabel.Text = Resources.RecommendConfigDialogRecommendation;
             // 
             // _recommendationTextBox
             // 
@@ -168,6 +168,7 @@ namespace Web.Management.PHP.Setup
             this._recommendationTextBox.Multiline = true;
             this._recommendationTextBox.Name = "_recommendationTextBox";
             this._recommendationTextBox.ReadOnly = true;
+            this._recommendationTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._recommendationTextBox.Size = new System.Drawing.Size(480, 60);
             this._recommendationTextBox.TabIndex = 6;
             // 
@@ -179,7 +180,7 @@ namespace Web.Management.PHP.Setup
             this._issueDescriptionLabel.Name = "_issueDescriptionLabel";
             this._issueDescriptionLabel.Size = new System.Drawing.Size(107, 13);
             this._issueDescriptionLabel.TabIndex = 3;
-            this._issueDescriptionLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogIssueDescription;
+            this._issueDescriptionLabel.Text = Resources.RecommendConfigDialogIssueDescription;
             // 
             // _issueDescriptionTextBox
             // 
@@ -197,7 +198,7 @@ namespace Web.Management.PHP.Setup
             this._formDescriptionLabel.Name = "_formDescriptionLabel";
             this._formDescriptionLabel.Size = new System.Drawing.Size(504, 38);
             this._formDescriptionLabel.TabIndex = 0;
-            this._formDescriptionLabel.Text = global::Web.Management.PHP.Resources.RecommendConfigDialogDescription;
+            this._formDescriptionLabel.Text = Resources.RecommendConfigDialogDescription;
             // 
             // RecommendedConfigDialog
             // 
