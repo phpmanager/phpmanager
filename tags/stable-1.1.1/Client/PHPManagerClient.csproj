@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Web.Management.PHP</RootNamespace>
+    <AssemblyName>Web.Management.PHP.Client</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\phpmgrpublic.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Management, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssembyInfo.cs">
+      <Link>SharedAssembyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Config\PHPConfigIssue.cs" />
+    <Compile Include="Config\PHPIniFile.cs" />
+    <Compile Include="Config\PHPConfigInfo.cs" />
+    <Compile Include="Config\PHPRegistrationType.cs" />
+    <Compile Include="Extensions\AddExtensionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\AllExtensionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\AddEditSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\AllSettingsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\ErrorReportingPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\RuntimeLimitSettings.cs" />
+    <Compile Include="Settings\RuntimeLimitsGlobals.cs" />
+    <Compile Include="Settings\RuntimeLimitsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Setup\RegisterPHPDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\ChangeVersionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Setup\PHPInfoPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PHPModule.cs" />
+    <Compile Include="PHPPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PHPPageItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PHPPageItemControl.designer.cs">
+      <DependentUpon>PHPPageItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHPModuleProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RemoteObject.cs" />
+    <Compile Include="Settings\SettingCategoryAttribute.cs" />
+    <Compile Include="Settings\SettingDescriptionAttribute.cs" />
+    <Compile Include="Settings\SettingDisplayNameAttribute.cs" />
+    <Compile Include="Settings\SettingPropertyGridObject.cs" />
+    <Compile Include="Setup\SelectSiteAndUrlDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\RecommendedConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.ru-RU.resx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Delete16.png" />
+    <None Include="..\phpmgrpublic.snk">
+      <Link>phpmgrpublic.snk</Link>
+    </None>
+    <None Include="Resources\goBack16.png" />
+    <Content Include="Resources\php-extensions32.png" />
+    <Content Include="Resources\php-logo16.png" />
+    <Content Include="Resources\php-logo32.png" />
+    <Content Include="Resources\php-settings32.png" />
+    <Content Include="Resources\php-setup32.png" />
+    <Content Include="Resources\warning16.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
+sn –Vr $(TargetFileName)
+gacutil.exe /if "$(TargetPath)"
+sn -Vr $(TargetDir)ru-RU\$(TargetName).resources.dll
+gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll</PostBuildEvent>
+  </PropertyGroup>
+</Project>
