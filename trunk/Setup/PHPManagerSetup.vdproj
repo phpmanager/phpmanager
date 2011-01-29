@@ -130,7 +130,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D51753BAFBEC4BBB9FD3AD45178D78AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,6 +166,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_22F0F582E9D526DFD26D076A8D5298E2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1D47491D328D43B9AA8D13C5DA86F655"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -161,24 +179,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1115C552E0704546B60092FC5F50C58B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_22F0F582E9D526DFD26D076A8D5298E2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC1090702F5BE83DAFF294B66AE3AA94"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ADF58AC9B883E3F428A2FE804C02A013"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -316,6 +316,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_1115C552E0704546B60092FC5F50C58B"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.Client.dll"
             "TargetName" = "8:"
@@ -342,6 +347,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_1D47491D328D43B9AA8D13C5DA86F655"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.Client.dll"
             "TargetName" = "8:"
@@ -399,6 +409,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_63E542608235450D9C9E602A99E34287"
+                    {
+                    "Name" = "8:Web.Management.PHP.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.dll"
             "TargetName" = "8:"
@@ -445,6 +460,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_74EEB2CA38C14B1485C0BE0CD3EE0275"
+                    {
+                    "Name" = "8:Web.Management.PHP.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.dll"
             "TargetName" = "8:"
@@ -471,6 +491,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Setup, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_85E9D480366844E9AF15B81C150CAA3D"
+                    {
+                    "Name" = "8:Web.Management.PHP.Setup.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.Setup.dll"
             "TargetName" = "8:"
@@ -528,6 +553,11 @@
             "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.1.1.0, Culture=ru-RU, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_D51753BAFBEC4BBB9FD3AD45178D78AA"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\bin\\Release\\ru-RU\\Web.Management.PHP.Client.resources.dll"
             "TargetName" = "8:"
@@ -717,15 +747,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PHP Manager 1.1 for IIS 7"
-        "ProductCode" = "8:{CC4D8AF2-6DDD-4168-9B55-8543B8B670C2}"
-        "PackageCode" = "8:{D22DB6EC-59AD-44A2-9F3E-3374C64DCD98}"
+        "ProductName" = "8:PHP Manager 1.2 for IIS 7"
+        "ProductCode" = "8:{77B742B3-B7A8-4415-93FF-9B479A865B5E}"
+        "PackageCode" = "8:{037FA06C-6395-4911-9864-635285C3C3C6}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.1"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8: "
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://phpmanager.codeplex.com"
@@ -777,7 +807,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1.1.1"
+                                    "Value" = "8:1.2.0"
                                     }
                                 }
                             }
