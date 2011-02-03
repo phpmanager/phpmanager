@@ -21,7 +21,8 @@
     <updated>2011-01-28T12:00:00Z</updated>
     <longSummary resourceName="Entry_PHPManager_LongSummary">PHP Manager is an extension for IIS that provides a graphical user interface to manage PHP installation on IIS. PHP Manager greatly simplifies installation, configuration, management and troubleshooting of one or more PHP versions on IIS 7.</longSummary>
     <published>2011-01-28T12:00:00Z</published>
-    <productFamily resourceName="StableRelease">Stable Release</productFamily>
+    <frameworkFamily resourceName="PHP">PHP</frameworkFamily>
+    <newCategory resourceName="NewWebPlatformExtensions">New Web Platform Extensions</newCategory>
     <link href="http://phpmanager.codeplex.com" />
     <images>
       <icon>http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=phpmanager&amp;DownloadId=164584&amp;Build=17358</icon>
@@ -31,7 +32,7 @@
       <uri>http://phpmanager.codeplex.com/</uri>
     </author>
     <keywords>
-      <keywordId>Server</keywordId>
+      <keywordId>ProductTools</keywordId>
     </keywords>
     <discoveryHint>
       <registry>
