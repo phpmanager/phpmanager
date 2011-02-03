@@ -14,7 +14,7 @@ using System.Reflection;
 // associated with an assembly.
 [assembly: AssemblyCompany("PHP Manager Project")]
 [assembly: AssemblyProduct("PHP Manager for IIS")]
-[assembly: AssemblyCopyright("Copyright © PHP Manager Project 2010")]
+[assembly: AssemblyCopyright("Copyright © PHP Manager Project 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
