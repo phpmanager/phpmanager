@@ -152,7 +152,7 @@
     <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
-    <value>The directory does not contain required PHP files: php-cgi.exe and php.ini.</value>
+    <value>Das Verzeichnis enthält nicht die benötigten PHP Datei: php-cgi.exe und php.ini.</value>
   </data>
   <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
     <value>Konfiguriere Erweiterungseinstellungen</value>
@@ -200,10 +200,10 @@
     <value>Öffne php.ini</value>
   </data>
   <data name="PHPInfoPageDescription" xml:space="preserve">
-    <value>Get the output of the phpinfo() function</value>
+    <value>Zeige Ausgabe der phpinfo() Function</value>
   </data>
   <data name="PHPInfoPageLongDescription" xml:space="preserve">
-    <value>Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes.</value>
+    <value>Zeige Ausgabe der phpinfo() Function, die Information zum derzeitigen Status von PHP enthält. Diese Information hilft bei der Überprüfung der PHP Laufzeitumgebung und für Debugging.</value>
   </data>
   <data name="PHPInfoPageTitle" xml:space="preserve">
     <value>phpinfo() Ausgabe</value>
@@ -236,7 +236,7 @@
     <value> | </value>
   </data>
   <data name="PHPPageLongDescription" xml:space="preserve">
-    <value>Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions.</value>
+    <value>Nutze dieses Feature um die PHP Laufzeitumgebungseinstellungen zu prüfen, PHP Anweisungen zu konfigurieren und um PHP Erwieterungen zu de-/aktivieren.</value>
   </data>
   <data name="PHPPageTitle" xml:space="preserve">
     <value>PHP Manager</value>
@@ -317,16 +317,16 @@
     <value>Fehlerlog:</value>
   </data>
   <data name="PHPPageEnabledExtensions" xml:space="preserve">
-    <value>Es sind {0} Erweiterungen aktiiert.</value>
+    <value>Es sind {0} Erweiterungen aktiviert.</value>
   </data>
   <data name="PHPPageInstalledExtensions" xml:space="preserve">
     <value>Es sind {0} Erweiterungen installiert.</value>
   </data>
   <data name="ErrorReportingPageDescription" xml:space="preserve">
-    <value>PHP error reporting and logging</value>
+    <value>PHP Fehlerberichte und Logging</value>
   </data>
   <data name="ErrorReportingPageLongDescription" xml:space="preserve">
-    <value>Use this feature to configure how PHP reports and logs errors, warnings and information notices.</value>
+    <value>Benutzen Sie dieses Feature um PHP zu konfigurieren wie Fehler, Warnung und Notizen geloggt werden.</value>
   </data>
   <data name="ErrorReportingPageTitle" xml:space="preserve">
     <value>PHP Fehlerberichte</value>
@@ -335,7 +335,7 @@
     <value>&amp;Entwicklungsmaschine</value>
   </data>
   <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
-    <value>This is a development machine. A verbose error reporting will be used. All errors, warnings and informational notices will be output in a web browser and also will be written into a log file.</value>
+    <value>Dies ist eine Entwicklungsmaschine. Ein ausführliches Fehlerreporting wird benutzt. Alle Fehler, Warnung und Notizenwerden im Browser ausgegeben und auch in eine Logdatei geschrieben.</value>
   </data>
   <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
     <value>Errorlogdatei:</value>
@@ -344,19 +344,19 @@
     <value>&amp;Produktionsmaschine</value>
   </data>
   <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
-    <value>This is a production server accessible from the internet. Only errors will be written to a log file. No errors, warnings or notices will be output in a web browser.</value>
+    <value>Die ist ein Produktionsserver, der im Internet erreichbar ist. Nur Fehler werden in die Logdatei geschrieben. Keine Fehler, Warnung oder Notizen werden am Browser ausgegeben.</value>
   </data>
   <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
-    <value>Select a server type. This will influence how the errors will be reported and logged.</value>
+    <value>Wähle Servertyp. Dies beeinflusst, wie Fehler angezeigt und geloggt werden.</value>
   </data>
   <data name="ErrorReportingPageServerType" xml:space="preserve">
     <value>Servertyp</value>
   </data>
   <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
-    <value>The provided path should point to either php-cgi.exe or php.exe.</value>
+    <value>Der angegebene Pfad sollte auf php-cgi.exe oder php.exe zeigen.</value>
   </data>
   <data name="ErrorNoExtDirectory" xml:space="preserve">
-    <value>The directory does not contain ext subdirectory with PHP extensions.</value>
+    <value>Diese Verzeichnis enthält keine Unterverzeichnis ext mit PHP Erweiterungen.</value>
   </data>
   <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
     <value>PHP ausführbare Datei (php-cgi.exe)|php-cgi.exe|Alle Dateien (*.*)|*.*</value>
@@ -374,22 +374,22 @@
     <value>Beispiel: C:\PHP\php-cgi.exe</value>
   </data>
   <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
-    <value>Log file (*.log)|*.log|All files (*.*)|*.*</value>
+    <value>Logdatei (*.log)|*.log|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
-    <value>PHP Error Log File</value>
+    <value>PHP Errorlogdatei</value>
   </data>
   <data name="ErrorReportingErrorLogFile" xml:space="preserve">
     <value>Errorlogdatei:</value>
   </data>
   <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
-    <value>Mximale Ausführungszeit</value>
+    <value>Maximale Ausführungszeit</value>
   </data>
   <data name="RuntimeLimitsPageDescription" xml:space="preserve">
-    <value>Configure PHP runtime limits, including execution timeouts, maximum upload times, etc.</value>
+    <value>Konfiguriere PHP Laufzeitgrenzen, z.B. Ausführungstimeouts, maximale Uploadzeit, etc.</value>
   </data>
   <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
-    <value>Configure PHP runtime limits, such as maximum script execution time, maximum size of uploaded files, request timeouts and others.</value>
+    <value>Konfiguriere PHP Laufzeitgrenzen, z.B. maximale Skriptausführungszeit, maximale Größe für Datei-Uploads, Anfragezeitüberschreitung und andere.</value>
   </data>
   <data name="RuntimeLimitsPageTitle" xml:space="preserve">
     <value>PHP Laufzeitgrenzen</value>
@@ -398,31 +398,31 @@
     <value>Datenhandling</value>
   </data>
   <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
-    <value>Maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server.</value>
+    <value>Maximale Zeit in Sekunden, die ein Skript laufen darf. Schutz vor Serverblockaden.</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
     <value>Maximale Anzahl Datei für den Upload</value>
   </data>
   <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
-    <value>Maximum number of files that can be uploaded via a single request.</value>
+    <value>Maximale Anzahl von Dateien, die in einem einzelnen Request übertragen werden können.</value>
   </data>
   <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
     <value>Maximale Eingabezeit</value>
   </data>
   <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
-    <value>Maximum time in seconds a script is allowed to parse input data, like POST, GET and file uploads.</value>
+    <value>Maximale Zeit in Sekunden, die zum Parsen von Eingabedaten wie POST, GET und Datei-Uploads.</value>
   </data>
   <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
     <value>Speicherlimit</value>
   </data>
   <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
-    <value>Maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server.</value>
+    <value>Maximaler Speicher der von einem Skript allokiert werden darf. Diese Einstellung verhindert, das schlecht geschrieben Skripts den ganzen Speicher aufbrauchen.</value>
   </data>
   <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
     <value>Maximale POST-Größe</value>
   </data>
   <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
-    <value>Maximum allowed size of POST data. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize.</value>
+    <value>Maximal erlaubt Größe von POST Daten. Diese EInstellung beeinflusst auch den Datei-Upload. Um große Dateien hochzuladen, muss dieser Wert größer als upload_max_filesize sein.</value>
   </data>
   <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
     <value>Ressourcenlimits</value>
@@ -440,16 +440,16 @@
     <value>Nicht verfügbar</value>
   </data>
   <data name="ErrorPHPIniNotFound" xml:space="preserve">
-    <value>The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS.</value>
+    <value>Die php.ini Datei kann nicht gefunden werden. Stellen Sie ischer das PHP korrekt im IIS registriert ist.</value>
   </data>
   <data name="AllPagesPageIsReadOnly" xml:space="preserve">
     <value>Diese Einstellungen sind nur lesbar. Nur der Administrator kann diese ändern.</value>
   </data>
   <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
-    <value>Cannot create a temporary phpinfo file on the server due to insufficient privileges.</value>
+    <value>Kann wegen eingeschränkter Berechtigungen keine phpinfo Datei erstellen.</value>
   </data>
   <data name="ErrorSomeHandlersLocked" xml:space="preserve">
-    <value>The PHP version cannot be changed because some of the IIS handler mappings are locked on a server level.</value>
+    <value>Die PHP Version kann nicht geändert werden, weil die IIS Handler-Mappings sind auf Serverebene gesperrt.</value>
   </data>
   <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
     <value>Zeige de-/aktivierte Erweiterungen</value>
@@ -521,7 +521,7 @@
     <value>Die PHP Anweisung "error_log" ist nicht gesetzt.</value>
   </data>
   <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
-    <value>Die "error_log" Anweisung gibt den Dateinamen an, wohin Fehler geloggt werdne sollen. Es wird empfohlen den Pfad zur Datei absolut anzugeben und die Datei für den Webserver beschreibbar zu machen.</value>
+    <value>Die "error_log" Anweisung gibt den Dateinamen an, wohin Fehler geloggt werden sollen. Es wird empfohlen den Pfad zur Datei absolut anzugeben und die Datei für den Webserver beschreibbar zu machen.</value>
   </data>
   <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
     <value>Die PHP Anweisung "extension_dir" enthält keinen absoluten Pfad.</value>
@@ -566,31 +566,31 @@
     <value>Die Umgebungsvariable PHP_FCGI_MAX_REQUESTS ist nicht für PHP Prozesse gesetzt.</value>
   </data>
   <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
-    <value>The PHP_FCGI_MAX_REQUESTS environment variable is used to specify the number of requests that PHP executable will handle before it gets recycled. It is recommended that the value for this variable is greater or equal to the value for FastCgi instanceMaxRequests setting. That way the IIS FastCGI process recycling logic will not conflict with PHP recycling behavior.</value>
+    <value>Die PHP_FCGI_MAX_REQUESTS Umgebungsvariable gibt die Anzahl von Anfragen an, die PHP bedient bevor es recycled wird. Es wird empfohlen diesen Wert größer oder gleich dem Wert für FastCgi instanceMaxRequests zu setzen. Auf diesem Wege wird eine Konflikt zwischen IIS FastCGI Prozessrecycling mit PHP Recycling vermieden.</value>
   </data>
   <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
-    <value>The PHPRC environment variable points to a directory that does not contain php.ini file.</value>
+    <value>Die PHPRC Umgebungsvariable zeigt auf ein Verzeichnis das keine php.ini Datei enthält.</value>
   </data>
   <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
-    <value>The PHPRC environment variable is not set for PHP processes.</value>
+    <value>Die PHPRC Umgebungsvariable ist nicht gesetzt für PHP-Prozesse.</value>
   </data>
   <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
-    <value>The PHPRC environment variable is used to specify the directory that contains a PHP configuration file php.ini. PHP will load that configuration file during startup. It is recommended to always set this environment variable per PHP registration, thus avoiding situations when PHP loads wrong configuration file.</value>
+    <value>Die PHPRC Umgebungsvariable gibt das Verzeichnis an, wo sich die Konfigurationsdatei für PHP befindet (php.ini). PHP lädt die Konfigurationsdatei während des Starts. Es wird empfohlen die Variable je PHP Registrierung zu setzen, um Situation mit falschen Konfigurationsdaten zu vermeiden.</value>
   </data>
   <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
-    <value>The resourceType attribute of an IIS handler for PHP is not set to "Either".</value>
+    <value>Das Attribut resourceType von einem IIS Handler für PHP ist nicht auf "Either" gesetzt.</value>
   </data>
   <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
-    <value>The IIS handler attribute resourceType is used to specify a condition when handler will be invoked for a web request. When configuring the handler for PHP, it is recommended to set this attribute to "Either" for security reasons. That way the handler will be invoked only if the requested URL maps to a file or a folder on the file system.</value>
+    <value>Das IIS Handler Attribut resourceType wird benutzt um eine Bedingung zu definieren, wann der Handler einen Webrequest auslöst. Wenn Sie den Handler für PHP konfigurieren, wird aus Sicherheitgründen der Wert "Either" empfohlen. Auf diesem Weg wird der Webrequest nur ausgelöst, wenn die angeforderte URL auf eine Datei oder Pfad zeigt.</value>
   </data>
   <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
-    <value>The PHP directive "session.save_path" uses a non-existent directory.</value>
+    <value>Die PHP Anweisung "session.save_path" zeigt auf ein ungültiges Verzeichnis.</value>
   </data>
   <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
-    <value>The PHP directive "session.save_path" is not set.</value>
+    <value>Die PHP Anweisung "session.save_path" ist nicht gesetzt.</value>
   </data>
   <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
-    <value>The "session.save_path" sets the path to the directory where PHP session data will be stored. It is recommended to use an absolute path to the directory that is writable by the web server.</value>
+    <value>Die "session.save_path" Anweisung gibt den Pfad zum Verzeichnis an, das die Sessiondaten nethält. Es wird empfohlen eine absoluten Pfad zu benutzen und das Verzeichnis beschreibar für den Webserver zu machen.</value>
   </data>
   <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
     <value>&amp;Problembeschreibung:</value>
@@ -605,28 +605,28 @@
     <value>index.php ist nicht das erste Element in den IIS Standarddokumenten.</value>
   </data>
   <data name="WarningPHPConfigCgi" xml:space="preserve">
-    <value>Not optimal PHP registration (CGI) is found. Register new PHP version to enable PHP via FastCGI.</value>
+    <value>Keine optimale PHP Registrierung (CGI) gefunden. Registriere eine neue PHP Version um PHP via FastCGI zu aktivieren.</value>
   </data>
   <data name="WarningPHPConfigIsapi" xml:space="preserve">
-    <value>Not optimal PHP registration (ISAPI) is found. Register new PHP version to enable PHP via FastCGI.</value>
+    <value>Keine optimale PHP Registrierung (ISAPI) gefunden. Registriere eine neue PHP Version um PHP via FastCGI zu aktivieren.</value>
   </data>
   <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
     <value>PHP ist nicht aktiviert. Registriere eine neue PHP Version, um  PHP via FastCGI zu aktivieren.</value>
   </data>
   <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
-    <value>Information about PHP cannot be obtained due to invalid IIS configuration.</value>
+    <value>Informationen über PHP können wegen einer ungültigen IIS Konfiguration nicht ermittelt werden.</value>
   </data>
   <data name="RecommendConfigDialogDescription" xml:space="preserve">
-    <value>These are the IIS and PHP configuration issues detected on this server. Select the issues that you want to get fixed.</value>
+    <value>Es wurden IIS und PHP Konfigurationsprobleme auf diesem Server entfeckt. Wähle die Probleme, die Sie bereinigen wollen.</value>
   </data>
   <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
-    <value>The PHP directive "upload_tmp_dir" points to a directory that does not exist.</value>
+    <value>Die PHP Anweisung "upload_tmp_dir" zeigt auf ein nicht existierendes Verzeichnis.</value>
   </data>
   <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
-    <value>The PHP directive "upload_tmp_dir" is not set.</value>
+    <value>Die PHP Anweisung "upload_tmp_dir" ist nicht gesetzt.</value>
   </data>
   <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
-    <value>The "upload_tmp_dir" specifies the temporary directory used for storing files when doing file upload. The directory must be writable by whatever user PHP is running as.</value>
+    <value>Die "upload_tmp_dir" Anweisung gibt das temporäre Verzeichnis für Datei-Uploads an. Das Verzeichnis muss für den jeweiligen Prozess-user beschreibar sein.</value>
   </data>
   <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
     <value>Die PHP Anweisung date.timezone ist nicht gesetzt.</value>
@@ -647,7 +647,7 @@
     <value>Wähle Binärdatei der Erweiterung</value>
   </data>
   <data name="ErrorCannotAddExtension" xml:space="preserve">
-    <value>Cannot add PHP extension. The extension file cannot be copied to the PHP extensions directory.</value>
+    <value>PHP Erweiterung kann nicht hinzugefügt werden. Die Datei zur Erweiterung kann nicht ins PHP Erweiterungsverzeichnis kopiert werden.</value>
   </data>
   <data name="AddExtensionDialogExample" xml:space="preserve">
     <value>Beispiel: C:\Temp\php_wincache.dll</value>
@@ -656,6 +656,6 @@
     <value>Gebe Pfad zur Binärdatei der Erweiterung an:</value>
   </data>
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
-    <value>This extension already exists in PHP extentions directory. Use "Enable or disable an extension" task to enable this extension.</value>
+    <value>Diese Erweiterung existiert bereits im PHP Erweiterungsverzeichnis. Nutze "De-/Aktiviere Erweiterung" Schritt um diese Erwiterung zu aktivieren.</value>
   </data>
 </root>
