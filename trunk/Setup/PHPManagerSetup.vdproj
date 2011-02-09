@@ -123,8 +123,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F79B8471757B49D6970C17304E9B1D80"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EE39074CAA90947AF85C209F449E103A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F79B8471757B49D6970C17304E9B1D80"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -313,7 +325,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1115C552E0704546B60092FC5F50C58B"
@@ -344,7 +356,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1D47491D328D43B9AA8D13C5DA86F655"
@@ -406,7 +418,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_63E542608235450D9C9E602A99E34287"
@@ -457,7 +469,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_74EEB2CA38C14B1485C0BE0CD3EE0275"
@@ -488,7 +500,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Setup, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Setup, Version=1.1.2.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_85E9D480366844E9AF15B81C150CAA3D"
@@ -550,7 +562,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.1.1.0, Culture=ru-RU, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.1.2.0, Culture=ru-RU, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D51753BAFBEC4BBB9FD3AD45178D78AA"
@@ -659,6 +671,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F79B8471757B49D6970C17304E9B1D80"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.1.2.0, Culture=de-DE, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F79B8471757B49D6970C17304E9B1D80"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\bin\\Release\\de-DE\\Web.Management.PHP.Client.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B1BC1D0F89CF4D388FA074A2E78BB35F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -747,15 +790,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PHP Manager 1.2 for IIS 7"
-        "ProductCode" = "8:{77B742B3-B7A8-4415-93FF-9B479A865B5E}"
-        "PackageCode" = "8:{037FA06C-6395-4911-9864-635285C3C3C6}"
+        "ProductName" = "8:PHP Manager 1.1 for IIS 7"
+        "ProductCode" = "8:{F0E9EB45-3FA6-41BE-BA8B-62E03601F629}"
+        "PackageCode" = "8:{84100F73-523A-4772-9985-014F61691E95}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.1.2"
         "Manufacturer" = "8: "
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://phpmanager.codeplex.com"
@@ -807,7 +850,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1.2.0"
+                                    "Value" = "8:1.1.2"
                                     }
                                 }
                             }

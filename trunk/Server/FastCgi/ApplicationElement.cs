@@ -5,8 +5,9 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
+using System;
 using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.FastCgi
@@ -15,6 +16,7 @@ namespace Web.Management.PHP.FastCgi
     internal class ApplicationElement : ConfigurationElement
     {
         private EnvironmentVariablesCollection _environmentVars;
+        private string _fullPath = null;
 
         public int ActivityTimeout
         {
@@ -69,7 +71,12 @@ namespace Web.Management.PHP.FastCgi
         {
             get
             {
-                return (string)base["fullPath"];
+                if (string.IsNullOrEmpty(_fullPath))
+                {
+                    string rawFullPath = (string)base["fullPath"];
+                    _fullPath = Environment.ExpandEnvironmentVariables(rawFullPath);
+                }
+                return _fullPath;
             }
             set
             {
