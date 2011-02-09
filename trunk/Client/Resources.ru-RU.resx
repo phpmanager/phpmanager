@@ -608,7 +608,7 @@
     <value>Обнаружена неоптимальная регистрация PHP (CGI). Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
   </data>
   <data name="WarningPHPConfigIsapi" xml:space="preserve">
-    <value>Обнаружена неоптимальная регистрация PHP (ISAPI). Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI</value>
+    <value>Обнаружена неоптимальная регистрация PHP (ISAPI). Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
   </data>
   <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
     <value>Регистрация PHP отсутствует. Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
