@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.de-DE.resx" />
+    <EmbeddedResource Include="Resources.nl-NL.resx" />
     <EmbeddedResource Include="Resources.ru-RU.resx">
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
@@ -152,6 +153,8 @@ gacutil.exe /if "$(TargetPath)"
 sn -Vr $(TargetDir)ru-RU\$(TargetName).resources.dll
 gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll
 sn -Vr $(TargetDir)de-DE\$(TargetName).resources.dll
-gacutil /if $(TargetDir)de-DE\$(TargetName).resources.dll</PostBuildEvent>
+gacutil /if $(TargetDir)de-DE\$(TargetName).resources.dll
+sn -Vr $(TargetDir)nl-NL\$(TargetName).resources.dll
+gacutil /if $(TargetDir)nl-NL\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>
