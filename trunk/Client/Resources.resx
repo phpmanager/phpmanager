@@ -440,7 +440,7 @@
     <value>Not available</value>
   </data>
   <data name="ErrorPHPIniNotFound" xml:space="preserve">
-    <value>The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS.</value>
+    <value>The php.ini file cannot be found. Make sure PHP is correctly registered with IIS.</value>
   </data>
   <data name="AllPagesPageIsReadOnly" xml:space="preserve">
     <value>These settings are read-only. They can only be changed by a server administrator.</value>
@@ -542,10 +542,10 @@
     <value>FastCGI supports the ability to impersonate security tokens of the calling client. This allows IIS to define the security context that the request runs under. It is recommended to enable impersonation by setting this directive to "1".</value>
   </data>
   <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
-    <value>The PHP directive "log_errors" directive is not set to "On".</value>
+    <value>The PHP directive "log_errors" is not set to "On".</value>
   </data>
   <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
-    <value>The PHP directive "log_errors" directive is not set.</value>
+    <value>The PHP directive "log_errors" is not set.</value>
   </data>
   <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
     <value>The "log_errors" controls whether PHP logs errors and warning to a log file. It is recommended to set this to "On".</value>

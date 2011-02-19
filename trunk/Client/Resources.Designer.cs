@@ -565,7 +565,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; directive is not set to &quot;On&quot;..
+        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; is not set to &quot;On&quot;..
         /// </summary>
         internal static string ConfigIssueLogErrorsNotCorrect {
             get {
@@ -574,7 +574,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; directive is not set..
+        ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; is not set..
         /// </summary>
         internal static string ConfigIssueLogErrorsNotSet {
             get {
@@ -851,7 +851,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The php.ini file cannot be found. Make sure PHP is correctly regestered with IIS..
+        ///   Looks up a localized string similar to The php.ini file cannot be found. Make sure PHP is correctly registered with IIS..
         /// </summary>
         internal static string ErrorPHPIniNotFound {
             get {

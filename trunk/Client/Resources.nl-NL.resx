@@ -473,7 +473,7 @@
     <value>Aanbevelingen weergeven.</value>
   </data>
   <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
-    <value>Geen optimale PHP configuratie gevonden op deze machine.</value>
+    <value>Geen optimale PHP configuratie gevonden op deze machine. </value>
   </data>
   <data name="ConfigIssueNone" xml:space="preserve">
     <value>&lt;Niet ingesteld&gt;</value>
