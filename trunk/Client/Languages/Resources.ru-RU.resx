@@ -137,7 +137,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
     <value>Изменить параметр PHP</value>
@@ -149,7 +149,7 @@
     <value>Скачивается информация о параметрах.</value>
   </data>
   <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
     <value>Директория не содержит требуемых файлов PHP: php-cgi.exe и php.ini.</value>
@@ -161,7 +161,7 @@
     <value>Включить или выключить расширение</value>
   </data>
   <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPExtensionsItemTitle" xml:space="preserve">
     <value>Расширения PHP</value>
@@ -215,10 +215,10 @@
     <value>Вы уверены, что хотите удалить этот параметр?</value>
   </data>
   <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPPageConfigurationFile" xml:space="preserve">
     <value>Файл конфигурации:</value>
@@ -245,7 +245,7 @@
     <value>Версия PHP:</value>
   </data>
   <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
     <value>Контролировать все параметры</value>
@@ -278,7 +278,7 @@
     <value>Значение</value>
   </data>
   <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
     <value>Изменить версию PHP</value>
@@ -467,7 +467,7 @@
     <value>Файл {0} не существует.</value>
   </data>
   <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WarningViewRecommendations" xml:space="preserve">
     <value>Просмотреть рекомендации.</value>

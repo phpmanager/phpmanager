@@ -116,9 +116,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.de-DE.resx" />
-    <EmbeddedResource Include="Resources.nl-NL.resx" />
-    <EmbeddedResource Include="Resources.ru-RU.resx">
+    <EmbeddedResource Include="Languages\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Languages\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Languages\Resources.ru-RU.resx">
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,6 +137,9 @@
     <Content Include="Resources\php-settings32.png" />
     <Content Include="Resources\php-setup32.png" />
     <Content Include="Resources\warning16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Languages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
