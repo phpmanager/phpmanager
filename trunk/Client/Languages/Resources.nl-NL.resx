@@ -323,7 +323,7 @@
     <value>Er zijn {0} extensies geïnstalleerd.</value>
   </data>
   <data name="ErrorReportingPageDescription" xml:space="preserve">
-    <value>PHP foutrapportage en logboek</value>
+    <value>PHP foutrapportage en log bestand</value>
   </data>
   <data name="ErrorReportingPageLongDescription" xml:space="preserve">
     <value>Gebruik deze feature om te configureren hoe PHP fouten, waarschuwingen en informatie meldingen rapporteert en opslaat.</value>
@@ -335,7 +335,7 @@
     <value>&amp;Ontwikkel omgeving</value>
   </data>
   <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
-    <value>Dit is een ontwikkel omgeving. Er zullen uitgebreide foutmeldingen weergegeven worden. Alle fouten, waarschuwingen en informatie meldingen zullen worden opgeslagen in het logboek en naar de browser worden verstuurd.</value>
+    <value>Dit is een ontwikkel omgeving. Er zullen uitgebreide foutmeldingen weergegeven worden. Alle fouten, waarschuwingen en informatie meldingen zullen worden opgeslagen in het log bestand en naar de browser worden verstuurd.</value>
   </data>
   <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
     <value>Locatie error log:</value>
@@ -344,7 +344,7 @@
     <value>&amp;Productie omgeving</value>
   </data>
   <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
-    <value>Dit is een productie omgeving die benaderd kan worden vanaf het internet. Alleen fouten zullen worden opgeslagen in het logboek. Er zullen geen fouten, waarschuwingen of informatie meldingen naar de browser worden verstuurd.</value>
+    <value>Dit is een productie omgeving die benaderd kan worden vanaf het internet. Alleen fouten zullen worden opgeslagen in het log bestand. Er zullen geen fouten, waarschuwingen of informatie meldingen naar de browser worden verstuurd.</value>
   </data>
   <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
     <value>Selecteer een server type. Dit beïnvloed hoe fouten zullen worden opgeslagen en gerapporteerd.</value>
@@ -548,7 +548,7 @@
     <value>De PHP instelling "log_errors" is niet ingesteld.</value>
   </data>
   <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
-    <value>De "log_errors" instelling bepaald of PHP fouten en waarschuwingen wegschrijft in een logbestand. Het wordt aanbevolen de waarde in te stellen op "On".</value>
+    <value>De "log_errors" instelling bepaald of PHP fouten en waarschuwingen wegschrijft in een log bestand. Het wordt aanbevolen de waarde in te stellen op "On".</value>
   </data>
   <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
     <value>De FastCGI instelling monitorChangesTo verwijst naar een verkeerd bestand.</value>
