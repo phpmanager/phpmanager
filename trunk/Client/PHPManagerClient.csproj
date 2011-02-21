@@ -116,9 +116,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Languages\Resources.de-DE.resx" />
-    <EmbeddedResource Include="Languages\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Languages\Resources.de-DE.resx">
+      <LogicalName>$(RootNamespace).Resources.de-DE.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languages\Resources.nl-NL.resx">
+      <LogicalName>$(RootNamespace).Resources.nl-NL.resources</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Languages\Resources.ru-RU.resx">
+      <LogicalName>$(RootNamespace).Resources.ru-RU.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languages\Resources.tr-TR.resx">
+      <LogicalName>$(RootNamespace).Resources.tr-TR.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,6 +166,8 @@ gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll
 sn -Vr $(TargetDir)de-DE\$(TargetName).resources.dll
 gacutil /if $(TargetDir)de-DE\$(TargetName).resources.dll
 sn -Vr $(TargetDir)nl-NL\$(TargetName).resources.dll
-gacutil /if $(TargetDir)nl-NL\$(TargetName).resources.dll</PostBuildEvent>
+gacutil /if $(TargetDir)nl-NL\$(TargetName).resources.dll
+sn -Vr $(TargetDir)tr-TR\$(TargetName).resources.dll
+gacutil /if $(TargetDir)tr-TR\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>
