@@ -141,6 +141,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F915F3A171844E368B2CB96199B90B86"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EE39074CAA90947AF85C209F449E103A"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,13 +154,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7BFCB22CA83945E9BD31F51E5C503CD0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1821BAB8212D497EA322C375FF73C9DF"
+        "OwnerKey" = "8:_F915F3A171844E368B2CB96199B90B86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,6 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7BFCB22CA83945E9BD31F51E5C503CD0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_74EEB2CA38C14B1485C0BE0CD3EE0275"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -209,6 +215,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1D47491D328D43B9AA8D13C5DA86F655"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1821BAB8212D497EA322C375FF73C9DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -788,6 +800,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F915F3A171844E368B2CB96199B90B86"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.1.2.0, Culture=ja-JP, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F915F3A171844E368B2CB96199B90B86"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\bin\\Release\\ja-JP\\Web.Management.PHP.Client.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B1BC1D0F89CF4D388FA074A2E78BB35F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -878,7 +921,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager 1.1 for IIS 7"
         "ProductCode" = "8:{F0E9EB45-3FA6-41BE-BA8B-62E03601F629}"
-        "PackageCode" = "8:{84100F73-523A-4772-9985-014F61691E95}"
+        "PackageCode" = "8:{8754A459-738A-4874-B967-EEBE6C380F59}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"

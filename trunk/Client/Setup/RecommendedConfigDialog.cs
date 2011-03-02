@@ -117,7 +117,7 @@ namespace Web.Management.PHP.Setup
             this._currentValueHeader,
             this._recommendedValueHeader});
             this._configIssuesListView.FullRowSelect = true;
-            this._configIssuesListView.Location = new System.Drawing.Point(0, 64);
+            this._configIssuesListView.Location = new System.Drawing.Point(0, 74);
             this._configIssuesListView.MultiSelect = false;
             this._configIssuesListView.Name = "_configIssuesListView";
             this._configIssuesListView.Size = new System.Drawing.Size(480, 130);
@@ -146,7 +146,7 @@ namespace Web.Management.PHP.Setup
             // 
             this._configIssueLabel.AutoSize = true;
             this._configIssueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._configIssueLabel.Location = new System.Drawing.Point(0, 48);
+            this._configIssueLabel.Location = new System.Drawing.Point(0, 58);
             this._configIssueLabel.Name = "_configIssueLabel";
             this._configIssueLabel.Size = new System.Drawing.Size(180, 13);
             this._configIssueLabel.TabIndex = 1;
@@ -156,7 +156,7 @@ namespace Web.Management.PHP.Setup
             // 
             this._recommendationLabel.AutoSize = true;
             this._recommendationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._recommendationLabel.Location = new System.Drawing.Point(0, 288);
+            this._recommendationLabel.Location = new System.Drawing.Point(0, 298);
             this._recommendationLabel.Name = "_recommendationLabel";
             this._recommendationLabel.Size = new System.Drawing.Size(108, 13);
             this._recommendationLabel.TabIndex = 5;
@@ -164,7 +164,7 @@ namespace Web.Management.PHP.Setup
             // 
             // _recommendationTextBox
             // 
-            this._recommendationTextBox.Location = new System.Drawing.Point(0, 304);
+            this._recommendationTextBox.Location = new System.Drawing.Point(0, 314);
             this._recommendationTextBox.Multiline = true;
             this._recommendationTextBox.Name = "_recommendationTextBox";
             this._recommendationTextBox.ReadOnly = true;
@@ -176,7 +176,7 @@ namespace Web.Management.PHP.Setup
             // 
             this._issueDescriptionLabel.AutoSize = true;
             this._issueDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._issueDescriptionLabel.Location = new System.Drawing.Point(0, 215);
+            this._issueDescriptionLabel.Location = new System.Drawing.Point(0, 225);
             this._issueDescriptionLabel.Name = "_issueDescriptionLabel";
             this._issueDescriptionLabel.Size = new System.Drawing.Size(107, 13);
             this._issueDescriptionLabel.TabIndex = 3;
@@ -184,7 +184,7 @@ namespace Web.Management.PHP.Setup
             // 
             // _issueDescriptionTextBox
             // 
-            this._issueDescriptionTextBox.Location = new System.Drawing.Point(0, 232);
+            this._issueDescriptionTextBox.Location = new System.Drawing.Point(0, 242);
             this._issueDescriptionTextBox.Multiline = true;
             this._issueDescriptionTextBox.Name = "_issueDescriptionTextBox";
             this._issueDescriptionTextBox.ReadOnly = true;
@@ -202,7 +202,7 @@ namespace Web.Management.PHP.Setup
             // 
             // RecommendedConfigDialog
             // 
-            this.ClientSize = new System.Drawing.Size(504, 442);
+            this.ClientSize = new System.Drawing.Size(504, 452);
             this.Controls.Add(this._formDescriptionLabel);
             this.Controls.Add(this._issueDescriptionTextBox);
             this.Controls.Add(this._issueDescriptionLabel);
