@@ -239,7 +239,7 @@
     <value>実行環境の確認、ディレクティブの設定、PHP 拡張の有効化、無効化などが設定できます。</value>
   </data>
   <data name="PHPPageTitle" xml:space="preserve">
-    <value>PHP Manager</value>
+    <value>PHP マネージャ</value>
   </data>
   <data name="PHPPageVersion" xml:space="preserve">
     <value>PHP のバージョン:</value>
