@@ -15,12 +15,12 @@
   <entry>
     <productId>PHPManager</productId>
     <title resourceName="Entry_PHPManager_Title">PHP Manager for IIS</title>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <summary resourceName="Entry_PHPManager_Summary">PHP Manager is an extension for IIS that greatly simplifies installation, configuration and troubleshooting of PHP on IIS 7.</summary>
     <id>http://phpmanager.codeplex.com/</id>
-    <updated>2011-01-28T12:00:00Z</updated>
+    <updated>2011-03-08T12:00:00Z</updated>
     <longSummary resourceName="Entry_PHPManager_LongSummary">PHP Manager is an extension for IIS that provides a graphical user interface to manage PHP installation on IIS. PHP Manager greatly simplifies installation, configuration, management and troubleshooting of one or more PHP versions on IIS 7.</longSummary>
-    <published>2011-01-28T12:00:00Z</published>
+    <published>2011-03-08T12:00:00Z</published>
     <frameworkFamily resourceName="PHP">PHP</frameworkFamily>
     <newCategory resourceName="NewWebPlatformExtensions">New Web Platform Extensions</newCategory>
     <link href="http://phpmanager.codeplex.com" />
@@ -38,7 +38,7 @@
       <registry>
         <keyPath>HKEY_LOCAL_MACHINE\SOFTWARE\PHP Manager 1.1 for IIS 7</keyPath>
         <valueName>Version</valueName>
-        <valueValue>1.1.1</valueValue>
+        <valueValue>1.1.2</valueValue>
       </registry>
     </discoveryHint>
     <dependency>
@@ -81,10 +81,10 @@
         </osList>
         <eulaURL>http://phpmanager.codeplex.com/license</eulaURL>
         <installerFile>
-          <fileSize>571</fileSize>
-          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=203899</installerURL>
+          <fileSize>653</fileSize>
+          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=214495</installerURL>
           <trackingURL>http://go.microsoft.com/fwlink/?LinkId=153670</trackingURL>
-          <sha1>6570B4A8AC8B5B776171C2BA0572C190F0900DE2</sha1>
+          <sha1>92133A4660CDFF148AF9E1F2D05D0D08AEEE8B03</sha1>
         </installerFile>
         <installCommands>
           <msiInstall>
@@ -122,10 +122,10 @@
         </osList>
         <eulaURL>http://phpmanager.codeplex.com/license</eulaURL>
         <installerFile>
-          <fileSize>587</fileSize>
-          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=203900</installerURL>
+          <fileSize>669</fileSize>
+          <installerURL>http://phpmanager.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=214496</installerURL>
           <trackingURL>http://go.microsoft.com/fwlink/?LinkId=153671</trackingURL>
-          <sha1>12EDE004EFEE57282EF11A8BAD1DC1ADFD66A654</sha1>
+          <sha1>06B87413651C1CBDD55AFE5FB78BCDDD74C581EF</sha1>
         </installerFile>
         <installCommands>
           <msiInstall>
