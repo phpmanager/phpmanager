@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManager", "Server\PHPManager.csproj", "{BEA18085-3850-46AA-822E-61D06CAB84E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManagerClient", "Client\PHPManagerClient.csproj", "{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PHPManagerSetup", "Setup\PHPManagerSetup.vdproj", "{595F0AF4-A239-4AB4-B862-29754AC75232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManagerSetupHelper", "Setup\PHPManagerSetupHelper\PHPManagerSetupHelper.csproj", "{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{218B1547-6672-43D9-9907-F8312AEFA27B}"
+	ProjectSection(SolutionItems) = preProject
+		PHPManagerFeed-2.0.xml = PHPManagerFeed-2.0.xml
+		PHPManagerFeed-3.0.xml = PHPManagerFeed-3.0.xml
+		phpmgrpublic.snk = phpmgrpublic.snk
+		SharedAssembyInfo.cs = SharedAssembyInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA18085-3850-46AA-822E-61D06CAB84E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C46EF8-DB5C-4BD8-B757-E4A10E8203F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595F0AF4-A239-4AB4-B862-29754AC75232}.Debug|Any CPU.ActiveCfg = Release
+		{595F0AF4-A239-4AB4-B862-29754AC75232}.Release|Any CPU.ActiveCfg = Release
+		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

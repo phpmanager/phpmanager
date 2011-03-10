@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddEditSettingDialogLearnMore" xml:space="preserve">
+    <value>Lerne mehr über diese Einstellung</value>
+  </data>
+  <data name="AddEditSettingDialogName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="AddEditSettingDialogSection" xml:space="preserve">
+    <value>Sektion:</value>
+  </data>
+  <data name="AddEditSettingDialogValue" xml:space="preserve">
+    <value>Wert:</value>
+  </data>
+  <data name="AddEditSettingDialogAddSetting" xml:space="preserve">
+    <value>PHP Einstellung hinzufügen</value>
+  </data>
+  <data name="AllPagesGoBackTask" xml:space="preserve">
+    <value>Zurück zur Hauptseite</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
+    <value>PHP Einstellung bearbeiten</value>
+  </data>
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
+    <value>Bearbeiten...</value>
+  </data>
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
+    <value>Holle Einstellungen</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>Das Verzeichnis enthält nicht die benötigten PHP Datei: php-cgi.exe und php.ini.</value>
+  </data>
+  <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
+    <value>Konfiguriere Erweiterungseinstellungen</value>
+  </data>
+  <data name="PHPExtensionItemEnableTask" xml:space="preserve">
+    <value>De-/Aktiviere eine Erweiterung</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsItemTitle" xml:space="preserve">
+    <value>PHP Erweiterungen</value>
+  </data>
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
+    <value>(De)Aktiviere die PHP Erweiterungen und konfiguriere dei Einstellungen.</value>
+  </data>
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
+    <value>Deaktiviert</value>
+  </data>
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
+    <value>Deaktiviere</value>
+  </data>
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
+    <value>Aktiviere</value>
+  </data>
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
+    <value>Hole weitere Erweiterungen</value>
+  </data>
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
+    <value>PHP Erweiterungen bieten zusätzliche Funktionalität zur PHP Laufzeitumgebung, z.B. Datenbankzugriff, Caching, Debugging und andere. Nutze dieses Feature zu (de-)aktivieren von PHP Erweiterungen und zur Konfiguration der Einstellungen.</value>
+  </data>
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
+    <value>PHP Erweiterungen</value>
+  </data>
+  <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
+    <value>Öffne php.ini</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>Zeige Ausgabe der phpinfo() Function</value>
+  </data>
+  <data name="PHPInfoPageLongDescription" xml:space="preserve">
+    <value>Zeige Ausgabe der phpinfo() Function, die Information zum derzeitigen Status von PHP enthält. Diese Information hilft bei der Überprüfung der PHP Laufzeitumgebung und für Debugging.</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>phpinfo() Ausgabe</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>Aktualisiere phpinfo</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>Wollen sie diese Einstellung wirklich löschen?</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageConfigurationFile" xml:space="preserve">
+    <value>Konfigurationsdatei:</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>PHP Laufzeitumgebungskonfiguration und Einstellungen</value>
+  </data>
+  <data name="PHPPageExecutable" xml:space="preserve">
+    <value>PHP ausführbare Datei:</value>
+  </data>
+  <data name="PHPPageExtensionsPath" xml:space="preserve">
+    <value>Pfad zu den Erweiterungen:</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>Nutze dieses Feature um die PHP Laufzeitumgebungseinstellungen zu prüfen, PHP Anweisungen zu konfigurieren und um PHP Erwieterungen zu de-/aktivieren.</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>PHP Manager</value>
+  </data>
+  <data name="PHPPageVersion" xml:space="preserve">
+    <value>PHP Version:</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
+    <value>Alle Einstellungen verwalten</value>
+  </data>
+  <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
+    <value>Konfiguriere Fehlerreporting</value>
+  </data>
+  <data name="PHPSettingsItemTitle" xml:space="preserve">
+    <value>PHP Einstellungen</value>
+  </data>
+  <data name="AllPagesAddTask" xml:space="preserve">
+    <value>Hinzufügen...</value>
+  </data>
+  <data name="AllSettingsPageDescription" xml:space="preserve">
+    <value>Konfiguriere alle PHP Einstellungen</value>
+  </data>
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
+    <value>Konfiguriere alle Einstellung der Datei php.ini. Diese Einstellungen steuern alle Aspekte der PHP Laufzeitumgebung, z.B. Fehler Reporting, Sicherheit, Sitzungen u.v.m.</value>
+  </data>
+  <data name="AllSettingsPageNameField" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
+    <value>Sektion</value>
+  </data>
+  <data name="AllSettingsPageTitle" xml:space="preserve">
+    <value>PHP Einstellungen</value>
+  </data>
+  <data name="AllSettingsPageValueField" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
+    <value>Ändere PHP Version</value>
+  </data>
+  <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
+    <value>Prüfe phpinfo()</value>
+  </data>
+  <data name="PHPSetupItemRegisterPHPTask" xml:space="preserve">
+    <value>Registriere neue PHP Version</value>
+  </data>
+  <data name="PHPSetupItemTitle" xml:space="preserve">
+    <value>PHP Setup</value>
+  </data>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>Gebe einen Pfad zur PHP Binärdatei an (php-cgi.exe):</value>
+  </data>
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogTitle" xml:space="preserve">
+    <value>Wähle Webseite und URL</value>
+  </data>
+  <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
+    <value>Registriere neu PHP Version</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
+    <value>Wähle eine &amp;URL die für die gewählte Webseite genutzt werdne soll.:</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
+    <value>Wähle eine &amp;site wo die PHP Konfiguration geprüft werden soll:</value>
+  </data>
+  <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
+    <value>Setze die Laufzeitgrenzen</value>
+  </data>
+  <data name="PHPPageErrorLog" xml:space="preserve">
+    <value>Fehlerlog:</value>
+  </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>Es sind {0} Erweiterungen aktiviert.</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>Es sind {0} Erweiterungen installiert.</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>PHP Fehlerberichte und Logging</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>Benutzen Sie dieses Feature um PHP zu konfigurieren wie Fehler, Warnung und Notizen geloggt werden.</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>PHP Fehlerberichte</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>&amp;Entwicklungsmaschine</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>Dies ist eine Entwicklungsmaschine. Ein ausführliches Fehlerreporting wird benutzt. Alle Fehler, Warnung und Notizenwerden im Browser ausgegeben und auch in eine Logdatei geschrieben.</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>Errorlogdatei:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>&amp;Produktionsmaschine</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>Die ist ein Produktionsserver, der im Internet erreichbar ist. Nur Fehler werden in die Logdatei geschrieben. Keine Fehler, Warnung oder Notizen werden am Browser ausgegeben.</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>Wähle Servertyp. Dies beeinflusst, wie Fehler angezeigt und geloggt werden.</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>Servertyp</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>Der angegebene Pfad sollte auf php-cgi.exe oder php.exe zeigen.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>Diese Verzeichnis enthält keine Unterverzeichnis ext mit PHP Erweiterungen.</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP ausführbare Datei (php-cgi.exe)|php-cgi.exe|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>Wähe ausführbare PHP Binärdatei</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>Wähle PHP Version:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>Ändere PHP Version</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>Beispiel: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>Logdatei (*.log)|*.log|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>PHP Errorlogdatei</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>Errorlogdatei:</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>Maximale Ausführungszeit</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>Konfiguriere PHP Laufzeitgrenzen, z.B. Ausführungstimeouts, maximale Uploadzeit, etc.</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>Konfiguriere PHP Laufzeitgrenzen, z.B. maximale Skriptausführungszeit, maximale Größe für Datei-Uploads, Anfragezeitüberschreitung und andere.</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>PHP Laufzeitgrenzen</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>Datenhandling</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>Maximale Zeit in Sekunden, die ein Skript laufen darf. Schutz vor Serverblockaden.</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>Maximale Anzahl Datei für den Upload</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>Maximale Anzahl von Dateien, die in einem einzelnen Request übertragen werden können.</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>Maximale Eingabezeit</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>Maximale Zeit in Sekunden, die zum Parsen von Eingabedaten wie POST, GET und Datei-Uploads.</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>Speicherlimit</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>Maximaler Speicher der von einem Skript allokiert werden darf. Diese Einstellung verhindert, das schlecht geschrieben Skripts den ganzen Speicher aufbrauchen.</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>Maximale POST-Größe</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>Maximal erlaubt Größe von POST Daten. Diese EInstellung beeinflusst auch den Datei-Upload. Um große Dateien hochzuladen, muss dieser Wert größer als upload_max_filesize sein.</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>Ressourcenlimits</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>Maximale Dateigrößen für den Upload</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>Maximal erlaubt Dateigröße für den upload.</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>PHP Erweiterungen sind nicht verfügbar</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>Nicht verfügbar</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>Die php.ini Datei kann nicht gefunden werden. Stellen Sie ischer das PHP korrekt im IIS registriert ist.</value>
+  </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>Diese Einstellungen sind nur lesbar. Nur der Administrator kann diese ändern.</value>
+  </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>Kann wegen eingeschränkter Berechtigungen keine phpinfo Datei erstellen.</value>
+  </data>
+  <data name="ErrorSomeHandlersLocked" xml:space="preserve">
+    <value>Die PHP Version kann nicht geändert werden, weil die IIS Handler-Mappings sind auf Serverebene gesperrt.</value>
+  </data>
+  <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
+    <value>Zeige de-/aktivierte Erweiterungen</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyAllSettingsTask" xml:space="preserve">
+    <value>Zeige alle Einstellungen</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
+    <value>Zeit Fehlerreporting</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
+    <value>Zeit Laufzeitgrenzen</value>
+  </data>
+  <data name="ErrorFileDoesNotExist" xml:space="preserve">
+    <value>Datei {0} existiert nicht.</value>
+  </data>
+  <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningViewRecommendations" xml:space="preserve">
+    <value>Zeige Empfehlungen.</value>
+  </data>
+  <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
+    <value>Eine nicht optimale PHP Konfiguration wurde auf dieser Maschine endeckt. </value>
+  </data>
+  <data name="ConfigIssueNone" xml:space="preserve">
+    <value>&lt;nicht gesetzt&gt;</value>
+  </data>
+  <data name="RecommendConfigDialogCurrentValue" xml:space="preserve">
+    <value>Derzeitiger Wert</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
+    <value>&amp;Empfehlungen:</value>
+  </data>
+  <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
+    <value>&amp;Finde Konfigurationsprobleme:</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
+    <value>Empfohlender Wert</value>
+  </data>
+  <data name="RecommendConfigDialogSettingName" xml:space="preserve">
+    <value>Einstellungsname</value>
+  </data>
+  <data name="RecommendConfigDialogTitle" xml:space="preserve">
+    <value>Konfigurationsempfehlung</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "cgi.force_redirect" ist ungleich "0".</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "cgi.force_redirect" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectRecommend" xml:space="preserve">
+    <value>Es wird empfohlen die Anweisung "cgi.force_redirect" auszuschalten, wenn PHP auf einem IIS betrieben wird.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "cgi.fix_pathinfo" ist ungleich "1".</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "cgi.fix_pathinfo" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoRecommend" xml:space="preserve">
+    <value>Diese Einstellung bietet echte PATH_INFO/ PATH_TRANSLATED Unterstützung für CGI und FastCGI. Es wird empfohlen die Einstellung auf "1" zu setzen.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "error_log" nutzt ein nicht existierendes Verzeichnis.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "error_log" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
+    <value>Die "error_log" Anweisung gibt den Dateinamen an, wohin Fehler geloggt werden sollen. Es wird empfohlen den Pfad zur Datei absolut anzugeben und die Datei für den Webserver beschreibbar zu machen.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "extension_dir" enthält keinen absoluten Pfad.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "extension_dir" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
+    <value>Die "extension_dir" Anweisung ist ein Verzeichnis, wo dynamsch ladbar PHP Erweiterungen liegen. Es wird empfohlen einen absoluten Pfad zu benutzen.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "fastcgi.impersonate" ist ungleich "1".</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "fastcgi.impersonate" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
+    <value>FastCGI unterstützt Impersonation des aufrufenden Clients. Die ermöglicht IIS den Sicherheitkontext der Anforderung zu bestimmen. Es wird empfohlen die Impersonation zu aktivieren mit "1".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "log_errors" ist ungleich "On".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "log_errors" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
+    <value>Die "log_errors" Anweisung steuert, ob PHP Fehler UND Warnung in eine Datei schreibt. Es wird empfohlen diesen Schalter auf "On" zu setzen.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
+    <value>Die FastCGI Einstellung monitorChangesTo zeigt auf eine falsche Datei.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesNotSet" xml:space="preserve">
+    <value>Die FastCGI Einstellung monitorChangesTo ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
+    <value>Die monitorChangesTo Einstellung wird von FastCGI genutzt um Dateien zu monitoren, ob sich etwas an ihnen geändert hat und der Prozess recycled wird. Es wird empfohlen die php.ini zu monitoren. So werden alle Änderungen an der php.ini aktiv, sobald sie gespeichert wurde.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
+    <value>Der Wert für PHP_FCGI_MAX_REQUESTS ist kleiner als der Wert FastCGI instanceMaxRequests.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
+    <value>Die Umgebungsvariable PHP_FCGI_MAX_REQUESTS ist nicht für PHP Prozesse gesetzt.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
+    <value>Die PHP_FCGI_MAX_REQUESTS Umgebungsvariable gibt die Anzahl von Anfragen an, die PHP bedient bevor es recycled wird. Es wird empfohlen diesen Wert größer oder gleich dem Wert für FastCgi instanceMaxRequests zu setzen. Auf diesem Wege wird eine Konflikt zwischen IIS FastCGI Prozessrecycling mit PHP Recycling vermieden.</value>
+  </data>
+  <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
+    <value>Die PHPRC Umgebungsvariable zeigt auf ein Verzeichnis das keine php.ini Datei enthält.</value>
+  </data>
+  <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
+    <value>Die PHPRC Umgebungsvariable ist nicht gesetzt für PHP-Prozesse.</value>
+  </data>
+  <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
+    <value>Die PHPRC Umgebungsvariable gibt das Verzeichnis an, wo sich die Konfigurationsdatei für PHP befindet (php.ini). PHP lädt die Konfigurationsdatei während des Starts. Es wird empfohlen die Variable je PHP Registrierung zu setzen, um Situation mit falschen Konfigurationsdaten zu vermeiden.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
+    <value>Das Attribut resourceType von einem IIS Handler für PHP ist nicht auf "Either" gesetzt.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
+    <value>Das IIS Handler Attribut resourceType wird benutzt um eine Bedingung zu definieren, wann der Handler einen Webrequest auslöst. Wenn Sie den Handler für PHP konfigurieren, wird aus Sicherheitgründen der Wert "Either" empfohlen. Auf diesem Weg wird der Webrequest nur ausgelöst, wenn die angeforderte URL auf eine Datei oder Pfad zeigt.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "session.save_path" zeigt auf ein ungültiges Verzeichnis.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "session.save_path" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
+    <value>Die "session.save_path" Anweisung gibt den Pfad zum Verzeichnis an, das die Sessiondaten nethält. Es wird empfohlen eine absoluten Pfad zu benutzen und das Verzeichnis beschreibar für den Webserver zu machen.</value>
+  </data>
+  <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
+    <value>&amp;Problembeschreibung:</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotSet" xml:space="preserve">
+    <value>index.php ist nicht als Standarddokument gesetzt.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
+    <value>Die meisten PHP Anwendungen nutzen index.php als Standarddateinamen für Web-Requests. Es wird empfohlen die Daten index.php als erstes Element zu der Liste der Standarddokumente hinzuzufügen.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
+    <value>index.php ist nicht das erste Element in den IIS Standarddokumenten.</value>
+  </data>
+  <data name="WarningPHPConfigCgi" xml:space="preserve">
+    <value>Keine optimale PHP Registrierung (CGI) gefunden. Registriere eine neue PHP Version um PHP via FastCGI zu aktivieren.</value>
+  </data>
+  <data name="WarningPHPConfigIsapi" xml:space="preserve">
+    <value>Keine optimale PHP Registrierung (ISAPI) gefunden. Registriere eine neue PHP Version um PHP via FastCGI zu aktivieren.</value>
+  </data>
+  <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
+    <value>PHP ist nicht aktiviert. Registriere eine neue PHP Version, um  PHP via FastCGI zu aktivieren.</value>
+  </data>
+  <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
+    <value>Informationen über PHP können wegen einer ungültigen IIS Konfiguration nicht ermittelt werden.</value>
+  </data>
+  <data name="RecommendConfigDialogDescription" xml:space="preserve">
+    <value>Es wurden IIS und PHP Konfigurationsprobleme auf diesem Server entfeckt. Wähle die Probleme, die Sie bereinigen wollen.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
+    <value>Die PHP Anweisung "upload_tmp_dir" zeigt auf ein nicht existierendes Verzeichnis.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung "upload_tmp_dir" ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
+    <value>Die "upload_tmp_dir" Anweisung gibt das temporäre Verzeichnis für Datei-Uploads an. Das Verzeichnis muss für den jeweiligen Prozess-user beschreibar sein.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
+    <value>Die PHP Anweisung date.timezone ist nicht gesetzt.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
+    <value>Es ist nicht sicher sich auf die Zeitzone des Systems zu verlassen. Es wird empfohlen die Zeitzone explizit zu setzen mittels der date.timezone Anweisung oder der date_default_timezone_set() Funktion.</value>
+  </data>
+  <data name="PHPExtensionItemAddTask" xml:space="preserve">
+    <value>Erweiterung hinzufügen</value>
+  </data>
+  <data name="AddExtensionDialogAddExtension" xml:space="preserve">
+    <value>Erweiterung hinzufügen</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP Erweiterung (php*.dll)|php*.dll|All files (*.*)|*.*</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
+    <value>Wähle Binärdatei der Erweiterung</value>
+  </data>
+  <data name="ErrorCannotAddExtension" xml:space="preserve">
+    <value>PHP Erweiterung kann nicht hinzugefügt werden. Die Datei zur Erweiterung kann nicht ins PHP Erweiterungsverzeichnis kopiert werden.</value>
+  </data>
+  <data name="AddExtensionDialogExample" xml:space="preserve">
+    <value>Beispiel: C:\Temp\php_wincache.dll</value>
+  </data>
+  <data name="AddExtensionDialogProvidePath" xml:space="preserve">
+    <value>Gebe Pfad zur Binärdatei der Erweiterung an:</value>
+  </data>
+  <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
+    <value>Diese Erweiterung existiert bereits im PHP Erweiterungsverzeichnis. Nutze "De-/Aktiviere Erweiterung" Schritt um diese Erwiterung zu aktivieren.</value>
+  </data>
+</root>

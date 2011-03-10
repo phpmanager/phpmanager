@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddEditSettingDialogLearnMore" xml:space="preserve">
+    <value>Bu ayar hakkında detaylı bilgi göster</value>
+  </data>
+  <data name="AddEditSettingDialogName" xml:space="preserve">
+    <value>İsim:</value>
+  </data>
+  <data name="AddEditSettingDialogSection" xml:space="preserve">
+    <value>Kısım:</value>
+  </data>
+  <data name="AddEditSettingDialogValue" xml:space="preserve">
+    <value>Değer:</value>
+  </data>
+  <data name="AddEditSettingDialogAddSetting" xml:space="preserve">
+    <value>PHP Ayarı Ekle</value>
+  </data>
+  <data name="AllPagesGoBackTask" xml:space="preserve">
+    <value>Ana sayfaya geri dön</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
+    <value>PHP Ayarını Düzenle</value>
+  </data>
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
+    <value>Düzenle..</value>
+  </data>
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
+    <value>Ayarlar getiriliyor</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>Klasör gerekli bazı PHP dosyalarını barındırmıyor: php-cgi.exe ve php.ini.</value>
+  </data>
+  <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
+    <value>Eklenti ayarlarını yapılandır</value>
+  </data>
+  <data name="PHPExtensionItemEnableTask" xml:space="preserve">
+    <value>Bir eklenti aktifleştir veya pasifleştir</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsItemTitle" xml:space="preserve">
+    <value>PHP Eklentileri</value>
+  </data>
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
+    <value>PHP eklentilerini aktifleştirin ya da pasifleştirin ve ayarları yapılandırın.</value>
+  </data>
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
+    <value>Pasifleştir</value>
+  </data>
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
+    <value>Aktifleştir</value>
+  </data>
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
+    <value>Eklentiler getiriliyor</value>
+  </data>
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
+    <value>PHP eklentileri, PHP'ye veritabanı bağlantısı, önbellekleme, hata ayıklama gibi ek özellikler kazandırır. Bu arabirimi PHP eklentilerini aktifleştirmek/pasifleştirmek ve yapılandırmak için kullanabilirsiniz.</value>
+  </data>
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
+    <value>PHP Eklentileri</value>
+  </data>
+  <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
+    <value>php.ini aç</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>phpinfo() fonksiyonunun çıktısını getir</value>
+  </data>
+  <data name="PHPInfoPageLongDescription" xml:space="preserve">
+    <value>phpinfo() fonksiyonu PHP'nin durumuyla ilgili bilgileri içerir. Bu bilgiler, PHP'nin çalışmasıyla ilgili tüm durumların incelenebilmesi ve hata ayıklama amaçlı kullanılabilir.</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>phpinfo() çıktısı</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>phpinfo'yu Yenile</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>Bu ayarı silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageConfigurationFile" xml:space="preserve">
+    <value>Yapılandırma dosyası:</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>PHP yapılandırma ayarları</value>
+  </data>
+  <data name="PHPPageExecutable" xml:space="preserve">
+    <value>PHP çalıştırıcısı:</value>
+  </data>
+  <data name="PHPPageExtensionsPath" xml:space="preserve">
+    <value>Eklenti yolu:</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>Bu yönetim arabirimini, PHP ayarlarını kontrol etmek ve düzenlemek için kullanabilirsiniz. PHP eklentilerini de bu arabirim üzerinden etkinleştirebilir veya pasifleştirebilirsiniz.</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>PHP Yöneticisi</value>
+  </data>
+  <data name="PHPPageVersion" xml:space="preserve">
+    <value>PHP versiyonu:</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
+    <value>Tüm ayarları yönet</value>
+  </data>
+  <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
+    <value>Hata raporlamasını yapılandır</value>
+  </data>
+  <data name="PHPSettingsItemTitle" xml:space="preserve">
+    <value>PHP Ayarları</value>
+  </data>
+  <data name="AllPagesAddTask" xml:space="preserve">
+    <value>Ekle..</value>
+  </data>
+  <data name="AllSettingsPageDescription" xml:space="preserve">
+    <value>Tüm php ayarlarını yapılandır</value>
+  </data>
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
+    <value>PHP'nin hata raporlama, güvenlik ve eklenti ayarlarını, php.ini dosyası saklamaktadır. Bu arabirimi php.ini dosyasını güncellemek için kullanabilirsiniz.</value>
+  </data>
+  <data name="AllSettingsPageNameField" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
+    <value>Kısım</value>
+  </data>
+  <data name="AllSettingsPageTitle" xml:space="preserve">
+    <value>PHP Ayarları</value>
+  </data>
+  <data name="AllSettingsPageValueField" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
+    <value>PHP versiyonunu değiştir</value>
+  </data>
+  <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
+    <value>phpinfo() çıktısını kontrol et</value>
+  </data>
+  <data name="PHPSetupItemRegisterPHPTask" xml:space="preserve">
+    <value>Yeni PHP versiyonu kaydet</value>
+  </data>
+  <data name="PHPSetupItemTitle" xml:space="preserve">
+    <value>PHP Kurulumu</value>
+  </data>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>PHP çalıştırıcı dosyası (php-cgi.exe) için bir yol belirtiniz:</value>
+  </data>
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogTitle" xml:space="preserve">
+    <value>Site ve URL seçin</value>
+  </data>
+  <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
+    <value>Yeni PHP versiyonu kaydet</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
+    <value>Lütfen seçilen site için bir &amp;URL belirtiniz:</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
+    <value>PHP ayarlarının kontrol edilebilmesi için bir &amp;site seçiniz:</value>
+  </data>
+  <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
+    <value>Çalışma limitlerini belirle</value>
+  </data>
+  <data name="PHPPageErrorLog" xml:space="preserve">
+    <value>Hata kayıt dosyası:</value>
+  </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>{0} eklenti aktif durumda.</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>{0} eklenti yüklendi.</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>PHP hata raporlaması ve kaydı</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>Bu arabirimi PHP'nin raporlamayı nasıl yapacağını; hataların, uyarıların ve bilgilendirmelerin nasıl kayıt altına alınacağını ayarlamak için kullanabilirsiniz.</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>PHP Hata Raporlaması</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>&amp;Geliştirme sunucusu</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>Eğer ki bu sunucuyu, yazılım geliştirme amaçlı kullanacaksanız, bu seçeneği seçebilirsiniz. Bu sayede ayrıntılı bir hata raporlaması kullanılacak olup tüm hatalar, uyarılar ve bilgilendirmeler web tarayıcısında görüntülenecek ve eş zamanlı olarak bir kayıt dosyasına kaydedilecektir.</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>Hata kayıt dosyası:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>&amp;Aktif proje sunucusu</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>Eğer ki bu sunucuyu, kullanıcılara/müşterilere açık olacak bir proje için kullanacaksanız, bu seçeneği seçebilirsiniz. Bu sayede hiçbir hata, uyarı veya bilgilendirme web tarayıcısında görüntülenmeyecek; sadece önemli hatalar kayıt dosyasına kaydedilecektir.</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>Lütfen bir sunucu tipi seçiniz. Bu seçim, hata kaydı ve raporlama seçeneklerini etkileyecektir.</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>Sunucu tipi</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>Belirtilen yolun, php-cgi.exe veya php.exe'yi belirtmesi gerekir.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>Klasör, PHP eklentilerinin bulunduğu klasörü barındırmıyor.</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP çalıştırıcısı (php-cgi.exe)|php-cgi.exe|Tüm dosyalar (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>Bir PHP çalıştırıcısı seçin</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>PHP versiyonunu seçiniz:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>PHP versiyonunu değiştir</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>Örnek: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>Kayıt dosyası (*.log)|*.log|Tüm dosyalar (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>PHP hata kayıt dosyası</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>Hata kayıt dosyası:</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>Maksimum İşleme Süresi</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>Maksimum çalışma süresi, dosya yükleme sayısı gibi PHP çalışma limitlerini yapılandırın.</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>Bu arabirimi maksimum komut satırı işleme süresi, maksimum dosya yükleme boyutu limiti veya maksimum çalışma süresi gibi PHP çalışma limitlerini yapılandırmak için kullanabilirsiniz.</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>PHP Çalışma Limitleri</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>Veri Yönetimi</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>Bir komut dosyasının sonlandırılmadan önce izin verilen maksimum çalışma süresidir. Bu, hatalı yazılmış komut dosyalarının sunucuyu aşırı yormasını engeller.</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>Yüklenebilecek Maksimum Dosya</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>Tek istekte yüklenebilecek maksimum dosya sayısıdır.</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>Maksimum Girdi Süresi</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>Bir komut dosyasının POST, GET ve dosya yüklemelerini çözümleyebileceği maksimum saniye süresidir.</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>Bellek Limiti</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>Bir komut dosyası tarafından ayrılabilecek byte biriminde maksimum bellek miktarıdır. Bu, hatalı yazılmış komut dosyalarının tüm sunucu belleğini tüketmesini engeller.</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>Maksimum POST boyutu</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>İzin verilen maksimum POST veri boyutudur. Bu ayar ayrıca dosya yüklemesini de etkiler. Büyük dosyaların yüklenebilmesi için bu ayarın upload_max_filesize yönergesinden daha yüksek olması gerekir.</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>Kaynak Limitleri</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>Yüklemede Maksimum Dosya Boyutu</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>Yükleme isteği sırasında kabul edilebilecek maksimum dosya boyutudur.</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>PHP eklentileri mevcut değil</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>Mevcut değil</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>php.ini dosyası bulunamıyor. PHP'nin doğru bir şekilde IIS'e kayıt olduğuna emin olun.</value>
+  </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>Bu ayarlar salt okunurdur. Yalnızca sunucu yöneticisi tarafından değiştirilebilirler.</value>
+  </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>Kısıtlı yetki nedeniyle sunucu üzerinde geçici phpinfo dosyası yaratılamadı.</value>
+  </data>
+  <data name="ErrorSomeHandlersLocked" xml:space="preserve">
+    <value>PHP versiyonu değiştirilemez çünkü bazı IIS işleyicileri sunucu bazında kilitli durumda.</value>
+  </data>
+  <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
+    <value>Aktif veya pasif eklentileri görüntüle</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyAllSettingsTask" xml:space="preserve">
+    <value>Tüm ayarları görüntüleyin</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
+    <value>Hata raporlamayı görüntüleyin</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
+    <value>Çalışma limitlerini görüntüleyin</value>
+  </data>
+  <data name="ErrorFileDoesNotExist" xml:space="preserve">
+    <value>{0} dosyası bulunmuyor.</value>
+  </data>
+  <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningViewRecommendations" xml:space="preserve">
+    <value>Tavsiyeleri görüntüleyin.</value>
+  </data>
+  <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
+    <value>Bu sunucu üzerinde ideal PHP yapılandırması bulunmuyor. </value>
+  </data>
+  <data name="ConfigIssueNone" xml:space="preserve">
+    <value>&lt;Ayarlı değil&gt;</value>
+  </data>
+  <data name="RecommendConfigDialogCurrentValue" xml:space="preserve">
+    <value>Mevcut değer</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
+    <value>&amp;Tavsiye:</value>
+  </data>
+  <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
+    <value>&amp;Tespit edilmiş yapılandırma hataları:</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
+    <value>Tavsiye edilen değer</value>
+  </data>
+  <data name="RecommendConfigDialogSettingName" xml:space="preserve">
+    <value>Ayar adı</value>
+  </data>
+  <data name="RecommendConfigDialogTitle" xml:space="preserve">
+    <value>Yapılandırma Tavsiyeleri</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotCorrect" xml:space="preserve">
+    <value>PHP'nin "cgi.force_redirect" yönergesi "0" değil.</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotSet" xml:space="preserve">
+    <value>PHP'nin "cgi.force_redirect" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectRecommend" xml:space="preserve">
+    <value>PHP, IIS üzerinde çalışıyorsa, "cgi.force_redirect" yönergesini kapatmanız tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotCorrect" xml:space="preserve">
+    <value>PHP "cgi.fix_pathinfo" yönergesi "1" değil.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotSet" xml:space="preserve">
+    <value>PHP "cgi.fix_pathinfo" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoRecommend" xml:space="preserve">
+    <value>Bu ayar CGI ve FastCGI için gerçek PATH_INFO/ PATH_TRANSLATED desteği sunar. Bu desteği, "1" yaparak aktif etmeniz tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotCorrect" xml:space="preserve">
+    <value>PHP "error_log" yönergesi varolmayan bir klasör kullanıyor.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotSet" xml:space="preserve">
+    <value>PHP "error_log" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
+    <value>"error_log" betik hatalarının kaydedilebilmesi için bir dosya adı belirtir. Gerçek bir dosya yolu belirtmeniz ve dosyanın web sunucusu tarafından yazılabilir olması tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
+    <value>PHP "extension_dir" yönergesi gerçek bir dosya yolu belirtmiyor.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirNotSet" xml:space="preserve">
+    <value>PHP "extension_dir" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
+    <value>"extension_dir", PHP'nin dinamik olarak yüklenebilen eklentiler için bakması gereken klasör yolunu belirtir. Bu ayar için gerçek bir klasör yolu belirtmeniz tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
+    <value>PHP "fastcgi.impersonate" yönergesi "1" olarak ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotSet" xml:space="preserve">
+    <value>PHP "fastcgi.impersonate" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
+    <value>FastCGI, istek alan istemcilerin güvenlik jetonlarının taklit edilebilmesi destekler. Bu da IIS'in gelen isteğe bağlı güvenlik içeriğinin belirlemesini sağlar. Taklit özelliğini bu yönergeyi "1" olarak ayarlayarak aktifleştirmeniz önerilir.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
+    <value>PHP "log_errors" yönergesi "Açık" olarak ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
+    <value>PHP "log_errors" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
+    <value>"log_errors", PHP hatalarının ve uyarılarının hangi dosyaya yazılacağını kontrol eder. Bu özelliği "Açık" olarak ayarlamanız tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
+    <value>FastCGI'ın monitorChangesTo ayarı yanlış dosyayı işaret ediyor.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesNotSet" xml:space="preserve">
+    <value>FastCGI'ın monitorChangesTo ayarı ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
+    <value>monitorChangesTo ayarı, FastCGI'ın bir dosyayı izlemesini ve değişiklik olması halinde FastCGI işlemlerini boşaltmasını sağlar. Bunu PHP tarafından kullanılan php.ini dosyasını işaret edecek şekilde ayarlamanız tavsiye edilir. Bu sayede php.ini'de yapılacak olan değişiklikler anında PHP'ye etki edecektir.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
+    <value>PHP_FCGI_MAX_REQUESTS değeri, FastCGI'ın instanceMaxRequests ayarından daha düşük.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
+    <value>PHP_FCGI_MAX_REQUESTS değeri, PHP işlemleri için ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
+    <value>PHP_FCGI_MAX_REQUESTS değişkeni işlem havuzu boşaltılmadan önce PHP'nin karşılayabileceği maksimum istek sayısını belirtir. Bu değişkenin değerinin FastCgi'ın instanceMaxRequests ayarına eşit veya yüksek olması gerekir. Bu sayede IIS FastCGI işlemi ile PHP'nin işlem havuzu boşaltma mantığı çakışmamış olacaktır.</value>
+  </data>
+  <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
+    <value>PHPRC değişkeni içerisinde php.ini dosyasını barındırmayan bir klasörü işaret ediyor.</value>
+  </data>
+  <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
+    <value>PHPRC değişkeni PHP işlemleri için ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
+    <value>PHPRC değişkeni PHP ayar dosyası olan php.ini dosyasını barındıran klasörün yolunu belirtir. PHP başlangıçta bu ayar dosyasını yüklemektedir. PHP'nin yanlış ayar dosyasını engellemek için her yeni PHP kayıdında bu ayarın yapılması tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
+    <value>PHP için bir IIS işleyicisi olan resourceType özelliği, "Her ikisi" olarak ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
+    <value>IIS işleyicisinin resourceType özelliği web istekleri sırasında ne zaman başvuru yapılacağına dair şart sunar. PHP ayarı söz konusu ise bu özelliğin güvenlik nedenleriyle "Her ikisi" ayarlanması tavsiye edilir. Bu sayede istekte bulunulan URL haritası sistem üzerindeki bir dosya veya klasöre gelmesi halinde başvuru yapılır.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
+    <value>PHP "session.save_path" yönergesi varolmayan bir yolu kullanıyor.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
+    <value>PHP "session.save_path" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
+    <value>"session.save_path"özelliği, PHP'nin oturumlarının saklanacağı klasörün yolunu belirtir. Web sunucu tarafından yazılabilir olan gerçek bir klasör yolu belirtmeniz tavsiye edilir.</value>
+  </data>
+  <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
+    <value>&amp;Hata açıklaması:</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotSet" xml:space="preserve">
+    <value>index.php varsayılan döküman olarak belirlenmemiş.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
+    <value>Bir çok PHP uygulaması, index.php dosyasını web isteklerini karşılamak için varsayılan dosya adı olarak kullanır. index.php'yi varsayılan dökümanlar listesine eklemeniz ve listede birinci sıraya almanız tavsiye edilir.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
+    <value>IIS'in varsayılan dökümanlar listesinde index.php ilk sırada bulunmuyor.</value>
+  </data>
+  <data name="WarningPHPConfigCgi" xml:space="preserve">
+    <value>İdeal PHP kaydı (CGI) bulunamadı. FastCGI ile kullanabilmek için yeni bir PHP versiyonu kaydediniz.</value>
+  </data>
+  <data name="WarningPHPConfigIsapi" xml:space="preserve">
+    <value>İdeal PHP kaydı (ISAPI) bulunamadı. FastCGI ile kullanabilmek için yeni bir PHP versiyonu kaydediniz.</value>
+  </data>
+  <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
+    <value>PHP aktif değil. FastCGI ile kullanabilmek için yeni bir PHP versiyonu kaydedin.</value>
+  </data>
+  <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
+    <value>Hatalı IIS yapılandırması yüzünden PHP bilgisi alınamıyor.</value>
+  </data>
+  <data name="RecommendConfigDialogDescription" xml:space="preserve">
+    <value>Bunlar, sunucu üzerinde tespit edilen IIS ve PHP yapılandırma hatalarıdır. Düzeltmek istediğiniz hataları seçiniz.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
+    <value>PHP "upload_tmp_dir" yönergesi varolmayan bir klasörü işaret ediyor.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
+    <value>PHP "upload_tmp_dir" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
+    <value>"upload_tmp_dir" özelliği, dosya yüklemesi sırasında geçici olarak yüklemenin yapılabileceği bir klasör belirtir. PHP hangi kullanıcı ile çalışıyorsa, o kullanıcının bu klasöre yazma hakkının bulunması gerekir.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
+    <value>PHP "date.timezone" yönergesi ayarlanmamış.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
+    <value>Sistemin saat dilimine güvenmek, güvenli değildir. Saat dilimi bilgisini, date.timezone yönergesi veya date_default_timezone_set() fonksiyonu ile ayarlamanız tavsiye edilir.</value>
+  </data>
+  <data name="PHPExtensionItemAddTask" xml:space="preserve">
+    <value>Bir eklenti ekle</value>
+  </data>
+  <data name="AddExtensionDialogAddExtension" xml:space="preserve">
+    <value>Bir eklenti ekle</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP eklentisi (php*.dll)|php*.dll|Tüm dosyalar (*.*)|*.*</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
+    <value>Lütfen eklentiye ait binary dosyasını seçiniz</value>
+  </data>
+  <data name="ErrorCannotAddExtension" xml:space="preserve">
+    <value>PHP eklentisi eklenemiyor. Eklenti dosyası PHP eklentilerinin bulunduğu klasöre kopyalanamadı.</value>
+  </data>
+  <data name="AddExtensionDialogExample" xml:space="preserve">
+    <value>Örnek: C:\Temp\php_wincache.dll</value>
+  </data>
+  <data name="AddExtensionDialogProvidePath" xml:space="preserve">
+    <value>Eklentinin binary dosyası için bir yol belirtiniz:</value>
+  </data>
+  <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
+    <value>Bu eklenti zaten PHP eklentileri klasöründe bulunmakta. Bu eklentiyi aktifleştirebilmek için lütfen "Bir eklenti aktifleştir veya pasifleştir" görevini kullanın.</value>
+  </data>
+</root>
