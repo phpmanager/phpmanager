@@ -65,23 +65,36 @@ namespace Web.Management.PHP
             }
         }
 
+        private void AddExtension()
+        {
+            using (Extensions.AddExtensionDialog dlg = new Extensions.AddExtensionDialog(this.Module, Connection.IsLocalConnection))
+            {
+                if (ShowDialog(dlg) == DialogResult.OK)
+                {
+                    Navigate(typeof(Extensions.AllExtensionsPage), dlg.AddedExtensionName);
+                }
+            }
+        }
+
         private void GetSettings()
         {
             StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnGetSettings, OnGetSettingsCompleted);
         }
 
-        private string GetSiteUrlAndName(out string siteName)
+        private string GetSiteUrlAndName(out string siteName, out string relativePath)
         {
             using (Setup.SelectSiteAndUrlDialog dlg = new Setup.SelectSiteAndUrlDialog(this.Module, this.Connection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
                     siteName = dlg.SiteName;
+                    relativePath = dlg.RelativePath;
                     return dlg.SelectedUrl;
                 }
             }
 
             siteName = string.Empty;
+            relativePath = String.Empty;
             return null;
         }
 
@@ -201,10 +214,11 @@ namespace Web.Management.PHP
         private void NavigateToPHPInfo()
         {
             string siteName = null;
-            string siteUrl = GetSiteUrlAndName(out siteName);
+            string relativePath = null;
+            string siteUrl = GetSiteUrlAndName(out siteName, out relativePath);
             if (!String.IsNullOrEmpty(siteUrl))
             {
-                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName });
+                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName, relativePath });
             }
         }
 
@@ -291,17 +305,6 @@ namespace Web.Management.PHP
             if (index == IndexAddExtensionTask)
             {
                 AddExtension();
-            }
-        }
-
-        private void AddExtension()
-        {
-            using (Extensions.AddExtensionDialog dlg = new Extensions.AddExtensionDialog(this.Module, Connection.IsLocalConnection))
-            {
-                if (ShowDialog(dlg) == DialogResult.OK)
-                {
-                    Navigate(typeof(Extensions.AllExtensionsPage), dlg.AddedExtensionName);
-                }
             }
         }
 

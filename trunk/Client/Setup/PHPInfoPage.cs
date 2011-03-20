@@ -99,25 +99,12 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        private static string GetConfigurationPath(string baseUrl)
-        {
-            Uri baseUri = new Uri(baseUrl);
-            string path = baseUri.GetComponents(UriComponents.Path, UriFormat.SafeUnescaped);
-            if (!String.IsNullOrEmpty(path))
-            {
-                return '/' + path.TrimEnd('/');
-            }
-            else
-            {
-                return String.Empty;
-            }
-        }
-
         private MessageTaskItem GetLocalHandlersMessage()
         {
             if (!String.IsNullOrEmpty(_configPath))
             {
-                return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersFolder, _configPath), String.Empty);
+                string configPath = '/' + _configPath;
+                return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersFolder, configPath), String.Empty);
             }
             else
             {
@@ -136,7 +123,7 @@ namespace Web.Management.PHP.Setup
             string[] siteInfo = navigationData as string[];
             this._baseUrl = siteInfo[0];
             this._siteName = siteInfo[1];
-            this._configPath = GetConfigurationPath(this._baseUrl);
+            this._configPath = siteInfo[2];
         }
 
         private void InitializeComponent()

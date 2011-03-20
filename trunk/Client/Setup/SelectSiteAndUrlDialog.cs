@@ -93,6 +93,21 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        public string RelativePath
+        {
+            get
+            {
+                if (_connection.ConfigurationPath.PathType != ConfigurationPathType.Server)
+                {
+                    return _connection.ConfigurationPath.GetEffectiveConfigurationPath(ManagementScope.Site);
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
         public string SelectedUrl
         {
             get
@@ -313,13 +328,8 @@ namespace Web.Management.PHP.Setup
         private void OnUrlsWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             string siteName = (string)e.Argument;
-            string relativePath = String.Empty;
 
-            if (_connection.ConfigurationPath.PathType != ConfigurationPathType.Server)
-            {
-                relativePath = _connection.ConfigurationPath.GetEffectiveConfigurationPath(ManagementScope.Site);
-            }
-            e.Result = Helper.GetUrlListFromBindings(_connection.ScopePath.ServerName, _module.Proxy.GetSiteBindings(siteName), relativePath);
+            e.Result = Helper.GetUrlListFromBindings(_connection.ScopePath.ServerName, _module.Proxy.GetSiteBindings(siteName), this.RelativePath);
         }
 
         private void OnUrlsWorkerDoWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
