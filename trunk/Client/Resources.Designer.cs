@@ -1036,6 +1036,24 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the upper levels. Changes to PHP setup on upper levels may not take effect on this folder..
+        /// </summary>
+        internal static string PHPInfoPageLocalHandlersFolder {
+            get {
+                return ResourceManager.GetString("PHPInfoPageLocalHandlersFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the server level. Changes to PHP setup on server level may not take effect on this site..
+        /// </summary>
+        internal static string PHPInfoPageLocalHandlersSite {
+            get {
+                return ResourceManager.GetString("PHPInfoPageLocalHandlersSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
         /// </summary>
         internal static string PHPInfoPageLongDescription {

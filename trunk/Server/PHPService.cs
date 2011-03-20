@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
+using Web.Management.PHP.Handlers;
 
 namespace Web.Management.PHP
 {
@@ -89,6 +90,36 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
+        public bool CheckForLocalPHPHandler(string siteName, string configurationPath)
+        {
+            EnsureServerOrSiteConnection();
+
+            if (String.IsNullOrEmpty(siteName))
+            {
+                throw new InvalidOperationException();
+            }
+
+            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
+            if (site == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            Configuration config = ManagementUnit.ReadOnlyServerManager.GetWebConfiguration(siteName, configurationPath);
+            HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
+            HandlersCollection handlersCollection = handlersSection.Handlers;
+            foreach (HandlerElement handlerElement in handlersCollection)
+            {
+                if (handlerElement.IsLocallyStored)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        [ModuleServiceMethod(PassThrough = Passthrough)]
         public string CreatePHPInfo(string siteName)
         {
             EnsureServerOrSiteConnection();
@@ -117,7 +148,7 @@ namespace Web.Management.PHP
             }
 
             string randomString = Path.GetRandomFileName();
-            string fileName = randomString.Substring(0, randomString.IndexOf('.')) + ".php";
+            string fileName = String.Format("{0}.php", Path.GetFileNameWithoutExtension(randomString));
             string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(navigator.PhysicalPath), fileName);
 
             try

@@ -658,4 +658,10 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>This extension already exists in PHP extentions directory. Use "Enable or disable an extension" task to enable this extension.</value>
   </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' has local handler mappings that overwrite the mappings defined on the upper levels. Changes to PHP setup on upper levels may not take effect on this folder.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}' has local handler mappings that overwrite the mappings defined on the server level. Changes to PHP setup on server level may not take effect on this site.</value>
+  </data>
 </root>

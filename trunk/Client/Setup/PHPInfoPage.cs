@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
@@ -25,9 +26,12 @@ namespace Web.Management.PHP.Setup
         private WebBrowser _webBrowser;
         private Panel _panel;
 
-        private string _domain;
+        private string _baseUrl;
         private string _siteName;
+        private string _configPath;
         private string _filepath;
+
+        private bool _isLocalHandlersCollection;
 
         private PHPInfoTaskList _phpinfoTaskList;
 
@@ -36,15 +40,11 @@ namespace Web.Management.PHP.Setup
             InitializeComponent();
         }
 
-        public string Domain 
+        private bool IsLocalHandlersCollection
         {
             get
             {
-                return _domain;
-            }
-            set
-            {
-                _domain = value;
+                return _isLocalHandlersCollection;
             }
         }
 
@@ -68,18 +68,6 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        public string SiteName
-        {
-            get
-            {
-                return _siteName;
-            }
-            set
-            {
-                _siteName = value;
-            }
-        }
-
         protected override TaskListCollection Tasks
         {
             get
@@ -96,6 +84,11 @@ namespace Web.Management.PHP.Setup
             }
         }
 
+        private void CheckForLocalHandlers()
+        {
+            StartAsyncTask(Resources.AllSettingsPageGettingSettings, OnCheckForLocalHandlers, OnCheckForLocalHandlersCompleted);
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -103,6 +96,32 @@ namespace Web.Management.PHP.Setup
             if (disposing)
             {
                 _webBrowser.Dispose();
+            }
+        }
+
+        private static string GetConfigurationPath(string baseUrl)
+        {
+            Uri baseUri = new Uri(baseUrl);
+            string path = baseUri.GetComponents(UriComponents.Path, UriFormat.SafeUnescaped);
+            if (!String.IsNullOrEmpty(path))
+            {
+                return '/' + path.TrimEnd('/');
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
+
+        private MessageTaskItem GetLocalHandlersMessage()
+        {
+            if (!String.IsNullOrEmpty(_configPath))
+            {
+                return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersFolder, _configPath), String.Empty);
+            }
+            else
+            {
+                return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersSite, _siteName), String.Empty);
             }
         }
 
@@ -115,8 +134,9 @@ namespace Web.Management.PHP.Setup
         {
             base.Initialize(navigationData);
             string[] siteInfo = navigationData as string[];
-            this.Domain = siteInfo[0];
-            this.SiteName = siteInfo[1];
+            this._baseUrl = siteInfo[0];
+            this._siteName = siteInfo[1];
+            this._configPath = GetConfigurationPath(this._baseUrl);
         }
 
         private void InitializeComponent()
@@ -167,12 +187,30 @@ namespace Web.Management.PHP.Setup
             if (initialActivation)
             {
                 ShowPHPInfo();
+                CheckForLocalHandlers();
+            }
+        }
+
+        private void OnCheckForLocalHandlers(object sender, DoWorkEventArgs e)
+        {
+            e.Result = Module.Proxy.CheckForLocalPHPHandler(this._siteName, this._configPath);
+        }
+
+        private void OnCheckForLocalHandlersCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                _isLocalHandlersCollection = (bool)e.Result;
+            }
+            catch(Exception ex)
+            {
+                DisplayErrorMessage(ex, Resources.ResourceManager);
             }
         }
 
         private void OnShowPHPInfo(object sender, DoWorkEventArgs e)
         {
-            e.Result = Module.Proxy.CreatePHPInfo(this.SiteName);
+            e.Result = Module.Proxy.CreatePHPInfo(this._siteName);
         }
 
         private void OnShowPHPInfoCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -180,9 +218,10 @@ namespace Web.Management.PHP.Setup
             try
             {
                 _filepath = (string)e.Result;
-                string url = this.Domain + Path.GetFileName(_filepath);
+                Uri baseUri = new Uri(this._baseUrl);
+                Uri fullUri = new Uri(baseUri, Path.GetFileName(_filepath));
                 _webBrowser.AllowNavigation = true;
-                _webBrowser.Navigate(url);
+                _webBrowser.Navigate(fullUri);
             }
             catch (Exception ex)
             {
@@ -243,10 +282,16 @@ namespace Web.Management.PHP.Setup
                     return new TaskItem[] { };
                 }
 
-                return new TaskItem[] {
-                    new MethodTaskItem("RefreshPHPInfo", Resources.PHPInfoRefreshPHPInfo, "Set"),
-                    new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16)
-                };
+                List<TaskItem> tasks = new List<TaskItem>();
+                tasks.Add(new MethodTaskItem("RefreshPHPInfo", Resources.PHPInfoRefreshPHPInfo, "Set"));
+                tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
+
+                if (_page.IsLocalHandlersCollection)
+                {
+                    tasks.Add(_page.GetLocalHandlersMessage());
+                }
+
+                return tasks;
             }
 
             public void GoBack()
