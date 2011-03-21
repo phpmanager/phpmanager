@@ -658,4 +658,19 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>Diese Erweiterung existiert bereits im PHP Erweiterungsverzeichnis. Nutze "De-/Aktiviere Erweiterung" Schritt um diese Erwiterung zu aktivieren.</value>
   </data>
+ <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' hat lokale Handlerzuordnungen die Zuordnung aus höheren Ebenen überschriebt. Änderungen am PHP-Setup in höheren Ebenen haben keinen Effekt auf diesen Ordner.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}' hat lokale Handlerzuordnungen die Zuordnung auf Serverebene überschriebt. Änderungen am PHP-Setup auf Serverebene hat keinen Effekt auf diese Webseite.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Handlerzuordnungen:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Geerbt</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Lokal</value>
+  </data>  
 </root>
