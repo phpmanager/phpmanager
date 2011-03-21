@@ -659,9 +659,18 @@
     <value>This extension already exists in PHP extentions directory. Use "Enable or disable an extension" task to enable this extension.</value>
   </data>
   <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
-    <value>'{0}' has local handler mappings that overwrite the mappings defined on the upper levels. Changes to PHP setup on upper levels may not take effect on this folder.</value>
+    <value>'{0}' has local handler mappings that overwrite the mappings defined on the upper levels. Changes to the PHP setup on upper levels may not take effect on this folder.</value>
   </data>
   <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
-    <value>'{0}' has local handler mappings that overwrite the mappings defined on the server level. Changes to PHP setup on server level may not take effect on this site.</value>
+    <value>'{0}' has local handler mappings that overwrite the mappings defined on the server level. Changes to the PHP setup on the server level may not take effect on this site.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Handler mapping:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Inherited</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Local</value>
   </data>
 </root>

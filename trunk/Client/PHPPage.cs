@@ -36,6 +36,8 @@ namespace Web.Management.PHP
         // Summary labels
         private Label _enabledExtLabel;
         private Label _installedExtLabel;
+        private Label _handlerMappingNameLabel;
+        private Label _handlerMappingValueLabel;
         private Label _errorLogNameLabel;
         private LinkLabel _errorLogValueLabel;
         private LinkLabel _configPathValueLabel;
@@ -73,6 +75,18 @@ namespace Web.Management.PHP
                 {
                     Navigate(typeof(Extensions.AllExtensionsPage), dlg.AddedExtensionName);
                 }
+            }
+        }
+
+        private static string GetHandlerMappingLabelText(bool handlerIsLocal)
+        {
+            if (handlerIsLocal)
+            {
+                return Resources.PHPPageLocalHandler;
+            }
+            else
+            {
+                return Resources.PHPPageInheritedHandler;
             }
         }
 
@@ -118,6 +132,10 @@ namespace Web.Management.PHP
             _executableNameLabel.Text = Resources.PHPPageExecutable;
             _executableValueLabel = new Label();
 
+            _handlerMappingNameLabel = new Label();
+            _handlerMappingNameLabel.Text = Resources.PHPPageHandlerMapping;
+            _handlerMappingValueLabel = new Label();
+
             _configPathNameLabel = new Label();
             _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
             _configPathValueLabel = new LinkLabel();
@@ -144,6 +162,7 @@ namespace Web.Management.PHP
 
             _phpSetupItem.AddInfoRow(_versionNameLabel, _versionValueLabel);
             _phpSetupItem.AddInfoRow(_executableNameLabel, _executableValueLabel);
+            _phpSetupItem.AddInfoRow(_handlerMappingNameLabel, _handlerMappingValueLabel);
             _phpSetupItem.AddTask(OnPHPSetupItemClick,
                                     Resources.PHPSetupItemRegisterPHPTask,
                                     Resources.PHPSetupItemChangeVersionTask,
@@ -572,6 +591,8 @@ namespace Web.Management.PHP
             }
             _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
             _executableValueLabel.Text = isPHPSetup ? configInfo.Executable : Resources.PHPPagePHPNotAvailable;
+            _handlerMappingValueLabel.Text = isPHPSetup ? GetHandlerMappingLabelText(configInfo.HandlerIsLocal) : Resources.PHPPagePHPNotAvailable;
+
             // Allow PHP registration only for server administrators
             if (configInfo != null)
             {

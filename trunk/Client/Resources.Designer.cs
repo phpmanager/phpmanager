@@ -1036,7 +1036,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the upper levels. Changes to PHP setup on upper levels may not take effect on this folder..
+        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the upper levels. Changes to the PHP setup on upper levels may not take effect on this folder..
         /// </summary>
         internal static string PHPInfoPageLocalHandlersFolder {
             get {
@@ -1045,7 +1045,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the server level. Changes to PHP setup on server level may not take effect on this site..
+        ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the server level. Changes to the PHP setup on the server level may not take effect on this site..
         /// </summary>
         internal static string PHPInfoPageLocalHandlersSite {
             get {
@@ -1167,6 +1167,24 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Handler mapping:.
+        /// </summary>
+        internal static string PHPPageHandlerMapping {
+            get {
+                return ResourceManager.GetString("PHPPageHandlerMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inherited.
+        /// </summary>
+        internal static string PHPPageInheritedHandler {
+            get {
+                return ResourceManager.GetString("PHPPageInheritedHandler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are {0} extensions installed..
         /// </summary>
         internal static string PHPPageInstalledExtensions {
@@ -1181,6 +1199,15 @@ namespace Web.Management.PHP {
         internal static string PHPPageItemTaskSeparator {
             get {
                 return ResourceManager.GetString("PHPPageItemTaskSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local.
+        /// </summary>
+        internal static string PHPPageLocalHandler {
+            get {
+                return ResourceManager.GetString("PHPPageLocalHandler", resourceCulture);
             }
         }
         

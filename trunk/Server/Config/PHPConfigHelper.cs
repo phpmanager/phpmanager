@@ -433,6 +433,7 @@ namespace Web.Management.PHP.Config
 
             configInfo.RegistrationType = _registrationType;
             configInfo.HandlerName = _currentPHPHandler.Name;
+            configInfo.HandlerIsLocal = _currentPHPHandler.IsLocallyStored;
             configInfo.Executable = _currentPHPHandler.Executable;
             configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.Executable);
 

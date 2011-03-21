@@ -18,20 +18,22 @@ namespace Web.Management.PHP.Config
 
         private const int IndexPHPRegistrationType = 0;
         private const int IndexHandlerName = 1;
-        private const int IndexExecutable = 2;
-        private const int IndexVersion = 3;
-        private const int IndexPHPIniFilePath = 4;
-        private const int IndexErrorLog = 5;
-        private const int IndexEnabledExtCount = 6;
-        private const int IndexInstalledExtCount = 7;
-        private const int IndexIsConfigOptimal = 8;
+        private const int IndexHandlerIsLocal = 2;
+        private const int IndexExecutable = 3;
+        private const int IndexVersion = 4;
+        private const int IndexPHPIniFilePath = 5;
+        private const int IndexErrorLog = 6;
+        private const int IndexEnabledExtCount = 7;
+        private const int IndexInstalledExtCount = 8;
+        private const int IndexIsConfigOptimal = 9;
 
-        private const int Size = 9;
+        private const int Size = 10;
 
         public PHPConfigInfo()
         {
             _data = new object[Size];
             HandlerName = String.Empty;
+            HandlerIsLocal = false;
             Executable = String.Empty;
             Version = String.Empty;
             PHPIniFilePath = String.Empty;
@@ -62,6 +64,30 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexErrorLog] = value;
+            }
+        }
+
+        public string Executable
+        {
+            get
+            {
+                return (string)_data[IndexExecutable];
+            }
+            set
+            {
+                _data[IndexExecutable] = value;
+            }
+        }
+
+        public bool HandlerIsLocal
+        {
+            get
+            {
+                return (bool)_data[IndexHandlerIsLocal];
+            }
+            set
+            {
+                _data[IndexHandlerIsLocal] = value;
             }
         }
 
@@ -122,18 +148,6 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexPHPRegistrationType] = (int)value;
-            }
-        }
-
-        public string Executable
-        {
-            get
-            {
-                return (string)_data[IndexExecutable];
-            }
-            set
-            {
-                _data[IndexExecutable] = value;
             }
         }
 
