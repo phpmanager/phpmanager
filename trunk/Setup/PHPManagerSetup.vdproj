@@ -919,15 +919,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PHP Manager 1.1 for IIS 7"
-        "ProductCode" = "8:{F0E9EB45-3FA6-41BE-BA8B-62E03601F629}"
-        "PackageCode" = "8:{8754A459-738A-4874-B967-EEBE6C380F59}"
+        "ProductName" = "8:PHP Manager 1.2 for IIS 7"
+        "ProductCode" = "8:{E851486F-1FE2-44F0-85ED-F969088A68EE}"
+        "PackageCode" = "8:{8D1E1500-B70B-4E90-8E93-27F5A5264C27}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.2"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8: "
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://phpmanager.codeplex.com"
@@ -979,7 +979,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1.1.2"
+                                    "Value" = "8:1.2.0"
                                     }
                                 }
                             }
