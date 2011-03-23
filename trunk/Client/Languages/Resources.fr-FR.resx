@@ -658,4 +658,19 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>Cette extension existe déjà dans le répertoire des extensions PHP. Vous pouvez l'activer en utilisant la tâche "Activer ou désactiver une extension".</value>
   </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' a un mappage de gestionnaire local qui écrase les mappages définis aux niveaux supérieurs. Les changements de configuration PHP aux niveaux supérieurs risquent de ne pas prendre effet sur ce dossier.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}'a un mappage de gestionnaire local  qui écrase les mappages définis au niveau du serveur. Les changements de configuration PHP au niveau du serveur risquent de ne pas prendre effet sur ce dossier.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Mappage de gestionnaire:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Hérité</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Local</value>
+  </data>
 </root>
