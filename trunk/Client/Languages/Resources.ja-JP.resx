@@ -658,4 +658,19 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>この拡張は、PHP 拡張ディレクトリに既に存在しています。「拡張の有効化、無効化」タスクを実行して、この拡張を有効化してください。</value>
   </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>上位レベルで定義されたマッピングを上書きするローカル ハンドラー マッピングが '{0}' にあります。上位レベルでの PHP 設定の変更は、このフォルダでは有効ではない場合があります。</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>サーバーで定義されたマッピングを上書きするローカル ハンドラー マッピングが '{0}' にあります。サーバーでの PHP 設定の変更は、このサイトでは有効ではない場合があります。</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>ハンドラー マッピング:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>継承</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>ローカル</value>
+  </data>
 </root>
