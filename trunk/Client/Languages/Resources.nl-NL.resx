@@ -658,4 +658,19 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>Deze extensie bestaat al in de map met PHP extenties. Gebruik de "Extensie in- of uitschakelen" taak om de extensie in te schakelen.</value>
   </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' heeft lokale handler mappings die de bovenliggende mappings overschrijven. Aanpassingen aan de PHP configuratie hebben mogelijk geen effect op deze map.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}' heeft lokale handler mappings die de op server niveau gedefinieerde mappings overschrijven. Aanpassingen aan de PHP configuratie op server niveau hebben mogelijk geen effect op deze site.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Handler mapping:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Overerft</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Lokaal</value>
+  </data>
 </root>
