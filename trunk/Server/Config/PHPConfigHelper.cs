@@ -68,7 +68,8 @@ namespace Web.Management.PHP.Config
             Debug.Assert(IsPHPRegistered());
 
             string filename = Path.GetFileName(extensionPath);
-            string targetPath = PHPDirectory + "ext\\" + filename;
+            string targetPath = Path.Combine(PHPDirectory, "ext");
+            targetPath = Path.Combine(targetPath, filename);
 
             if (File.Exists(targetPath))
             {
@@ -381,14 +382,14 @@ namespace Web.Management.PHP.Config
 
         private static string GenerateHandlerName(HandlersCollection collection, string phpVersion)
         {
-            string prefix = "php-" + phpVersion;
+            string prefix = String.Format("php-{0}",phpVersion);
             string name = prefix;
 
             for (int i = 1; true; i++)
             {
                 if (collection[name] != null)
                 {
-                    name = prefix + "_" + i.ToString(CultureInfo.InvariantCulture);
+                    name = String.Format("{0}_{1}", prefix, i.ToString(CultureInfo.InvariantCulture));
                 }
                 else
                 {

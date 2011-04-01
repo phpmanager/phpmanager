@@ -77,13 +77,13 @@ namespace Web.Management.PHP {
             this._infoTlp.AutoSize = true;
             this._infoTlp.BackColor = System.Drawing.Color.Transparent;
             this._infoTlp.ColumnCount = 2;
-            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this._infoTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 291F));
             this._infoTlp.Location = new System.Drawing.Point(65, 69);
             this._infoTlp.Name = "_infoTlp";
             this._infoTlp.RowCount = 1;
             this._infoTlp.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this._infoTlp.Size = new System.Drawing.Size(439, 47);
+            this._infoTlp.Size = new System.Drawing.Size(491, 47);
             this._infoTlp.TabIndex = 3;
             // 
             // _warningPanel

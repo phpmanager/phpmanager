@@ -658,4 +658,19 @@
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>Это расширение уже существует в директории расширений PHP. Используйте команду "Включить или выключить расширение", чтобы включить это расширение.</value>
   </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' использует локальные сопоставления обработчиков, которые переопределяют сопоставления на верхних уровнях. Изменения в установках PHP на верхних уровнях могут не применится к этому каталогу.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}' использует локалные сопоставления обработчиков, которые переопределяют сопоставления на уровне сервера. Изменения в установках PHP на серверном уровне могут не применится к этому сайту.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Сопоставление обработчика:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Унаследовано</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Локальное</value>
+  </data>
 </root>
