@@ -659,18 +659,18 @@
     <value>Bu eklenti zaten PHP eklentileri klasöründe bulunmakta. Bu eklentiyi aktifleştirebilmek için lütfen "Bir eklenti aktifleştir veya pasifleştir" görevini kullanın.</value>
   </data>
   <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
-    <value>'{0}' üst seviyelerdeki ayarların üzerine yazacak şekilde tanımlanmış lokal handler mappings'lere sahip. Üst seviyelerden PHP kurulumunu değiştirmek, bu klasör üzerine etki etmeyebilir.</value>
+    <value>'{0}' üst seviyelerdeki ayarların üzerine yazacak şekilde tanımlanmış yerel işleyici eşlemelerine sahip. Üst seviyelerden PHP kurulumunu değiştirmek, bu klasör üzerine etki etmeyebilir.</value>
   </data>
   <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
-    <value>'{0}' sunucu seviyesindeki ayarların üzerine yazacak şekilde tanımlanmış lokal handler mappings'lere sahip. Sunucu seviyesinden PHP kurulumunu değiştirmek, bu klasör üzerine etki etmeyebilir.</value>
+    <value>'{0}' sunucu seviyesindeki ayarların üzerine yazacak şekilde tanımlanmış yerel işleyici eşlemelerine sahip. Sunucu seviyesinden PHP kurulumunu değiştirmek, bu klasör üzerine etki etmeyebilir.</value>
   </data>
   <data name="PHPPageHandlerMapping" xml:space="preserve">
-    <value>Handler mapping:</value>
+    <value>İşleyici Eşlemeleri:</value>
   </data>
   <data name="PHPPageInheritedHandler" xml:space="preserve">
-    <value>Kalıtım</value>
+    <value>Yönetilen</value>
   </data>
   <data name="PHPPageLocalHandler" xml:space="preserve">
-    <value>Lokal</value>
+    <value>Yerel</value>
   </data>
 </root>
