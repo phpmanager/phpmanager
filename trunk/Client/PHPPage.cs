@@ -37,7 +37,7 @@ namespace Web.Management.PHP
         private Label _enabledExtLabel;
         private Label _installedExtLabel;
         private Label _handlerMappingNameLabel;
-        private Label _handlerMappingValueLabel;
+        private LinkLabel _handlerMappingValueLabel;
         private Label _errorLogNameLabel;
         private LinkLabel _errorLogValueLabel;
         private LinkLabel _configPathValueLabel;
@@ -134,7 +134,8 @@ namespace Web.Management.PHP
 
             _handlerMappingNameLabel = new Label();
             _handlerMappingNameLabel.Text = Resources.PHPPageHandlerMapping;
-            _handlerMappingValueLabel = new Label();
+            _handlerMappingValueLabel = new LinkLabel();
+            _handlerMappingValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnHandlerMappingValueLabelLinkClicked);
 
             _configPathNameLabel = new Label();
             _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
@@ -251,6 +252,11 @@ namespace Web.Management.PHP
             }
         }
 
+        private static void OnEnableFastCgiLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // TBD:
+        }
+
         private void OnGetSettings(object sender, DoWorkEventArgs e)
         {
             e.Result = Module.Proxy.GetPHPConfigInfo();
@@ -268,6 +274,11 @@ namespace Web.Management.PHP
                 DisplayErrorMessage(ex, Resources.ResourceManager);
                 UpdatePageItemsState(null);
             }
+        }
+
+        private void OnHandlerMappingValueLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // TBD:
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -374,7 +385,7 @@ namespace Web.Management.PHP
             NavigateToPHPInfo();
         }
 
-        private void OnWarningLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OnViewRecommendationsLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             using (Setup.RecommendedConfigDialog dlg = new Setup.RecommendedConfigDialog(Module))
             {
@@ -403,6 +414,24 @@ namespace Web.Management.PHP
             {
                 DisplayErrorMessage(ex, Resources.ResourceManager);
             }
+        }
+
+        private static LinkLabel PrepareNoFastCgiWarning()
+        {
+            LinkLabel result = new LinkLabel();
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            sb.Append(Resources.WarningPHPConfigNoFastCgi);
+            int enableFastCgiLinkStart = Resources.WarningPHPConfigNoFastCgi.Length;
+            sb.Append(Resources.WarningEnableFastCgi);
+
+            result.Text = sb.ToString();
+            LinkLabel.Link enableFastCgiLink = new LinkLabel.Link(enableFastCgiLinkStart, Resources.WarningEnableFastCgi.Length, 0);
+            result.Links.Add(enableFastCgiLink);
+
+            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnEnableFastCgiLinkClicked);
+
+            return result;
         }
 
         private static void PrepareOpenFileLink(LinkLabel linkLabel, string path, bool showLink)
@@ -446,26 +475,39 @@ namespace Web.Management.PHP
             LinkLabel.Link fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRecommendations.Length, 0);
             result.Links.Add(fixItLink);
 
-            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnWarningLinkClicked);
+            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnViewRecommendationsLinkClicked);
             
             return result;
         }
 
         private static Label PreparePHPRegistrationWarning(PHPRegistrationType registrationType)
         {
-            Label result = new Label();
+            Label result = null;
 
             if (registrationType == PHPRegistrationType.Cgi)
             {
+                result = new Label();
                 result.Text = Resources.WarningPHPConfigCgi;
             }
             else if (registrationType == PHPRegistrationType.Isapi)
             {
+                result = new Label();
                 result.Text = Resources.WarningPHPConfigIsapi;
             }
             else if (registrationType == PHPRegistrationType.None)
             {
+                result = new Label();
                 result.Text = Resources.WarningPHPConfigNotRegistered;
+            }
+            else if (registrationType == PHPRegistrationType.NoneNoFastCgi)
+            {
+                result = PrepareNoFastCgiWarning();
+            }
+            else
+            {
+                // Just in case
+                result = new Label();
+                result.Text = String.Empty;
             }
 
             return result;
@@ -594,7 +636,7 @@ namespace Web.Management.PHP
             _handlerMappingValueLabel.Text = isPHPSetup ? GetHandlerMappingLabelText(configInfo.HandlerIsLocal) : Resources.PHPPagePHPNotAvailable;
 
             // Allow PHP registration only for server administrators
-            if (configInfo != null)
+            if (configInfo != null && configInfo.RegistrationType != PHPRegistrationType.NoneNoFastCgi)
             {
                 _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);
             }

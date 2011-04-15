@@ -1665,6 +1665,15 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable FastCGI..
+        /// </summary>
+        internal static string WarningEnableFastCgi {
+            get {
+                return ResourceManager.GetString("WarningEnableFastCgi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not optimal PHP registration (CGI) is found. Register new PHP version to enable PHP via FastCGI..
         /// </summary>
         internal static string WarningPHPConfigCgi {
@@ -1679,6 +1688,15 @@ namespace Web.Management.PHP {
         internal static string WarningPHPConfigIsapi {
             get {
                 return ResourceManager.GetString("WarningPHPConfigIsapi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FastCGI feature must be enabled in order to register PHP. .
+        /// </summary>
+        internal static string WarningPHPConfigNoFastCgi {
+            get {
+                return ResourceManager.GetString("WarningPHPConfigNoFastCgi", resourceCulture);
             }
         }
         

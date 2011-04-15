@@ -15,6 +15,7 @@ namespace Web.Management.PHP.Config
         FastCgi,
         Cgi,
         Isapi,
-        None
+        None,
+        NoneNoFastCgi
     }
 }

@@ -731,6 +731,13 @@ namespace Web.Management.PHP.Config
 
         private void Initialize()
         {
+            if (!IsFastCgiInstalled())
+            {
+                // If FastCGI is not installed on IIS then bail out as there is no point to continue
+                _registrationType = PHPRegistrationType.NoneNoFastCgi;
+                return;
+            }
+
             // Get the handlers collection
             ManagementConfiguration config = _managementUnit.Configuration;
             HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
@@ -801,6 +808,24 @@ namespace Web.Management.PHP.Config
             }
 
             return false;
+        }
+
+        private static bool IsFastCgiInstalled()
+        {
+            bool result = false;
+
+            string subkey = "SOFTWARE\\Microsoft\\InetStp\\Components";
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey);
+            if (key != null)
+            {
+                object value = key.GetValue("FastCgi");
+                if (value != null)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
         private bool IsPHPRegistered()
