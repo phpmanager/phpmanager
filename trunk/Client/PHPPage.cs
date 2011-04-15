@@ -278,7 +278,11 @@ namespace Web.Management.PHP
 
         private void OnHandlerMappingValueLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // TBD:
+            Type handlerMappingsPage = GetPageType("Handlers");
+            if (handlerMappingsPage != null)
+            {
+                Navigate(handlerMappingsPage);
+            }
         }
 
         protected override void OnLayout(LayoutEventArgs e)
