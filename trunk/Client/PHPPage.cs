@@ -252,9 +252,9 @@ namespace Web.Management.PHP
             }
         }
 
-        private static void OnEnableFastCgiLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private static void OnFastCgiLearnMoreLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // TBD:
+            Helper.Browse(Globals.EnableFastCgiLearnMore);
         }
 
         private void OnGetSettings(object sender, DoWorkEventArgs e)
@@ -426,14 +426,14 @@ namespace Web.Management.PHP
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
             sb.Append(Resources.WarningPHPConfigNoFastCgi);
-            int enableFastCgiLinkStart = Resources.WarningPHPConfigNoFastCgi.Length;
-            sb.Append(Resources.WarningEnableFastCgi);
+            int fastCgiLearnMoreLinkStart = Resources.WarningPHPConfigNoFastCgi.Length;
+            sb.Append(Resources.WarningFastCgiLearnMore);
 
             result.Text = sb.ToString();
-            LinkLabel.Link enableFastCgiLink = new LinkLabel.Link(enableFastCgiLinkStart, Resources.WarningEnableFastCgi.Length, 0);
-            result.Links.Add(enableFastCgiLink);
+            LinkLabel.Link fastCgiLearnMoreLink = new LinkLabel.Link(fastCgiLearnMoreLinkStart, Resources.WarningFastCgiLearnMore.Length, 0);
+            result.Links.Add(fastCgiLearnMoreLink);
 
-            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnEnableFastCgiLinkClicked);
+            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnFastCgiLearnMoreLinkClicked);
 
             return result;
         }

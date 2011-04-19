@@ -673,8 +673,8 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>Local</value>
   </data>
-  <data name="WarningEnableFastCgi" xml:space="preserve">
-    <value>Enable FastCGI.</value>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>Learn more.</value>
   </data>
   <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
     <value>FastCGI feature must be enabled in order to register PHP. </value>
