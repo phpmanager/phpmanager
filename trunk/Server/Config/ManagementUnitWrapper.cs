@@ -1,10 +1,19 @@
-﻿using System;
-using Microsoft.Web.Management.Server;
+﻿//-----------------------------------------------------------------------
+// <copyright>
+// Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
+//
+// This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
+// </copyright>
+//-----------------------------------------------------------------------
+
 using Microsoft.Web.Administration;
+using Microsoft.Web.Management.Server;
 
 namespace Web.Management.PHP.Config
 {
-    internal sealed class ManagementUnitWrapper: ConfigurationWrapper
+
+    internal sealed class ManagementUnitWrapper : ConfigurationWrapper
     {
         private ManagementUnit _managementUnit;
 
@@ -13,10 +22,14 @@ namespace Web.Management.PHP.Config
             _managementUnit = managementUnit;
         }
 
-        public override Handlers.HandlersSection GetHandlersSection()
+        public override void CommitChanges()
         {
-            ManagementConfiguration config = _managementUnit.Configuration;
-            return (Handlers.HandlersSection)config.GetSection("system.webServer/handlers", typeof(Handlers.HandlersSection));
+            _managementUnit.Update();
+        }
+
+        public override Configuration GetAppHostConfiguration()
+        {
+            return _managementUnit.ServerManager.GetApplicationHostConfiguration();
         }
 
         public override DefaultDocument.DefaultDocumentSection GetDefaultDocumentSection()
@@ -25,19 +38,16 @@ namespace Web.Management.PHP.Config
             return (DefaultDocument.DefaultDocumentSection)config.GetSection("system.webServer/defaultDocument", typeof(DefaultDocument.DefaultDocumentSection));
         }
 
+        public override Handlers.HandlersSection GetHandlersSection()
+        {
+            ManagementConfiguration config = _managementUnit.Configuration;
+            return (Handlers.HandlersSection)config.GetSection("system.webServer/handlers", typeof(Handlers.HandlersSection));
+        }
+
         public override bool IsServerConfigurationPath()
         {
             return (_managementUnit.ConfigurationPath.PathType == ConfigurationPathType.Server);
         }
 
-        public override Configuration GetAppHostConfiguration()
-        {
-            return _managementUnit.ServerManager.GetApplicationHostConfiguration();
-        }
-
-        public override void CommitChanges()
-        {
-            _managementUnit.Update();
-        }
     }
 }
