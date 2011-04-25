@@ -35,7 +35,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 result = configHelper.AddExtension(extensionPath);
             }
             catch (FileNotFoundException)
@@ -64,7 +65,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.AddOrUpdatePHPIniSettings(settings);
             }
             catch (FileNotFoundException)
@@ -80,7 +82,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.ApplyRecommendedSettings(configIssueIndexes);
             }
             catch (FileNotFoundException)
@@ -187,7 +190,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 versions = configHelper.GetAllPHPVersions();
             }
             catch (FileNotFoundException)
@@ -204,7 +208,8 @@ namespace Web.Management.PHP
             RemoteObjectCollection<PHPConfigIssue> configIssues = null;
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configIssues = configHelper.ValidateConfiguration();
             }
             catch (FileNotFoundException)
@@ -223,7 +228,8 @@ namespace Web.Management.PHP
             PHPConfigInfo result = null;
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 result = configHelper.GetPHPConfigInfo();
             }
             catch (FileNotFoundException)
@@ -246,7 +252,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 phpiniPath = configHelper.PHPIniFilePath;
             }
             catch(FileNotFoundException)
@@ -265,7 +272,8 @@ namespace Web.Management.PHP
             PHPIniFile file = null;
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 file = configHelper.GetPHPIniFile();
             }
             catch (FileNotFoundException)
@@ -328,7 +336,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.RegisterPHPWithIIS(phpExePath);
             }
             catch (ArgumentException)
@@ -367,7 +376,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.RemovePHPIniSetting(setting);
             }
             catch (FileNotFoundException)
@@ -383,7 +393,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.SelectPHPHandler(name);
             }
             catch (FileLoadException)
@@ -406,7 +417,8 @@ namespace Web.Management.PHP
 
             try
             {
-                PHPConfigHelper configHelper = new PHPConfigHelper(ManagementUnit);
+                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.UpdateExtensions(extensions);
             }
             catch (FileNotFoundException)

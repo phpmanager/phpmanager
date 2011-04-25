@@ -44,7 +44,6 @@
       <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Client\Config\PHPConfigInfo.cs">
@@ -65,6 +64,8 @@
     <Compile Include="..\SharedAssembyInfo.cs">
       <Link>SharedAssembyInfo.cs</Link>
     </Compile>
+    <Compile Include="Config\ConfigurationWrapper.cs" />
+    <Compile Include="Config\ManagementUnitWrapper.cs" />
     <Compile Include="DefaultDocument\DefaultDocumentSection.cs" />
     <Compile Include="DefaultDocument\FileElement.cs" />
     <Compile Include="DefaultDocument\FilesCollection.cs" />

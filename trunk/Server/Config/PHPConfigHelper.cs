@@ -30,7 +30,7 @@ namespace Web.Management.PHP.Config
     internal sealed class PHPConfigHelper
     {
 
-        private ManagementUnit _managementUnit;
+        private ConfigurationWrapper _configurationWrapper;
 
         private ApplicationElement _currentFastCgiApplication;
         private HandlerElement _currentPHPHandler;
@@ -41,9 +41,9 @@ namespace Web.Management.PHP.Config
         private string _phpDirectory;
         private PHPRegistrationType _registrationType;
 
-        public PHPConfigHelper(ManagementUnit mgmtUnit)
+        public PHPConfigHelper(ConfigurationWrapper configurationWrapper)
         {
-            _managementUnit = mgmtUnit;
+            _configurationWrapper = configurationWrapper;
             Initialize();
         }
 
@@ -134,7 +134,7 @@ namespace Web.Management.PHP.Config
             }
             if (iisChangeHappened)
             {
-                _managementUnit.Update();
+                _configurationWrapper.CommitChanges();
             }
         }
 
@@ -311,7 +311,7 @@ namespace Web.Management.PHP.Config
 
         private void CopyIneritedDefaultDocs()
         {
-            if (_managementUnit.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            if (_configurationWrapper.IsServerConfigurationPath())
             {
                 return;
             }
@@ -329,7 +329,7 @@ namespace Web.Management.PHP.Config
 
         private void CopyInheritedHandlers()
         {
-            if (_managementUnit.ConfigurationPath.PathType == ConfigurationPathType.Server)
+            if (_configurationWrapper.IsServerConfigurationPath())
             {
                 return;
             }
@@ -739,16 +739,15 @@ namespace Web.Management.PHP.Config
             }
 
             // Get the handlers collection
-            ManagementConfiguration config = _managementUnit.Configuration;
-            HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
+            HandlersSection handlersSection = _configurationWrapper.GetHandlersSection();
             _handlersCollection = handlersSection.Handlers;
 
             // Get the Default document collection
-            DefaultDocumentSection defaultDocumentSection = (DefaultDocumentSection)config.GetSection("system.webServer/defaultDocument", typeof(DefaultDocumentSection));
+            DefaultDocumentSection defaultDocumentSection = _configurationWrapper.GetDefaultDocumentSection();
             _defaultDocumentCollection = defaultDocumentSection.Files;
 
             // Get the FastCgi application collection
-            Configuration appHostConfig = _managementUnit.ServerManager.GetApplicationHostConfiguration();
+            Configuration appHostConfig = _configurationWrapper.GetAppHostConfiguration();
             FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
             _fastCgiApplicationCollection = fastCgiSection.Applications;
 
@@ -858,7 +857,7 @@ namespace Web.Management.PHP.Config
 
             if (iisChangeHappened)
             {
-                _managementUnit.Update();
+                _configurationWrapper.CommitChanges();
             }
         }
 
@@ -1023,7 +1022,7 @@ namespace Web.Management.PHP.Config
 
             if (iisUpdateHappened)
             {
-                _managementUnit.Update();
+                _configurationWrapper.CommitChanges();
                 // We need to call Initialize() again to set references to current handler and 
                 // fastcgi application and to avoid the read-only exception from IIS config
                 Initialize();
@@ -1064,7 +1063,7 @@ namespace Web.Management.PHP.Config
             {
                 CopyInheritedHandlers();
                 MakeHandlerActive(name);
-                _managementUnit.Update();
+                _configurationWrapper.CommitChanges();
             }
         }
 
