@@ -10,7 +10,7 @@
 namespace Web.Management.PHP.Handlers
 {
 
-    internal enum ResourceType
+    public enum ResourceType
     {
         File = 0,
         Directory = 1,

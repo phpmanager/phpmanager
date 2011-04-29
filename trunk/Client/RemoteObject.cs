@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace Web.Management.PHP
 {
 
-    internal class RemoteObjectCollection<T> : IRemoteObject, ICollection, IList<T> where T : IRemoteObject, new()
+    public sealed class RemoteObjectCollection<T> : IRemoteObject, ICollection, IList<T> where T : IRemoteObject, new()
     {
 
         private List<T> _list;
@@ -168,7 +168,7 @@ namespace Web.Management.PHP
         #endregion
     }
 
-    internal interface IRemoteObject
+    public interface IRemoteObject
     {
 
         object GetData();

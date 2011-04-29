@@ -12,7 +12,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.DefaultDocument
 {
 
-    internal class FileElement : ConfigurationElement
+    public sealed class FileElement : ConfigurationElement
     {
 
         public string Value

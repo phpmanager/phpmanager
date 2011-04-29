@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.DefaultDocument
 {
 
-    internal class FilesCollection : ConfigurationElementCollectionBase<FileElement>
+    public sealed class FilesCollection : ConfigurationElementCollectionBase<FileElement>
     {
 
         public new FileElement this[string value]

@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.Handlers
 {
 
-    internal class HandlersCollection : ConfigurationElementCollectionBase<HandlerElement>
+    public sealed class HandlersCollection : ConfigurationElementCollectionBase<HandlerElement>
     {
 
         public new HandlerElement this[string name]

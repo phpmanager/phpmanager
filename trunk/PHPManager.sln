@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		SharedAssembyInfo.cs = SharedAssembyInfo.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPManagerPowershell", "Powershell\PHPManagerPowershell.csproj", "{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BEC09DE-2794-4F7B-B091-C74CD934BE7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

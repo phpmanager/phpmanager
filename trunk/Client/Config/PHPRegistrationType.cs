@@ -10,7 +10,7 @@
 namespace Web.Management.PHP.Config
 {
 
-    internal enum PHPRegistrationType
+    public enum PHPRegistrationType
     {
         FastCgi,
         Cgi,

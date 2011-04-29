@@ -10,7 +10,7 @@
 namespace Web.Management.PHP.Config
 {
 
-    internal static class PHPConfigIssueIndex
+    public static class PHPConfigIssueIndex
     {
         public const int DefaultDocument = 0;
         public const int ResourceType = 1;
@@ -28,7 +28,7 @@ namespace Web.Management.PHP.Config
         public const int DateTimeZone = 13;
     }
 
-    internal class PHPConfigIssue : IRemoteObject
+    public class PHPConfigIssue : IRemoteObject
     {
         private object[] _data;
         private const int Size = 6;

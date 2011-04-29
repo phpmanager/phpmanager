@@ -10,10 +10,10 @@
 //#define VSDesigner
 
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Web.Management.Client.Win32;
+using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Setup
 {
@@ -133,7 +133,7 @@ namespace Web.Management.PHP.Setup
 
             try
             {
-                _module.Proxy.SelectPHPVersion(selectedItem.Name);
+                _module.Proxy.SelectPHPVersion(selectedItem.HandlerName);
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -155,10 +155,11 @@ namespace Web.Management.PHP.Setup
 
             try
             {
-                ArrayList versions = e.Result as ArrayList;
-                foreach (string[] version in versions)
+                RemoteObjectCollection<PHPVersion> phpVersions = e.Result as RemoteObjectCollection<PHPVersion>;
+                foreach (PHPVersion phpVersion in phpVersions)
                 {
-                    _versionComboBox.Items.Add(new PHPVersion(version[0], version[1], version[2]));
+                    phpVersion.Version = String.Format("{0} ({1})", phpVersion.Version, phpVersion.ScriptProcessor);
+                    _versionComboBox.Items.Add(phpVersion);
                 }
                 _versionComboBox.DisplayMember = "Version";
                 _versionComboBox.SelectedIndex = 0;
@@ -188,46 +189,6 @@ namespace Web.Management.PHP.Setup
         protected override void ShowHelp()
         {
             Helper.Browse(Globals.ChangeVersionOnlineHelp);
-        }
-
-
-        // Used internally for the select version combo box
-        private class PHPVersion
-        {
-            private string _name;
-            private string _scriptProcessor;
-            private string _version;
-
-            public PHPVersion(string name, string scriptProcessor, string version)
-            {
-                _name = name;
-                _scriptProcessor = scriptProcessor;
-                _version = version;
-            }
-
-            public string Name
-            {
-                get
-                {
-                    return _name;
-                }
-            }
-
-            public string ScriptProcessor
-            {
-                get
-                {
-                    return _scriptProcessor;
-                }
-            }
-
-            public string Version
-            {
-                get
-                {
-                    return _version + " (" + _scriptProcessor + ")";
-                }
-            }
         }
     }
 }

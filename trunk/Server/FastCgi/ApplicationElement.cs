@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal class ApplicationElement : ConfigurationElement
+    public sealed class ApplicationElement : ConfigurationElement
     {
         private EnvironmentVariablesCollection _environmentVars;
         private string _fullPath = null;

@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -12,18 +12,18 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.Config
 {
 
-    internal abstract class ConfigurationWrapper
+    public interface IConfigurationWrapper
     {
 
-        public abstract void CommitChanges();
+        void CommitChanges();
 
-        public abstract Configuration GetAppHostConfiguration();
+        Configuration GetAppHostConfiguration();
 
-        public abstract DefaultDocument.DefaultDocumentSection GetDefaultDocumentSection();
+        DefaultDocument.DefaultDocumentSection GetDefaultDocumentSection();
 
-        public abstract Handlers.HandlersSection GetHandlersSection();
+        Handlers.HandlersSection GetHandlersSection();
 
-        public abstract bool IsServerConfigurationPath();
+        bool IsServerConfigurationPath();
 
     }
 }

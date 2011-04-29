@@ -12,7 +12,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.Handlers
 {
 
-    internal class HandlersSection : ConfigurationSection
+    public sealed class HandlersSection : ConfigurationSection
     {
         private HandlersCollection _handlers;
 

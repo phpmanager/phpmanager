@@ -12,7 +12,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal class FastCgiSection : ConfigurationSection
+    public sealed class FastCgiSection : ConfigurationSection
     {
         private FastCgiApplicationCollection _applications;
 

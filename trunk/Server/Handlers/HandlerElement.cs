@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.Handlers
 {
 
-    internal class HandlerElement : ConfigurationElement
+    public sealed class HandlerElement : ConfigurationElement
     {
         private string _executable;
         private string _arguments;

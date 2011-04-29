@@ -183,10 +183,10 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public ArrayList GetAllPHPVersions()
+        public object GetAllPHPVersions()
         {
             EnsureServerOrSiteConnection();
-            ArrayList versions = null;
+            RemoteObjectCollection<PHPVersion> versions = null;
 
             try
             {
@@ -199,7 +199,7 @@ namespace Web.Management.PHP
                 RaiseException("ErrorPHPIniNotFound");
             }
 
-            return versions;
+            return (versions != null) ? versions.GetData() : null;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

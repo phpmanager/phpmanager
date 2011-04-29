@@ -11,7 +11,7 @@
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal enum Protocol
+    public enum Protocol
     {
         NamedPipe = 0,
         Tcp = 1

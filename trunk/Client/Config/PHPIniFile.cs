@@ -17,7 +17,7 @@ using System.Text;
 namespace Web.Management.PHP.Config
 {
 
-    internal sealed class PHPIniFile : IRemoteObject
+    public sealed class PHPIniFile : IRemoteObject
     {
         private object[] _data;
         private const int IndexSettings = 0;
@@ -446,7 +446,7 @@ namespace Web.Management.PHP.Config
 
     }
 
-    internal abstract class PHPIniBase
+    public abstract class PHPIniBase
     {
         private string _text;
 
@@ -470,7 +470,7 @@ namespace Web.Management.PHP.Config
         }
     }
 
-    internal class PHPIniString : PHPIniBase
+    public sealed class PHPIniString : PHPIniBase
     {
 
         public PHPIniString() { }
@@ -478,7 +478,7 @@ namespace Web.Management.PHP.Config
         public PHPIniString(string rawText) : base(rawText) { }
     }
 
-    internal class PHPIniSetting : PHPIniBase, IRemoteObject
+    public sealed class PHPIniSetting : PHPIniBase, IRemoteObject
     {
         private object[] _data;
         private const int Size = 3;
@@ -585,7 +585,7 @@ namespace Web.Management.PHP.Config
         }
     }
 
-    internal class PHPIniExtension : PHPIniBase, IRemoteObject
+    public sealed class PHPIniExtension : PHPIniBase, IRemoteObject
     {
         private object[] _data;
         private const int Size = 2;

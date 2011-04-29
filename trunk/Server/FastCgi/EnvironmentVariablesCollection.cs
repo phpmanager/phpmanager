@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal class EnvironmentVariablesCollection : ConfigurationElementCollectionBase<EnvironmentVariableElement>
+    public sealed class EnvironmentVariablesCollection : ConfigurationElementCollectionBase<EnvironmentVariableElement>
     {
 
         public new EnvironmentVariableElement this[string name]

@@ -10,7 +10,7 @@
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal enum StderrMode
+    public enum StderrMode
     {
         ReturnStdErrIn500 = 0,
         ReturnGeneric500 = 1,

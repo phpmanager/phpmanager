@@ -12,7 +12,7 @@ using System;
 namespace Web.Management.PHP.Config
 {
 
-    internal sealed class PHPConfigInfo : IRemoteObject
+    public sealed class PHPConfigInfo : IRemoteObject
     {
         private object[] _data;
 

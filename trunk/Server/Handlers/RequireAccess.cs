@@ -10,7 +10,7 @@
 namespace Web.Management.PHP.Handlers
 {
 
-    internal enum RequireAccess
+    public enum RequireAccess
     {
         None = 0,
         Read = 1,

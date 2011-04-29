@@ -12,7 +12,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.DefaultDocument
 {
 
-    internal class DefaultDocumentSection : ConfigurationSection
+    public sealed class DefaultDocumentSection : ConfigurationSection
     {
         private FilesCollection _files;
 

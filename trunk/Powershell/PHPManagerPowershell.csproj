@@ -5,13 +5,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BEA18085-3850-46AA-822E-61D06CAB84E3}</ProjectGuid>
+    <ProjectGuid>{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Web.Management.PHP</RootNamespace>
-    <AssemblyName>Web.Management.PHP</AssemblyName>
+    <AssemblyName>Web.Management.PHP.PowerShell</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\phpmgrpublic.snk</AssemblyOriginatorKeyFile>
     <DelaySign>true</DelaySign>
@@ -24,7 +26,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,57 +38,21 @@
   <ItemGroup>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.Management, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
+      <HintPath>..\..\..\..\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Client\Config\PHPConfigInfo.cs">
-      <Link>Config\PHPConfigInfo.cs</Link>
+    <Compile Include="Config\ServerManagerWrapper.cs" />
+    <Compile Include="GetPHPVersionsCommand.cs" />
+    <Compile Include="Installer.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="..\Client\Config\PHPConfigIssue.cs">
-      <Link>Config\PHPConfigIssue.cs</Link>
-    </Compile>
-    <Compile Include="..\Client\Config\PHPIniFile.cs">
-      <Link>Config\PHPIniFile.cs</Link>
-    </Compile>
-    <Compile Include="..\Client\Config\PHPRegistrationType.cs">
-      <Link>Config\PHPRegistrationType.cs</Link>
-    </Compile>
-    <Compile Include="..\Client\Config\PHPVersion.cs">
-      <Link>Config\PHPVersion.cs</Link>
-    </Compile>
-    <Compile Include="..\Client\RemoteObject.cs">
-      <Link>RemoteObject.cs</Link>
-    </Compile>
-    <Compile Include="..\SharedAssembyInfo.cs">
-      <Link>SharedAssembyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Config\IConfigurationWrapper.cs" />
-    <Compile Include="Config\ManagementUnitWrapper.cs" />
-    <Compile Include="DefaultDocument\DefaultDocumentSection.cs" />
-    <Compile Include="DefaultDocument\FileElement.cs" />
-    <Compile Include="DefaultDocument\FilesCollection.cs" />
-    <Compile Include="FastCgi\ApplicationCollection.cs" />
-    <Compile Include="FastCgi\EnvironmentVariableElement.cs" />
-    <Compile Include="FastCgi\EnvironmentVariablesCollection.cs" />
-    <Compile Include="FastCgi\ApplicationElement.cs" />
-    <Compile Include="FastCgi\FastCgiSection.cs" />
-    <Compile Include="FastCgi\Protocol.cs" />
-    <Compile Include="FastCgi\StderrMode.cs" />
-    <Compile Include="Handlers\HandlerElement.cs" />
-    <Compile Include="Handlers\HandlersCollection.cs" />
-    <Compile Include="Handlers\HandlersSection.cs" />
-    <Compile Include="Handlers\RequireAccess.cs" />
-    <Compile Include="Handlers\ResourceType.cs" />
-    <Compile Include="Config\PHPConfigHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PHPProvider.cs" />
-    <Compile Include="PHPService.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,6 +70,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Server\PHPManager.csproj">
+      <Project>{BEA18085-3850-46AA-822E-61D06CAB84E3}</Project>
+      <Name>PHPManager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -116,6 +87,7 @@
   <PropertyGroup>
     <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
 sn –Vr $(TargetFileName)
-gacutil.exe /if "$(TargetPath)"</PostBuildEvent>
+gacutil -if $(TargetPath)
+InstallUtil $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>

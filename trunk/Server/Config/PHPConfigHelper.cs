@@ -15,7 +15,6 @@ using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Web.Administration;
-using Microsoft.Web.Management.Server;
 using Microsoft.Win32;
 using Web.Management.PHP.DefaultDocument;
 using Web.Management.PHP.FastCgi;
@@ -27,10 +26,10 @@ namespace Web.Management.PHP.Config
     /// <summary>
     /// Provides functions to register PHP with IIS and to manage IIS and PHP configuration.
     /// </summary>
-    internal sealed class PHPConfigHelper
+    public sealed class PHPConfigHelper
     {
 
-        private ConfigurationWrapper _configurationWrapper;
+        private IConfigurationWrapper _configurationWrapper;
 
         private ApplicationElement _currentFastCgiApplication;
         private HandlerElement _currentPHPHandler;
@@ -41,7 +40,7 @@ namespace Web.Management.PHP.Config
         private string _phpDirectory;
         private PHPRegistrationType _registrationType;
 
-        public PHPConfigHelper(ConfigurationWrapper configurationWrapper)
+        public PHPConfigHelper(IConfigurationWrapper configurationWrapper)
         {
             _configurationWrapper = configurationWrapper;
             Initialize();
@@ -399,11 +398,11 @@ namespace Web.Management.PHP.Config
             return name;
         }
 
-        public ArrayList GetAllPHPVersions()
+        public RemoteObjectCollection<PHPVersion> GetAllPHPVersions()
         {
             Debug.Assert(IsPHPRegistered());
 
-            ArrayList result = new ArrayList();
+            RemoteObjectCollection<PHPVersion> result = new RemoteObjectCollection<PHPVersion>();
             
             foreach (HandlerElement handler in _handlersCollection)
             {
@@ -412,7 +411,7 @@ namespace Web.Management.PHP.Config
                     if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
                         File.Exists(handler.Executable))
                     {
-                        result.Add(new string[] { handler.Name, handler.Executable, GetPHPExecutableVersion(handler.Executable) });
+                        result.Add(new PHPVersion(handler.Name, handler.Executable, GetPHPExecutableVersion(handler.Executable)));
                     }
                 }
             }

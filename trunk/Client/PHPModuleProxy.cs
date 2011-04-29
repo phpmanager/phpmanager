@@ -42,9 +42,18 @@ namespace Web.Management.PHP
             return (string)Invoke("CreatePHPInfo", siteName);
         }
 
-        internal ArrayList GetAllPHPVersions()
+        internal RemoteObjectCollection<PHPVersion> GetAllPHPVersions()
         {
-            return (ArrayList)Invoke("GetAllPHPVersions");
+            object o = Invoke("GetAllPHPVersions");
+
+            if (o != null)
+            {
+                RemoteObjectCollection<PHPVersion> versions = new RemoteObjectCollection<PHPVersion>();
+                versions.SetData(o);
+                return versions;
+            }
+
+            return null;
         }
 
         internal RemoteObjectCollection<PHPConfigIssue> GetConfigIssues()

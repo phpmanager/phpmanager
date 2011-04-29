@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.FastCgi
 {
 
-    internal class FastCgiApplicationCollection : ConfigurationElementCollectionBase<ApplicationElement>
+    public sealed class FastCgiApplicationCollection : ConfigurationElementCollectionBase<ApplicationElement>
     {
 
         protected override ApplicationElement CreateNewElement(string elementTagName)
