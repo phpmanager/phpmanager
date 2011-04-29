@@ -1,10 +1,20 @@
-﻿using System.Management.Automation;
-using Web.Management.PHP.Config;
-using Microsoft.Web.Administration;
+﻿//-----------------------------------------------------------------------
+// <copyright>
+// Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
+//
+// This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
+// </copyright>
+//----------------------------------------------------------------------- 
+
 using System.Collections;
+using System.Management.Automation;
+using Microsoft.Web.Administration;
+using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP
 {
+
     [Cmdlet(VerbsCommon.Get, "PHPVersions")]
     public class GetPHPVersionsCommand : PSCmdlet
     {
