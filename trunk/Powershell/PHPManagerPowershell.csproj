@@ -45,9 +45,11 @@
     <Reference Include="System.Management.Automation" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseCommand.cs" />
+    <Compile Include="BaseCmdlet.cs" />
     <Compile Include="Config\ServerManagerWrapper.cs" />
-    <Compile Include="GetPHPVersionsCommand.cs" />
+    <Compile Include="GetPHPConfigurationCmdlet.cs" />
+    <Compile Include="GetPHPSettingCmdlet.cs" />
+    <Compile Include="GetPHPVersionsCmdlet.cs" />
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
     </Compile>

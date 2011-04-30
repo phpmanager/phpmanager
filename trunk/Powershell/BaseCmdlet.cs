@@ -14,18 +14,39 @@ using System.Security.Principal;
 namespace Web.Management.PHP
 {
 
-    public class BaseCommand : PSCmdlet
+    public class BaseCmdlet : PSCmdlet
     {
+        private string _configurationPath;
 
-        protected static void EnsureAdminUser()
+        [Parameter(ValueFromPipeline = true, Position = 0)]
+        public string ConfigurationPath
+        {
+            set
+            {
+                _configurationPath = value;
+            }
+            get
+            {
+                return _configurationPath;
+            }
+        }
+
+        protected void EnsureAdminUser()
         {
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             SecurityIdentifier sidAdmin = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
             if (!principal.IsInRole(sidAdmin))
             {
-                throw new UnauthorizedAccessException(Resources.UserIsNotAdminException);
+                UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.UserIsNotAdminException);
+                ReportError(exception, "PermissionDenied", ErrorCategory.PermissionDenied);
             }
+        }
+
+        protected void ReportError(Exception exception, string errorId, ErrorCategory errorCategory)
+        {
+            ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
+            ThrowTerminatingError(errorRecord);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have access to view or modify IIS configuration. 
+        ///   Looks up a localized string similar to You do not have permission to view or modify IIS configuration. 
         ///Is PowerShell console launched in elevated mode (Run As Administrator)?.
         /// </summary>
         internal static string UserIsNotAdminException {

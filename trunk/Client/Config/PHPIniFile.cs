@@ -248,7 +248,7 @@ namespace Web.Management.PHP.Config
                         // Get the path to the extension directory - this will be used later
                         if (String.Equals(directive.Name, "extension_dir", StringComparison.OrdinalIgnoreCase))
                         {
-                            extensionDir = directive.TrimmedValue;
+                            extensionDir = directive.GetTrimmedValue();
                         }
                     }
                     else
@@ -377,7 +377,7 @@ namespace Web.Management.PHP.Config
             {
                 foreach (PHPIniBase entry in RawEntries)
                 {
-                    writer.WriteLine(entry.Text);
+                    writer.WriteLine(entry.GetText());
                 }
             }
         }
@@ -417,7 +417,7 @@ namespace Web.Management.PHP.Config
                         PHPIniBase extensionLine = RawEntries[foundIndex];
                         // ... remove the extension section name if it exists
                         if (foundIndex > 0 &&
-                            String.Equals(RawEntries[foundIndex - 1].Text, GetExtensionSection(extension.Name), StringComparison.OrdinalIgnoreCase))
+                            String.Equals(RawEntries[foundIndex - 1].GetText(), GetExtensionSection(extension.Name), StringComparison.OrdinalIgnoreCase))
                         {
                             RawEntries.Remove(RawEntries[foundIndex - 1]);
                         }
@@ -448,7 +448,7 @@ namespace Web.Management.PHP.Config
 
     public abstract class PHPIniBase
     {
-        private string _text;
+        protected string _text;
 
         protected PHPIniBase() { }
 
@@ -457,16 +457,9 @@ namespace Web.Management.PHP.Config
             _text = text;
         }
 
-        public string Text
+        public string GetText()
         {
-            get
-            {
-                return _text;
-            }
-            set
-            {
-                _text = value;
-            }
+            return _text;
         }
     }
 
@@ -538,13 +531,10 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        public string TrimmedValue
+        public string GetTrimmedValue()
         {
-            get
-            {
-                string result = (string)_data[IndexValue];
-                return result.Trim(new char[] {' ', '"' });
-            }
+            string result = (string)_data[IndexValue];
+            return result.Trim(new char[] {' ', '"' });
         }
 
         public override bool Equals(object obj)
@@ -581,7 +571,7 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateText()
         {
-            Text = Name + " = " + Value;
+            _text = Name + " = " + Value;
         }
     }
 
@@ -643,7 +633,7 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateText()
         {
-            Text = "extension=" + Name;
+            _text = "extension=" + Name;
         }
 
     }

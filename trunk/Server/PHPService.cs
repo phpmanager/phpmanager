@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
@@ -281,6 +282,7 @@ namespace Web.Management.PHP
                 RaiseException("ErrorPHPIniNotFound");
             }
 
+            Debug.Assert(file != null);
             return file.GetData();
         }
 

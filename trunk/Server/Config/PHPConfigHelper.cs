@@ -450,7 +450,7 @@ namespace Web.Management.PHP.Config
             PHPIniSetting setting = file.GetSetting("error_log");
             if (setting != null)
             {
-                configInfo.ErrorLog = setting.TrimmedValue;
+                configInfo.ErrorLog = setting.GetTrimmedValue();
             }
             else
             {
@@ -480,7 +480,10 @@ namespace Web.Management.PHP.Config
 
         public PHPIniFile GetPHPIniFile()
         {
-            Debug.Assert(IsPHPRegistered());
+            if (!IsPHPRegistered())
+            {
+                throw new FileNotFoundException("php.ini file is not found because php is not registered with IIS.");
+            }
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -679,7 +682,7 @@ namespace Web.Management.PHP.Config
         {
             string handlerName = _currentPHPHandler.Name;
             PHPIniSetting setting = file.GetSetting("error_log");
-            if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, true))
+            if (setting == null || !IsAbsoluteFilePath(setting.GetTrimmedValue(), true))
             {
                 string value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
                 setting = new PHPIniSetting("error_log", DoubleQuotesWrap(value), "PHP");
@@ -707,7 +710,7 @@ namespace Web.Management.PHP.Config
         private static PHPIniSetting GetToApplySessionPath(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting("session.save_path");
-            if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
+            if (setting == null || !IsAbsoluteFilePath(setting.GetTrimmedValue(), false))
             {
                 string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
                 setting = new PHPIniSetting("session.save_path", DoubleQuotesWrap(value), "Session");
@@ -719,7 +722,7 @@ namespace Web.Management.PHP.Config
         private static PHPIniSetting GetToApplyUploadTmpDir(PHPIniFile file)
         {
             PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
-            if (setting == null || !IsAbsoluteFilePath(setting.TrimmedValue, false))
+            if (setting == null || !IsAbsoluteFilePath(setting.GetTrimmedValue(), false))
             {
                 string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
                 setting = new PHPIniSetting("upload_tmp_dir", DoubleQuotesWrap(value), "PHP");
@@ -1104,7 +1107,7 @@ namespace Web.Management.PHP.Config
             
             // Check if cgi.force_redirect is set correctly
             PHPIniSetting setting = file.GetSetting("cgi.force_redirect");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("cgi.force_redirect",
                                                                 String.Empty,
@@ -1113,10 +1116,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueCgiForceRedirectRecommend",
                                                                 PHPConfigIssueIndex.CgiForceRedirect);
             }
-            else if (!String.Equals(setting.TrimmedValue, "0", StringComparison.OrdinalIgnoreCase))
+            else if (!String.Equals(setting.GetTrimmedValue(), "0", StringComparison.OrdinalIgnoreCase))
             {
                 configIssue = new PHPConfigIssue("cgi.force_redirect",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 "0",
                                                                 "ConfigIssueCgiForceRedirectNotCorrect",
                                                                 "ConfigIssueCgiForceRedirectRecommend",
@@ -1132,7 +1135,7 @@ namespace Web.Management.PHP.Config
             
             // Check if cgi.fix_pathinfo is set correctly
             PHPIniSetting setting = file.GetSetting("cgi.fix_pathinfo");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
                                                                 String.Empty,
@@ -1141,10 +1144,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueCgiPathInfoRecommend",
                                                                 PHPConfigIssueIndex.CgiPathInfo);
             }
-            else if (!String.Equals(setting.TrimmedValue, "1", StringComparison.OrdinalIgnoreCase))
+            else if (!String.Equals(setting.GetTrimmedValue(), "1", StringComparison.OrdinalIgnoreCase))
             {
                 configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 "1",
                                                                 "ConfigIssueCgiPathInfoNotCorrect",
                                                                 "ConfigIssueCgiPathInfoRecommend",
@@ -1314,7 +1317,7 @@ namespace Web.Management.PHP.Config
             // Check if error_log is set to an absolute path and that path exists
             PHPIniSetting setting = file.GetSetting("error_log");
             string expectedValue = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), _currentPHPHandler.Name + "_errors.log");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("error_log",
                                                                 String.Empty,
@@ -1323,10 +1326,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueErrorLogRecommend",
                                                                 PHPConfigIssueIndex.ErrorLog);
             }
-            else if (!IsAbsoluteFilePath(setting.TrimmedValue, true /* this is supposed to be a file */))
+            else if (!IsAbsoluteFilePath(setting.GetTrimmedValue(), true /* this is supposed to be a file */))
             {
                 configIssue = new PHPConfigIssue("error_log",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 expectedValue,
                                                                 "ConfigIssueErrorLogNotCorrect",
                                                                 "ConfigIssueErrorLogRecommend",
@@ -1342,7 +1345,7 @@ namespace Web.Management.PHP.Config
             
             PHPIniSetting setting = file.GetSetting("extension_dir");
             string expectedValue = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("extension_dir",
                                                                 String.Empty,
@@ -1353,12 +1356,12 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                string currentValue = EnsureTrailingBackslash(setting.TrimmedValue);
+                string currentValue = EnsureTrailingBackslash(setting.GetTrimmedValue());
                 currentValue = EnsureBackslashes(currentValue);
                 if (!String.Equals(currentValue, expectedValue, StringComparison.OrdinalIgnoreCase))
                 {
                     configIssue = new PHPConfigIssue("extension_dir",
-                                                                    setting.TrimmedValue,
+                                                                    setting.GetTrimmedValue(),
                                                                     expectedValue,
                                                                     "ConfigIssueExtensionDirIncorrect",
                                                                     "ConfigIssueExtensionDirRecommend",
@@ -1375,7 +1378,7 @@ namespace Web.Management.PHP.Config
             
             // Check if fastcgi impersonation is turned on
             PHPIniSetting setting = file.GetSetting("fastcgi.impersonate");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("fastcgi.impersonate",
                                                                 String.Empty,
@@ -1384,10 +1387,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueFastCgiImpersonateRecommend",
                                                                 PHPConfigIssueIndex.FastCgiImpersonation);
             }
-            else if (!String.Equals(setting.TrimmedValue, "1", StringComparison.OrdinalIgnoreCase))
+            else if (!String.Equals(setting.GetTrimmedValue(), "1", StringComparison.OrdinalIgnoreCase))
             {
                 configIssue = new PHPConfigIssue("fastcgi.impersonate",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 "1",
                                                                 "ConfigIssueFastCgiImpersonateNotCorrect",
                                                                 "ConfigIssueFastCgiImpersonateRecommend",
@@ -1403,7 +1406,7 @@ namespace Web.Management.PHP.Config
 
             // Check if log_errors is set to On
             PHPIniSetting setting = file.GetSetting("log_errors");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("log_errors",
                                                                 String.Empty,
@@ -1412,10 +1415,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueLogErrorsRecommend",
                                                                 PHPConfigIssueIndex.LogErrors);
             }
-            else if (!String.Equals(setting.TrimmedValue, "On", StringComparison.OrdinalIgnoreCase))
+            else if (!String.Equals(setting.GetTrimmedValue(), "On", StringComparison.OrdinalIgnoreCase))
             {
                 configIssue = new PHPConfigIssue("log_errors",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 "On",
                                                                 "ConfigIssueLogErrorsNotCorrect",
                                                                 "ConfigIssueLogErrorsRecommend",
@@ -1543,7 +1546,7 @@ namespace Web.Management.PHP.Config
             // Check if session path is set to an absolute path and that path exists
             PHPIniSetting setting = file.GetSetting("session.save_path");
             string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("session.save_path",
                                                                 String.Empty,
@@ -1552,10 +1555,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueSessionPathRecommend",
                                                                 PHPConfigIssueIndex.SessionPath);
             }
-            else if (!IsAbsoluteFilePath(setting.TrimmedValue, false /* this is supposed to be a directory */))
+            else if (!IsAbsoluteFilePath(setting.GetTrimmedValue(), false /* this is supposed to be a directory */))
             {
                 configIssue = new PHPConfigIssue("session.save_path",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 expectedValue,
                                                                 "ConfigIssueSessionPathNotCorrect",
                                                                 "ConfigIssueSessionPathRecommend",
@@ -1571,7 +1574,7 @@ namespace Web.Management.PHP.Config
             // Check if Upload dir is set to an absolute path and that path exists
             PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
             string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
-            if (setting == null || String.IsNullOrEmpty(setting.TrimmedValue))
+            if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("upload_tmp_dir",
                                                                 String.Empty,
@@ -1580,10 +1583,10 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueUploadDirRecommend",
                                                                 PHPConfigIssueIndex.UploadDir);
             }
-            else if (!IsAbsoluteFilePath(setting.TrimmedValue, false /* this is supposed to be a directory */))
+            else if (!IsAbsoluteFilePath(setting.GetTrimmedValue(), false /* this is supposed to be a directory */))
             {
                 configIssue = new PHPConfigIssue("upload_tmp_dir",
-                                                                setting.TrimmedValue,
+                                                                setting.GetTrimmedValue(),
                                                                 expectedValue,
                                                                 "ConfigIssueUploadDirNotCorrect",
                                                                 "ConfigIssueUploadDirRecommend",

@@ -14,35 +14,22 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    [Cmdlet(VerbsCommon.Get, "PHPVersions")]
-    public sealed class GetPHPVersionsCommand : BaseCommand
+    [Cmdlet(VerbsCommon.Get, "PHPConfiguration")]
+    public sealed class GetPHPConfigurationCmdlet : BaseCmdlet
     {
-        private string _configurationPath;
-
-        [Parameter(ValueFromPipeline = true, Position = 0)]
-        public string ConfigurationPath
-        {
-            set
-            {
-                _configurationPath = value;
-            }
-            get
-            {
-                return _configurationPath;
-            }
-        }
 
         protected override void ProcessRecord()
         {
             EnsureAdminUser();
+
             using (ServerManager serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, _configurationPath);
+                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
                 PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                RemoteObjectCollection<PHPVersion> phpVersions = configHelper.GetAllPHPVersions();
-                foreach (PHPVersion phpVersion in phpVersions)
+                PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
+                if (configInfo != null)
                 {
-                    WriteObject(phpVersion);
+                    WriteObject(configInfo);
                 }
             }
         }
