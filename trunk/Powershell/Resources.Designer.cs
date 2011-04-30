@@ -86,5 +86,15 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("SnapInVendor", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have access to view or modify IIS configuration. 
+        ///Is PowerShell console launched in elevated mode (Run As Administrator)?.
+        /// </summary>
+        internal static string UserIsNotAdminException {
+            get {
+                return ResourceManager.GetString("UserIsNotAdminException", resourceCulture);
+            }
+        }
     }
 }

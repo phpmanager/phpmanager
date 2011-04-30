@@ -126,4 +126,8 @@
   <data name="SnapInVendor" xml:space="preserve">
     <value>PHP Manager Project</value>
   </data>
+  <data name="UserIsNotAdminException" xml:space="preserve">
+    <value>You do not have access to view or modify IIS configuration. 
+Is PowerShell console launched in elevated mode (Run As Administrator)?</value>
+  </data>
 </root>

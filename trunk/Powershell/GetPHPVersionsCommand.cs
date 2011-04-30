@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System.Collections;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -16,7 +15,7 @@ namespace Web.Management.PHP
 {
 
     [Cmdlet(VerbsCommon.Get, "PHPVersions")]
-    public class GetPHPVersionsCommand : PSCmdlet
+    public sealed class GetPHPVersionsCommand : BaseCommand
     {
         private string _configurationPath;
 
@@ -35,6 +34,7 @@ namespace Web.Management.PHP
 
         protected override void ProcessRecord()
         {
+            EnsureAdminUser();
             using (ServerManager serverManager = new ServerManager())
             {
                 ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, _configurationPath);
