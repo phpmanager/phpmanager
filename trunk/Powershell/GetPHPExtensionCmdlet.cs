@@ -16,11 +16,11 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    [Cmdlet(VerbsCommon.Get, "PHPSetting")]
-    public sealed class GetPHPSettingCmdlet : BaseCmdlet
+    [Cmdlet(VerbsCommon.Get, "PHPExtension")]
+    public sealed class GetPHPExtensionCmdlet : BaseCmdlet
     {
         private string _name;
-        private string _section;
+        private PHPExtensionStatus _status;
 
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 0)]
         public string Name
@@ -35,16 +35,16 @@ namespace Web.Management.PHP
             }
         }
 
-        [Parameter(ValueFromPipelineByPropertyName = true, Position = 1)]
-        public string Section
+        [Parameter(ValueFromPipeline = false, Position = 1)]
+        public PHPExtensionStatus Status
         {
             get
             {
-                return _section;
+                return _status;
             }
             set
             {
-                _section = value;
+                _status = value;
             }
         }
 
@@ -61,35 +61,32 @@ namespace Web.Management.PHP
                     PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
 
                     bool filterByName = false;
-                    bool filterBySection = false;
                     if (!String.IsNullOrEmpty(Name))
                     {
                         filterByName = true;
                     }
-                    if (!String.IsNullOrEmpty(Section))
-                    {
-                        filterBySection = true;
-                    }
 
-                    foreach (PHPIniSetting setting in phpIniFile.Settings)
+                    foreach (PHPIniExtension extension in phpIniFile.Extensions)
                     {
                         if (filterByName)
                         {
-                            if (setting.Name.IndexOf(Name, StringComparison.OrdinalIgnoreCase) == -1)
+                            if (extension.Name.IndexOf(Name, StringComparison.OrdinalIgnoreCase) == -1)
                             {
                                 continue;
                             }
                         }
-                        if (filterBySection)
+                        if (Status == PHPExtensionStatus.Disabled && extension.Enabled)
                         {
-                            if (setting.Section.IndexOf(Section, StringComparison.OrdinalIgnoreCase) == -1)
-                            {
-                                continue;
-                            }
+                            continue;
+                        }
+                        if (Status == PHPExtensionStatus.Enabled && !extension.Enabled)
+                        {
+                            continue;
                         }
 
-                        PHPSettingItem settingItem = new PHPSettingItem(setting);
-                        WriteObject(settingItem);
+                        PHPExtensionItem extensionItem = new PHPExtensionItem(extension);
+
+                        WriteObject(extensionItem);
                     }
                 }
             }
@@ -97,6 +94,7 @@ namespace Web.Management.PHP
             {
                 ReportError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
+
         }
     }
 }

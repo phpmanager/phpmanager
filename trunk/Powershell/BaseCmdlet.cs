@@ -18,7 +18,7 @@ namespace Web.Management.PHP
     {
         private string _configurationPath;
 
-        [Parameter(ValueFromPipeline = true, Position = 0)]
+        [Parameter(ValueFromPipeline = false)]
         public string ConfigurationPath
         {
             set

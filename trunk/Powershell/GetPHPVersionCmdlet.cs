@@ -14,8 +14,8 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    [Cmdlet(VerbsCommon.Get, "PHPVersions")]
-    public sealed class GetPHPVersionsCmdlet : BaseCmdlet
+    [Cmdlet(VerbsCommon.Get, "PHPVersion")]
+    public sealed class GetPHPVersionCmdlet : BaseCmdlet
     {
         protected override void ProcessRecord()
         {

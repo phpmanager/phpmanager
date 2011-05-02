@@ -48,17 +48,21 @@
     <Compile Include="BaseCmdlet.cs" />
     <Compile Include="Config\ServerManagerWrapper.cs" />
     <Compile Include="GetPHPConfigurationCmdlet.cs" />
+    <Compile Include="GetPHPExtensionCmdlet.cs" />
     <Compile Include="GetPHPSettingCmdlet.cs" />
-    <Compile Include="GetPHPVersionsCmdlet.cs" />
+    <Compile Include="GetPHPVersionCmdlet.cs" />
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PHPExtensionItem.cs" />
+    <Compile Include="PHPSettingItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SetPHPExtensionCmdlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\phpmgrpublic.snk">
