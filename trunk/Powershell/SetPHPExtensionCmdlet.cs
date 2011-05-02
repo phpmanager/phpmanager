@@ -17,7 +17,9 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP
 {
 
-    [Cmdlet(VerbsCommon.Set, "PHPExtension")]
+    [Cmdlet(VerbsCommon.Set, "PHPExtension", 
+            SupportsShouldProcess = true, 
+            ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class SetPHPExtensionCmdlet : BaseCmdlet
     {
 
@@ -77,7 +79,7 @@ namespace Web.Management.PHP
                     _serverManager = null;
                 }
 
-                ReportError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
         }
 
@@ -126,16 +128,18 @@ namespace Web.Management.PHP
             if (!ExtensionExists(_phpIniFile.Extensions, Name, out currentlyEnabled))
             {
                 FileNotFoundException ex = new FileNotFoundException(String.Format("Extension with name {0} does not exist.", Name));
-                ReportError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
+                ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
             }
 
             if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
                 (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
             {
-                PHPIniExtension extension = new PHPIniExtension(Name, (Status == PHPExtensionStatus.Enabled) ? true : false);
-                _extensions.Add(extension);
+                if (ShouldProcess(Name))
+                {
+                    PHPIniExtension extension = new PHPIniExtension(Name, (Status == PHPExtensionStatus.Enabled) ? true : false);
+                    _extensions.Add(extension);
+                }
             }
         }
-
     }
 }

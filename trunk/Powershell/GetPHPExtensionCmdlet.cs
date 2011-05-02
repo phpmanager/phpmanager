@@ -17,6 +17,7 @@ namespace Web.Management.PHP
 {
 
     [Cmdlet(VerbsCommon.Get, "PHPExtension")]
+    [OutputType(typeof(PHPExtensionItem))]
     public sealed class GetPHPExtensionCmdlet : BaseCmdlet
     {
         private string _name;
@@ -92,7 +93,7 @@ namespace Web.Management.PHP
             }
             catch (FileNotFoundException ex)
             {
-                ReportError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
 
         }

@@ -39,14 +39,20 @@ namespace Web.Management.PHP
             if (!principal.IsInRole(sidAdmin))
             {
                 UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.UserIsNotAdminException);
-                ReportError(exception, "PermissionDenied", ErrorCategory.PermissionDenied);
+                ReportTerminatingError(exception, "PermissionDenied", ErrorCategory.PermissionDenied);
             }
         }
 
-        protected void ReportError(Exception exception, string errorId, ErrorCategory errorCategory)
+        protected void ReportTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
         {
             ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
             ThrowTerminatingError(errorRecord);
+        }
+
+        protected void ReportNonTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
+        {
+            ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
+            WriteError(errorRecord);
         }
     }
 }

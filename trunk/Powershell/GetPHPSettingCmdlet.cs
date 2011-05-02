@@ -95,7 +95,7 @@ namespace Web.Management.PHP
             }
             catch (FileNotFoundException ex)
             {
-                ReportError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
         }
     }
