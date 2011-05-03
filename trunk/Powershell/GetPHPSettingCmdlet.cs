@@ -17,6 +17,7 @@ namespace Web.Management.PHP
 {
 
     [Cmdlet(VerbsCommon.Get, "PHPSetting")]
+    [OutputType(typeof(PHPSettingItem))]
     public sealed class GetPHPSettingCmdlet : BaseCmdlet
     {
         private string _name;

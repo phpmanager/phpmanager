@@ -15,6 +15,7 @@ namespace Web.Management.PHP
 {
 
     [Cmdlet(VerbsCommon.Get, "PHPConfiguration")]
+    [OutputType(typeof(PHPConfigurationItem))]
     public sealed class GetPHPConfigurationCmdlet : BaseCmdlet
     {
 
@@ -29,7 +30,8 @@ namespace Web.Management.PHP
                 PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
                 if (configInfo != null)
                 {
-                    WriteObject(configInfo);
+                    PHPConfigurationItem configurationItem = new PHPConfigurationItem(configInfo);
+                    WriteObject(configurationItem);
                 }
             }
         }

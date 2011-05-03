@@ -129,7 +129,7 @@ namespace Web.Management.PHP
                 bool currentlyEnabled = false;
                 if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
                 {
-                    FileNotFoundException ex = new FileNotFoundException(String.Format("Extension with name {0} does not exist.", extensionName));
+                    InvalidOperationException ex = new InvalidOperationException(String.Format("Extension with name {0} does not exist.", extensionName));
                     ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
                     return;
                 }

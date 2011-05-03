@@ -89,7 +89,8 @@ namespace Web.Management.PHP
                     }
                     else
                     {
-                        FileNotFoundException ex = new FileNotFoundException(String.Format("Setting with name {0} does not exist. Use New-PHPSetting cmdlet to add a new setting.", Name));
+                        
+                        InvalidOperationException ex = new InvalidOperationException(String.Format("Setting with name {0} does not exist. Use New-PHPSetting cmdlet to add a new setting.", Name));
                         ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
                         return;
                     }

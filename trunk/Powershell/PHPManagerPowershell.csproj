@@ -54,8 +54,10 @@
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PHPConfigurationItem.cs" />
     <Compile Include="PHPExtensionItem.cs" />
     <Compile Include="PHPSettingItem.cs" />
+    <Compile Include="PHPVersionItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
