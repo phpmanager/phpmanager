@@ -22,7 +22,7 @@ namespace Web.Management.PHP
         private string _name;
         private string _section;
 
-        [Parameter(ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Position = 0)]
         public string Name
         {
             get
@@ -35,7 +35,7 @@ namespace Web.Management.PHP
             }
         }
 
-        [Parameter(ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter]
         public string Section
         {
             get

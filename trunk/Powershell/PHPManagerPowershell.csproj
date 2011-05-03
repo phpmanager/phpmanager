@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SetPHPSettingCmdlet.cs" />
     <Compile Include="SetPHPExtensionCmdlet.cs" />
   </ItemGroup>
   <ItemGroup>

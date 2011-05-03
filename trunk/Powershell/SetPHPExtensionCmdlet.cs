@@ -23,7 +23,7 @@ namespace Web.Management.PHP
     public sealed class SetPHPExtensionCmdlet : BaseCmdlet
     {
 
-        private string _name;
+        private string[] _name;
         private PHPExtensionStatus _status = PHPExtensionStatus.Any;
 
         private ServerManager _serverManager;
@@ -34,7 +34,7 @@ namespace Web.Management.PHP
         [Parameter( Mandatory = true, 
                     ValueFromPipelineByPropertyName = true, 
                     Position = 0)]
-        public string Name
+        public string[] Name
         {
             get
             {
@@ -124,20 +124,24 @@ namespace Web.Management.PHP
             Debug.Assert(_phpIniFile != null);
             Debug.Assert(_extensions != null);
 
-            bool currentlyEnabled = false;
-            if (!ExtensionExists(_phpIniFile.Extensions, Name, out currentlyEnabled))
+            foreach (string extensionName in Name)
             {
-                FileNotFoundException ex = new FileNotFoundException(String.Format("Extension with name {0} does not exist.", Name));
-                ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
-            }
-
-            if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
-                (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
-            {
-                if (ShouldProcess(Name))
+                bool currentlyEnabled = false;
+                if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
                 {
-                    PHPIniExtension extension = new PHPIniExtension(Name, (Status == PHPExtensionStatus.Enabled) ? true : false);
-                    _extensions.Add(extension);
+                    FileNotFoundException ex = new FileNotFoundException(String.Format("Extension with name {0} does not exist.", extensionName));
+                    ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
+                    return;
+                }
+
+                if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
+                    (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
+                {
+                    if (ShouldProcess(extensionName))
+                    {
+                        PHPIniExtension extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
+                        _extensions.Add(extension);
+                    }
                 }
             }
         }
