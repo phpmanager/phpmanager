@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="SetPHPSettingCmdlet.cs" />
     <Compile Include="SetPHPExtensionCmdlet.cs" />
+    <Compile Include="SetPHPVersionCmdlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\phpmgrpublic.snk">

@@ -293,6 +293,7 @@ namespace Web.Management.PHP.Setup
                 _sitesComboBox.Items.Clear();
 
                 ArrayList sites = e.Result as ArrayList;
+                sites.Sort();
                 foreach (string siteName in sites)
                 {
                     _sitesComboBox.Items.Add(siteName);

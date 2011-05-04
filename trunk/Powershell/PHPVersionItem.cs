@@ -16,12 +16,12 @@ namespace Web.Management.PHP
     public sealed class PHPVersionItem
     {
         PHPVersion _phpVersion;
-        bool _isActive;
+        bool _active;
 
-        public PHPVersionItem(PHPVersion phpVersion, bool isActive)
+        public PHPVersionItem(PHPVersion phpVersion, bool active)
         {
             _phpVersion = phpVersion;
-            _isActive = isActive;
+            _active = active;
         }
 
         public string Name
@@ -48,11 +48,11 @@ namespace Web.Management.PHP
             }
         }
 
-        public bool IsActive
+        public bool Active
         {
             get
             {
-                return _isActive;
+                return _active;
             }
         }
     }

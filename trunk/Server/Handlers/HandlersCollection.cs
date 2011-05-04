@@ -70,6 +70,20 @@ namespace Web.Management.PHP.Handlers
             return null;
         }
 
+        public HandlerElement GetHandlerByNameAndPath(string name, string path)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                HandlerElement element = base[i];
+                if (String.Equals(name, element.Name, StringComparison.OrdinalIgnoreCase) &&
+                    String.Equals(path, element.Path, StringComparison.OrdinalIgnoreCase))
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
         public HandlerElement GetHandler(string path, string scriptProcessor)
         {
             for (int i = 0; i < Count; i++)

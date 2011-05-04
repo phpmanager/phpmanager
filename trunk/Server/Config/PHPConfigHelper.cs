@@ -1055,6 +1055,11 @@ namespace Web.Management.PHP.Config
             }
         }
 
+        public HandlerElement GetPHPHandlerByName(string name)
+        {
+            return _handlersCollection.GetHandlerByNameAndPath(name, "*.php");
+        }
+
         public void SelectPHPHandler(string name)
         {
             Debug.Assert(IsPHPRegistered());
