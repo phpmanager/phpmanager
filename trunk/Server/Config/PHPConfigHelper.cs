@@ -64,7 +64,7 @@ namespace Web.Management.PHP.Config
 
         public string AddExtension(string extensionPath)
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             string filename = Path.GetFileName(extensionPath);
             string targetPath = Path.Combine(PHPDirectory, "ext");
@@ -72,7 +72,7 @@ namespace Web.Management.PHP.Config
 
             if (File.Exists(targetPath))
             {
-                throw new InvalidOperationException("The extension file " + filename + " already exists at the PHP ext directory");
+                throw new IOException(String.Format("The extension file {0} already exists at the PHP ext directory", filename));
             }
 
             File.Copy(extensionPath, targetPath, false);
@@ -87,7 +87,7 @@ namespace Web.Management.PHP.Config
 
         public void AddOrUpdatePHPIniSettings(IEnumerable<PHPIniSetting> settings)
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -206,10 +206,7 @@ namespace Web.Management.PHP.Config
         public void ApplyRecommendedSettings(ArrayList configIssueIndexes)
         {
             // Check if PHP is not registered
-            if (!IsPHPRegistered())
-            {
-                throw new InvalidOperationException("Cannot apply recommended settings because PHP is not registered properly");
-            }
+            EnsurePHPIsRegistered();
 
             ApplyRecommendedFastCgiSettings(configIssueIndexes);
             ApplyRecommendedPHPIniSettings(configIssueIndexes);
@@ -400,7 +397,7 @@ namespace Web.Management.PHP.Config
 
         public RemoteObjectCollection<PHPVersion> GetAllPHPVersions()
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             RemoteObjectCollection<PHPVersion> result = new RemoteObjectCollection<PHPVersion>();
             
@@ -480,10 +477,7 @@ namespace Web.Management.PHP.Config
 
         public PHPIniFile GetPHPIniFile()
         {
-            if (!IsPHPRegistered())
-            {
-                throw new FileNotFoundException("php.ini file is not found because php is not registered with IIS.");
-            }
+            EnsurePHPIsRegistered();
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -954,7 +948,7 @@ namespace Web.Management.PHP.Config
             // Check for existence of php executable in the specified directory
             if (!File.Exists(phpexePath))
             {
-                throw new FileNotFoundException("php-cgi.exe and php.exe do not exist");
+                throw new FileNotFoundException(String.Format("The file {0} does not exist.", phpexePath));
             }
 
             // Check for existence of php extensions directory
@@ -962,7 +956,7 @@ namespace Web.Management.PHP.Config
             string extDir = Path.Combine(phpDir, "ext");
             if (!Directory.Exists(extDir))
             {
-                throw new DirectoryNotFoundException("ext directory does not exist in " + phpDir);
+                throw new DirectoryNotFoundException(String.Format("The folder {0} does not contain \"ext\" folder with PHP extensions.",  phpDir));
             }
 
             string phpIniFilePath = PreparePHPIniFile(phpDir);
@@ -1044,7 +1038,7 @@ namespace Web.Management.PHP.Config
 
         public void RemovePHPIniSetting(PHPIniSetting setting)
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -1057,12 +1051,22 @@ namespace Web.Management.PHP.Config
 
         public HandlerElement GetPHPHandlerByName(string name)
         {
+            EnsurePHPIsRegistered();
+
             return _handlersCollection.GetHandlerByNameAndPath(name, "*.php");
+        }
+
+        private void EnsurePHPIsRegistered()
+        {
+            if (!IsPHPRegistered())
+            {
+                throw new InvalidOperationException("Cannot perform the action because PHP is not registered properly.");
+            }
         }
 
         public void SelectPHPHandler(string name)
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             HandlerElement handler = _handlersCollection[name];
             // If the handler is already an active PHP handler then no need to do anything.
@@ -1097,7 +1101,7 @@ namespace Web.Management.PHP.Config
 
         public void UpdateExtensions(IEnumerable<PHPIniExtension> extensions)
         {
-            Debug.Assert(IsPHPRegistered());
+            EnsurePHPIsRegistered();
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -1164,11 +1168,7 @@ namespace Web.Management.PHP.Config
 
         public RemoteObjectCollection<PHPConfigIssue> ValidateConfiguration()
         {
-            // Check if PHP is not registered
-            if (!IsPHPRegistered())
-            {
-                return null;
-            }
+            EnsurePHPIsRegistered();
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
             file.Parse();

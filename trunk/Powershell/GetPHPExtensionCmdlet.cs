@@ -71,7 +71,7 @@ namespace Web.Management.PHP
                     {
                         if (filterByName)
                         {
-                            if (extension.Name.IndexOf(Name, StringComparison.OrdinalIgnoreCase) == -1)
+                            if (!MatchWildcards(Name, extension.Name))
                             {
                                 continue;
                             }
@@ -94,6 +94,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException ex)
             {
                 ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
 
         }

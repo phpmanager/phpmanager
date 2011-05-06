@@ -7,6 +7,8 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
+using System;
+using System.IO;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -23,16 +25,31 @@ namespace Web.Management.PHP
         {
             EnsureAdminUser();
 
-            using (ServerManager serverManager = new ServerManager())
+            try
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
-                if (configInfo != null)
+                using (ServerManager serverManager = new ServerManager())
                 {
-                    PHPConfigurationItem configurationItem = new PHPConfigurationItem(configInfo);
-                    WriteObject(configurationItem);
+                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
+                    PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+                    PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
+                    if (configInfo.RegistrationType == PHPRegistrationType.FastCgi)
+                    {
+                        PHPConfigurationItem configurationItem = new PHPConfigurationItem(configInfo);
+                        WriteObject(configurationItem);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(String.Format("PHP is not registered properly. Use New-Version cmdlet to register PHP with IIS."));
+                    }
                 }
+            }
+            catch (FileNotFoundException ex)
+            {
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
     }

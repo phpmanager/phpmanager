@@ -92,7 +92,7 @@ namespace Web.Management.PHP.Handlers
                 if (String.Equals(path, element.Path, StringComparison.OrdinalIgnoreCase) &&
                     String.Equals(scriptProcessor, element.ScriptProcessor, StringComparison.OrdinalIgnoreCase))
                 {
-                            return element;
+                    return element;
                 }
             }
             return null;

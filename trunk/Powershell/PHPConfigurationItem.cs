@@ -23,7 +23,7 @@ namespace Web.Management.PHP
             _configInfo = configInfo;
         }
 
-        public string Name
+        public string HandlerName
         {
             get
             {

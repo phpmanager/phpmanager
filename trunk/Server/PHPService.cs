@@ -44,9 +44,13 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
-            catch (InvalidOperationException)
+            catch (IOException)
             {
                 RaiseException("ErrorExtensionFileAlreadyExists");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
             catch (Exception)
             {
@@ -74,6 +78,10 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -90,6 +98,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
         }
 
@@ -199,6 +211,10 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
+            }
 
             return (versions != null) ? versions.GetData() : null;
         }
@@ -216,6 +232,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
 
             return (configIssues != null) ? configIssues.GetData() : null;
@@ -236,6 +256,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
 
             return (result != null) ? result.GetData() : null;
@@ -280,6 +304,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
 
             Debug.Assert(file != null);
@@ -386,6 +414,10 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -407,6 +439,10 @@ namespace Web.Management.PHP
             {
                 RaiseException("ErrorPHPIniNotFound");
             }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
+            }
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
@@ -426,6 +462,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException)
             {
                 RaiseException("ErrorPHPIniNotFound");
+            }
+            catch (InvalidOperationException)
+            {
+                RaiseException("ErrorPHPIsNotRegistered");
             }
         }
 

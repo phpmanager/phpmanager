@@ -71,7 +71,7 @@ namespace Web.Management.PHP
                 _phpIniFile = _configHelper.GetPHPIniFile();
                 _extensions = new RemoteObjectCollection<PHPIniExtension>();
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException fileNotFoundException)
             {
                 if (_serverManager != null)
                 {
@@ -79,7 +79,17 @@ namespace Web.Management.PHP
                     _serverManager = null;
                 }
 
-                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+                ReportTerminatingError(fileNotFoundException, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                if (_serverManager != null)
+                {
+                    _serverManager.Dispose();
+                    _serverManager = null;
+                }
+
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
 

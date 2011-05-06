@@ -24,7 +24,7 @@ namespace Web.Management.PHP
             _active = active;
         }
 
-        public string Name
+        public string HandlerName
         {
             get
             {

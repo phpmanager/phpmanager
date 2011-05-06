@@ -100,6 +100,10 @@ namespace Web.Management.PHP
             {
                 ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+            }
         }
 
     }

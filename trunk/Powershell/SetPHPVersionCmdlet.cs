@@ -22,20 +22,20 @@ namespace Web.Management.PHP
         ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class SetPHPVersionCmdlet : BaseCmdlet
     {
-        private string _name;
+        private string _handlerName;
 
         [Parameter(Mandatory = true,
             ValueFromPipelineByPropertyName = true,
             Position = 0)]
-        public string Name
+        public string HandlerName
         {
             get
             {
-                return _name;
+                return _handlerName;
             }
             set
             {
-                _name = value;
+                _handlerName = value;
             }
         }
 
@@ -47,23 +47,30 @@ namespace Web.Management.PHP
                 {
                     ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
                     PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                    if (configHelper.GetPHPHandlerByName(Name) != null)
+                    if (configHelper.GetPHPHandlerByName(HandlerName) != null)
                     {
-                        if (ShouldProcess(Name))
+                        if (ShouldProcess(HandlerName))
                         {
-                            configHelper.SelectPHPHandler(Name);
+                            configHelper.SelectPHPHandler(HandlerName);
                         }
                     }
                     else
                     {
-                        ArgumentException e = new ArgumentException(String.Format("PHP handler with name \"{0}\" does not exist.", Name));
-                        ReportNonTerminatingError(e, "InvalidHandlerName", ErrorCategory.InvalidArgument);
+                        throw new ArgumentException(String.Format("PHP handler with name \"{0}\" does not exist.", HandlerName));
                     }
                 }
             }
             catch (FileNotFoundException fileNotFoundException)
             {
                 ReportTerminatingError(fileNotFoundException, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+            }
+            catch (ArgumentException argumentException)
+            {
+                ReportNonTerminatingError(argumentException, "InvalidHandlerName", ErrorCategory.InvalidArgument);
             }
         }
     }

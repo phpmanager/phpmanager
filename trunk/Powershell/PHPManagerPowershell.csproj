@@ -54,6 +54,7 @@
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NewPHPVersionCmdlet.cs" />
     <Compile Include="PHPConfigurationItem.cs" />
     <Compile Include="PHPExtensionItem.cs" />
     <Compile Include="PHPSettingItem.cs" />

@@ -76,14 +76,14 @@ namespace Web.Management.PHP
                     {
                         if (filterByName)
                         {
-                            if (setting.Name.IndexOf(Name, StringComparison.OrdinalIgnoreCase) == -1)
+                            if (!MatchWildcards(Name, setting.Name))
                             {
                                 continue;
                             }
                         }
                         if (filterBySection)
                         {
-                            if (setting.Section.IndexOf(Section, StringComparison.OrdinalIgnoreCase) == -1)
+                            if (!MatchWildcards(Section, setting.Section))
                             {
                                 continue;
                             }
@@ -97,6 +97,10 @@ namespace Web.Management.PHP
             catch (FileNotFoundException ex)
             {
                 ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
     }

@@ -8,6 +8,7 @@
 //----------------------------------------------------------------------- 
 
 using System;
+using System.IO;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -18,19 +19,19 @@ namespace Web.Management.PHP
     [Cmdlet(VerbsCommon.Get, "PHPVersion")]
     public sealed class GetPHPVersionCmdlet : BaseCmdlet
     {
-        private string _name;
+        private string _handlerName;
         private string _version;
 
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 0)]
-        public string Name
+        public string HandlerName
         {
             get
             {
-                return _name;
+                return _handlerName;
             }
             set
             {
-                _name = value;
+                _handlerName = value;
             }
         }
 
@@ -50,48 +51,59 @@ namespace Web.Management.PHP
         protected override void ProcessRecord()
         {
             EnsureAdminUser();
-            
-            using (ServerManager serverManager = new ServerManager())
+
+            try
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                RemoteObjectCollection<PHPVersion> phpVersions = configHelper.GetAllPHPVersions();
+                using (ServerManager serverManager = new ServerManager())
+                {
+                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
+                    PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+                    RemoteObjectCollection<PHPVersion> phpVersions = configHelper.GetAllPHPVersions();
 
-                bool filterByName = false;
-                bool filterByVersion = false;
-                if (!String.IsNullOrEmpty(Name))
-                {
-                    filterByName = true;
-                }
-                if (!String.IsNullOrEmpty(Version))
-                {
-                    filterByVersion = true;
-                }
-                
-                bool isActive = true;
-                foreach (PHPVersion phpVersion in phpVersions)
-                {
-                    if (filterByName)
+                    bool filterByName = false;
+                    bool filterByVersion = false;
+                    if (!String.IsNullOrEmpty(HandlerName))
                     {
-                        if (phpVersion.HandlerName.IndexOf(Name, StringComparison.OrdinalIgnoreCase) == -1)
-                        {
-                            isActive = false;
-                            continue;
-                        }
+                        filterByName = true;
                     }
-                    if (filterByVersion)
+                    if (!String.IsNullOrEmpty(Version))
                     {
-                        if (phpVersion.Version.IndexOf(Version, StringComparison.OrdinalIgnoreCase) == -1)
-                        {
-                            isActive = false;
-                            continue;
-                        }
+                        filterByVersion = true;
                     }
 
-                    PHPVersionItem versionItem = new PHPVersionItem(phpVersion, isActive);
-                    WriteObject(versionItem);
-                    isActive = false;
+                    bool isActive = true;
+                    foreach (PHPVersion phpVersion in phpVersions)
+                    {
+                        if (filterByName)
+                        {
+                            if (!MatchWildcards(HandlerName, phpVersion.HandlerName))
+                            {
+                                isActive = false;
+                                continue;
+                            }
+                        }
+                        if (filterByVersion)
+                        {
+                            if (!MatchWildcards(Version, phpVersion.Version))
+                            {
+                                isActive = false;
+                                continue;
+                            }
+                        }
+
+                        PHPVersionItem versionItem = new PHPVersionItem(phpVersion, isActive);
+                        WriteObject(versionItem);
+                        isActive = false;
+                    }
                 }
+            }
+            catch (FileNotFoundException ex)
+            {
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -10,6 +10,7 @@
 using System;
 using System.Management.Automation;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
 
 namespace Web.Management.PHP
 {
@@ -43,10 +44,10 @@ namespace Web.Management.PHP
             }
         }
 
-        protected void ReportTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
+        protected static bool MatchWildcards(string pattern, string text)  
         {
-            ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
-            ThrowTerminatingError(errorRecord);
+            pattern = String.Format("^{0}$", Regex.Escape(pattern).Replace("\\*", ".*"));
+            return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
         }
 
         protected void ReportNonTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
@@ -54,5 +55,12 @@ namespace Web.Management.PHP
             ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
             WriteError(errorRecord);
         }
+
+        protected void ReportTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
+        {
+            ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
+            ThrowTerminatingError(errorRecord);
+        }
+
     }
 }
