@@ -9,7 +9,7 @@
 
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     public enum PHPExtensionStatus { Any, Enabled, Disabled };

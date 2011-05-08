@@ -14,7 +14,7 @@ using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     [Cmdlet(VerbsCommon.Set, "PHPExtension", 
@@ -71,7 +71,7 @@ namespace Web.Management.PHP
                 _phpIniFile = _configHelper.GetPHPIniFile();
                 _extensions = new RemoteObjectCollection<PHPIniExtension>();
             }
-            catch (FileNotFoundException fileNotFoundException)
+            catch (FileNotFoundException)
             {
                 if (_serverManager != null)
                 {
@@ -79,9 +79,10 @@ namespace Web.Management.PHP
                     _serverManager = null;
                 }
 
-                ReportTerminatingError(fileNotFoundException, "FileNotFound", ErrorCategory.ObjectNotFound);
+                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
-            catch (InvalidOperationException invalidOperationException)
+            catch (InvalidOperationException)
             {
                 if (_serverManager != null)
                 {
@@ -89,7 +90,8 @@ namespace Web.Management.PHP
                     _serverManager = null;
                 }
 
-                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
+                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
 
@@ -139,7 +141,7 @@ namespace Web.Management.PHP
                 bool currentlyEnabled = false;
                 if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
                 {
-                    InvalidOperationException ex = new InvalidOperationException(String.Format("Extension with name {0} does not exist.", extensionName));
+                    InvalidOperationException ex = new InvalidOperationException(String.Format(Resources.ErrorExtensionDoesNotExist, extensionName));
                     ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
                     return;
                 }

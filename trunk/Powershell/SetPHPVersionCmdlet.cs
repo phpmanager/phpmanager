@@ -15,7 +15,7 @@ using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
 using Web.Management.PHP.Handlers;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
     [Cmdlet(VerbsCommon.Set, "PHPVersion",
         SupportsShouldProcess = true,
@@ -56,17 +56,19 @@ namespace Web.Management.PHP
                     }
                     else
                     {
-                        throw new ArgumentException(String.Format("PHP handler with name \"{0}\" does not exist.", HandlerName));
+                        throw new ArgumentException(String.Format(Resources.ErrorHandlerDoesNotExist, HandlerName));
                     }
                 }
             }
-            catch (FileNotFoundException fileNotFoundException)
+            catch (FileNotFoundException)
             {
-                ReportTerminatingError(fileNotFoundException, "FileNotFound", ErrorCategory.ObjectNotFound);
+                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
-            catch (InvalidOperationException invalidOperationException)
+            catch (InvalidOperationException)
             {
-                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
+                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
             catch (ArgumentException argumentException)
             {

@@ -14,7 +14,7 @@ using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
     [Cmdlet(VerbsCommon.New, "PHPVersion")]
     public sealed class NewPHPVersionCmdlet : BaseCmdlet
@@ -46,9 +46,20 @@ namespace Web.Management.PHP
                     _configHelper.RegisterPHPWithIIS(phpCgiExePath);
                 }
             }
-            catch (Exception e)
+            catch (ArgumentException)
             {
-                ReportTerminatingError(e, "FileNotFound", ErrorCategory.ObjectNotFound);
+                ArgumentException ex = new ArgumentException(Resources.ErrorInvalidPHPExecutablePath);
+                ReportTerminatingError(ex, "InvalidPHPExecutablePath", ErrorCategory.InvalidArgument);
+            }
+            catch (FileNotFoundException)
+            {
+                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorNoPHPFilesInDirectory);
+                ReportTerminatingError(ex, "NoPHPFilesInDirectory", ErrorCategory.ObjectNotFound);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                DirectoryNotFoundException ex = new DirectoryNotFoundException(Resources.ErrorNoExtDirectory);
+                ReportTerminatingError(ex, "NoExtDirectory", ErrorCategory.ObjectNotFound);
             }
         }
 
@@ -61,7 +72,7 @@ namespace Web.Management.PHP
             }
             if (!File.Exists(fullPath))
             {
-                throw new FileNotFoundException(String.Format("File {0} does not exist.", fullPath));
+                throw new FileNotFoundException();
             }
 
             return fullPath;

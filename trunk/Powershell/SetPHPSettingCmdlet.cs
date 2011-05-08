@@ -13,7 +13,7 @@ using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     [Cmdlet(VerbsCommon.Set, "PHPSetting",
@@ -90,19 +90,21 @@ namespace Web.Management.PHP
                     else
                     {
                         
-                        InvalidOperationException ex = new InvalidOperationException(String.Format("Setting with name {0} does not exist. Use New-PHPSetting cmdlet to add a new setting.", Name));
+                        InvalidOperationException ex = new InvalidOperationException(String.Format(Resources.ErrorSettingDoesNotExist, Name));
                         ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
                         return;
                     }
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
+                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
                 ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
-            catch (InvalidOperationException invalidOperationException)
+            catch (InvalidOperationException)
             {
-                ReportTerminatingError(invalidOperationException, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
+                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
             }
         }
 

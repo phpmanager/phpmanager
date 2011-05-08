@@ -10,7 +10,7 @@
 using System.Management.Automation;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     public sealed class PHPVersionItem

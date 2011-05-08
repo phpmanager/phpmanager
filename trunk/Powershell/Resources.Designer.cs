@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Management.PHP {
+namespace Web.Management.PHP.Powershell {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Web.Management.PHP {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Web.Management.PHP.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Web.Management.PHP.Powershell.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,6 +61,97 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extension with name &quot;{0}&quot; does not exist..
+        /// </summary>
+        internal static string ErrorExtensionDoesNotExist {
+            get {
+                return ResourceManager.GetString("ErrorExtensionDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP handler with name &quot;{0}&quot; does not exist..
+        /// </summary>
+        internal static string ErrorHandlerDoesNotExist {
+            get {
+                return ResourceManager.GetString("ErrorHandlerDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided path should point to either php-cgi.exe or php.exe..
+        /// </summary>
+        internal static string ErrorInvalidPHPExecutablePath {
+            get {
+                return ResourceManager.GetString("ErrorInvalidPHPExecutablePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory does not contain ext subdirectory with PHP extensions..
+        /// </summary>
+        internal static string ErrorNoExtDirectory {
+            get {
+                return ResourceManager.GetString("ErrorNoExtDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory does not contain required PHP file: php-cgi.exe and php.ini..
+        /// </summary>
+        internal static string ErrorNoPHPFilesInDirectory {
+            get {
+                return ResourceManager.GetString("ErrorNoPHPFilesInDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The php.ini file cannot be found. Make sure PHP is correctly registered with IIS..
+        /// </summary>
+        internal static string ErrorPHPIniNotFound {
+            get {
+                return ResourceManager.GetString("ErrorPHPIniNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP is not registered properly. Use New-Version cmdlet to register PHP with IIS..
+        /// </summary>
+        internal static string ErrorPHPIsNotRegistered {
+            get {
+                return ResourceManager.GetString("ErrorPHPIsNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting with name {0} does not exist. Use New-PHPSetting cmdlet to add a new setting..
+        /// </summary>
+        internal static string ErrorSettingDoesNotExist {
+            get {
+                return ResourceManager.GetString("ErrorSettingDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to view or modify IIS configuration. 
+        ///Is PowerShell console launched in elevated mode (Run As Administrator)?.
+        /// </summary>
+        internal static string ErrorUserIsNotAdmin {
+            get {
+                return ResourceManager.GetString("ErrorUserIsNotAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Not set&gt;.
+        /// </summary>
+        internal static string NotSetValue {
+            get {
+                return ResourceManager.GetString("NotSetValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A PowerShell snapin for managing PHP installations on IIS 7..
         /// </summary>
         internal static string SnapInDescription {
@@ -70,30 +161,11 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PHPManagerSnapIn.
-        /// </summary>
-        internal static string SnapInName {
-            get {
-                return ResourceManager.GetString("SnapInName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PHP Manager Project.
         /// </summary>
         internal static string SnapInVendor {
             get {
                 return ResourceManager.GetString("SnapInVendor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You do not have permission to view or modify IIS configuration. 
-        ///Is PowerShell console launched in elevated mode (Run As Administrator)?.
-        /// </summary>
-        internal static string UserIsNotAdminException {
-            get {
-                return ResourceManager.GetString("UserIsNotAdminException", resourceCulture);
             }
         }
     }

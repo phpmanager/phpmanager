@@ -12,7 +12,7 @@ using System;
 using System.ComponentModel;
 using System.Management.Automation;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     [RunInstaller(true)]
@@ -31,7 +31,7 @@ namespace Web.Management.PHP
         {
             get 
             {
-                return Resources.SnapInName;
+                return "PHPManagerSnapin";
             }
         }
 

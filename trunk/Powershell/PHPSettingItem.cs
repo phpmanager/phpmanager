@@ -10,7 +10,7 @@
 using System;
 using Web.Management.PHP.Config;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
     public sealed class PHPSettingItem
     {
@@ -35,7 +35,7 @@ namespace Web.Management.PHP
             {
                 if (String.IsNullOrEmpty(_setting.Value))
                 {
-                    return "<Not set>";
+                    return Resources.NotSetValue;
                 }
                 else
                 {

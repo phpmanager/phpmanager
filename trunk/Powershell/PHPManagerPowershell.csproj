@@ -8,7 +8,7 @@
     <ProjectGuid>{7714BEF4-AFA2-4951-A6E3-61793BCCF3F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Web.Management.PHP</RootNamespace>
+    <RootNamespace>Web.Management.PHP.Powershell</RootNamespace>
     <AssemblyName>Web.Management.PHP.PowerShell</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,6 +45,9 @@
     <Reference Include="System.Management.Automation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssembyInfo.cs">
+      <Link>SharedAssembyInfo.cs</Link>
+    </Compile>
     <Compile Include="BaseCmdlet.cs" />
     <Compile Include="Config\ServerManagerWrapper.cs" />
     <Compile Include="GetPHPConfigurationCmdlet.cs" />

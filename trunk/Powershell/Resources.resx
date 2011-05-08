@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NotSetValue" xml:space="preserve">
+    <value>&lt;Not set&gt;</value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>PHP is not registered properly. Use New-Version cmdlet to register PHP with IIS.</value>
+  </data>
   <data name="SnapInDescription" xml:space="preserve">
     <value>A PowerShell snapin for managing PHP installations on IIS 7.</value>
-  </data>
-  <data name="SnapInName" xml:space="preserve">
-    <value>PHPManagerSnapIn</value>
   </data>
   <data name="SnapInVendor" xml:space="preserve">
     <value>PHP Manager Project</value>
   </data>
-  <data name="UserIsNotAdminException" xml:space="preserve">
+  <data name="ErrorUserIsNotAdmin" xml:space="preserve">
     <value>You do not have permission to view or modify IIS configuration. 
 Is PowerShell console launched in elevated mode (Run As Administrator)?</value>
+  </data>
+  <data name="ErrorExtensionDoesNotExist" xml:space="preserve">
+    <value>Extension with name "{0}" does not exist.</value>
+  </data>
+  <data name="ErrorSettingDoesNotExist" xml:space="preserve">
+    <value>Setting with name {0} does not exist. Use New-PHPSetting cmdlet to add a new setting.</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>The php.ini file cannot be found. Make sure PHP is correctly registered with IIS.</value>
+  </data>
+  <data name="ErrorHandlerDoesNotExist" xml:space="preserve">
+    <value>PHP handler with name "{0}" does not exist.</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>The provided path should point to either php-cgi.exe or php.exe.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>The directory does not contain ext subdirectory with PHP extensions.</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>The directory does not contain required PHP file: php-cgi.exe and php.ini.</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ using System.Management.Automation;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 
-namespace Web.Management.PHP
+namespace Web.Management.PHP.Powershell
 {
 
     public class BaseCmdlet : PSCmdlet
@@ -39,7 +39,7 @@ namespace Web.Management.PHP
             SecurityIdentifier sidAdmin = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
             if (!principal.IsInRole(sidAdmin))
             {
-                UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.UserIsNotAdminException);
+                UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.ErrorUserIsNotAdmin);
                 ReportTerminatingError(exception, "PermissionDenied", ErrorCategory.PermissionDenied);
             }
         }
