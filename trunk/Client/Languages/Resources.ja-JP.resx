@@ -673,4 +673,13 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>ローカル</value>
   </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>この IIS サーバー上で、PHP 登録が見つかりませんでした。PHP が登録されていないか、または正しく登録されていません。</value>
+  </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>詳細を確認する</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>PHP を登録するためには、FastCGI を有効化してください。</value>
+  </data>
 </root>
