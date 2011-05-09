@@ -254,7 +254,8 @@ namespace Web.Management.PHP
 
         private static void OnFastCgiLearnMoreLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Helper.Browse(Globals.EnableFastCgiLearnMore);
+            string learnMoreUrl = String.Format(Globals.EnableFastCgiLearnMore, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName);
+            Helper.Browse(learnMoreUrl);
         }
 
         private void OnGetSettings(object sender, DoWorkEventArgs e)

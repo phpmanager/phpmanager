@@ -35,6 +35,6 @@ namespace Web.Management.PHP {
         public const string AllExtensionsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
         public const string AddExtensionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
 
-        public const string EnableFastCgiLearnMore = "http://www.php.net/manual/en/install.windows.iis7.php";
+        public const string EnableFastCgiLearnMore = "http://www.php.net/manual/{0}/install.windows.iis7.php";
     }
 }
