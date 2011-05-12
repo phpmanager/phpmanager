@@ -677,7 +677,7 @@
     <value>Lees meer.</value>
   </data>
   <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
-    <value>De FastCGI functie moet ingeschakeld zijn om PHP te kunnen registreren.</value>
+    <value>De FastCGI functie moet ingeschakeld zijn om PHP te kunnen registreren. </value>
   </data>
   <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
     <value>PHP registratie niet aangetroffen op deze IIS server. PHP is niet of onjuist geregistreerd.</value>
