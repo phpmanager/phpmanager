@@ -673,4 +673,13 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>Yerel</value>
   </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>Daha fazla bilgi.</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>PHP kaydının yapılabilmesi için FastCGI özelliğini etkinleştirmelisiniz.</value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>Bu IIS sunucusu üzerinde PHP kaydı bulunamıyor. PHP kayıt edilmemiş ya da hatalı kayıt edilmiş olabilir.</value>
+  </data>
 </root>
