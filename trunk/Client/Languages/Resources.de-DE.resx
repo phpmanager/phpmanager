@@ -673,4 +673,13 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>Lokal</value>
   </data>  
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+	<value>Mehr erfahren.</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+	<value>FastCGI Feature muss aktiviert sein, um PHP registrieren zu können. </value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+	<value>Kann keine PHP-Registrierung auf dem IIS Server finden. PHP ist entweder gar nicht oder inkorrekt registriert.</value>
+  </data>
 </root>
