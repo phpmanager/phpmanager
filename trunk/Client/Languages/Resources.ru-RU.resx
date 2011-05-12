@@ -673,4 +673,13 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>Локальное</value>
   </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>Узнать больше.</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>Для регистрации PHP необходимо установить компоненту FastCGI. </value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>Невозможно найти регистрацию PHP на этом сервере. PHP регистрация отсутсвует или неисправна.</value>
+  </data>
 </root>
