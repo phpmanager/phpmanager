@@ -673,4 +673,13 @@
   <data name="PHPPageLocalHandler" xml:space="preserve">
     <value>Local</value>
   </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>En savoir plus.</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>La fonctionnalité FastCGI doit être activée afin de pouvoir enregistrer PHP. </value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>Impossible de trouver l’enregistrement de PHP sur ce serveur. PHP n’est pas enregistré ou est enregistré de façon incorrecte.</value>
+  </data>
 </root>
