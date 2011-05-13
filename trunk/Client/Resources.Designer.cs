@@ -1063,7 +1063,7 @@ namespace Web.Management.PHP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
+        ///   Looks up a localized string similar to Get the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
         /// </summary>
         internal static string PHPInfoPageLongDescription {
             get {

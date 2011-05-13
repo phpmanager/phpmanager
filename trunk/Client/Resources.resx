@@ -203,7 +203,7 @@
     <value>Get the output of the phpinfo() function</value>
   </data>
   <data name="PHPInfoPageLongDescription" xml:space="preserve">
-    <value>Get the the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes.</value>
+    <value>Get the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes.</value>
   </data>
   <data name="PHPInfoPageTitle" xml:space="preserve">
     <value>phpinfo() output</value>
