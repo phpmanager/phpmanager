@@ -937,6 +937,11 @@ namespace Web.Management.PHP.Config
 
         public void RegisterPHPWithIIS(string path)
         {
+            if (_registrationType == PHPRegistrationType.NoneNoFastCgi)
+            {
+                throw new InvalidOperationException("Cannot register PHP because FastCGI module is not enabled in IIS.");
+            }
+
             string phpexePath = Environment.ExpandEnvironmentVariables(path);
             
             if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase) &&

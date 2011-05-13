@@ -121,7 +121,7 @@
     <value>&lt;Not set&gt;</value>
   </data>
   <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
-    <value>PHP is not registered properly. Use New-Version cmdlet to register PHP with IIS.</value>
+    <value>PHP is not registered properly. Use New-PHPVersion cmdlet to register PHP with IIS.</value>
   </data>
   <data name="SnapInDescription" xml:space="preserve">
     <value>A PowerShell snapin for managing PHP installations on IIS 7.</value>
@@ -153,5 +153,8 @@ Is PowerShell console launched in elevated mode (Run As Administrator)?</value>
   </data>
   <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
     <value>The directory does not contain required PHP file: php-cgi.exe and php.ini.</value>
+  </data>
+  <data name="ErrorFastCgiNotEnabled" xml:space="preserve">
+    <value>Cannot register PHP because FastCGI module is not enabled in IIS.</value>
   </data>
 </root>

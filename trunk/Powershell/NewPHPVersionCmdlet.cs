@@ -61,6 +61,11 @@ namespace Web.Management.PHP.Powershell
                 DirectoryNotFoundException ex = new DirectoryNotFoundException(Resources.ErrorNoExtDirectory);
                 ReportTerminatingError(ex, "NoExtDirectory", ErrorCategory.ObjectNotFound);
             }
+            catch (InvalidOperationException)
+            {
+                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorFastCgiNotEnabled);
+                ReportTerminatingError(ex, "NoFastCgi", ErrorCategory.ObjectNotFound);
+            }
         }
 
         private string PrepareFullScriptProcessorPath(string scriptProcessor)

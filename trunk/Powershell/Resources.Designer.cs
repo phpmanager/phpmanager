@@ -70,6 +70,15 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot register PHP because FastCGI module is not enabled in IIS..
+        /// </summary>
+        internal static string ErrorFastCgiNotEnabled {
+            get {
+                return ResourceManager.GetString("ErrorFastCgiNotEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PHP handler with name &quot;{0}&quot; does not exist..
         /// </summary>
         internal static string ErrorHandlerDoesNotExist {
@@ -115,7 +124,7 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PHP is not registered properly. Use New-Version cmdlet to register PHP with IIS..
+        ///   Looks up a localized string similar to PHP is not registered properly. Use New-PHPVersion cmdlet to register PHP with IIS..
         /// </summary>
         internal static string ErrorPHPIsNotRegistered {
             get {
