@@ -121,18 +121,16 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            Configuration config = ManagementUnit.ReadOnlyServerManager.GetWebConfiguration(siteName, configurationPath);
-            HandlersSection handlersSection = (HandlersSection)config.GetSection("system.webServer/handlers", typeof(HandlersSection));
-            HandlersCollection handlersCollection = handlersSection.Handlers;
-            foreach (HandlerElement handlerElement in handlersCollection)
+            ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(ManagementUnit.ReadOnlyServerManager, configurationPath);
+            PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+
+            PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
+            if (configInfo.RegistrationType != PHPRegistrationType.FastCgi)
             {
-                if (handlerElement.IsLocallyStored)
-                {
-                    return true;
-                }
+                throw new InvalidOperationException("PHP is not registered via FastCGI, hence there is no FastCGI handler defined");
             }
 
-            return false;
+            return configInfo.HandlerIsLocal;
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]

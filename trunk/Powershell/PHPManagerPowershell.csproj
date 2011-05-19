@@ -49,7 +49,6 @@
       <Link>SharedAssembyInfo.cs</Link>
     </Compile>
     <Compile Include="BaseCmdlet.cs" />
-    <Compile Include="Config\ServerManagerWrapper.cs" />
     <Compile Include="GetPHPConfigurationCmdlet.cs" />
     <Compile Include="GetPHPExtensionCmdlet.cs" />
     <Compile Include="GetPHPSettingCmdlet.cs" />

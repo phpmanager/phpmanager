@@ -13,7 +13,7 @@ using Microsoft.Web.Administration;
 namespace Web.Management.PHP.Config
 {
 
-    internal sealed class ServerManagerWrapper : IConfigurationWrapper
+    public sealed class ServerManagerWrapper : IConfigurationWrapper
     {
         private ServerManager _serverManager;
         private string _configurationPath;

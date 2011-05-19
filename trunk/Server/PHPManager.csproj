@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Config\IConfigurationWrapper.cs" />
     <Compile Include="Config\ManagementUnitWrapper.cs" />
+    <Compile Include="Config\ServerManagerWrapper.cs" />
     <Compile Include="DefaultDocument\DefaultDocumentSection.cs" />
     <Compile Include="DefaultDocument\FileElement.cs" />
     <Compile Include="DefaultDocument\FilesCollection.cs" />
