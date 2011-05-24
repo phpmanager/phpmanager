@@ -66,32 +66,56 @@ namespace Web.Management.PHP.Powershell
             try
             {
                 _serverManager = new ServerManager();
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(_serverManager, this.ConfigurationPath);
+                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(_serverManager, this.SiteName, this.VirtualPath);
                 _configHelper = new PHPConfigHelper(serverManagerWrapper);
                 _phpIniFile = _configHelper.GetPHPIniFile();
                 _extensions = new RemoteObjectCollection<PHPIniExtension>();
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                if (_serverManager != null)
-                {
-                    _serverManager.Dispose();
-                    _serverManager = null;
-                }
-
-                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
+                DisposeServerManager();
                 ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
-                if (_serverManager != null)
+                DisposeServerManager();
+                ReportTerminatingError(ex, "InvalidOperation", ErrorCategory.InvalidOperation);
+            }
+        }
+
+        private void DisposeServerManager()
+        {
+            if (_serverManager != null)
+            {
+                _serverManager.Dispose();
+                _serverManager = null;
+            }
+        }
+
+        protected override void DoProcessing()
+        {
+            Debug.Assert(_phpIniFile != null);
+            Debug.Assert(_extensions != null);
+
+            foreach (string extensionName in Name)
+            {
+                bool currentlyEnabled = false;
+                if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
                 {
-                    _serverManager.Dispose();
-                    _serverManager = null;
+                    ArgumentException ex = new ArgumentException(String.Format(Resources.ExtensionDoesNotExistError, extensionName));
+                    ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
+                    return;
                 }
 
-                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
-                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+                if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
+                    (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
+                {
+                    if (ShouldProcess(extensionName))
+                    {
+                        PHPIniExtension extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
+                        _extensions.Add(extension);
+                    }
+                }
             }
         }
 
@@ -106,11 +130,7 @@ namespace Web.Management.PHP.Powershell
                 _configHelper.UpdateExtensions(_extensions);
             }
 
-            if (_serverManager != null)
-            {
-                _serverManager.Dispose();
-                _serverManager = null;
-            }
+            DisposeServerManager();
         }
 
         private static bool ExtensionExists(RemoteObjectCollection<PHPIniExtension> extensions, string name, out bool enabled)
@@ -131,31 +151,5 @@ namespace Web.Management.PHP.Powershell
             return found;
         }
 
-        protected override void ProcessRecord()
-        {
-            Debug.Assert(_phpIniFile != null);
-            Debug.Assert(_extensions != null);
-
-            foreach (string extensionName in Name)
-            {
-                bool currentlyEnabled = false;
-                if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
-                {
-                    InvalidOperationException ex = new InvalidOperationException(String.Format(Resources.ErrorExtensionDoesNotExist, extensionName));
-                    ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
-                    return;
-                }
-
-                if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
-                    (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
-                {
-                    if (ShouldProcess(extensionName))
-                    {
-                        PHPIniExtension extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
-                        _extensions.Add(extension);
-                    }
-                }
-            }
-        }
     }
 }

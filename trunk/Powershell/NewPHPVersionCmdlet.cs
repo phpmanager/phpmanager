@@ -8,7 +8,6 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
@@ -34,37 +33,21 @@ namespace Web.Management.PHP.Powershell
             }
         }
 
-        protected override void ProcessRecord()
+        protected override void DoProcessing()
         {
             try
             {
                 using (ServerManager serverManager = new ServerManager())
                 {
-                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
+                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
                     PHPConfigHelper _configHelper = new PHPConfigHelper(serverManagerWrapper);
                     string phpCgiExePath = PrepareFullScriptProcessorPath(ScriptProcessor);
                     _configHelper.RegisterPHPWithIIS(phpCgiExePath);
                 }
             }
-            catch (ArgumentException)
+            catch (DirectoryNotFoundException ex)
             {
-                ArgumentException ex = new ArgumentException(Resources.ErrorInvalidPHPExecutablePath);
-                ReportTerminatingError(ex, "InvalidPHPExecutablePath", ErrorCategory.InvalidArgument);
-            }
-            catch (FileNotFoundException)
-            {
-                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorNoPHPFilesInDirectory);
-                ReportTerminatingError(ex, "NoPHPFilesInDirectory", ErrorCategory.ObjectNotFound);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                DirectoryNotFoundException ex = new DirectoryNotFoundException(Resources.ErrorNoExtDirectory);
-                ReportTerminatingError(ex, "NoExtDirectory", ErrorCategory.ObjectNotFound);
-            }
-            catch (InvalidOperationException)
-            {
-                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorFastCgiNotEnabled);
-                ReportTerminatingError(ex, "NoFastCgi", ErrorCategory.ObjectNotFound);
+                ReportTerminatingError(ex, "DirectoryNotFound", ErrorCategory.ObjectNotFound);
             }
         }
 
@@ -75,11 +58,6 @@ namespace Web.Management.PHP.Powershell
             {
                 fullPath = Path.Combine(fullPath, "php-cgi.exe");
             }
-            if (!File.Exists(fullPath))
-            {
-                throw new FileNotFoundException();
-            }
-
             return fullPath;
         }
     }

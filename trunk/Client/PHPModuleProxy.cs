@@ -32,9 +32,9 @@ namespace Web.Management.PHP
             Invoke("ApplyRecommendedSettings", configIssueIndexes);
         }
 
-        internal bool CheckForLocalPHPHandler(string siteName, string configurationPath)
+        internal bool CheckForLocalPHPHandler(string siteName, string virtualPath)
         {
-            return (bool)Invoke("CheckForLocalPHPHandler", siteName, configurationPath);
+            return (bool)Invoke("CheckForLocalPHPHandler", siteName, virtualPath);
         }
 
         internal string CreatePHPInfo(string siteName)

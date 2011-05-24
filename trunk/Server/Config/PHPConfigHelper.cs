@@ -70,11 +70,6 @@ namespace Web.Management.PHP.Config
             string targetPath = Path.Combine(PHPDirectory, "ext");
             targetPath = Path.Combine(targetPath, filename);
 
-            if (File.Exists(targetPath))
-            {
-                throw new IOException(String.Format("The extension file {0} already exists at the PHP ext directory", filename));
-            }
-
             File.Copy(extensionPath, targetPath, false);
             PHPIniExtension extension = new PHPIniExtension(filename, true);
 
@@ -433,12 +428,6 @@ namespace Web.Management.PHP.Config
             configInfo.HandlerIsLocal = _currentPHPHandler.IsLocallyStored;
             configInfo.Executable = _currentPHPHandler.Executable;
             configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.Executable);
-
-            if (String.IsNullOrEmpty(PHPIniFilePath))
-            {
-                throw new FileNotFoundException("php.ini file does not exist");
-            }
-
             configInfo.PHPIniFilePath = PHPIniFilePath;
 
             PHPIniFile file = new PHPIniFile(PHPIniFilePath);
@@ -777,7 +766,7 @@ namespace Web.Management.PHP.Config
                         _phpIniFilePath = GetPHPIniFilePath();
                         if (String.IsNullOrEmpty(_phpIniFilePath))
                         {
-                            throw new FileNotFoundException("php.ini file cannot be found");
+                            throw new FileNotFoundException(String.Format(Resources.CannotFindPhpIniForExecutableError, handler.Executable));
                         }
                         _phpDirectory = GetPHPDirectory();
                     }
@@ -928,7 +917,7 @@ namespace Web.Management.PHP.Config
                     }
                     else
                     {
-                        throw new FileNotFoundException("php.ini and php.ini recommended do not exist in " + phpDir);
+                        throw new FileNotFoundException(String.Format(Resources.PhpIniFilesDoNotExistError, phpDir));
                     }
                 }
             }
@@ -939,21 +928,20 @@ namespace Web.Management.PHP.Config
         {
             if (_registrationType == PHPRegistrationType.NoneNoFastCgi)
             {
-                throw new InvalidOperationException("Cannot register PHP because FastCGI module is not enabled in IIS.");
+                throw new InvalidOperationException(Resources.FastCgiNotEnabledError);
             }
 
             string phpexePath = Environment.ExpandEnvironmentVariables(path);
             
-            if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase) &&
-                !String.Equals(Path.GetFileName(phpexePath), "php.exe", StringComparison.OrdinalIgnoreCase))
+            if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException("The provided php executable path is invalid", phpexePath);
+                throw new ArgumentException(String.Format(Resources.PhpCgiExePathInvalidError, phpexePath)); 
             }
 
             // Check for existence of php executable in the specified directory
             if (!File.Exists(phpexePath))
             {
-                throw new FileNotFoundException(String.Format("The file {0} does not exist.", phpexePath));
+                throw new FileNotFoundException(String.Format(Resources.PhpCgiExeDoesNotExistError, Path.GetDirectoryName(phpexePath)));
             }
 
             // Check for existence of php extensions directory
@@ -961,7 +949,7 @@ namespace Web.Management.PHP.Config
             string extDir = Path.Combine(phpDir, "ext");
             if (!Directory.Exists(extDir))
             {
-                throw new DirectoryNotFoundException(String.Format("The folder {0} does not contain \"ext\" folder with PHP extensions.",  phpDir));
+                throw new DirectoryNotFoundException(String.Format(Resources.FolderDoesNotHaveExtDirError, phpDir));
             }
 
             string phpIniFilePath = PreparePHPIniFile(phpDir);
@@ -1065,7 +1053,7 @@ namespace Web.Management.PHP.Config
         {
             if (!IsPHPRegistered())
             {
-                throw new InvalidOperationException("Cannot perform the action because PHP is not registered properly.");
+                throw new InvalidOperationException(Resources.PhpNotRegisteredError);
             }
         }
 

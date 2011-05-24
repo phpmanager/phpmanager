@@ -8,6 +8,7 @@
 //----------------------------------------------------------------------- 
 
 using System;
+using System.IO;
 using System.Management.Automation;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
@@ -15,22 +16,38 @@ using System.Text.RegularExpressions;
 namespace Web.Management.PHP.Powershell
 {
 
-    public class BaseCmdlet : PSCmdlet
+    public abstract class BaseCmdlet : PSCmdlet
     {
-        private string _configurationPath;
+        private string _siteName;
+        private string _virtualPath;
 
         [Parameter(ValueFromPipeline = false)]
-        public string ConfigurationPath
+        public string SiteName
         {
             set
             {
-                _configurationPath = value;
+                _siteName = value;
             }
             get
             {
-                return _configurationPath;
+                return _siteName;
             }
         }
+
+        [Parameter(ValueFromPipeline = false)]
+        public string VirtualPath
+        {
+            set
+            {
+                _virtualPath = value;
+            }
+            get
+            {
+                return _virtualPath;
+            }
+        }
+
+        protected abstract void DoProcessing();
 
         protected void EnsureAdminUser()
         {
@@ -39,15 +56,44 @@ namespace Web.Management.PHP.Powershell
             SecurityIdentifier sidAdmin = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
             if (!principal.IsInRole(sidAdmin))
             {
-                UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.ErrorUserIsNotAdmin);
-                ReportTerminatingError(exception, "PermissionDenied", ErrorCategory.PermissionDenied);
+                UnauthorizedAccessException exception = new UnauthorizedAccessException(Resources.UserIsNotAdminError);
+                ReportTerminatingError(exception, "UnathorizedAccess", ErrorCategory.PermissionDenied);
             }
         }
 
-        protected static bool MatchWildcards(string pattern, string text)  
+        protected static WildcardPattern PrepareWildcardPattern(string pattern)
         {
-            pattern = String.Format("^{0}$", Regex.Escape(pattern).Replace("\\*", ".*"));
-            return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
+            WildcardOptions options = WildcardOptions.IgnoreCase | WildcardOptions.Compiled;
+            WildcardPattern wildcard = null;
+
+            if (!String.IsNullOrEmpty(pattern))
+            {
+                wildcard = new WildcardPattern(pattern, options);
+            }
+            else
+            {
+                wildcard = new WildcardPattern("*", options);
+            }
+
+            return wildcard;
+        }
+
+        protected override void ProcessRecord()
+        {
+            EnsureAdminUser();
+
+            try
+            {
+                DoProcessing();
+            }
+            catch (FileNotFoundException ex)
+            {
+                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ReportTerminatingError(ex, "InvalidOperation", ErrorCategory.InvalidOperation);
+            }
         }
 
         protected void ReportNonTerminatingError(Exception exception, string errorId, ErrorCategory errorCategory)
@@ -61,6 +107,5 @@ namespace Web.Management.PHP.Powershell
             ErrorRecord errorRecord = new ErrorRecord(exception, errorId, errorCategory, null);
             ThrowTerminatingError(errorRecord);
         }
-
     }
 }

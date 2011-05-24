@@ -106,7 +106,7 @@ namespace Web.Management.PHP
         }
 
         [ModuleServiceMethod(PassThrough = Passthrough)]
-        public bool CheckForLocalPHPHandler(string siteName, string configurationPath)
+        public bool CheckForLocalPHPHandler(string siteName, string virtualPath)
         {
             EnsureServerOrSiteConnection();
 
@@ -121,7 +121,7 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(ManagementUnit.ReadOnlyServerManager, configurationPath);
+            ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(ManagementUnit.ReadOnlyServerManager, siteName, virtualPath);
             PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
 
             PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();

@@ -16,19 +16,29 @@ namespace Web.Management.PHP.Config
     public sealed class ServerManagerWrapper : IConfigurationWrapper
     {
         private ServerManager _serverManager;
-        private string _configurationPath;
+        private string _siteName;
+        private string _virtualPath;
 
-        public ServerManagerWrapper(ServerManager serverManager, string configurationPath)
+        public ServerManagerWrapper(ServerManager serverManager, string siteName, string virtualPath)
         {
             _serverManager = serverManager;
-            _configurationPath = configurationPath;
+            _siteName = siteName;
+            _virtualPath = virtualPath;
         }
 
-        public string ConfigurationPath
+        public string SiteName
         {
             get
             {
-                return _configurationPath;
+                return _siteName;
+            }
+        }
+
+        public string VirtualPath
+        {
+            get
+            {
+                return _virtualPath;
             }
         }
 
@@ -42,36 +52,40 @@ namespace Web.Management.PHP.Config
             return _serverManager.GetApplicationHostConfiguration();
         }
 
-        private Configuration GetConfiguration(string configurationPath)
+        private Configuration GetConfiguration()
         {
-            Configuration configuration = null;
-            if (!String.IsNullOrEmpty(_configurationPath))
+            if (String.IsNullOrEmpty(_siteName) && String.IsNullOrEmpty(_virtualPath))
             {
-                configuration = _serverManager.GetWebConfiguration(_configurationPath);
+                return _serverManager.GetApplicationHostConfiguration();
+            }
+
+            string siteName = String.IsNullOrEmpty(_siteName) ? "Default Web Site" : _siteName;
+
+            if (String.IsNullOrEmpty(_virtualPath))
+            {
+                return _serverManager.GetWebConfiguration(siteName);
             }
             else
             {
-                configuration = _serverManager.GetApplicationHostConfiguration();
+                return _serverManager.GetWebConfiguration(siteName, _virtualPath);
             }
-
-            return configuration;
         }
 
         public DefaultDocument.DefaultDocumentSection GetDefaultDocumentSection()
         {
-            Configuration config = GetConfiguration(_configurationPath);
+            Configuration config = GetConfiguration();
             return (DefaultDocument.DefaultDocumentSection)config.GetSection("system.webServer/defaultDocument", typeof(DefaultDocument.DefaultDocumentSection));
         }
 
         public Handlers.HandlersSection GetHandlersSection()
         {
-            Configuration config = GetConfiguration(_configurationPath);
+            Configuration config = GetConfiguration();
             return (Handlers.HandlersSection)config.GetSection("system.webServer/handlers", typeof(Handlers.HandlersSection));
         }
 
         public bool IsServerConfigurationPath()
         {
-            return String.IsNullOrEmpty(_configurationPath);
+            return (String.IsNullOrEmpty(_siteName) && String.IsNullOrEmpty(_virtualPath));
         }
 
     }

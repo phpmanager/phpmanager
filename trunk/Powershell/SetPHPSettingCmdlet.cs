@@ -8,7 +8,6 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.IO;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -19,7 +18,7 @@ namespace Web.Management.PHP.Powershell
     [Cmdlet(VerbsCommon.Set, "PHPSetting",
         SupportsShouldProcess = true,
         ConfirmImpact = ConfirmImpact.Medium)]
-    public sealed class Set_PHPSettingCmdlet : BaseCmdlet
+    public sealed class SetPHPSettingCmdlet : BaseCmdlet
     {
         private string _name;
         private string _value;
@@ -67,46 +66,31 @@ namespace Web.Management.PHP.Powershell
             return result;
         }
 
-        protected override void ProcessRecord()
+        protected override void DoProcessing()
         {
-            try
+            using (ServerManager serverManager = new ServerManager())
             {
-                using (ServerManager serverManager = new ServerManager())
-                {
-                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
-                    PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                    PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
+                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
+                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+                PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
 
-                    PHPIniSetting setting = FindSetting(phpIniFile.Settings, Name);
-                    if (setting != null)
+                PHPIniSetting setting = FindSetting(phpIniFile.Settings, Name);
+                if (setting != null)
+                {
+                    if (ShouldProcess(Name))
                     {
-                        if (ShouldProcess(Name))
-                        {
-                            RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
-                            settings.Add(new PHPIniSetting(Name, Value, setting.Section));
-                            configHelper.AddOrUpdatePHPIniSettings(settings);
-                        }
-                    }
-                    else
-                    {
-                        
-                        InvalidOperationException ex = new InvalidOperationException(String.Format(Resources.ErrorSettingDoesNotExist, Name));
-                        ReportNonTerminatingError(ex, "ExtensionNotFound", ErrorCategory.ObjectNotFound);
-                        return;
+                        RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
+                        settings.Add(new PHPIniSetting(Name, Value, setting.Section));
+                        configHelper.AddOrUpdatePHPIniSettings(settings);
                     }
                 }
-            }
-            catch (FileNotFoundException)
-            {
-                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
-                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
-            }
-            catch (InvalidOperationException)
-            {
-                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
-                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
+                else
+                {
+                    ArgumentException ex = new ArgumentException(String.Format(Resources.SettingDoesNotExistError, Name));
+                    ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
+                    return;
+                }
             }
         }
-
     }
 }

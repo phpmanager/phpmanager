@@ -8,7 +8,6 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.IO;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -49,59 +48,36 @@ namespace Web.Management.PHP.Powershell
             }
         }
 
-        protected override void ProcessRecord()
+        protected override void DoProcessing()
         {
-            EnsureAdminUser();
-
-            try
+            using (ServerManager serverManager = new ServerManager())
             {
-                using (ServerManager serverManager = new ServerManager())
+                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
+                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+                PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
+
+                WildcardPattern wildcard = PrepareWildcardPattern(Name);
+
+                foreach (PHPIniExtension extension in phpIniFile.Extensions)
                 {
-                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.ConfigurationPath);
-                    PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                    PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
-
-                    bool filterByName = false;
-                    if (!String.IsNullOrEmpty(Name))
+                    if (!wildcard.IsMatch(extension.Name))
                     {
-                        filterByName = true;
+                        continue;
+                    }
+                    if (Status == PHPExtensionStatus.Disabled && extension.Enabled)
+                    {
+                        continue;
+                    }
+                    if (Status == PHPExtensionStatus.Enabled && !extension.Enabled)
+                    {
+                        continue;
                     }
 
-                    foreach (PHPIniExtension extension in phpIniFile.Extensions)
-                    {
-                        if (filterByName)
-                        {
-                            if (!MatchWildcards(Name, extension.Name))
-                            {
-                                continue;
-                            }
-                        }
-                        if (Status == PHPExtensionStatus.Disabled && extension.Enabled)
-                        {
-                            continue;
-                        }
-                        if (Status == PHPExtensionStatus.Enabled && !extension.Enabled)
-                        {
-                            continue;
-                        }
+                    PHPExtensionItem extensionItem = new PHPExtensionItem(extension);
 
-                        PHPExtensionItem extensionItem = new PHPExtensionItem(extension);
-
-                        WriteObject(extensionItem);
-                    }
+                    WriteObject(extensionItem);
                 }
             }
-            catch (FileNotFoundException)
-            {
-                FileNotFoundException ex = new FileNotFoundException(Resources.ErrorPHPIniNotFound);
-                ReportTerminatingError(ex, "FileNotFound", ErrorCategory.ObjectNotFound);
-            }
-            catch (InvalidOperationException)
-            {
-                InvalidOperationException ex = new InvalidOperationException(Resources.ErrorPHPIsNotRegistered);
-                ReportTerminatingError(ex, "PHPIsNotRegistered", ErrorCategory.InvalidOperation);
-            }
-
         }
     }
 }
