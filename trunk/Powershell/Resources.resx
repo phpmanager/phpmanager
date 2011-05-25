@@ -140,6 +140,9 @@ Is PowerShell console launched in elevated mode (Run As Administrator)?</value>
     <value>PHP is not registered on this configuration level.</value>
   </data>
   <data name="SettingDoesNotExistError" xml:space="preserve">
-    <value>Setting with name "{0}" does not exist.</value>
+    <value>Setting with name "{0}" does not exist. Use New-PHPSetting cmdlet to add it.</value>
+  </data>
+  <data name="SettingAlreadyExistsError" xml:space="preserve">
+    <value>Setting with name "{0}" already exists. Use Set-PHPSetting cmdlet to change its value.</value>
   </data>
 </root>

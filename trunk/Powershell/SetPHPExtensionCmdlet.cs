@@ -99,22 +99,24 @@ namespace Web.Management.PHP.Powershell
 
             foreach (string extensionName in Name)
             {
-                bool currentlyEnabled = false;
-                if (!ExtensionExists(_phpIniFile.Extensions, extensionName, out currentlyEnabled))
+                PHPIniExtension extension = Helper.FindExtension(_phpIniFile.Extensions, extensionName);
+                if (extension != null)
+                {
+                    if ((extension.Enabled && Status == PHPExtensionStatus.Disabled) ||
+                        (!extension.Enabled && Status == PHPExtensionStatus.Enabled))
+                    {
+                        if (ShouldProcess(extensionName))
+                        {
+                            extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
+                            _extensions.Add(extension);
+                        }
+                    }
+                }
+                else
                 {
                     ArgumentException ex = new ArgumentException(String.Format(Resources.ExtensionDoesNotExistError, extensionName));
                     ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
                     return;
-                }
-
-                if ((currentlyEnabled && Status == PHPExtensionStatus.Disabled) ||
-                    (!currentlyEnabled && Status == PHPExtensionStatus.Enabled))
-                {
-                    if (ShouldProcess(extensionName))
-                    {
-                        PHPIniExtension extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
-                        _extensions.Add(extension);
-                    }
                 }
             }
         }
@@ -132,24 +134,5 @@ namespace Web.Management.PHP.Powershell
 
             DisposeServerManager();
         }
-
-        private static bool ExtensionExists(RemoteObjectCollection<PHPIniExtension> extensions, string name, out bool enabled)
-        {
-            bool found = false;
-            enabled = false;
-
-            foreach (PHPIniExtension extension in extensions)
-            {
-                if (String.Equals(extension.Name, name, StringComparison.OrdinalIgnoreCase))
-                {
-                    found = true;
-                    enabled = extension.Enabled;
-                    break;
-                }
-            }
-
-            return found;
-        }
-
     }
 }

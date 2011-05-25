@@ -97,7 +97,16 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; does not exist..
+        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; already exists. Use Set-PHPSetting cmdlet to change its value..
+        /// </summary>
+        internal static string SettingAlreadyExistsError {
+            get {
+                return ResourceManager.GetString("SettingAlreadyExistsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; does not exist. Use New-PHPSetting cmdlet to add it..
         /// </summary>
         internal static string SettingDoesNotExistError {
             get {

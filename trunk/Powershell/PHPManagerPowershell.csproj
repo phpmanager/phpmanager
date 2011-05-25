@@ -53,9 +53,11 @@
     <Compile Include="GetPHPExtensionCmdlet.cs" />
     <Compile Include="GetPHPSettingCmdlet.cs" />
     <Compile Include="GetPHPVersionCmdlet.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NewPHPSettingCmdlet.cs" />
     <Compile Include="NewPHPVersionCmdlet.cs" />
     <Compile Include="PHPConfigurationItem.cs" />
     <Compile Include="PHPExtensionItem.cs" />

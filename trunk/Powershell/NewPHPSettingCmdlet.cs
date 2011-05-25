@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright>
 // Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
 //
@@ -14,14 +14,14 @@ using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Powershell
 {
-
-    [Cmdlet(VerbsCommon.Set, "PHPSetting",
-        SupportsShouldProcess = true,
-        ConfirmImpact = ConfirmImpact.Medium)]
-    public sealed class SetPHPSettingCmdlet : BaseCmdlet
+    [Cmdlet(VerbsCommon.New, "PHPSetting",
+            SupportsShouldProcess = true,
+            ConfirmImpact = ConfirmImpact.Medium)]
+    public sealed class NewPHPSettingCmdlet : BaseCmdlet
     {
         private string _name;
         private string _value;
+        private string _section = "PHP";
 
         [Parameter(Mandatory = true,
                    Position = 0)]
@@ -50,6 +50,19 @@ namespace Web.Management.PHP.Powershell
             }
         }
 
+        [Parameter(Mandatory = false, Position = 2)]
+        public string Section
+        {
+            get
+            {
+                return _section;
+            }
+            set
+            {
+                _section = value;
+            }
+        }
+
         protected override void DoProcessing()
         {
             using (ServerManager serverManager = new ServerManager())
@@ -59,19 +72,19 @@ namespace Web.Management.PHP.Powershell
                 PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
 
                 PHPIniSetting setting = Helper.FindSetting(phpIniFile.Settings, Name);
-                if (setting != null)
+                if (setting == null)
                 {
                     if (ShouldProcess(Name))
                     {
                         RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
-                        settings.Add(new PHPIniSetting(Name, Value, setting.Section));
+                        settings.Add(new PHPIniSetting(Name, Value, Section));
                         configHelper.AddOrUpdatePHPIniSettings(settings);
                     }
                 }
                 else
                 {
-                    ArgumentException ex = new ArgumentException(String.Format(Resources.SettingDoesNotExistError, Name));
-                    ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
+                    ArgumentException ex = new ArgumentException(String.Format(Resources.SettingAlreadyExistsError, Name));
+                    ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.InvalidArgument);
                 }
             }
         }
