@@ -61,6 +61,24 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        internal static string DeleteSettingWarningCaption {
+            get {
+                return ResourceManager.GetString("DeleteSettingWarningCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The setting &quot;{0}&quot; and its value &quot;{1}&quot; will be removed from php.ini file. Are you sure you want to continue?.
+        /// </summary>
+        internal static string DeleteSettingWarningMessage {
+            get {
+                return ResourceManager.GetString("DeleteSettingWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extension with name &quot;{0}&quot; does not exist..
         /// </summary>
         internal static string ExtensionDoesNotExistError {
@@ -97,7 +115,7 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; already exists. Use Set-PHPSetting cmdlet to change its value..
+        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; already exists. Use Set-PHPSetting cmdlet to change its value or Remove-PHPSetting to remove it..
         /// </summary>
         internal static string SettingAlreadyExistsError {
             get {
@@ -106,7 +124,7 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; does not exist. Use New-PHPSetting cmdlet to add it..
+        ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; does not exist..
         /// </summary>
         internal static string SettingDoesNotExistError {
             get {
