@@ -78,6 +78,7 @@
     <None Include="..\phpmgrpublic.snk">
       <Link>phpmgrpublic.snk</Link>
     </None>
+    <None Include="Documentation\Remove-WarningStuff.ps1" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
@@ -91,6 +92,9 @@
       <Name>PHPManager</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Web.Management.PHP.PowerShell.dll-Help.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -103,6 +107,7 @@
     <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
 sn –Vr $(TargetFileName)
 gacutil -if $(TargetPath)
-InstallUtil $(TargetPath)</PostBuildEvent>
+InstallUtil $(TargetPath)
+copy $(ProjectDir)Documentation\Web.Management.PHP.PowerShell.dll-Help.xml $(TargetDir) /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

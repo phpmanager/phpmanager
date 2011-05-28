@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7407DA707D2147ED85FB81B1ADC26309"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_74EEB2CA38C14B1485C0BE0CD3EE0275"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -220,30 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_44F325C34ADC45E08A16DC5EE2ED8296"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AD6CF683F3348C090BE9727C2DBF1F9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_146F9D71492B17FB661A604CA0C7FF52"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4A0FCF76450BF5311F24CD1375AA7051"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F915F3A171844E368B2CB96199B90B86"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -304,6 +286,24 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4A0FCF76450BF5311F24CD1375AA7051"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_44F325C34ADC45E08A16DC5EE2ED8296"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2AD6CF683F3348C090BE9727C2DBF1F9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_22F0F582E9D526DFD26D076A8D5298E2"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -317,6 +317,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1821BAB8212D497EA322C375FF73C9DF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_146F9D71492B17FB661A604CA0C7FF52"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -640,7 +646,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.PowerShell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.PowerShell, Version=1.2.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2AD6CF683F3348C090BE9727C2DBF1F9"
@@ -671,7 +677,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.PowerShell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.PowerShell, Version=1.2.0.0, Culture=neutral, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_44F325C34ADC45E08A16DC5EE2ED8296"
@@ -764,6 +770,26 @@
             {
             "SourcePath" = "8:License.rtf"
             "TargetName" = "8:License.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_C5A59E9E3C6C4D64809C95D1DFFCF0B8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7407DA707D2147ED85FB81B1ADC26309"
+            {
+            "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.PowerShell.dll-Help.xml"
+            "TargetName" = "8:Web.Management.PHP.PowerShell.dll-Help.xml"
             "Tag" = "8:"
             "Folder" = "8:_C5A59E9E3C6C4D64809C95D1DFFCF0B8"
             "Condition" = "8:"
@@ -1151,7 +1177,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C5A59E9E3C6C4D64809C95D1DFFCF0B8"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1200,7 +1226,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager 1.2 for IIS 7"
         "ProductCode" = "8:{E851486F-1FE2-44F0-85ED-F969088A68EE}"
-        "PackageCode" = "8:{8D1E1500-B70B-4E90-8E93-27F5A5264C27}"
+        "PackageCode" = "8:{412ACA29-F90D-45F3-9E10-BDE77424C637}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
