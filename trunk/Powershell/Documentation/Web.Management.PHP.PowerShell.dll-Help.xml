@@ -5,7 +5,7 @@
     <command:details>
       <command:name>Get-PHPConfiguration</command:name>
       <maml:description>
-        <maml:para>Gets the summary of the PHP configuration on the specified IIS web site and application.</maml:para>
+        <maml:para>Gets the summary of the currently active PHP version on the specified IIS web site and application.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -18,7 +18,7 @@
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>The Get-PHPConfiguration cmdlet gets the summary of the PHP configuration that is active on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
+      <maml:para>The Get-PHPConfiguration cmdlet gets the summary of the currently active PHP version on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -26,14 +26,14 @@
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
@@ -43,7 +43,7 @@
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -56,7 +56,7 @@
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -117,7 +117,7 @@
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPConfiguration</dev:code>
         <dev:remarks>
-          <maml:para>This command returns the summary of PHP configuration on IIS server level. That configuration will apply to all the sites on that IIS server, unless they explicitly overwrite it.</maml:para>
+          <maml:para>This command returns the summary of PHP version on IIS server level. That version is used on all the sites on that IIS server, unless they explicitly overwrite it.</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -149,7 +149,7 @@ EnabledExtensionsCount   : 0
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPConfiguration -SiteName mysite -VirtualPath /forum/</dev:code>
         <dev:remarks>
-          <maml:para>This command returns the summary of PHP configuration that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>This command returns the summary of PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -175,7 +175,7 @@ C:\PS&gt;			</maml:introduction>
     <command:details>
       <command:name>Get-PHPExtension</command:name>
       <maml:description>
-        <maml:para>Gets the list of PHP extensions available in the currently active PHP configuration.</maml:para>
+        <maml:para>Gets the list of PHP extensions available in the currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -188,7 +188,7 @@ C:\PS&gt;			</maml:introduction>
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>The Get-PHPExtension cmdlet outputs the list of all PHP extensions available in the currently active PHP configuration. The list can be filtered by extension name and by the status (enabled or disabled).</maml:para>
+      <maml:para>The Get-PHPExtension cmdlet outputs the list of all PHP extensions available in the currently active PHP version. The list can be filtered by extension name and by the status (enabled or disabled).</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -210,14 +210,14 @@ C:\PS&gt;			</maml:introduction>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
@@ -253,7 +253,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -266,7 +266,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -327,7 +327,7 @@ C:\PS&gt;			</maml:introduction>
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPExtension</dev:code>
         <dev:remarks>
-          <maml:para>This command lists all the extensions that are available for the currently active PHP configuration.</maml:para>
+          <maml:para>This command lists all the extensions that are available for the currently active PHP version.</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -352,7 +352,7 @@ C:\PS&gt;			</maml:introduction>
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPExtension -SiteName mysite -VirtualPath /forum/</dev:code>
         <dev:remarks>
-          <maml:para>This command returns the list of extensions available in PHP configuration that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>This command returns the list of extensions available in PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -414,7 +414,7 @@ php_pdo_sqlite.dll        Enabled
     <command:details>
       <command:name>Get-PHPSetting</command:name>
       <maml:description>
-        <maml:para>Gets the list of configuration settings for currently active PHP configuration.</maml:para>
+        <maml:para>Gets the list of configuration settings for currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -427,7 +427,7 @@ php_pdo_sqlite.dll        Enabled
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>The Get-PHPSetting cmdlet gets the list of configurations settings for currently active PHP configuration on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
+      <maml:para>The Get-PHPSetting cmdlet gets the list of configurations settings for currently active PHP version on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -435,28 +435,28 @@ php_pdo_sqlite.dll        Enabled
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>Specifies the name of a PHP setting. If this parameter is not specified then all PHP settings will be listed. This parameter accepts wildcards.</maml:para>
+            <maml:para>Specifies the name of a PHP setting. If this parameter is not specified then all PHP settings will be listed. This parameter supports wildcards syntax.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Section</maml:name>
           <maml:description>
-            <maml:para>Specifies the PHP.INI section where the setting belongs to. If this parameter is specified then only the settings from the specified section will be listed.</maml:para>
+            <maml:para>Specifies the PHP.INI section where settings belong to. If this parameter is specified then only the settings from the specified section will be listed.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
@@ -466,7 +466,7 @@ php_pdo_sqlite.dll        Enabled
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>Specifies the name of a PHP setting. If this parameter is not specified then all PHP settings will be listed. This parameter accepts wildcards.</maml:para>
+          <maml:para>Specifies the name of a PHP setting. If this parameter is not specified then all PHP settings will be listed. This parameter supports wildcards syntax.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -479,7 +479,7 @@ php_pdo_sqlite.dll        Enabled
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Section</maml:name>
         <maml:description>
-          <maml:para>Specifies the PHP.INI section where the setting belongs to. If this parameter is specified then only the settings from the specified section will be listed.</maml:para>
+          <maml:para>Specifies the PHP.INI section where settings belong to. If this parameter is specified then only the settings from the specified section will be listed.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -492,7 +492,7 @@ php_pdo_sqlite.dll        Enabled
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP configuration of that web site. If this parameter is not specified then PHP configuration on a server level will be used.</maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -505,7 +505,7 @@ php_pdo_sqlite.dll        Enabled
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP configuration of that configuration path within a web site. If this parameter is not specified then PHP configuration for the root directory of web site will be used.</maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -566,7 +566,7 @@ php_pdo_sqlite.dll        Enabled
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPSetting</dev:code>
         <dev:remarks>
-          <maml:para>This command lists all the configuration settings for the currently active PHP configuration.</maml:para>
+          <maml:para>This command lists all the configuration settings for the currently active PHP version.</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -591,7 +591,7 @@ C:\PS&gt;			</maml:introduction>
 C:\PS&gt;			</maml:introduction>
         <dev:code>Get-PHPSetting -SiteName mysite -VirtualPath /forum/</dev:code>
         <dev:remarks>
-          <maml:para>This command returns the list of configuration settings for the PHP configuration that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>This command returns the list of configuration settings for the PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
           <maml:para>
           </maml:para>
           <maml:para>
@@ -664,8 +664,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:details>
       <command:name>Get-PHPVersion</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Gets the list of all available PHP versions that are registered with IIS.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -678,8 +677,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The Get-PHPVersion cmdlet gets the list of all PHP versions that are registered with IIS on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -687,32 +685,28 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
           <maml:name>HandlerName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the handler mapping for PHP. If this parameter is not specified then all available handler mappings will be listed. This parameter supports wildcard syntax.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
           <maml:name>Version</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a version of PHP. If this parameter is specified then only handler mappings for that PHP version will be listed. This parameter supports wildcard syntax.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
@@ -722,8 +716,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
         <maml:name>HandlerName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the handler mapping for PHP. If this parameter is not specified then all available handler mappings will be listed. This parameter supports wildcard syntax.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -736,8 +729,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
         <maml:name>Version</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a version of PHP. If this parameter is specified then only handler mappings for that PHP version will be listed. This parameter supports wildcard syntax.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -750,8 +742,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -764,8 +755,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -779,8 +769,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>
-          </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri />
           <maml:description>
             <maml:para>
@@ -819,8 +808,66 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Get-PHPVersion</dev:code>
+        <dev:remarks>
+          <maml:para>This command lists all the PHP versions registered with IIS on a server level.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>HandlerName       Version       ScriptProcessor           Active
+-----------       -------       ---------------           ------
+php-5.3.6         5.3.6         C:\php\536\php-cgi.exe    True
+php-5.2.16        5.2.16        C:\php\5216\php-cgi.exe   False
+php-5.3.1         5.3.1         C:\php\531\php-cgi.exe    False
+				</maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Get-PHPVersion -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command returns all the versions of PHP that are configured for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>New-PHPVersion</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -828,8 +875,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:details>
       <command:name>New-PHPSetting</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Adds new PHP configuration setting to the currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -842,8 +888,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The New-PHPSetting cmdlet adds a new PHP configuration setting to the PHP version that is currently active on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -851,55 +896,48 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the setting to be added.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
           <maml:name>Value</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the value of the setting to be added.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
           <maml:name>Section</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the section that the setting belongs to. If this parameter is not specified then the setting will be added to "PHP" section.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>WhatIf</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Confirm</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Prompts for confirmation before executing the command.</maml:para>
           </maml:description>
         </command:parameter>
       </command:syntaxItem>
@@ -908,8 +946,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the setting to be added.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -922,8 +959,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
         <maml:name>Value</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the value of the setting to be added.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -936,22 +972,19 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
         <maml:name>Section</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the section that the setting belongs to. If this parameter is not specified then the setting will be added to "PHP" section.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>
-        </dev:defaultValue>
+        <dev:defaultValue>PHP</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -964,8 +997,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -978,8 +1010,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>WhatIf</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -991,8 +1022,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Confirm</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Prompts for confirmation before executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1005,8 +1035,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>
-          </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri />
           <maml:description>
             <maml:para>
@@ -1045,8 +1074,70 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>New-PHPSetting -Name wincache.fcndetect -Value 1 -Section wincache</dev:code>
+        <dev:remarks>
+          <maml:para>Adds a new configuration setting with name "wincache.fcndetect" and value "1" to the PHP.INI section "wincache".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>New-PHPSetting -Name wincache.debuglevel -Value 101 -Section wincache -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command adds new configuration settings for the PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Set-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -1054,8 +1145,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:details>
       <command:name>New-PHPVersion</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Registers new PHP version on specified IIS web site and application.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -1068,8 +1158,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The New-PHPVersion cmdlet registers new PHP version with IIS on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter. If neither "SiteName" nor "VirtualPath" specified then PHP will be registered on a server level.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1077,24 +1166,21 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
           <maml:name>ScriptProcessor</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the path to the PHP executable file - php-cgi.exe.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
@@ -1104,8 +1190,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
         <maml:name>ScriptProcessor</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the path to the PHP executable file - php-cgi.exe.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1118,8 +1203,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1132,8 +1216,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1147,8 +1230,7 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>
-          </maml:name>
+          <maml:name>None</maml:name>
           <maml:uri />
           <maml:description>
             <maml:para>
@@ -1187,8 +1269,62 @@ error_log                   "C:\Windows\Temp\errors.log"  PHP
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>New-PHPVersion -ScriptProcessor C:\PHP\536\</dev:code>
+        <dev:remarks>
+          <maml:para>This command registers new PHP version, whose files are located at C:\PHP\536 directory.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>New-PHPVersion -ScriptProcessor C:\PHP\536\php-cgi.exe -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command registers new version of PHP for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-PHPVersion</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
