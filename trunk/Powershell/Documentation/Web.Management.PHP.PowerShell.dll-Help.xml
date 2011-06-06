@@ -1332,8 +1332,7 @@ C:\PS&gt;			</maml:introduction>
     <command:details>
       <command:name>Remove-PHPSetting</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Removes an existing PHP setting from the currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -1346,8 +1345,7 @@ C:\PS&gt;			</maml:introduction>
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The Remove-PHPSetting cmdlet removes an existing PHP configuration setting from the PHP version that is currently active on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1355,46 +1353,46 @@ C:\PS&gt;			</maml:introduction>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Force</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Suppresses all prompts. By default, Remove-PHPSetting displays a warning whenever you delete a PHP setting.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the setting to be removed.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>WhatIf</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Confirm</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
           </maml:description>
         </command:parameter>
       </command:syntaxItem>
@@ -1403,8 +1401,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Force</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Suppresses all prompts. By default, Remove-PHPSetting displays a warning whenever you delete a PHP setting.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1416,8 +1413,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the setting to be removed.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1430,8 +1426,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1444,8 +1439,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1458,8 +1452,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>WhatIf</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1471,8 +1464,13 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Confirm</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1525,8 +1523,70 @@ C:\PS&gt;			</maml:introduction>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Remove-PHPSetting wincache.fcndetect -Force</dev:code>
+        <dev:remarks>
+          <maml:para>This command removes the PHP setting wincache.fcndetect from the configuration for the currently active PHP version without prompting for confirmation.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Remove-PHPSetting -Name wincache.debuglevel -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command removes a configuration settings for the PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>New-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Set-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -1534,8 +1594,7 @@ C:\PS&gt;			</maml:introduction>
     <command:details>
       <command:name>Set-PHPExtension</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Enables or disables PHP extensions for currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -1548,8 +1607,7 @@ C:\PS&gt;			</maml:introduction>
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The Set-PHPExtension cmdlet enables or disables PHP extensions available in the currently active PHP version. This cmdlet can get the name of extension from the PowerShell pipe.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1557,47 +1615,47 @@ C:\PS&gt;			</maml:introduction>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the extension to set.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
         </command:parameter>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
           <maml:name>Status</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the status to use for this extension. Allowed values are "Enabled" and "Disabled".</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">PHPExtensionStatus</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>WhatIf</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Confirm</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
           </maml:description>
         </command:parameter>
       </command:syntaxItem>
@@ -1606,8 +1664,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the extension to set.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
         <dev:type>
@@ -1620,8 +1677,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
         <maml:name>Status</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the status to use for this extension. Allowed values are "Enabled" and "Disabled".</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">PHPExtensionStatus</command:parameterValue>
         <dev:type>
@@ -1634,8 +1690,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1648,8 +1703,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1662,8 +1716,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>WhatIf</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1675,8 +1728,13 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Confirm</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1689,12 +1747,10 @@ C:\PS&gt;			</maml:introduction>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>
-          </maml:name>
+          <maml:name>String</maml:name>
           <maml:uri />
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Name of the extension.</maml:para>
           </maml:description>
         </dev:type>
         <maml:description>
@@ -1729,8 +1785,87 @@ C:\PS&gt;			</maml:introduction>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPExtension -Name php_wincache.dll -Status Enabled</dev:code>
+        <dev:remarks>
+          <maml:para>This command enables php_wincache.dll extension.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Get-PHPExtension -Name *pdo* | Set-PHPExtension -Status Enabled</dev:code>
+        <dev:remarks>
+          <maml:para>This command enables all available extension that have "pdo" in their names.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 3 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPExtension -Name php_wincache.dll -Status Enabled -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command enables WinCache extensio for the PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-PHPExtension</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -1738,8 +1873,7 @@ C:\PS&gt;			</maml:introduction>
     <command:details>
       <command:name>Set-PHPSetting</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Changes the value of an existing PHP setting for the currently active PHP version.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -1752,8 +1886,7 @@ C:\PS&gt;			</maml:introduction>
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The Set-PHPSetting cmdlet changes the value of an existing PHP configuration setting for the PHP version that is currently active on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1761,47 +1894,47 @@ C:\PS&gt;			</maml:introduction>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the PHP setting to change.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
           <maml:name>Value</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a new value for the PHP setting.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>WhatIf</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Confirm</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
           </maml:description>
         </command:parameter>
       </command:syntaxItem>
@@ -1810,8 +1943,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the PHP setting to change.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1824,8 +1956,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
         <maml:name>Value</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a new value for the PHP setting.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1838,8 +1969,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1852,8 +1982,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1866,8 +1995,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>WhatIf</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1879,8 +2007,13 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Confirm</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -1933,8 +2066,70 @@ C:\PS&gt;			</maml:introduction>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPSetting -Name wincache.fcndetect -Value 1</dev:code>
+        <dev:remarks>
+          <maml:para>This command sets the PHP setting "wincache.fcndetect" to 1.</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPSetting -Name wincache.debuglevel -Value 101 -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command sets a configuration settings for the PHP version that is used for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>New-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Remove-PHPSetting</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
     </maml:relatedLinks>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
@@ -1942,8 +2137,7 @@ C:\PS&gt;			</maml:introduction>
     <command:details>
       <command:name>Set-PHPVersion</command:name>
       <maml:description>
-        <maml:para>
-        </maml:para>
+        <maml:para>Sets an active PHP version on specified IIS web site and application.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para />
@@ -1956,8 +2150,7 @@ C:\PS&gt;			</maml:introduction>
     </command:details>
     <maml:description>
       <!--This is the Description section-->
-      <maml:para>
-      </maml:para>
+      <maml:para>The Set-PHPVersion cmdlet sets an active PHP version on the site specified by "SiteName" parameter and on the application/folder specified by "VirtualPath" parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1965,39 +2158,40 @@ C:\PS&gt;			</maml:introduction>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
           <maml:name>HandlerName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies the name of the handler mapping for an existing PHP version.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>SiteName</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>VirtualPath</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>WhatIf</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
           </maml:description>
         </command:parameter>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
           <maml:name>Confirm</maml:name>
           <maml:description>
-            <maml:para>
-            </maml:para>
+            <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
           </maml:description>
         </command:parameter>
       </command:syntaxItem>
@@ -2006,8 +2200,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1">
         <maml:name>HandlerName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies the name of the handler mapping for an existing PHP version.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2020,8 +2213,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>SiteName</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a name of existing web site. The cmdlet will use the PHP version that is active for that web site. If this parameter is not specified then PHP version on a server level will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2034,8 +2226,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>VirtualPath</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Specifies a path within a web site. The cmdlet will use the PHP version that is active for that configuration path within a web site. If this parameter is not specified then PHP version for the root directory of web site will be used.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2048,8 +2239,7 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>WhatIf</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -2061,8 +2251,13 @@ C:\PS&gt;			</maml:introduction>
       <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
         <maml:name>Confirm</maml:name>
         <maml:description>
-          <maml:para>
-          </maml:para>
+          <maml:para>Prompts you for confirmation before executing the command.
+
+The Confirm parameter overrides the value of the $ConfirmPreference
+variable for the current command. The default value is High. For more
+information, type the following command:
+
+    get-help about_preference_variables</maml:para>
         </maml:description>
         <dev:type>
           <maml:name>SwitchParameter</maml:name>
@@ -2115,6 +2310,56 @@ C:\PS&gt;			</maml:introduction>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
+      <command:example>
+        <maml:title>
+--------------  Example 1 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPVersion -HandlerName php-5.3.6</dev:code>
+        <dev:remarks>
+          <maml:para>This command sets an active PHP version that has an IIS Handler name "php-5.3.6".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>
+--------------  Example 2 --------------			</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&gt;</maml:para>
+C:\PS&gt;			</maml:introduction>
+        <dev:code>Set-PHPVersion -SiteName mysite -VirtualPath /forum</dev:code>
+        <dev:remarks>
+          <maml:para>This command sets an active PHP version for the directory "/forum" on a site with name "mysite".</maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
     </command:examples>
     <maml:relatedLinks>
     </maml:relatedLinks>
