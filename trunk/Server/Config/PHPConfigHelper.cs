@@ -212,6 +212,11 @@ namespace Web.Management.PHP.Config
             bool changeHappened = false;
 
             FileElement fileElement = _defaultDocumentCollection["index.php"];
+
+            // We need to copy inherited default documents in order to prevent config errors
+            // caused by adding the same document on the upper configuration level.
+            CopyIneritedDefaultDocs();
+
             if (fileElement == null)
             {
                 fileElement = _defaultDocumentCollection.CreateElement();
@@ -221,7 +226,6 @@ namespace Web.Management.PHP.Config
             }
             else if (_defaultDocumentCollection.IndexOf(fileElement) > 0)
             {
-                CopyIneritedDefaultDocs();
                 MoveIndexPhpOnTop();
                 changeHappened = true;
             }
@@ -273,12 +277,8 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                // If PHPRC does not point to a valid directory with php.ini or php-cgi-fcgi.ini ...
-                string pathPhpIni = Path.Combine(envVariableElement.Value, "php.ini");
-                string pathPhpSapiIni = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
-                if (!File.Exists(pathPhpIni) && !File.Exists(pathPhpSapiIni))
+                if (!IsValidPhpDirectory(envVariableElement.Value))
                 {
-                    // ... then set it to the directory where php.ini is loaded from
                     envVariableElement.Value = expectedValue;
                     changeHappened = true;
                 }
@@ -505,7 +505,16 @@ namespace Web.Management.PHP.Config
                 }
             }
 
-            string phpIniPath = Path.Combine(directoryPath, "php-cgi-fcgi.ini");
+            string phpIniPath = String.Empty;
+            if (IsDirectory(directoryPath))
+            {
+                phpIniPath = Path.Combine(directoryPath, "php-cgi-fcgi.ini");
+            }
+            else
+            {
+                phpIniPath = directoryPath;
+                directoryPath = Path.GetDirectoryName(phpIniPath);
+            }
 
             if (File.Exists(phpIniPath))
             {
@@ -521,6 +530,11 @@ namespace Web.Management.PHP.Config
             }
 
             return String.Empty;
+        }
+
+        private static bool IsDirectory(string directoryPath)
+        {
+            return ((File.GetAttributes(directoryPath) & FileAttributes.Directory) == FileAttributes.Directory);
         }
 
         private static string GetPHPIniPathFromRegistry(string executable)
@@ -983,6 +997,11 @@ namespace Web.Management.PHP.Config
             HandlerElement handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
             // Create a handler mapping if it does not exist
             bool isNewHandler = false;
+
+            // We need to copy inherited handlers in order to prevent config errors
+            // caused by adding the same PHP version on the upper configuration level.
+            CopyInheritedHandlers();
+
             if (handlerElement == null)
             {
                 // Create a PHP file handler if it does not exist
@@ -1001,7 +1020,6 @@ namespace Web.Management.PHP.Config
             else if (_currentPHPHandler != null && handlerElement != _currentPHPHandler)
             {
                 // Move the existing PHP file handler mapping on top
-                CopyInheritedHandlers();
                 MakeHandlerActive(handlerElement.Name);
                 iisUpdateHappened = true;
             }
@@ -1505,9 +1523,7 @@ namespace Web.Management.PHP.Config
             }
             else
             {
-                string pathPhpIni = Path.Combine(envVariableElement.Value, "php.ini");
-                string pathPhpSapiIni = Path.Combine(envVariableElement.Value, "php-cgi-fcgi.ini");
-                if (!File.Exists(pathPhpIni) && !File.Exists(pathPhpSapiIni))
+                if (!IsValidPhpDirectory(envVariableElement.Value))
                 {
                     configIssue = new PHPConfigIssue("PHPRC",
                                                                     envVariableElement.Value,
@@ -1519,6 +1535,22 @@ namespace Web.Management.PHP.Config
             }
 
             return configIssue;
+        }
+
+        private static bool IsValidPhpDirectory(string path)
+        {
+            string pathPhpIni = String.Empty;
+            string pathPhpSapiIni = String.Empty;
+            string directoryName = path;
+            if (!IsDirectory(path))
+            {
+                directoryName = Path.GetDirectoryName(path);
+            }
+
+            pathPhpIni = Path.Combine(directoryName, "php.ini");
+            pathPhpSapiIni = Path.Combine(directoryName, "php-cgi-fcgi.ini");
+
+            return (File.Exists(pathPhpIni) || File.Exists(pathPhpSapiIni));
         }
 
         private PHPConfigIssue ValidateResourceType()
