@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddEditSettingDialogLearnMore" xml:space="preserve">
+    <value>Дополнительная информация об этом параметре</value>
+  </data>
+  <data name="AddEditSettingDialogName" xml:space="preserve">
+    <value>Название:</value>
+  </data>
+  <data name="AddEditSettingDialogSection" xml:space="preserve">
+    <value>Секция:</value>
+  </data>
+  <data name="AddEditSettingDialogValue" xml:space="preserve">
+    <value>Значение:</value>
+  </data>
+  <data name="AddEditSettingDialogAddSetting" xml:space="preserve">
+    <value>Добавить параметр PHP</value>
+  </data>
+  <data name="AllPagesGoBackTask" xml:space="preserve">
+    <value>Назад к главной странице</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
+    <value>Изменить параметр PHP</value>
+  </data>
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
+    <value>Изменить...</value>
+  </data>
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
+    <value>Скачивается информация о параметрах.</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>Директория не содержит требуемых файлов PHP: php-cgi.exe и php.ini.</value>
+  </data>
+  <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
+    <value>Настроить параметры расширения</value>
+  </data>
+  <data name="PHPExtensionItemEnableTask" xml:space="preserve">
+    <value>Включить или выключить расширение</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsItemTitle" xml:space="preserve">
+    <value>Расширения PHP</value>
+  </data>
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
+    <value>Включает или выключает расширения PHP и изменяет их параметры.</value>
+  </data>
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
+    <value>Выключить</value>
+  </data>
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
+    <value>Включить</value>
+  </data>
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
+    <value>Скачивается информация о расширениях.</value>
+  </data>
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
+    <value>Расширения предоставляют дополнительную функциональность в PHP, например работу с базами данных, кэширование, отладку и другие. Используйте эту страницу для включения и выключения расширений PHP и для изменения параметров расширений.</value>
+  </data>
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
+    <value>Расширения PHP</value>
+  </data>
+  <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
+    <value>Открыть php.ini</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>Получить результат функции phpinfo()</value>
+  </data>
+  <data name="PHPInfoPageLongDescription" xml:space="preserve">
+    <value>Результат функции phpinfo() предоставляет информацию о текущем состоянии PHP. Эта информация может быть использована для всесторонней проверки работы PHP и для отладки.</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>Результат phpinfo()</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>Обновить phpinfo</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот параметр?</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageConfigurationFile" xml:space="preserve">
+    <value>Файл конфигурации:</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>Конфигурация и параметры PHP</value>
+  </data>
+  <data name="PHPPageExecutable" xml:space="preserve">
+    <value>Исполняемый файл PHP:</value>
+  </data>
+  <data name="PHPPageExtensionsPath" xml:space="preserve">
+    <value>Путь к расширениям:</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>Установка, всесторонняя проверка и настройка параметров работы PHP и контроль расширений PHP.</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>Администратор PHP</value>
+  </data>
+  <data name="PHPPageVersion" xml:space="preserve">
+    <value>Версия PHP:</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
+    <value>Контролировать все параметры</value>
+  </data>
+  <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
+    <value>Настроить сообщения об ошибках</value>
+  </data>
+  <data name="PHPSettingsItemTitle" xml:space="preserve">
+    <value>Параметры PHP</value>
+  </data>
+  <data name="AllPagesAddTask" xml:space="preserve">
+    <value>Добавить...</value>
+  </data>
+  <data name="AllSettingsPageDescription" xml:space="preserve">
+    <value>Изменить все параметры PHP</value>
+  </data>
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
+    <value>Параметры PHP, хранящиеся в файле php.ini, контролируют различные свойтсва PHP, например сообщения об ошибках, безопасность, сессии и другие.</value>
+  </data>
+  <data name="AllSettingsPageNameField" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
+    <value>Секция</value>
+  </data>
+  <data name="AllSettingsPageTitle" xml:space="preserve">
+    <value>Параметры PHP</value>
+  </data>
+  <data name="AllSettingsPageValueField" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
+    <value>Изменить версию PHP</value>
+  </data>
+  <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
+    <value>Проверить phpinfo()</value>
+  </data>
+  <data name="PHPSetupItemRegisterPHPTask" xml:space="preserve">
+    <value>Зарегистрировать новую версию PHP</value>
+  </data>
+  <data name="PHPSetupItemTitle" xml:space="preserve">
+    <value>Установка PHP</value>
+  </data>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>Укажите путь к исполняемуму файлу PHP (php-cgi.exe):</value>
+  </data>
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogTitle" xml:space="preserve">
+    <value>Выбрать сайт и URL</value>
+  </data>
+  <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
+    <value>Зарегистрировать новую версию PHP</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
+    <value>Выберите &amp;URL используемый выбранным сайтом:</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
+    <value>Выберите &amp;сайт для проверки настройки PHP:</value>
+  </data>
+  <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
+    <value>Установить ограничения</value>
+  </data>
+  <data name="PHPPageErrorLog" xml:space="preserve">
+    <value>Журнал ошибок:</value>
+  </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>Включено {0} расширений.</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>Установлено {0} расширений.</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>Отчетность и журнал ошибок PHP</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>Эта страница используется для контроля за тем, как PHP сообщает об ошибках, предупреждениях и информационных событиях.</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>Сообщения об ошибках PHP</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>Компьютер для &amp;разработки</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>Это компьютер для разработки. Использовать детальные сообщения об ошибках. Все ошибки, предупреждения и информационные сведения будут выводиться в веб браузер а также будут записываться в файл журнала ошибок.</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>Файл журнала ошибок:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>Компьютер для &amp;производства</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>Это производственный сервер. Ошибки выполнения PHP будут записаны в журнал ошибок. Информация об ошибках и предупреждениях не будет выводится в веб браузер.</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>Выберите тип сервера. На основе этого будет установлен уровень сообщений об ошибках.</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>Тип сервера</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>Введенный путь должен указывать либо на php-cgi.exe, либо на php.exe.</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>Директория не содержит поддиректорию "ext", используемую для хранения расширений PHP.</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>Исполняемый файл PHP (php-cgi.exe)|php-cgi.exe|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>Выбрать исполняемый файл PHP</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>Выберите версию PHP:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>Изменить версию PHP</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>Например: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>Файлы журнала (*.log)|*.log|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>Файл журнала ошибок PHP</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>Файл журнала ошибок:</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>Максимальное время исполнения</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>Настроить ограничения работы PHP, такие как время выполнения и загрузки и т.д.</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>Настроить ограничения работы PHP, такие как время выполнения, размер загружаемых файлов, доступное количество памяти и другие.</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>Ограничения работы PHP</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>Обработка данных</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>Максимальное время, в секундах, в течение которого программа PHP может выполняться. Этот параметр помогает предотвратить ситуации, когда неправильно написанная программа занимает все ресурсы на сервере.</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>Максимальное количество файлов для загрузки</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>Максимальное количество файлов, которое можно загрузить на сервер за один запрос.</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>Максималное времы ввода</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>Максимальное время, в секундах, за которое программа PHP может обработать входные данные полученные из запросов POST, GET и из загруженных файлов.</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>Ограничение памяти</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>Максимальное количество памяти, в байтах, которое может быть исползованно программой PHP. Этот параметр позволяет предотвратить ситуации, когда неправильно написанная программа занимает всю свободную память на сервере.</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>Максималный размер POST</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>Максимальный возможный размер запроса типа POST. Этот параметр воздействует на размер загружаемых на сервер файлов. Для загрузки больших файлов, этот параметр должен быть больше чем параметр "upload_max_filesize".</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>Ограничения ресурсов</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>Максимальный размер загружаемых файлов</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>Максимально допустимый размер файлов загружаемых на сервер.</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>Расширения PHP недоступны</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>Недоступно</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>Файл php.ini не найден. Убедитесть, что регистрация PHP с IIS правильная.</value>
+  </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>Эти параметры могут быть изменены только администратором сервера.</value>
+  </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>Невозможно создать временный файл phpinfo на сервере вследствие недостаточных прав доступа.</value>
+  </data>
+  <data name="ErrorSomeHandlersLocked" xml:space="preserve">
+    <value>Версия PHP не может быть изменена, так как некоторые из обработчиков IIS закрыты на уровне сервера.</value>
+  </data>
+  <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
+    <value>Просмотреть включенные и выключенные расширения</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyAllSettingsTask" xml:space="preserve">
+    <value>Просмотреть все параметры</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
+    <value>Просмотреть параметры сообщений об ошибках</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
+    <value>Просмотреть ограничения</value>
+  </data>
+  <data name="ErrorFileDoesNotExist" xml:space="preserve">
+    <value>Файл {0} не существует.</value>
+  </data>
+  <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningViewRecommendations" xml:space="preserve">
+    <value>Просмотреть рекомендации.</value>
+  </data>
+  <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
+    <value>Обнаружена неоптимальная конфигурация PHP. </value>
+  </data>
+  <data name="ConfigIssueNone" xml:space="preserve">
+    <value>&lt;Не установлено&gt;</value>
+  </data>
+  <data name="RecommendConfigDialogCurrentValue" xml:space="preserve">
+    <value>Текущее значение</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
+    <value>&amp;Рекомендация:</value>
+  </data>
+  <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
+    <value>Обнаруженные &amp;проблемы настройки:</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
+    <value>Рекомендуемое значение</value>
+  </data>
+  <data name="RecommendConfigDialogSettingName" xml:space="preserve">
+    <value>Название параметра</value>
+  </data>
+  <data name="RecommendConfigDialogTitle" xml:space="preserve">
+    <value>Рекомендации настройки</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "cgi.force_redirect" не равно "0".</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "cgi.force_redirect" не установлено.</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectRecommend" xml:space="preserve">
+    <value>Рекомендуется выключить параметр "cgi.force_redirect" когда PHP используется с IIS.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "cgi.fix_pathinfo" не равно "1".</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "cgi.fix_pathinfo" не установлено.</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoRecommend" xml:space="preserve">
+    <value>Этот параметр используется для правильной поддержки PATH_INFO/PATH_TRANSLATED в CGI и FastCGI. Рекомендуется включить этот параметр путем выставления ее значения в "1".</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "error_log" указывает на несуществующую директорию.</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "error_log" не установлено.</value>
+  </data>
+  <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
+    <value>Параметр "error_log" указывает путь к файлу, куда будут записываться ошибки PHP. Для этого параметра рекомендуется использовать абсолютный путь к файлу. Веб сервер должен иметь доступ на запись в этот файл.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
+    <value>Значение параметра PHP "extension_dir" не использует абсолютный путь.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "extension_dir" не установлено.</value>
+  </data>
+  <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
+    <value>Параметр "extension_dir" используется для указания директории, из которой PHP будет загружать динамические расширения. Рекомендуется использовать абсолютный путь к директории.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "fastcgi.impersonate" не равно "1".</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "fastcgi.impersonate" не установлено.</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
+    <value>Протокол FastCGI поддерживает имперсонацию контекста безопасности. Это позволяет IIS определять контекст безопасности, под которым выполняется запрос. Рекомендуется включить ипмерсонацию путем выставления значения параметра "fastcgi.impersonate" в "1".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "log_errors" не равно "On".</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "log_errors" не установлено.</value>
+  </data>
+  <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
+    <value>Параметр "log_errors" контролирует как PHP записывает ошибки и предупреждения в файл журнала ошибок. Рекомендуется установить значение этого параметра в "On".</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
+    <value>Значение параметра FastCGI "monitorChangesTo" указывает на неправильный файл.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesNotSet" xml:space="preserve">
+    <value>Значение параметра FastCGI "monitorChangesTo" не установлено.</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
+    <value>Параметр monitorChangesTo указавает на файл, за изменениями в котором должен следить модуль FastCGI. При каждом изменении этого файла процессы FastCGI будут перезапущены. Рекомендуется, чтобы значение этого параметра указывало на файл php.ini. Таким образом изменения конфигурации PHP будут вступать в действие при каждом обновлении файла php.ini.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
+    <value>Значение для PHP_FCGI_MAX_REQUESTS меньше, чем значение параметра FastCGI "instanceMaxRequests".</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
+    <value>Переменная среды PHP_FCGI_MAX_REQUESTS не установлена для процессов PHP.</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
+    <value>Переменная среды PHP_FCGI_MAX_REQUESTS используется, чтобы указать количество запросов, после обработки которых процесс PHP рециркулируется. Рекомендуется, чтобы значение этой переменной было больше чем или равнялось значению параметра FastCGI "instanceMaxRequests". В этом случае логика рециркуляции в модуле FastCGI не будет в конфликте с функциональностью рециркуляции PHP.</value>
+  </data>
+  <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
+    <value>Переменная среды PHPRC указывает на директорию, которая не содержит файл php.ini.</value>
+  </data>
+  <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
+    <value>Переменная среды PHPRC не установлена для процессов PHP.</value>
+  </data>
+  <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
+    <value>Переменная среды PHPRC используется, чтобы указать директорию в которой находится конфигурационный файл php.ini. Процессы PHP загружают этот файл во время запуска. Рекомендуется всегда определять эту переменную для каждой регистрации PHP, дабы избежать ситуаций когда PHP загружает неправильный конфигурационный файл.</value>
+  </data>
+  <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
+    <value>Атрибут "resourceType" у обработчика IIS для PHP не выставлен в значение "Either".</value>
+  </data>
+  <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
+    <value>Атрибут "resourceType" у обработчика IIS используется, чтобы задавать условие при котором обработчик будет выбран для веб запроса. При настройке обработчика для запросов PHP рекомендуется выставить этот атрибут в значение "Either" из соображений безопасности. Таким образом, обработчик будет выбран только если запрошенный ресурс соответствует файлу или директории.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "session.save_path" указывает на несуществующую директорию.</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "session.save_path" не установлено.</value>
+  </data>
+  <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
+    <value>Параметр "session.save_path" содержит путь к директории, которая используется для хранения информации сессий. При указании этого параметра рекомендуется использовать абсолютный путь к директории. Веб сервер должен иметь доступ на запись в эту директорию.</value>
+  </data>
+  <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
+    <value>&amp;Описание проблемы:</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotSet" xml:space="preserve">
+    <value>index.php не выставлен как документ по умолчанию.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
+    <value>Большинство приложений PHP используют index.php как документ по умолчанию для веб запросов. Рекомендуется добавить index.php в список документов по умолчанию в IIS и убедиться, что от находится в начале списка.</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
+    <value>index.php не первый в списке документов по умолчанию в IIS.</value>
+  </data>
+  <data name="WarningPHPConfigCgi" xml:space="preserve">
+    <value>Обнаружена неоптимальная регистрация PHP (CGI). Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
+  </data>
+  <data name="WarningPHPConfigIsapi" xml:space="preserve">
+    <value>Обнаружена неоптимальная регистрация PHP (ISAPI). Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
+  </data>
+  <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
+    <value>Регистрация PHP отсутствует. Зарегистрируйте новую версию PHP, чтобы включить PHP через FastCGI.</value>
+  </data>
+  <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
+    <value>Невозможно получить информацию о регистрации PHP из-за неправильной конфигурации IIS.</value>
+  </data>
+  <data name="RecommendConfigDialogDescription" xml:space="preserve">
+    <value>Проблемы настройки IIS и PHP обнаруженные на этом сервере. Выберите проблемы которые вы хотите исправить.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
+    <value>Значение параметра PHP "upload_tmp_dir" указывает на несуществующую директорию.</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "upload_tmp_dir" не установлено.</value>
+  </data>
+  <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
+    <value>Параметр "upload_tmp_dir" указывает на временную директорию, которая используется для хранения файлов в процессе загрузки на веб сервер. Веб сервер должен иметь доступ на запись в эту директорию.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
+    <value>Значение параметра PHP "date.timezone" не установлено.</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
+    <value>Не рекомендуется полагаться на используемые по умолчанию значения временной зоны. Рекомендуется выставить временную зону используя "date.timezone" параметр или date_default_timezone_set() функцию.</value>
+  </data>
+  <data name="PHPExtensionItemAddTask" xml:space="preserve">
+    <value>Добавить расширение</value>
+  </data>
+  <data name="AddExtensionDialogAddExtension" xml:space="preserve">
+    <value>Добавить расширение</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
+    <value>Расширение PHP (php*.dll)|php*.dll|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
+    <value>Выберите файл расширения</value>
+  </data>
+  <data name="ErrorCannotAddExtension" xml:space="preserve">
+    <value>Невозможно добавить расширение PHP. Файл с расширением не может быть скопирован в директорию расширений.</value>
+  </data>
+  <data name="AddExtensionDialogExample" xml:space="preserve">
+    <value>Например: C:\Temp\php_wincache.dll</value>
+  </data>
+  <data name="AddExtensionDialogProvidePath" xml:space="preserve">
+    <value>Укажите путь к файлу расширения:</value>
+  </data>
+  <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
+    <value>Это расширение уже существует в директории расширений PHP. Используйте команду "Включить или выключить расширение", чтобы включить это расширение.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>'{0}' использует локальные сопоставления обработчиков, которые переопределяют сопоставления на верхних уровнях. Изменения в установках PHP на верхних уровнях могут не применится к этому каталогу.</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>'{0}' использует локалные сопоставления обработчиков, которые переопределяют сопоставления на уровне сервера. Изменения в установках PHP на серверном уровне могут не применится к этому сайту.</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>Сопоставление обработчика:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>Унаследовано</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>Локальное</value>
+  </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>Узнать больше.</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>Для регистрации PHP необходимо установить компоненту FastCGI. </value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>Невозможно найти регистрацию PHP на этом сервере. PHP регистрация отсутсвует или неисправна.</value>
+  </data>
+</root>
