@@ -75,6 +75,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_464DDE4A035D47798C9C38D45F055FF7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4A0FCF76450BF5311F24CD1375AA7051"
         "OwnerKey" = "8:_2AD6CF683F3348C090BE9727C2DBF1F9"
         "MsmSig" = "8:_UNDEFINED"
@@ -232,13 +238,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4A6B17C7D8702F3A117E002CDCB7CA4E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_71F8478692C845F78B3BAC06F194CD82"
+        "OwnerKey" = "8:_464DDE4A035D47798C9C38D45F055FF7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -298,7 +298,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_71F8478692C845F78B3BAC06F194CD82"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_63E542608235450D9C9E602A99E34287"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4A6B17C7D8702F3A117E002CDCB7CA4E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -668,6 +680,37 @@
                     }
                 }
             "SourcePath" = "8:..\\bin\\Release\\Web.Management.PHP.PowerShell.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B1BC1D0F89CF4D388FA074A2E78BB35F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_464DDE4A035D47798C9C38D45F055FF7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.2.1.0, Culture=pt-BR, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_464DDE4A035D47798C9C38D45F055FF7"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\bin\\Release\\pt-BR\\Web.Management.PHP.Client.resources.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B1BC1D0F89CF4D388FA074A2E78BB35F"
@@ -1269,7 +1312,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager 1.2 for IIS 7"
         "ProductCode" = "8:{C41B1AF8-EA1E-41F3-A8CB-C0EC4D8E8A83}"
-        "PackageCode" = "8:{23882E82-736E-4370-A528-8FC4721AE677}"
+        "PackageCode" = "8:{91D90DAF-5B61-47F5-9421-31F4D1FC85D0}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
