@@ -136,7 +136,10 @@
       <LogicalName>$(RootNamespace).Resources.fr-FR.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Languages\Resources.zh-TW.resx">
-        <LogicalName>$(RootNamespace).Resources.zh-TW.resources</LogicalName>
+      <LogicalName>$(RootNamespace).Resources.zh-TW.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languages\Resources.pt-BR.resx">
+      <LogicalName>$(RootNamespace).Resources.pt-BR.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -181,6 +184,8 @@ gacutil /if $(TargetDir)ja-JP\$(TargetName).resources.dll
 sn -Vr $(TargetDir)fr-FR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)fr-FR\$(TargetName).resources.dll
 sn -Vr $(TargetDir)zh-TW\$(TargetName).resources.dll
-gacutil /if $(TargetDir)zh-TW\$(TargetName).resources.dll</PostBuildEvent>
+gacutil /if $(TargetDir)zh-TW\$(TargetName).resources.dll
+sn -Vr $(TargetDir)pt-BR\$(TargetName).resources.dll
+gacutil /if $(TargetDir)pt-BR\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>
