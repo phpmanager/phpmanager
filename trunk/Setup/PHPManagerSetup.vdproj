@@ -105,6 +105,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4D5B77E4A6C14563A7F485649D322F51"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_63E542608235450D9C9E602A99E34287"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -238,7 +244,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_464DDE4A035D47798C9C38D45F055FF7"
+        "OwnerKey" = "8:_4D5B77E4A6C14563A7F485649D322F51"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -317,6 +323,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4A0FCF76450BF5311F24CD1375AA7051"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_464DDE4A035D47798C9C38D45F055FF7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -788,6 +800,37 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4D5B77E4A6C14563A7F485649D322F51"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Web.Management.PHP.Client.resources, Version=1.2.1.0, Culture=zh-CN, PublicKeyToken=8175de49a9aec91d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4D5B77E4A6C14563A7F485649D322F51"
+                    {
+                    "Name" = "8:Web.Management.PHP.Client.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\bin\\Release\\zh-CN\\Web.Management.PHP.Client.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B1BC1D0F89CF4D388FA074A2E78BB35F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_63E542608235450D9C9E602A99E34287"

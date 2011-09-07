@@ -138,6 +138,9 @@
     <EmbeddedResource Include="Languages\Resources.zh-TW.resx">
       <LogicalName>$(RootNamespace).Resources.zh-TW.resources</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Languages\Resources.zh-CN.resx">
+      <LogicalName>$(RootNamespace).Resources.zh-CN.resources</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Languages\Resources.pt-BR.resx">
       <LogicalName>$(RootNamespace).Resources.pt-BR.resources</LogicalName>
     </EmbeddedResource>
@@ -185,6 +188,8 @@ sn -Vr $(TargetDir)fr-FR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)fr-FR\$(TargetName).resources.dll
 sn -Vr $(TargetDir)zh-TW\$(TargetName).resources.dll
 gacutil /if $(TargetDir)zh-TW\$(TargetName).resources.dll
+sn -Vr $(TargetDir)zh-CN\$(TargetName).resources.dll
+gacutil /if $(TargetDir)zh-CN\$(TargetName).resources.dll
 sn -Vr $(TargetDir)pt-BR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)pt-BR\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
