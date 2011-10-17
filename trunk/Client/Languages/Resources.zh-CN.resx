@@ -254,7 +254,7 @@
     <value>配置错误报告</value>
   </data>
   <data name="PHPSettingsItemTitle" xml:space="preserve">
-    <value>PHP Settings</value>
+    <value>PHP 设置</value>
   </data>
   <data name="AllPagesAddTask" xml:space="preserve">
     <value>添加...</value>
@@ -281,7 +281,7 @@
     <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
-    <value>更高 PHP 版本</value>
+    <value>更改 PHP 版本</value>
   </data>
   <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
     <value>检查 phpinfo()</value>
@@ -632,7 +632,7 @@
     <value>PHP 指令“date.timezone”未设置。</value>
   </data>
   <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
-    <value>依赖系统时区设置可能会产生未知风险。建议使用“date.timezone”指令或 date_default_timezone_set() 函数显式设置时区信息。</value>
+    <value>依赖系统时区设置可能会产生风险。建议使用“date.timezone”指令或 date_default_timezone_set() 函数显式设置时区信息。</value>
   </data>
   <data name="PHPExtensionItemAddTask" xml:space="preserve">
     <value>添加扩展</value>
@@ -653,9 +653,33 @@
     <value>示例: C:\Temp\php_wincache.dll</value>
   </data>
   <data name="AddExtensionDialogProvidePath" xml:space="preserve">
-    <value>提供扩展二进制文件的路径:</value>
+    <value>请提供扩展二进制文件的路径:</value>
   </data>
   <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
     <value>该扩展已经存在于 PHP 扩展目录中。请使用“启用或禁用扩展”命令以启用该扩展。</value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>无法在该 IIS 服务器上找到 PHP 注册。PHP 尚未注册或注册不正确。</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>“{0}”中存在改写上级设置的本地处理器映射设置。上级 PHP 设置的更改可能无法在该文件夹上生效。</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>“{0}”中存在改写服务器设置的本地处理器映射设置。服务器级别的 PHP 设置更改可能无法在该站点上生效。</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>处理程序映射:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>继承</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>本地</value>
+  </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>了解更多信息（可能为英文）。</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>要注册 PHP，必须打开 FastCGI 功能。</value>
   </data>
 </root>
