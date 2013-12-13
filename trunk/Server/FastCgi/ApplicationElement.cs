@@ -16,7 +16,7 @@ namespace Web.Management.PHP.FastCgi
     public sealed class ApplicationElement : ConfigurationElement
     {
         private EnvironmentVariablesCollection _environmentVars;
-        private string _fullPath = null;
+        private string _fullPath;
 
         public int ActivityTimeout
         {
@@ -46,12 +46,12 @@ namespace Web.Management.PHP.FastCgi
         {
             get
             {
-                if (this._environmentVars == null)
+                if (_environmentVars == null)
                 {
-                    ConfigurationElement environmentVars = base.GetChildElement("environmentVariables");
-                    this._environmentVars = (EnvironmentVariablesCollection)environmentVars.GetCollection(typeof(EnvironmentVariablesCollection));
+                    var environmentVars = GetChildElement("environmentVariables");
+                    _environmentVars = (EnvironmentVariablesCollection)environmentVars.GetCollection(typeof(EnvironmentVariablesCollection));
                 }
-                return this._environmentVars;
+                return _environmentVars;
             }
         }
 
@@ -73,7 +73,7 @@ namespace Web.Management.PHP.FastCgi
             {
                 if (string.IsNullOrEmpty(_fullPath))
                 {
-                    string rawFullPath = (string)base["fullPath"];
+                    var rawFullPath = (string)base["fullPath"];
                     _fullPath = Environment.ExpandEnvironmentVariables(rawFullPath);
                 }
                 return _fullPath;
@@ -186,7 +186,7 @@ namespace Web.Management.PHP.FastCgi
         {
             get
             {
-                int result = 0;
+                var result = 0;
                 try
                 {
                     result = (int)base["signalBeforeTerminateSeconds"];
@@ -216,7 +216,7 @@ namespace Web.Management.PHP.FastCgi
         {
             get
             {
-                StderrMode result = StderrMode.IgnoreAndReturn200;
+                var result = StderrMode.IgnoreAndReturn200;
                 try
                 {
                     result = ((StderrMode)base["stderrMode"]);
@@ -244,7 +244,7 @@ namespace Web.Management.PHP.FastCgi
         {
             try
             {
-                object o = base["monitorChangesTo"];
+                var o = base["monitorChangesTo"];
                 return true;
             }
             catch

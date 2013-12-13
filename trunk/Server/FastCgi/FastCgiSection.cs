@@ -16,18 +16,10 @@ namespace Web.Management.PHP.FastCgi
     {
         private FastCgiApplicationCollection _applications;
 
-        public FastCgiSection() {
-             }
-
         public FastCgiApplicationCollection Applications
         {
-            get
-            {
-                if (this._applications == null)
-                {
-                    this._applications = (FastCgiApplicationCollection)base.GetCollection(typeof(FastCgiApplicationCollection));
-                }
-                return this._applications;
+            get {
+                return _applications ?? (_applications = (FastCgiApplicationCollection) GetCollection(typeof (FastCgiApplicationCollection)));
             }
         }
     }

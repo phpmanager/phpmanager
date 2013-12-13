@@ -8,6 +8,7 @@
 //----------------------------------------------------------------------- 
 
 using System;
+using System.Linq;
 using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Powershell
@@ -18,35 +19,12 @@ namespace Web.Management.PHP.Powershell
 
         public static PHPIniExtension FindExtension(RemoteObjectCollection<PHPIniExtension> extensions, string name)
         {
-            PHPIniExtension result = null;
-
-            foreach (PHPIniExtension extension in extensions)
-            {
-                if (String.Equals(extension.Name, name, StringComparison.OrdinalIgnoreCase))
-                {
-                    result = extension;
-                    break;
-                }
-            }
-
-            return result;
+            return extensions.FirstOrDefault(extension => String.Equals(extension.Name, name, StringComparison.OrdinalIgnoreCase));
         }
 
         public static PHPIniSetting FindSetting(RemoteObjectCollection<PHPIniSetting> settings, string name)
         {
-            PHPIniSetting result = null;
-
-            foreach (PHPIniSetting setting in settings)
-            {
-                if (String.Equals(setting.Name, name, StringComparison.OrdinalIgnoreCase))
-                {
-                    result = setting;
-                    break;
-                }
-            }
-
-            return result;
+            return settings.FirstOrDefault(setting => String.Equals(setting.Name, name, StringComparison.OrdinalIgnoreCase));
         }
-
     }
 }

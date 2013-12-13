@@ -28,7 +28,7 @@ namespace Web.Management.PHP
             {
                 if (_proxy == null)
                 {
-                    Connection connection = (Connection)GetService(typeof(Connection));
+                    var connection = (Connection)GetService(typeof(Connection));
                     _proxy = (PHPModuleProxy)connection.CreateProxy(this, typeof(PHPModuleProxy));
                 }
 
@@ -40,11 +40,11 @@ namespace Web.Management.PHP
         {
             base.Initialize(serviceProvider, moduleInfo);
 
-            IControlPanel controlPanel = (IControlPanel)GetService(typeof(IControlPanel));
+            var controlPanel = (IControlPanel)GetService(typeof(IControlPanel));
             Debug.Assert(controlPanel != null, "Couldn't get IControlPanel");
 
             //PHPInfo page
-            ModulePageInfo modulePageInfo = new ModulePageInfo(this,
+            var modulePageInfo = new ModulePageInfo(this,
                 typeof(PHPInfoPage), Resources.PHPInfoPageTitle, Resources.PHPInfoPageDescription,
                 Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPInfoPageLongDescription);
 
@@ -88,7 +88,7 @@ namespace Web.Management.PHP
 
         protected override bool IsPageEnabled(ModulePageInfo pageInfo)
         {
-            Connection connection = (Connection)GetService(typeof(Connection));
+            var connection = (Connection)GetService(typeof(Connection));
 
             // We want the module configuration to be available on all levels except file.
             return (connection.ConfigurationPath.PathType != ConfigurationPathType.File);

@@ -28,12 +28,12 @@ namespace Web.Management.PHP.Setup
         TaskForm
 #endif
     {
-        private Guid PreferenceServiceGuid = new Guid("68a2a947-eeb6-40d9-9e5a-977bf7753bce");
+        private readonly Guid _preferenceServiceGuid = new Guid("68a2a947-eeb6-40d9-9e5a-977bf7753bce");
         private const string ServerSelectSitePreferenceKey = "ServerSitePreferenceKey";
         private const string ServerSelectUrlPreferenceKey = "ServerUrlPreferenceKey";
 
-        private PHPModule _module;
-        private Connection _connection;
+        private readonly PHPModule _module;
+        private readonly Connection _connection;
         private string _preferenceUrl;
         private string _preferenceSite;
         private PreferencesStore _store;
@@ -47,7 +47,7 @@ namespace Web.Management.PHP.Setup
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly IContainer components = null;
 
         public SelectSiteAndUrlDialog(PHPModule module, Connection connection)
             : base(module)
@@ -83,10 +83,10 @@ namespace Web.Management.PHP.Setup
             {
                 if (_store == null)
                 {
-                    IPreferencesService prefService = (IPreferencesService)GetService(typeof(IPreferencesService));
+                    var prefService = (IPreferencesService)GetService(typeof(IPreferencesService));
                     if (prefService != null)
                     {
-                        _store = prefService.GetPreferencesStore(PreferenceServiceGuid);
+                        _store = prefService.GetPreferencesStore(_preferenceServiceGuid);
                     }
                 }
                 return _store;
@@ -101,10 +101,7 @@ namespace Web.Management.PHP.Setup
                 {
                     return _connection.ConfigurationPath.GetEffectiveConfigurationPath(ManagementScope.Site);
                 }
-                else
-                {
-                    return String.Empty;
-                }
+                return String.Empty;
             }
         }
 
@@ -150,59 +147,59 @@ namespace Web.Management.PHP.Setup
         /// </summary>
         private void InitializeComponent()
         {
-            this._urlsComboBox = new System.Windows.Forms.ComboBox();
-            this._sitesComboBox = new System.Windows.Forms.ComboBox();
-            this._urlsLabel = new System.Windows.Forms.Label();
-            this._sitesLabel = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            _urlsComboBox = new System.Windows.Forms.ComboBox();
+            _sitesComboBox = new System.Windows.Forms.ComboBox();
+            _urlsLabel = new System.Windows.Forms.Label();
+            _sitesLabel = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // _domainsComboBox
             // 
-            this._urlsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._urlsComboBox.FormattingEnabled = true;
-            this._urlsComboBox.Location = new System.Drawing.Point(0, 90);
-            this._urlsComboBox.Name = "_domainsComboBox";
-            this._urlsComboBox.Size = new System.Drawing.Size(385, 21);
-            this._urlsComboBox.TabIndex = 3;
-            this._urlsComboBox.SelectedIndexChanged += new System.EventHandler(this.OnUrlsComboBoxSelectedIndexChanged);
+            _urlsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            _urlsComboBox.FormattingEnabled = true;
+            _urlsComboBox.Location = new System.Drawing.Point(0, 90);
+            _urlsComboBox.Name = "_domainsComboBox";
+            _urlsComboBox.Size = new System.Drawing.Size(385, 21);
+            _urlsComboBox.TabIndex = 3;
+            _urlsComboBox.SelectedIndexChanged += new System.EventHandler(OnUrlsComboBoxSelectedIndexChanged);
             // 
             // _sitesComboBox
             // 
-            this._sitesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._sitesComboBox.FormattingEnabled = true;
-            this._sitesComboBox.Location = new System.Drawing.Point(0, 25);
-            this._sitesComboBox.Name = "_sitesComboBox";
-            this._sitesComboBox.Size = new System.Drawing.Size(385, 21);
-            this._sitesComboBox.TabIndex = 1;
-            this._sitesComboBox.SelectedIndexChanged += new System.EventHandler(this.OnSitesComboBoxSelectedIndexChanged);
+            _sitesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            _sitesComboBox.FormattingEnabled = true;
+            _sitesComboBox.Location = new System.Drawing.Point(0, 25);
+            _sitesComboBox.Name = "_sitesComboBox";
+            _sitesComboBox.Size = new System.Drawing.Size(385, 21);
+            _sitesComboBox.TabIndex = 1;
+            _sitesComboBox.SelectedIndexChanged += new System.EventHandler(OnSitesComboBoxSelectedIndexChanged);
             // 
             // _domainsLabel
             // 
-            this._urlsLabel.Location = new System.Drawing.Point(0, 65);
-            this._urlsLabel.Name = "_domainsLabel";
-            this._urlsLabel.Size = new System.Drawing.Size(385, 22);
-            this._urlsLabel.TabIndex = 2;
-            this._urlsLabel.Text = Resources.SelectSiteAndUrlDialogSelectAUrl;
+            _urlsLabel.Location = new System.Drawing.Point(0, 65);
+            _urlsLabel.Name = "_domainsLabel";
+            _urlsLabel.Size = new System.Drawing.Size(385, 22);
+            _urlsLabel.TabIndex = 2;
+            _urlsLabel.Text = Resources.SelectSiteAndUrlDialogSelectAUrl;
             // 
             // _sitesLabel
             // 
-            this._sitesLabel.Location = new System.Drawing.Point(0, 0);
-            this._sitesLabel.Name = "_sitesLabel";
-            this._sitesLabel.Size = new System.Drawing.Size(385, 22);
-            this._sitesLabel.TabIndex = 0;
-            this._sitesLabel.Text = Resources.SelectSiteAndUrlDialogSelectASite;
+            _sitesLabel.Location = new System.Drawing.Point(0, 0);
+            _sitesLabel.Name = "_sitesLabel";
+            _sitesLabel.Size = new System.Drawing.Size(385, 22);
+            _sitesLabel.TabIndex = 0;
+            _sitesLabel.Text = Resources.SelectSiteAndUrlDialogSelectASite;
             // 
             // SelectSiteDomainDialog
             // 
-            this.ClientSize = new System.Drawing.Size(414, 192);
-            this.Controls.Add(this._sitesComboBox);
-            this.Controls.Add(this._sitesLabel);
-            this.Controls.Add(this._urlsLabel);
-            this.Controls.Add(this._urlsComboBox);
-            this.Name = "SelectSiteDomainDialog";
-            this.ResumeLayout(false);
+            ClientSize = new System.Drawing.Size(414, 192);
+            Controls.Add(_sitesComboBox);
+            Controls.Add(_sitesLabel);
+            Controls.Add(_urlsLabel);
+            Controls.Add(_urlsComboBox);
+            Name = "SelectSiteDomainDialog";
+            ResumeLayout(false);
 #if VSDesigner
-            this.PerformLayout();
+            PerformLayout();
 #endif
         }
 
@@ -210,20 +207,20 @@ namespace Web.Management.PHP.Setup
 
         public void InitializeUI()
         {
-            this._contentPanel = new ManagementPanel();
+            _contentPanel = new ManagementPanel();
             _contentPanel.SuspendLayout();
 
-            this._contentPanel.Location = new System.Drawing.Point(0, 0);
-            this._contentPanel.Dock = DockStyle.Fill;
-            this._contentPanel.Controls.Add(_urlsLabel);
-            this._contentPanel.Controls.Add(_urlsComboBox);
-            this._contentPanel.Controls.Add(_sitesLabel);
-            this._contentPanel.Controls.Add(_sitesComboBox);
+            _contentPanel.Location = new System.Drawing.Point(0, 0);
+            _contentPanel.Dock = DockStyle.Fill;
+            _contentPanel.Controls.Add(_urlsLabel);
+            _contentPanel.Controls.Add(_urlsComboBox);
+            _contentPanel.Controls.Add(_sitesLabel);
+            _contentPanel.Controls.Add(_sitesComboBox);
 
-            this._contentPanel.ResumeLayout(false);
-            this._contentPanel.PerformLayout();
+            _contentPanel.ResumeLayout(false);
+            _contentPanel.PerformLayout();
 
-            this.Text = Resources.SelectSiteAndUrlDialogTitle;
+            Text = Resources.SelectSiteAndUrlDialogTitle;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -251,8 +248,8 @@ namespace Web.Management.PHP.Setup
                 SaveSitePreferences(PreferencesStore);
             }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -275,7 +272,7 @@ namespace Web.Management.PHP.Setup
 
         private void OnSitesComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            StartAsyncTask(OnUrlsWorkerDoWork, OnUrlsWorkerDoWorkCompleted, null, (string)_sitesComboBox.SelectedItem);
+            StartAsyncTask(OnUrlsWorkerDoWork, OnUrlsWorkerDoWorkCompleted, null, _sitesComboBox.SelectedItem);
         }
 
         private void OnSiteWorkerDoWork(object sender, DoWorkEventArgs e) 
@@ -292,7 +289,7 @@ namespace Web.Management.PHP.Setup
             {
                 _sitesComboBox.Items.Clear();
 
-                ArrayList sites = e.Result as ArrayList;
+                var sites = e.Result as ArrayList;
                 sites.Sort();
                 foreach (string siteName in sites)
                 {
@@ -301,7 +298,7 @@ namespace Web.Management.PHP.Setup
 
                 if (!String.IsNullOrEmpty(_preferenceSite))
                 {
-                    int selectedIndex = _sitesComboBox.Items.IndexOf(_preferenceSite);
+                    var selectedIndex = _sitesComboBox.Items.IndexOf(_preferenceSite);
                     if (selectedIndex >= 0)
                     {
                         _sitesComboBox.SelectedIndex = selectedIndex;
@@ -321,16 +318,16 @@ namespace Web.Management.PHP.Setup
             _sitesComboBox.Focus();
         }
 
-        private void OnUrlsComboBoxSelectedIndexChanged(object sender, System.EventArgs e)
+        private void OnUrlsComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             Update();
         }
 
         private void OnUrlsWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            string siteName = (string)e.Argument;
+            var siteName = (string)e.Argument;
 
-            e.Result = Helper.GetUrlListFromBindings(_connection.ScopePath.ServerName, _module.Proxy.GetSiteBindings(siteName), this.RelativePath);
+            e.Result = Helper.GetUrlListFromBindings(_connection.ScopePath.ServerName, _module.Proxy.GetSiteBindings(siteName), RelativePath);
         }
 
         private void OnUrlsWorkerDoWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -342,7 +339,7 @@ namespace Web.Management.PHP.Setup
             {
                 _urlsComboBox.Items.Clear();
 
-                List<string> domains = e.Result as List<string>;
+                var domains = e.Result as List<string>;
                 foreach (string domain in domains)
                 {
                     _urlsComboBox.Items.Add(domain);

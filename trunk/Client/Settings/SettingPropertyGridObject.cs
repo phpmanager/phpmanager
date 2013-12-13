@@ -29,22 +29,22 @@ namespace Web.Management.PHP.Settings
         {
         }
 
-        protected override System.ComponentModel.PropertyDescriptorCollection GetProperties(Attribute[] attributes)
+        protected override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
         {
-            PropertyDescriptorCollection props = base.GetProperties(attributes);
+            var props = base.GetProperties(attributes);
 
-            Type thisType = GetType();
-            ArrayList properties = new ArrayList();
+            var thisType = GetType();
+            var properties = new ArrayList();
             foreach (PropertyDescriptor prop in props)
             {
-                AttributeCollection collection = prop.Attributes;
+                var collection = prop.Attributes;
 
-                SettingDisplayNameAttribute displayNameAttribute =
+                var displayNameAttribute =
                     (SettingDisplayNameAttribute)(collection[typeof(SettingDisplayNameAttribute)]);
 
                 if (displayNameAttribute != null)
                 {
-                    DisplayNameAttribute newDisplayNameAttribute =
+                    var newDisplayNameAttribute =
                         GetDisplayNameAttribute(displayNameAttribute.FriendlyName, displayNameAttribute.ConfigPropertyName);
 
                     properties.Add(TypeDescriptor.CreateProperty(thisType, prop, newDisplayNameAttribute));

@@ -21,19 +21,22 @@ namespace Web.Management.PHP
 
         internal static bool Browse(string url)
         {
-            if (url != null &&
-                (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase)) ||
-                url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            if (url != null)
             {
-                try
+                if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+                    url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
                 {
-                    Process.Start(url);
-                    return true;
-                }
-                catch
-                {
+                    try
+                    {
+                        Process.Start(url);
+                        return true;
+                    }
+                    catch
+                    {
+                    }
                 }
             }
+                
             return false;
         }
 
@@ -119,23 +122,24 @@ namespace Web.Management.PHP
         /// returns a list of URLs based on the bindings provided and the server name.
         ///  
         /// </summary>
+        /// <param name="serverName"></param>
         /// <param name="bindings">Arraylist of string[] {bindingProtocol, bindingInformation}</param>
-        /// 
+        /// <param name="relativePath"></param>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         internal static List<string> GetUrlListFromBindings(string serverName, ArrayList bindings, string relativePath)
         {
-            List<string> urls = new List<string>();
+            var urls = new List<string>();
 
             foreach (string[] b in bindings)
             {
-                string url = Helper.GetURLFromBinding(serverName, (string)b[0], (string)b[1]);
+                var url = GetURLFromBinding(serverName, b[0], b[1]);
                 try
                 {
-                    Uri siteURI = new Uri(url);
-                    Uri uri = new Uri(siteURI, relativePath);
+                    var siteUri = new Uri(url);
+                    var uri = new Uri(siteUri, relativePath);
 
-                    string absoluteURL = uri.AbsoluteUri;
-                    urls.Add(EnsureTrailingSlash(absoluteURL));
+                    var absoluteUrl = uri.AbsoluteUri;
+                    urls.Add(EnsureTrailingSlash(absoluteUrl));
                 }
                 catch
                 {

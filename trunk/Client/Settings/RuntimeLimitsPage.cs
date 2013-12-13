@@ -33,7 +33,6 @@ namespace Web.Management.PHP.Settings
         private PropertyBag _clone;
         private PropertyBag _bag;
         private PageTaskList _taskList;
-        private IModulePage _parentPage;
 
         protected override bool CanApplyChanges
         {
@@ -55,7 +54,7 @@ namespace Web.Management.PHP.Settings
         {
             get
             {
-                return Connection.ConfigurationPath.PathType == Microsoft.Web.Management.Server.ConfigurationPathType.Site &&
+                return Connection.ConfigurationPath.PathType == ConfigurationPathType.Site &&
                     !Connection.IsUserServerAdministrator;
             }
         }
@@ -68,23 +67,13 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        public IModulePage ParentPage
-        {
-            get
-            {
-                return _parentPage;
-            }
-            set
-            {
-                _parentPage = value;
-            }
-        }
+        public IModulePage ParentPage { get; set; }
 
         protected override TaskListCollection Tasks
         {
             get
             {
-                TaskListCollection tasks = base.Tasks;
+                var tasks = base.Tasks;
                 if (_taskList == null)
                 {
                     _taskList = new PageTaskList(this);
@@ -98,15 +87,15 @@ namespace Web.Management.PHP.Settings
 
         protected override PropertyBag GetProperties()
         {
-            PropertyBag result = new PropertyBag();
+            var result = new PropertyBag();
 
-            object o = Module.Proxy.GetPHPIniSettings();
-            PHPIniFile file = new PHPIniFile();
+            var o = Module.Proxy.GetPHPIniSettings();
+            var file = new PHPIniFile();
             file.SetData(o);
 
-            for (int i = 0; i < _settingNames.Length; i++)
+            for (var i = 0; i < _settingNames.Length; i++)
             {
-                PHPIniSetting setting = file.GetSetting(_settingNames[i]);
+                var setting = file.GetSetting(_settingNames[i]);
                 if (setting != null)
                 {
                     result[i] = setting.Value;
@@ -126,10 +115,10 @@ namespace Web.Management.PHP.Settings
             _bag = properties;
             _clone = _bag.Clone();
 
-            RuntimeLimitSettings settings = TargetObject as RuntimeLimitSettings;
+            var settings = TargetObject as RuntimeLimitSettings;
             if (settings == null)
             {
-                settings = new RuntimeLimitSettings(this, this.IsReadOnly, _clone);
+                settings = new RuntimeLimitSettings(this, IsReadOnly, _clone);
                 TargetObject = settings;
             }
             else
@@ -154,9 +143,9 @@ namespace Web.Management.PHP.Settings
         {
             updateSuccessful = false;
 
-            RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
+            var settings = new RemoteObjectCollection<PHPIniSetting>();
 
-            for (int i = 0; i < _settingNames.Length; i++)
+            for (var i = 0; i < _settingNames.Length; i++)
             {
                 settings.Add(new PHPIniSetting(_settingNames[i], (string)_clone[i], "PHP"));
             }
@@ -178,7 +167,7 @@ namespace Web.Management.PHP.Settings
 
         private class PageTaskList : TaskList
         {
-            private RuntimeLimitsPage _page;
+            private readonly RuntimeLimitsPage _page;
 
             public PageTaskList(RuntimeLimitsPage page)
             {
@@ -187,7 +176,7 @@ namespace Web.Management.PHP.Settings
 
             public override System.Collections.ICollection GetTaskItems()
             {
-                List<TaskItem> tasks = new List<TaskItem>();
+                var tasks = new List<TaskItem>();
 
                 if (_page.IsReadOnly)
                 {

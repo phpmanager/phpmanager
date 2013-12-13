@@ -37,7 +37,6 @@ namespace Web.Management.PHP.Settings
         private const string SectionString = "Section";
         private string _filterBy;
         private string _filterValue;
-        private IModulePage _parentPage;
 
         // This is used to remember the name of added/updated setting so that 
         // it can be re-selected during refresh.
@@ -76,7 +75,7 @@ namespace Web.Management.PHP.Settings
                     _sectionGrouping = new ModuleListPageGrouping(SectionString, Resources.AllSettingsPageSectionField);
                 }
 
-                return new ModuleListPageGrouping[] { _sectionGrouping };
+                return new [] { _sectionGrouping };
             }
         }
 
@@ -97,31 +96,18 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        public IModulePage ParentPage
-        {
-            get
-            {
-                return _parentPage;
-            }
-            set
-            {
-                _parentPage = value;
-            }
-        }
+        public IModulePage ParentPage { get; set; }
 
         protected override ModuleListPageSearchField[] SearchFields
         {
             get
             {
-                if (_searchFields == null)
-                {
-                    _searchFields = new ModuleListPageSearchField[]{
+                return _searchFields ?? (_searchFields = new[]
+                    {
                         new ModuleListPageSearchField(NameString, Resources.AllSettingsPageNameField),
                         new ModuleListPageSearchField(ValueString, Resources.AllSettingsPageValueField),
-                        new ModuleListPageSearchField(SectionString, Resources.AllSettingsPageSectionField)};
-                }
-
-                return _searchFields;
+                        new ModuleListPageSearchField(SectionString, Resources.AllSettingsPageSectionField)
+                    });
             }
         }
 
@@ -156,7 +142,7 @@ namespace Web.Management.PHP.Settings
 
         private void AddPHPSetting()
         {
-            using (AddEditSettingDialog dlg = new AddEditSettingDialog(Module, GetListOfSections()))
+            using (var dlg = new AddEditSettingDialog(Module, GetListOfSections()))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -169,9 +155,9 @@ namespace Web.Management.PHP.Settings
 
         private void EditPHPSetting()
         {
-            if (SelectedItem != null && !this.IsReadOnly)
+            if (SelectedItem != null && !IsReadOnly)
             {
-                using (AddEditSettingDialog dlg = new AddEditSettingDialog(Module, SelectedItem.Setting))
+                using (var dlg = new AddEditSettingDialog(Module, SelectedItem.Setting))
                 {
                     if (ShowDialog(dlg) == DialogResult.OK)
                     {
@@ -185,38 +171,38 @@ namespace Web.Management.PHP.Settings
 
         protected override ListViewGroup[] GetGroups(ModuleListPageGrouping grouping)
         {
-            Dictionary<string, ListViewGroup> groups = new Dictionary<string, ListViewGroup>();
+            var groups = new Dictionary<string, ListViewGroup>();
 
             if (grouping == _sectionGrouping)
             {
-                ListView.ListViewItemCollection items = ListView.Items;
+                var items = ListView.Items;
                 for (int i = 0; i < items.Count; i++)
                 {
-                    PHPSettingItem item = (PHPSettingItem)items[i];
+                    var item = (PHPSettingItem)items[i];
                     string sectionName = item.SectionName;
                     if (String.IsNullOrEmpty(sectionName)) {
                         continue;
                     }
                     if (!groups.ContainsKey(sectionName))
                     {
-                        ListViewGroup sectionGroup = new ListViewGroup(sectionName, sectionName);
+                        var sectionGroup = new ListViewGroup(sectionName, sectionName);
                         groups.Add(sectionName, sectionGroup);
                     }
                 }
             }
 
-            ListViewGroup[] result = new ListViewGroup[groups.Count];
+            var result = new ListViewGroup[groups.Count];
             groups.Values.CopyTo(result, 0);
             return result;
         }
 
-        private IList<string> GetListOfSections()
+        private IEnumerable<string> GetListOfSections()
         {
-            SortedList<string, object> sections = new SortedList<string, object>();
+            var sections = new SortedList<string, object>();
 
             foreach (PHPSettingItem item in ListView.Items)
             {
-                string section = item.Setting.Section;
+                var section = item.Setting.Section;
                 if (String.IsNullOrEmpty(section))
                 {
                     continue;
@@ -243,24 +229,18 @@ namespace Web.Management.PHP.Settings
 
         protected override void InitializeListPage()
         {
-            _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.AllSettingsPageNameField;
-            _nameColumn.Width = 180;
+            _nameColumn = new ColumnHeader {Text = Resources.AllSettingsPageNameField, Width = 180};
 
-            _valueColumn = new ColumnHeader();
-            _valueColumn.Text = Resources.AllSettingsPageValueField;
-            _valueColumn.Width = 180;
+            _valueColumn = new ColumnHeader {Text = Resources.AllSettingsPageValueField, Width = 180};
 
-            _sectionColumn = new ColumnHeader();
-            _sectionColumn.Text = Resources.AllSettingsPageSectionField;
-            _sectionColumn.Width = 100;
+            _sectionColumn = new ColumnHeader {Text = Resources.AllSettingsPageSectionField, Width = 100};
 
-            ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _valueColumn, _sectionColumn });
+            ListView.Columns.AddRange(new[] { _nameColumn, _valueColumn, _sectionColumn });
 
             ListView.MultiSelect = false;
-            ListView.SelectedIndexChanged += new EventHandler(OnListViewSelectedIndexChanged);
-            ListView.KeyUp += new KeyEventHandler(OnListViewKeyUp);
-            ListView.ItemActivate += new EventHandler(OnListViewItemActivate);
+            ListView.SelectedIndexChanged += OnListViewSelectedIndexChanged;
+            ListView.KeyUp += OnListViewKeyUp;
+            ListView.ItemActivate += OnListViewItemActivate;
         }
 
         private void LoadPHPIni(PHPIniFile file)
@@ -270,26 +250,27 @@ namespace Web.Management.PHP.Settings
                 ListView.SuspendLayout();
                 ListView.Items.Clear();
 
-                foreach (PHPIniSetting setting in file.Settings)
+                foreach (var setting in file.Settings)
                 {
-                    if (_filterBy != null && _filterValue != null) {
+                    if (_filterBy != null && _filterValue != null)
+                    {
                         if (_filterBy == NameString &&
                             setting.Name.IndexOf(_filterValue, StringComparison.OrdinalIgnoreCase) == -1)
                         {
                             continue;
                         }
-                        else if (_filterBy == ValueString &&
+                        if (_filterBy == ValueString &&
                             setting.Value.IndexOf(_filterValue, StringComparison.OrdinalIgnoreCase) == -1)
                         {
                             continue;
                         }
-                        else if (_filterBy == SectionString &&
+                        if (_filterBy == SectionString &&
                             setting.Section.IndexOf(_filterValue, StringComparison.OrdinalIgnoreCase) == -1)
                         {
                             continue;
                         }
                     }
-                   
+
                     ListView.Items.Add(new PHPSettingItem(setting));
                 }
 
@@ -472,7 +453,7 @@ namespace Web.Management.PHP.Settings
 
         private class PageTaskList : TaskList
         {
-            private AllSettingsPage _page;
+            private readonly AllSettingsPage _page;
 
             public PageTaskList(AllSettingsPage page)
             {
@@ -491,7 +472,7 @@ namespace Web.Management.PHP.Settings
 
             public override System.Collections.ICollection GetTaskItems()
             {
-                List<TaskItem> tasks = new List<TaskItem>();
+                var tasks = new List<TaskItem>();
 
                 if (_page.IsReadOnly)
                 {
@@ -538,7 +519,7 @@ namespace Web.Management.PHP.Settings
 
         private class PHPSettingItem : ListViewItem
         {
-            private PHPIniSetting _setting;
+            private readonly PHPIniSetting _setting;
 
             public PHPSettingItem(PHPIniSetting setting)
             {

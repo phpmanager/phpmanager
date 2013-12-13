@@ -25,7 +25,7 @@ namespace Web.Management.PHP.Setup
         TaskForm
 #endif
     {
-        private PHPModule _module;
+        private readonly PHPModule _module;
 
         private ManagementPanel _contentPanel;
         private Label _selectVersionLabel;
@@ -34,7 +34,7 @@ namespace Web.Management.PHP.Setup
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly IContainer components = null;
 
         public ChangeVersionDialog(PHPModule module) : base(module)
         {
@@ -74,37 +74,37 @@ namespace Web.Management.PHP.Setup
 
         private void InitializeComponent()
         {
-            this._selectVersionLabel = new System.Windows.Forms.Label();
-            this._versionComboBox = new System.Windows.Forms.ComboBox();
-            this.SuspendLayout();
+            _selectVersionLabel = new Label();
+            _versionComboBox = new ComboBox();
+            SuspendLayout();
             // 
             // _selectVersionLabel
             // 
-            this._selectVersionLabel.AutoSize = true;
-            this._selectVersionLabel.Location = new System.Drawing.Point(0, 13);
-            this._selectVersionLabel.Name = "_selectVersionLabel";
-            this._selectVersionLabel.Size = new System.Drawing.Size(102, 13);
-            this._selectVersionLabel.TabIndex = 0;
-            this._selectVersionLabel.Text = Resources.ChangeVersionDialogSelectVersion;
+            _selectVersionLabel.AutoSize = true;
+            _selectVersionLabel.Location = new System.Drawing.Point(0, 13);
+            _selectVersionLabel.Name = "_selectVersionLabel";
+            _selectVersionLabel.Size = new System.Drawing.Size(102, 13);
+            _selectVersionLabel.TabIndex = 0;
+            _selectVersionLabel.Text = Resources.ChangeVersionDialogSelectVersion;
             // 
             // _versionComboBox
             // 
-            this._versionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._versionComboBox.FormattingEnabled = true;
-            this._versionComboBox.Location = new System.Drawing.Point(3, 30);
-            this._versionComboBox.Name = "_versionComboBox";
-            this._versionComboBox.Size = new System.Drawing.Size(326, 21);
-            this._versionComboBox.TabIndex = 1;
+            _versionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            _versionComboBox.FormattingEnabled = true;
+            _versionComboBox.Location = new System.Drawing.Point(3, 30);
+            _versionComboBox.Name = "_versionComboBox";
+            _versionComboBox.Size = new System.Drawing.Size(326, 21);
+            _versionComboBox.TabIndex = 1;
             // 
             // ChangeVersionDialog
             // 
-            this.ClientSize = new System.Drawing.Size(364, 142);
-            this.Controls.Add(this._versionComboBox);
-            this.Controls.Add(this._selectVersionLabel);
-            this.Name = "ChangeVersionDialog";
-            this.ResumeLayout(false);
+            ClientSize = new System.Drawing.Size(364, 142);
+            Controls.Add(_versionComboBox);
+            Controls.Add(_selectVersionLabel);
+            Name = "ChangeVersionDialog";
+            ResumeLayout(false);
 #if VSDesigner
-            this.PerformLayout();
+            PerformLayout();
 #endif
         }
 
@@ -113,15 +113,15 @@ namespace Web.Management.PHP.Setup
             _contentPanel = new ManagementPanel();
             _contentPanel.SuspendLayout();
 
-            this._contentPanel.Location = new System.Drawing.Point(0, 0);
-            this._contentPanel.Dock = DockStyle.Fill;
-            this._contentPanel.Controls.Add(_selectVersionLabel);
-            this._contentPanel.Controls.Add(_versionComboBox);
+            _contentPanel.Location = new System.Drawing.Point(0, 0);
+            _contentPanel.Dock = DockStyle.Fill;
+            _contentPanel.Controls.Add(_selectVersionLabel);
+            _contentPanel.Controls.Add(_versionComboBox);
 
-            this._contentPanel.ResumeLayout(false);
-            this._contentPanel.PerformLayout();
+            _contentPanel.ResumeLayout(false);
+            _contentPanel.PerformLayout();
 
-            this.Text = Resources.ChangeVersionDialogTitle;
+            Text = Resources.ChangeVersionDialogTitle;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -129,7 +129,7 @@ namespace Web.Management.PHP.Setup
 
         protected override void OnAccept()
         {
-            PHPVersion selectedItem  = (PHPVersion)_versionComboBox.SelectedItem;
+            var selectedItem  = (PHPVersion)_versionComboBox.SelectedItem;
 
             try
             {
@@ -155,8 +155,8 @@ namespace Web.Management.PHP.Setup
 
             try
             {
-                RemoteObjectCollection<PHPVersion> phpVersions = e.Result as RemoteObjectCollection<PHPVersion>;
-                foreach (PHPVersion phpVersion in phpVersions)
+                var phpVersions = e.Result as RemoteObjectCollection<PHPVersion>;
+                foreach (var phpVersion in phpVersions)
                 {
                     phpVersion.Version = String.Format("{0} ({1})", phpVersion.Version, phpVersion.ScriptProcessor);
                     _versionComboBox.Items.Add(phpVersion);

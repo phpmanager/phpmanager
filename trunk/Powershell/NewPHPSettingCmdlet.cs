@@ -19,36 +19,14 @@ namespace Web.Management.PHP.Powershell
             ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class NewPHPSettingCmdlet : BaseCmdlet
     {
-        private string _name;
-        private string _value;
         private string _section = "PHP";
 
         [Parameter(Mandatory = true,
-                   Position = 0)]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+            Position = 0)]
+        public string Name { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
-        public string Value
-        {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-            }
-        }
+        public string Value { get; set; }
 
         [Parameter(Mandatory = false, Position = 2)]
         public string Section
@@ -65,25 +43,27 @@ namespace Web.Management.PHP.Powershell
 
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var phpIniFile = configHelper.GetPHPIniFile();
 
-                PHPIniSetting setting = Helper.FindSetting(phpIniFile.Settings, Name);
+                var setting = Helper.FindSetting(phpIniFile.Settings, Name);
                 if (setting == null)
                 {
                     if (ShouldProcess(Name))
                     {
-                        RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
-                        settings.Add(new PHPIniSetting(Name, Value, Section));
+                        var settings = new RemoteObjectCollection<PHPIniSetting>
+                            {
+                                new PHPIniSetting(Name, Value, Section)
+                            };
                         configHelper.AddOrUpdatePHPIniSettings(settings);
                     }
                 }
                 else
                 {
-                    ArgumentException ex = new ArgumentException(String.Format(Resources.SettingAlreadyExistsError, Name));
+                    var ex = new ArgumentException(String.Format(Resources.SettingAlreadyExistsError, Name));
                     ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.InvalidArgument);
                 }
             }

@@ -19,29 +19,17 @@ namespace Web.Management.PHP.Powershell
         ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class SetPHPVersionCmdlet : BaseCmdlet
     {
-        private string _handlerName;
-
         [Parameter(Mandatory = true,
             ValueFromPipelineByPropertyName = true,
             Position = 0)]
-        public string HandlerName
-        {
-            get
-            {
-                return _handlerName;
-            }
-            set
-            {
-                _handlerName = value;
-            }
-        }
+        public string HandlerName { get; set; }
 
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
                 if (configHelper.GetPHPHandlerByName(HandlerName) != null)
                 {
                     if (ShouldProcess(HandlerName))
@@ -51,7 +39,7 @@ namespace Web.Management.PHP.Powershell
                 }
                 else
                 {
-                    ArgumentException ex = new ArgumentException(String.Format(Resources.HandlerDoesNotExistError, HandlerName));
+                    var ex = new ArgumentException(String.Format(Resources.HandlerDoesNotExistError, HandlerName));
                     ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
                 }
             }

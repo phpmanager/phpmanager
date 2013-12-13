@@ -34,10 +34,10 @@ namespace Web.Management.PHP
 
         public override ModuleDefinition GetModuleDefinition(IManagementContext context)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            AssemblyName assemblyName = assembly.GetName();
-            string assemblyFullName = assemblyName.FullName;
-            string clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP.Client");
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+            var assemblyFullName = assemblyName.FullName;
+            var clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP.Client");
 
             return new ModuleDefinition(Name, "Web.Management.PHP.PHPModule, " + clientAssemblyFullName);
         }

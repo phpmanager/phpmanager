@@ -20,10 +20,10 @@ namespace Web.Management.PHP.DefaultDocument
         {
             get
             {
-                for (int i = 0; (i < this.Count); i = (i + 1))
+                for (var i = 0; (i < Count); i = (i + 1))
                 {
-                    FileElement element = base[i];
-                    if ((string.Equals(element.Value, value, StringComparison.OrdinalIgnoreCase) == true))
+                    var element = base[i];
+                    if (string.Equals(element.Value, value, StringComparison.OrdinalIgnoreCase))
                     {
                         return element;
                     }
@@ -34,21 +34,21 @@ namespace Web.Management.PHP.DefaultDocument
 
         public FileElement AddCopy(FileElement file)
         {
-            FileElement element = CreateElement();
+            var element = CreateElement();
             CopyAttributes(file, element);
             return Add(element);
         }
 
         public FileElement AddCopyAt(int index, FileElement file)
         {
-            FileElement element = CreateElement();
+            var element = CreateElement();
             CopyAttributes(file, element);
             return AddAt(index, element);
         }
 
         private static void CopyAttributes(ConfigurationElement source, ConfigurationElement destination)
         {
-            foreach (ConfigurationAttribute attribute in source.Attributes)
+            foreach (var attribute in source.Attributes)
             {
                 if (!attribute.IsInheritedFromDefaultValue)
                 {

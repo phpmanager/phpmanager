@@ -168,15 +168,8 @@ namespace Web.Management.PHP.Handlers
 
         private static string SplitScriptProcessor(string scriptProcessor, out string arguments)
         {
-            string[] s = scriptProcessor.Split(new char[] { '|' }, StringSplitOptions.None);
-            if (s.Length > 1)
-            {
-                arguments = s[1];
-            }
-            else
-            {
-                arguments = String.Empty;
-            }
+            var s = scriptProcessor.Split(new[] { '|' }, StringSplitOptions.None);
+            arguments = s.Length > 1 ? s[1] : String.Empty;
             return s[0];
         }
     }

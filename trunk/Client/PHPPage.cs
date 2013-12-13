@@ -24,9 +24,9 @@ namespace Web.Management.PHP
     internal sealed class PHPPage : ModulePage
     {
 
-        private const int IndexRegisterPHPTask = 0;
+        private const int IndexRegisterPhpTask = 0;
         private const int IndexChangeVersionTask = 1;
-        private const int IndexCheckPHPInfoTask = 2;
+        private const int IndexCheckPhpInfoTask = 2;
         private const int IndexErrorReportingTask = 0;
         private const int IndexLimitsTask = 1;
         private const int IndexAllSettingsTask = 2;
@@ -69,7 +69,7 @@ namespace Web.Management.PHP
 
         private void AddExtension()
         {
-            using (Extensions.AddExtensionDialog dlg = new Extensions.AddExtensionDialog(this.Module, Connection.IsLocalConnection))
+            using (var dlg = new Extensions.AddExtensionDialog(Module, Connection.IsLocalConnection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -84,10 +84,7 @@ namespace Web.Management.PHP
             {
                 return Resources.PHPPageLocalHandler;
             }
-            else
-            {
-                return Resources.PHPPageInheritedHandler;
-            }
+            return Resources.PHPPageInheritedHandler;
         }
 
         private void GetSettings()
@@ -97,7 +94,7 @@ namespace Web.Management.PHP
 
         private string GetSiteUrlAndName(out string siteName, out string relativePath)
         {
-            using (Setup.SelectSiteAndUrlDialog dlg = new Setup.SelectSiteAndUrlDialog(this.Module, this.Connection))
+            using (var dlg = new Setup.SelectSiteAndUrlDialog(Module, Connection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -116,36 +113,31 @@ namespace Web.Management.PHP
         {
             SuspendLayout();
 
-            IManagementUIService uiService = (IManagementUIService)GetService(typeof(IManagementUIService));
+            var uiService = (IManagementUIService)GetService(typeof(IManagementUIService));
 
-            Font titleFont = (Font)uiService.Styles["PageHeaderTitleFont"];
+            var titleFont = (Font)uiService.Styles["PageHeaderTitleFont"];
             Padding = new Padding(0, 12, 0, 0);
 
             //
             // All page item labels
             //
-            _versionNameLabel = new Label();
-            _versionNameLabel.Text = Resources.PHPPageVersion;
+            _versionNameLabel = new Label {Text = Resources.PHPPageVersion};
             _versionValueLabel = new Label();
 
-            _executableNameLabel = new Label();
-            _executableNameLabel.Text = Resources.PHPPageExecutable;
+            _executableNameLabel = new Label {Text = Resources.PHPPageExecutable};
             _executableValueLabel = new Label();
 
-            _handlerMappingNameLabel = new Label();
-            _handlerMappingNameLabel.Text = Resources.PHPPageHandlerMapping;
+            _handlerMappingNameLabel = new Label {Text = Resources.PHPPageHandlerMapping};
             _handlerMappingValueLabel = new LinkLabel();
-            _handlerMappingValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnHandlerMappingValueLabelLinkClicked);
+            _handlerMappingValueLabel.LinkClicked += OnHandlerMappingValueLabelLinkClicked;
 
-            _configPathNameLabel = new Label();
-            _configPathNameLabel.Text = Resources.PHPPageConfigurationFile;
+            _configPathNameLabel = new Label {Text = Resources.PHPPageConfigurationFile};
             _configPathValueLabel = new LinkLabel();
-            _configPathValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
+            _configPathValueLabel.LinkClicked += OnPathLinkLabelLinkClicked;
 
-            _errorLogNameLabel = new Label();
-            _errorLogNameLabel.Text = Resources.PHPPageErrorLog;
+            _errorLogNameLabel = new Label {Text = Resources.PHPPageErrorLog};
             _errorLogValueLabel = new LinkLabel();
-            _errorLogValueLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(OnPathLinkLabelLinkClicked);
+            _errorLogValueLabel.LinkClicked += OnPathLinkLabelLinkClicked;
 
             _enabledExtLabel = new Label();
             _installedExtLabel = new Label();
@@ -153,10 +145,12 @@ namespace Web.Management.PHP
             //
             // PHPSetup
             //
-            _phpSetupItem = new PHPPageItemControl();
-            _phpSetupItem.RightToLeftLayout = this.RightToLeftLayout;
-            _phpSetupItem.RightToLeft = this.RightToLeft;
-            _phpSetupItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPSetupItemTitleClick);
+            _phpSetupItem = new PHPPageItemControl
+                {
+                    RightToLeftLayout = RightToLeftLayout,
+                    RightToLeft = RightToLeft
+                };
+            _phpSetupItem.TitleClick += OnPHPSetupItemTitleClick;
             _phpSetupItem.Title = Resources.PHPSetupItemTitle;
             _phpSetupItem.TitleFont = titleFont;
             _phpSetupItem.Image = Resources.PHPSetup32;
@@ -173,10 +167,12 @@ namespace Web.Management.PHP
             //
             // PHP Settings
             //
-            _phpSettingsItem = new PHPPageItemControl();
-            _phpSettingsItem.RightToLeftLayout = this.RightToLeftLayout;
-            _phpSettingsItem.RightToLeft = this.RightToLeft;
-            _phpSettingsItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPSettingsItemTitleClick);
+            _phpSettingsItem = new PHPPageItemControl
+                {
+                    RightToLeftLayout = RightToLeftLayout,
+                    RightToLeft = RightToLeft
+                };
+            _phpSettingsItem.TitleClick += OnPHPSettingsItemTitleClick;
             _phpSettingsItem.Title = Resources.PHPSettingsItemTitle;
             _phpSettingsItem.TitleFont = titleFont;
             _phpSettingsItem.Image = Resources.PHPSettings32;
@@ -202,10 +198,12 @@ namespace Web.Management.PHP
             //
             // PHP Extensions
             //
-            _phpExtensionItem = new PHPPageItemControl();
-            _phpExtensionItem.RightToLeftLayout = this.RightToLeftLayout;
-            _phpExtensionItem.RightToLeft = this.RightToLeft;
-            _phpExtensionItem.TitleClick += new LinkLabelLinkClickedEventHandler(OnPHPExtensionItemTitleClick);
+            _phpExtensionItem = new PHPPageItemControl
+                {
+                    RightToLeftLayout = RightToLeftLayout,
+                    RightToLeft = RightToLeft
+                };
+            _phpExtensionItem.TitleClick += OnPHPExtensionItemTitleClick;
             _phpExtensionItem.Title = Resources.PHPExtensionsItemTitle;
             _phpExtensionItem.TitleFont = titleFont;
             _phpExtensionItem.Image = Resources.PHPExtensions32;
@@ -233,12 +231,12 @@ namespace Web.Management.PHP
 
         private void NavigateToPHPInfo()
         {
-            string siteName = null;
-            string relativePath = null;
-            string siteUrl = GetSiteUrlAndName(out siteName, out relativePath);
+            string siteName;
+            string relativePath;
+            var siteUrl = GetSiteUrlAndName(out siteName, out relativePath);
             if (!String.IsNullOrEmpty(siteUrl))
             {
-                Navigate(typeof(Setup.PHPInfoPage), new string[] { siteUrl, siteName, relativePath });
+                Navigate(typeof(Setup.PHPInfoPage), new[] { siteUrl, siteName, relativePath });
             }
         }
 
@@ -267,7 +265,7 @@ namespace Web.Management.PHP
         {
             try
             {
-                PHPConfigInfo configInfo = (PHPConfigInfo)e.Result;
+                var configInfo = (PHPConfigInfo)e.Result;
                 UpdatePageItemsState(configInfo);
             }
             catch (Exception ex)
@@ -288,24 +286,24 @@ namespace Web.Management.PHP
 
         protected override void OnLayout(LayoutEventArgs e)
         {
-            if (!this.Visible || this.Height == 0)
+            if (!Visible || Height == 0)
             {
                 return;
             }
 
-            Control.ControlCollection controls = this.Controls;
+            var controls = Controls;
 
-            Size clientSize = ClientSize;
+            var clientSize = ClientSize;
 
-            int width = clientSize.Width - Padding.Horizontal - 12;
+            var width = clientSize.Width - Padding.Horizontal - 12;
 
-            Size proposedSize = new Size(width, Int32.MaxValue);
+            var proposedSize = new Size(width, Int32.MaxValue);
 
-            int top = Padding.Top + AutoScrollPosition.Y;
-            for (int i = 0; i < controls.Count; i++)
+            var top = Padding.Top + AutoScrollPosition.Y;
+            for (var i = 0; i < controls.Count; i++)
             {
-                Control ctl = controls[i];
-                Size size = ctl.GetPreferredSize(proposedSize);
+                var ctl = controls[i];
+                var size = ctl.GetPreferredSize(proposedSize);
                 ctl.SetBounds(Padding.Left,
                               top,
                               size.Width,
@@ -314,7 +312,7 @@ namespace Web.Management.PHP
                 top += ctl.Height;
             }
 
-            if (top >= this.ClientSize.Height)
+            if (top >= ClientSize.Height)
             {
                 AdjustFormScrollbars(true);
                 AutoScrollMinSize = new Size(ClientSize.Width, top);
@@ -371,7 +369,7 @@ namespace Web.Management.PHP
 
         private void OnPHPSetupItemClick(int index)
         {
-            if (index == IndexRegisterPHPTask)
+            if (index == IndexRegisterPhpTask)
             {
                 RegisterPHPWithIIS();
             }
@@ -379,7 +377,7 @@ namespace Web.Management.PHP
             {
                 SelectPHPVersion();
             }
-            else if (index == IndexCheckPHPInfoTask)
+            else if (index == IndexCheckPhpInfoTask)
             {
                 NavigateToPHPInfo();
             }
@@ -392,7 +390,7 @@ namespace Web.Management.PHP
 
         private void OnViewRecommendationsLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (Setup.RecommendedConfigDialog dlg = new Setup.RecommendedConfigDialog(Module))
+            using (var dlg = new Setup.RecommendedConfigDialog(Module))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -423,18 +421,18 @@ namespace Web.Management.PHP
 
         private static LinkLabel PrepareNoFastCgiWarning()
         {
-            LinkLabel result = new LinkLabel();
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            var result = new LinkLabel();
+            var sb = new System.Text.StringBuilder();
 
             sb.Append(Resources.WarningPHPConfigNoFastCgi);
-            int fastCgiLearnMoreLinkStart = Resources.WarningPHPConfigNoFastCgi.Length;
+            var fastCgiLearnMoreLinkStart = Resources.WarningPHPConfigNoFastCgi.Length;
             sb.Append(Resources.WarningFastCgiLearnMore);
 
             result.Text = sb.ToString();
-            LinkLabel.Link fastCgiLearnMoreLink = new LinkLabel.Link(fastCgiLearnMoreLinkStart, Resources.WarningFastCgiLearnMore.Length, 0);
+            var fastCgiLearnMoreLink = new LinkLabel.Link(fastCgiLearnMoreLinkStart, Resources.WarningFastCgiLearnMore.Length, 0);
             result.Links.Add(fastCgiLearnMoreLink);
 
-            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnFastCgiLearnMoreLinkClicked);
+            result.LinkClicked += OnFastCgiLearnMoreLinkClicked;
 
             return result;
         }
@@ -447,12 +445,12 @@ namespace Web.Management.PHP
             {
                 if (linkLabel.Links.Count == 0)
                 {
-                    LinkLabel.Link link = new LinkLabel.Link(0, path.Length, path);
+                    var link = new LinkLabel.Link(0, path.Length, path);
                     linkLabel.Links.Add(link);
                 }
                 else
                 {
-                    LinkLabel.Link link = linkLabel.Links[0];
+                    var link = linkLabel.Links[0];
                     link.Length = path.Length;
                     link.LinkData = path;
                 }
@@ -468,41 +466,38 @@ namespace Web.Management.PHP
 
         private LinkLabel PreparePHPConfigWarning()
         {
-            LinkLabel result = new LinkLabel();
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            var result = new LinkLabel();
+            var sb = new System.Text.StringBuilder();
 
             sb.Append(Resources.WarningPHPConfigNotOptimal);
-            int viewRecommendationsLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
+            var viewRecommendationsLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
             sb.Append(Resources.WarningViewRecommendations);
             
             result.Text = sb.ToString();
             
-            LinkLabel.Link fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRecommendations.Length, 0);
+            var fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRecommendations.Length, 0);
             result.Links.Add(fixItLink);
 
-            result.LinkClicked += new LinkLabelLinkClickedEventHandler(OnViewRecommendationsLinkClicked);
+            result.LinkClicked += OnViewRecommendationsLinkClicked;
             
             return result;
         }
 
         private static Label PreparePHPRegistrationWarning(PHPRegistrationType registrationType)
         {
-            Label result = null;
+            Label result;
 
             if (registrationType == PHPRegistrationType.Cgi)
             {
-                result = new Label();
-                result.Text = Resources.WarningPHPConfigCgi;
+                result = new Label {Text = Resources.WarningPHPConfigCgi};
             }
             else if (registrationType == PHPRegistrationType.Isapi)
             {
-                result = new Label();
-                result.Text = Resources.WarningPHPConfigIsapi;
+                result = new Label {Text = Resources.WarningPHPConfigIsapi};
             }
             else if (registrationType == PHPRegistrationType.None)
             {
-                result = new Label();
-                result.Text = Resources.WarningPHPConfigNotRegistered;
+                result = new Label {Text = Resources.WarningPHPConfigNotRegistered};
             }
             else if (registrationType == PHPRegistrationType.NoneNoFastCgi)
             {
@@ -511,8 +506,7 @@ namespace Web.Management.PHP
             else
             {
                 // Just in case
-                result = new Label();
-                result.Text = String.Empty;
+                result = new Label {Text = String.Empty};
             }
 
             return result;
@@ -525,7 +519,7 @@ namespace Web.Management.PHP
 
         private void RegisterPHPWithIIS()
         {
-            using (Setup.RegisterPHPDialog dlg = new Setup.RegisterPHPDialog(this.Module, Connection.IsLocalConnection))
+            using (var dlg = new Setup.RegisterPHPDialog(Module, Connection.IsLocalConnection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -536,7 +530,7 @@ namespace Web.Management.PHP
 
         private void SelectPHPVersion()
         {
-            using (Setup.ChangeVersionDialog dlg = new Setup.ChangeVersionDialog(this.Module))
+            using (var dlg = new Setup.ChangeVersionDialog(Module))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -566,10 +560,10 @@ namespace Web.Management.PHP
 
         private void UpdatePHPExtensionsItem(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            var isPhpSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
-            _phpExtensionItem.SetTitleState(isPHPSetup);
-            if (isPHPSetup)
+            _phpExtensionItem.SetTitleState(isPhpSetup);
+            if (isPhpSetup)
             {
                 _enabledExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageEnabledExtensions, configInfo.EnabledExtCount);
                 _installedExtLabel.Text = String.Format(CultureInfo.CurrentCulture, Resources.PHPPageInstalledExtensions, configInfo.InstalledExtCount);
@@ -579,20 +573,20 @@ namespace Web.Management.PHP
                 _enabledExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
                 _installedExtLabel.Text = Resources.PHPPageExtensionsNotAvailable;
             }
-            _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPHPSetup);
+            _phpExtensionItem.SetTaskState(IndexAllExtensionsTask, isPhpSetup);
 
             if (Connection.IsUserServerAdministrator)
             {
-                _phpExtensionItem.SetTaskState(IndexAddExtensionTask, isPHPSetup);
+                _phpExtensionItem.SetTaskState(IndexAddExtensionTask, isPhpSetup);
             }
         }
 
         private void UpdatePHPSettingsItem(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            var isPhpSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
-            _phpSettingsItem.SetTitleState(isPHPSetup);
-            if (isPHPSetup)
+            _phpSettingsItem.SetTitleState(isPhpSetup);
+            if (isPhpSetup)
             {
                 PrepareOpenFileLink(_configPathValueLabel, configInfo.PHPIniFilePath, Connection.IsLocalConnection);
                 PrepareOpenFileLink(_errorLogValueLabel, configInfo.ErrorLog, Connection.IsLocalConnection);
@@ -602,19 +596,19 @@ namespace Web.Management.PHP
                 PrepareOpenFileLink(_configPathValueLabel, Resources.PHPPagePHPNotAvailable, false);
                 PrepareOpenFileLink(_errorLogValueLabel, Resources.PHPPagePHPNotAvailable, false);
             }
-            _phpSettingsItem.SetTaskState(IndexErrorReportingTask, isPHPSetup);
-            _phpSettingsItem.SetTaskState(IndexLimitsTask, isPHPSetup);
-            _phpSettingsItem.SetTaskState(IndexAllSettingsTask, isPHPSetup);
+            _phpSettingsItem.SetTaskState(IndexErrorReportingTask, isPhpSetup);
+            _phpSettingsItem.SetTaskState(IndexLimitsTask, isPhpSetup);
+            _phpSettingsItem.SetTaskState(IndexAllSettingsTask, isPhpSetup);
         }
 
         private void UpdatePHPSetupItem(PHPConfigInfo configInfo)
         {
-            bool isPHPSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
+            bool isPhpSetup = (configInfo != null && configInfo.RegistrationType == PHPRegistrationType.FastCgi);
 
-            _phpSetupItem.SetTitleState(isPHPSetup);
+            _phpSetupItem.SetTitleState(isPhpSetup);
             _phpSetupItem.ClearWarning();
 
-            if (isPHPSetup)
+            if (isPhpSetup)
             {
                 // Show warning about non optimal configuration if
                 // PHP configuration is not optimal and
@@ -632,27 +626,26 @@ namespace Web.Management.PHP
             else
             {
                 // Show warning about failed IIS configuration
-                Label errorLabel = new Label();
-                errorLabel.Text = Resources.ErrorFailedToGetConfiguration;
+                var errorLabel = new Label {Text = Resources.ErrorFailedToGetConfiguration};
                 _phpSetupItem.SetWarning(errorLabel);
             }
-            _versionValueLabel.Text = isPHPSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
-            _executableValueLabel.Text = isPHPSetup ? configInfo.Executable : Resources.PHPPagePHPNotAvailable;
-            _handlerMappingValueLabel.Text = isPHPSetup ? GetHandlerMappingLabelText(configInfo.HandlerIsLocal) : Resources.PHPPagePHPNotAvailable;
+            _versionValueLabel.Text = isPhpSetup ? configInfo.Version : Resources.PHPPagePHPNotAvailable;
+            _executableValueLabel.Text = isPhpSetup ? configInfo.Executable : Resources.PHPPagePHPNotAvailable;
+            _handlerMappingValueLabel.Text = isPhpSetup ? GetHandlerMappingLabelText(configInfo.HandlerIsLocal) : Resources.PHPPagePHPNotAvailable;
 
             // Allow PHP registration only for server administrators
             if (configInfo != null && configInfo.RegistrationType != PHPRegistrationType.NoneNoFastCgi)
             {
-                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, Connection.IsUserServerAdministrator);
+                _phpSetupItem.SetTaskState(IndexRegisterPhpTask, Connection.IsUserServerAdministrator);
             }
             else
             {
                 // If there is an error in IIS configuration then do not allow new registrations
-                _phpSetupItem.SetTaskState(IndexRegisterPHPTask, false);
+                _phpSetupItem.SetTaskState(IndexRegisterPhpTask, false);
             }
 
-            _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPHPSetup);
-            _phpSetupItem.SetTaskState(IndexCheckPHPInfoTask, isPHPSetup);
+            _phpSetupItem.SetTaskState(IndexChangeVersionTask, isPhpSetup);
+            _phpSetupItem.SetTaskState(IndexCheckPhpInfoTask, isPhpSetup);
         }
 
     }

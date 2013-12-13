@@ -23,9 +23,9 @@ namespace Web.Management.PHP.FastCgi
 
         public ApplicationElement GetApplication(string fullPath, string arguments)
         {
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
-                ApplicationElement element = base[i];
+                var element = base[i];
                 if (String.Equals(fullPath, element.FullPath, StringComparison.OrdinalIgnoreCase) &&
                     String.Equals(arguments, element.Arguments, StringComparison.OrdinalIgnoreCase))
                 {

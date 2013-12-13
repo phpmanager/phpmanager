@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -19,47 +18,24 @@ namespace Web.Management.PHP.Powershell
     [OutputType(typeof(PHPSettingItem))]
     public sealed class GetPHPSettingCmdlet : BaseCmdlet
     {
-        private string _name;
-        private string _section;
-
         [Parameter(Position = 0)]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
 
         [Parameter]
-        public string Section
-        {
-            get
-            {
-                return _section;
-            }
-            set
-            {
-                _section = value;
-            }
-        }
+        public string Section { get; set; }
 
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var phpIniFile = configHelper.GetPHPIniFile();
 
-                WildcardPattern nameWildcard = PrepareWildcardPattern(Name);
-                WildcardPattern sectionWildcard = PrepareWildcardPattern(Section);
+                var nameWildcard = PrepareWildcardPattern(Name);
+                var sectionWildcard = PrepareWildcardPattern(Section);
 
-                foreach (PHPIniSetting setting in phpIniFile.Settings)
+                foreach (var setting in phpIniFile.Settings)
                 {
                     if (!nameWildcard.IsMatch(setting.Name))
                     {
@@ -70,7 +46,7 @@ namespace Web.Management.PHP.Powershell
                         continue;
                     }
 
-                    PHPSettingItem settingItem = new PHPSettingItem(setting);
+                    var settingItem = new PHPSettingItem(setting);
                     WriteObject(settingItem);
                 }
             }

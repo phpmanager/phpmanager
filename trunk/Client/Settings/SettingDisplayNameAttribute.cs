@@ -16,7 +16,7 @@ namespace Web.Management.PHP.Settings
     internal sealed class SettingDisplayNameAttribute : Attribute {
 
         private bool _replaced;
-        private string _configPropertyName;
+        private readonly string _configPropertyName;
         private string _friendlyName;
 
         internal SettingDisplayNameAttribute(string friendlyName) {

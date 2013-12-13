@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System;
 using System.Management.Automation;
 using Microsoft.Web.Administration;
 using Web.Management.PHP.Config;
@@ -18,48 +17,25 @@ namespace Web.Management.PHP.Powershell
     [Cmdlet(VerbsCommon.Get, "PHPVersion")]
     public sealed class GetPHPVersionCmdlet : BaseCmdlet
     {
-        private string _handlerName;
-        private string _version;
-
         [Parameter(ValueFromPipelineByPropertyName = true, Position = 0)]
-        public string HandlerName
-        {
-            get
-            {
-                return _handlerName;
-            }
-            set
-            {
-                _handlerName = value;
-            }
-        }
+        public string HandlerName { get; set; }
 
         [Parameter(ValueFromPipeline = false, Position = 1)]
-        public string Version
-        {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                _version = value;
-            }
-        }
+        public string Version { get; set; }
 
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                RemoteObjectCollection<PHPVersion> phpVersions = configHelper.GetAllPHPVersions();
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var phpVersions = configHelper.GetAllPHPVersions();
 
-                WildcardPattern nameWildcard = PrepareWildcardPattern(HandlerName);
-                WildcardPattern versionWildcard = PrepareWildcardPattern(Version);
+                var nameWildcard = PrepareWildcardPattern(HandlerName);
+                var versionWildcard = PrepareWildcardPattern(Version);
 
-                bool isActive = true;
-                foreach (PHPVersion phpVersion in phpVersions)
+                var isActive = true;
+                foreach (var phpVersion in phpVersions)
                 {
                     if (!nameWildcard.IsMatch(phpVersion.HandlerName))
                     {
@@ -72,7 +48,7 @@ namespace Web.Management.PHP.Powershell
                         continue;
                     }
 
-                    PHPVersionItem versionItem = new PHPVersionItem(phpVersion, isActive);
+                    var versionItem = new PHPVersionItem(phpVersion, isActive);
                     WriteObject(versionItem);
                     isActive = false;
                 }

@@ -20,11 +20,11 @@ namespace Web.Management.PHP.Handlers
         {
             get
             {
-                if (this._handlers == null)
+                if (_handlers == null)
                 {
-                    this._handlers = (HandlersCollection)base.GetCollection(typeof(HandlersCollection));
+                    _handlers = (HandlersCollection)GetCollection(typeof(HandlersCollection));
                 }
-                return this._handlers;
+                return _handlers;
             }
         }
     }

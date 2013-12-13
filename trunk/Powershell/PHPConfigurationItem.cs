@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System.Management.Automation;
 using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Powershell
@@ -16,7 +15,7 @@ namespace Web.Management.PHP.Powershell
 
     public sealed class PHPConfigurationItem
     {
-        private PHPConfigInfo _configInfo;
+        private readonly PHPConfigInfo _configInfo;
 
         public PHPConfigurationItem(PHPConfigInfo configInfo)
         {

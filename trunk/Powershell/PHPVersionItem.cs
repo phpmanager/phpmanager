@@ -7,7 +7,6 @@
 // </copyright>
 //----------------------------------------------------------------------- 
 
-using System.Management.Automation;
 using Web.Management.PHP.Config;
 
 namespace Web.Management.PHP.Powershell
@@ -15,8 +14,8 @@ namespace Web.Management.PHP.Powershell
 
     public sealed class PHPVersionItem
     {
-        PHPVersion _phpVersion;
-        bool _active;
+        readonly PHPVersion _phpVersion;
+        readonly bool _active;
 
         public PHPVersionItem(PHPVersion phpVersion, bool active)
         {

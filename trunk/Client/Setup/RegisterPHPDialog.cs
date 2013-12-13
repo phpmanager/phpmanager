@@ -23,8 +23,8 @@ namespace Web.Management.PHP.Setup
         TaskForm
 #endif
     {
-        private PHPModule _module;
-        private bool _isLocalConnection;
+        private readonly PHPModule _module;
+        private readonly bool _isLocalConnection;
 
         private TextBox _dirPathTextBox;
         private Button _browseButton;
@@ -37,7 +37,7 @@ namespace Web.Management.PHP.Setup
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly System.ComponentModel.IContainer components = null;
     
         public RegisterPHPDialog(PHPModule module, bool isLocalConnection) : base(module)
         {
@@ -78,59 +78,59 @@ namespace Web.Management.PHP.Setup
 
         private void InitializeComponent()
         {
-            this._dirPathLabel = new System.Windows.Forms.Label();
-            this._dirPathTextBox = new System.Windows.Forms.TextBox();
-            this._browseButton = new System.Windows.Forms.Button();
-            this._exampleLabel = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            _dirPathLabel = new Label();
+            _dirPathTextBox = new TextBox();
+            _browseButton = new Button();
+            _exampleLabel = new Label();
+            SuspendLayout();
             // 
             // _dirPathLabel
             // 
-            this._dirPathLabel.AutoSize = true;
-            this._dirPathLabel.Location = new System.Drawing.Point(0, 13);
-            this._dirPathLabel.Name = "_dirPathLabel";
-            this._dirPathLabel.Size = new System.Drawing.Size(265, 13);
-            this._dirPathLabel.TabIndex = 0;
-            this._dirPathLabel.Text = Resources.RegisterPHPDialogSelectPath;
+            _dirPathLabel.AutoSize = true;
+            _dirPathLabel.Location = new System.Drawing.Point(0, 13);
+            _dirPathLabel.Name = "_dirPathLabel";
+            _dirPathLabel.Size = new System.Drawing.Size(265, 13);
+            _dirPathLabel.TabIndex = 0;
+            _dirPathLabel.Text = Resources.RegisterPHPDialogSelectPath;
             // 
             // _dirPathTextBox
             // 
-            this._dirPathTextBox.Location = new System.Drawing.Point(0, 30);
-            this._dirPathTextBox.Name = "_dirPathTextBox";
-            this._dirPathTextBox.Size = new System.Drawing.Size(373, 20);
-            this._dirPathTextBox.TabIndex = 1;
-            this._dirPathTextBox.TextChanged += new System.EventHandler(this.OnDirPathTextBoxTextChanged);
+            _dirPathTextBox.Location = new System.Drawing.Point(0, 30);
+            _dirPathTextBox.Name = "_dirPathTextBox";
+            _dirPathTextBox.Size = new System.Drawing.Size(373, 20);
+            _dirPathTextBox.TabIndex = 1;
+            _dirPathTextBox.TextChanged += OnDirPathTextBoxTextChanged;
             // 
             // _browseButton
             // 
-            this._browseButton.Location = new System.Drawing.Point(379, 28);
-            this._browseButton.Name = "_browseButton";
-            this._browseButton.Size = new System.Drawing.Size(27, 23);
-            this._browseButton.TabIndex = 2;
-            this._browseButton.Text = "...";
-            this._browseButton.UseVisualStyleBackColor = true;
-            this._browseButton.Click += new System.EventHandler(this.OnBrowseButtonClick);
+            _browseButton.Location = new System.Drawing.Point(379, 28);
+            _browseButton.Name = "_browseButton";
+            _browseButton.Size = new System.Drawing.Size(27, 23);
+            _browseButton.TabIndex = 2;
+            _browseButton.Text = @"...";
+            _browseButton.UseVisualStyleBackColor = true;
+            _browseButton.Click += OnBrowseButtonClick;
             // 
             // _exampleLabel
             // 
-            this._exampleLabel.AutoSize = true;
-            this._exampleLabel.Location = new System.Drawing.Point(3, 57);
-            this._exampleLabel.Name = "_exampleLabel";
-            this._exampleLabel.Size = new System.Drawing.Size(35, 13);
-            this._exampleLabel.TabIndex = 3;
-            this._exampleLabel.Text = Resources.RegisterPHPDialogExample;
+            _exampleLabel.AutoSize = true;
+            _exampleLabel.Location = new System.Drawing.Point(3, 57);
+            _exampleLabel.Name = "_exampleLabel";
+            _exampleLabel.Size = new System.Drawing.Size(35, 13);
+            _exampleLabel.TabIndex = 3;
+            _exampleLabel.Text = Resources.RegisterPHPDialogExample;
             // 
             // RegisterPHPDialog
             // 
-            this.ClientSize = new System.Drawing.Size(434, 162);
-            this.Controls.Add(this._exampleLabel);
-            this.Controls.Add(this._browseButton);
-            this.Controls.Add(this._dirPathTextBox);
-            this.Controls.Add(this._dirPathLabel);
-            this.Name = "RegisterPHPDialog";
-            this.ResumeLayout(false);
+            ClientSize = new System.Drawing.Size(434, 162);
+            Controls.Add(_exampleLabel);
+            Controls.Add(_browseButton);
+            Controls.Add(_dirPathTextBox);
+            Controls.Add(_dirPathLabel);
+            Name = "RegisterPHPDialog";
+            ResumeLayout(false);
 #if VSDesigner
-            this.PerformLayout();
+            PerformLayout();
 #endif
         }
 
@@ -143,25 +143,25 @@ namespace Web.Management.PHP.Setup
             // Otherwise do not show auto suggest and also hide the browse button.
             if (_isLocalConnection)
             {
-                this._dirPathTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-                this._dirPathTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+                _dirPathTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                _dirPathTextBox.AutoCompleteSource = AutoCompleteSource.FileSystem;
             }
             else
             {
-                this._browseButton.Visible = false;
+                _browseButton.Visible = false;
             }
 
-            this._contentPanel.Location = new System.Drawing.Point(0, 0);
-            this._contentPanel.Dock = DockStyle.Fill;
-            this._contentPanel.Controls.Add(_dirPathLabel);
-            this._contentPanel.Controls.Add(_dirPathTextBox);
-            this._contentPanel.Controls.Add(_browseButton);
-            this._contentPanel.Controls.Add(_exampleLabel);
+            _contentPanel.Location = new System.Drawing.Point(0, 0);
+            _contentPanel.Dock = DockStyle.Fill;
+            _contentPanel.Controls.Add(_dirPathLabel);
+            _contentPanel.Controls.Add(_dirPathTextBox);
+            _contentPanel.Controls.Add(_browseButton);
+            _contentPanel.Controls.Add(_exampleLabel);
 
-            this._contentPanel.ResumeLayout(false);
-            this._contentPanel.PerformLayout();
+            _contentPanel.ResumeLayout(false);
+            _contentPanel.PerformLayout();
 
-            this.Text = Resources.RegisterPHPDialogRegisterNew;
+            Text = Resources.RegisterPHPDialogRegisterNew;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -186,7 +186,7 @@ namespace Web.Management.PHP.Setup
 
         private void OnBrowseButtonClick(object sender, EventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using (var dlg = new OpenFileDialog())
             {
                 dlg.Title = Resources.RegisterPHPDialogOpenFileTitle;
                 dlg.Filter = Resources.RegisterPHPDialogOpenFileFilter;

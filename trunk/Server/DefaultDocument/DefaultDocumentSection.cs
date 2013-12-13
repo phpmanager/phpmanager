@@ -20,12 +20,12 @@ namespace Web.Management.PHP.DefaultDocument
         {
             get
             {
-                if (this._files == null)
+                if (_files == null)
                 {
-                    ConfigurationElement files = base.GetChildElement("files");
-                    this._files = (FilesCollection)files.GetCollection(typeof(FilesCollection));
+                    var files = GetChildElement("files");
+                    _files = (FilesCollection)files.GetCollection(typeof(FilesCollection));
                 }
-                return this._files;
+                return _files;
             }
         }
     }

@@ -20,10 +20,10 @@ namespace Web.Management.PHP.Handlers
         {
             get
             {
-                for (int i = 0; (i < this.Count); i = (i + 1))
+                for (var i = 0; (i < Count); i = (i + 1))
                 {
-                    HandlerElement element = base[i];
-                    if ((string.Equals(element.Name, name, StringComparison.OrdinalIgnoreCase) == true))
+                    var element = base[i];
+                    if (string.Equals(element.Name, name, StringComparison.OrdinalIgnoreCase))
                     {
                         return element;
                     }
@@ -34,21 +34,21 @@ namespace Web.Management.PHP.Handlers
 
         public HandlerElement AddCopy(HandlerElement handler)
         {
-            HandlerElement element = CreateElement();
+            var element = CreateElement();
             CopyAttributes(handler, element);
             return Add(element);
         }
 
         public HandlerElement AddCopyAt(int index, HandlerElement handler)
         {
-            HandlerElement element = CreateElement();
+            var element = CreateElement();
             CopyAttributes(handler, element);
             return AddAt(index, element);
         }
 
         private static void CopyAttributes(ConfigurationElement source, ConfigurationElement destination)
         {
-            foreach (ConfigurationAttribute attribute in source.Attributes)
+            foreach (var attribute in source.Attributes)
             {
                 if (!attribute.IsInheritedFromDefaultValue)
                 {
@@ -59,9 +59,9 @@ namespace Web.Management.PHP.Handlers
 
         public HandlerElement GetActiveHandler(string path)
         {
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
-                HandlerElement element = base[i];
+                var element = base[i];
                 if (String.Equals(path, element.Path, StringComparison.OrdinalIgnoreCase))
                 {
                     return element;
@@ -72,9 +72,9 @@ namespace Web.Management.PHP.Handlers
 
         public HandlerElement GetHandlerByNameAndPath(string name, string path)
         {
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
-                HandlerElement element = base[i];
+                var element = base[i];
                 if (String.Equals(name, element.Name, StringComparison.OrdinalIgnoreCase) &&
                     String.Equals(path, element.Path, StringComparison.OrdinalIgnoreCase))
                 {
@@ -86,9 +86,9 @@ namespace Web.Management.PHP.Handlers
 
         public HandlerElement GetHandler(string path, string scriptProcessor)
         {
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
-                HandlerElement element = base[i];
+                var element = base[i];
                 if (String.Equals(path, element.Path, StringComparison.OrdinalIgnoreCase) &&
                     String.Equals(scriptProcessor, element.ScriptProcessor, StringComparison.OrdinalIgnoreCase))
                 {

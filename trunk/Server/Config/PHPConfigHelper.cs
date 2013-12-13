@@ -14,7 +14,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.Web.Administration;
 using Microsoft.Win32;
 using Web.Management.PHP.DefaultDocument;
 using Web.Management.PHP.FastCgi;
@@ -29,10 +28,10 @@ namespace Web.Management.PHP.Config
     public sealed class PHPConfigHelper
     {
 
-        private IConfigurationWrapper _configurationWrapper;
+        private readonly IConfigurationWrapper _configurationWrapper;
 
         private ApplicationElement _currentFastCgiApplication;
-        private HandlerElement _currentPHPHandler;
+        private HandlerElement _currentPhpHandler;
         private HandlersCollection _handlersCollection;
         private FastCgiApplicationCollection _fastCgiApplicationCollection;
         private FilesCollection _defaultDocumentCollection;
@@ -64,17 +63,25 @@ namespace Web.Management.PHP.Config
 
         public string AddExtension(string extensionPath)
         {
+            if (String.IsNullOrEmpty(extensionPath))
+            {
+                throw new ArgumentException("The extension path is not specified.");
+            }
+
             EnsurePHPIsRegistered();
 
-            string filename = Path.GetFileName(extensionPath);
-            string targetPath = Path.Combine(PHPDirectory, "ext");
+            var filename = Path.GetFileName(extensionPath);
+            if (String.IsNullOrEmpty(filename))
+            {
+                throw new ArgumentException(String.Format("Cannot extract file name from the extention path {0}.", extensionPath));   
+            }
+            var targetPath = Path.Combine(PHPDirectory, "ext");
             targetPath = Path.Combine(targetPath, filename);
 
             File.Copy(extensionPath, targetPath, false);
-            PHPIniExtension extension = new PHPIniExtension(filename, true);
+            var extension = new PHPIniExtension(filename, true);
 
-            RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
-            extensions.Add(extension);
+            var extensions = new RemoteObjectCollection<PHPIniExtension> { extension };
             UpdateExtensions(extensions);
             
             return extension.Name;
@@ -84,7 +91,7 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             file.AddOrUpdateSettings(settings);
@@ -93,7 +100,7 @@ namespace Web.Management.PHP.Config
 
         private void ApplyRecommendedFastCgiSettings(ArrayList configIssueIndexes)
         {
-            bool iisChangeHappened = false;
+            var iisChangeHappened = false;
 
             foreach (int configIssueIndex in configIssueIndexes)
             {
@@ -109,12 +116,12 @@ namespace Web.Management.PHP.Config
                             iisChangeHappened = ChangeResourceType() || iisChangeHappened;
                             break;
                         }
-                    case PHPConfigIssueIndex.PHPMaxRequests:
+                    case PHPConfigIssueIndex.PhpMaxRequests:
                         {
                             iisChangeHappened = ChangePHPMaxRequests() || iisChangeHappened;
                             break;
                         }
-                    case PHPConfigIssueIndex.PHPRC:
+                    case PHPConfigIssueIndex.Phprc:
                         {
                             iisChangeHappened = ChangePHPRC() || iisChangeHappened;
                             break;
@@ -134,10 +141,10 @@ namespace Web.Management.PHP.Config
 
         private void ApplyRecommendedPHPIniSettings(ArrayList configIssueIndexes)
         {
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
-            List<PHPIniSetting> settings = new List<PHPIniSetting>();
+            var settings = new List<PHPIniSetting>();
 
             foreach (int configIssueIndex in configIssueIndexes)
             {
@@ -209,9 +216,9 @@ namespace Web.Management.PHP.Config
 
         private bool ChangeDefaultDocument()
         {
-            bool changeHappened = false;
+            var changeHappened = false;
 
-            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            var fileElement = _defaultDocumentCollection["index.php"];
 
             // We need to copy inherited default documents in order to prevent config errors
             // caused by adding the same document on the upper configuration level.
@@ -235,7 +242,7 @@ namespace Web.Management.PHP.Config
 
         private bool ChangeMonitorChanges()
         {
-            bool changeHappened = false;
+            var changeHappened = false;
 
             // If monitorChangesTo is supported then set it
             if (_currentFastCgiApplication.MonitorChangesToExists())
@@ -250,7 +257,7 @@ namespace Web.Management.PHP.Config
         private bool ChangePHPMaxRequests()
         {
             // Set PHP_FCGI_MAX_REQUESTS to be equal to instanceMaxRequests
-            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
+            var envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
             if (envVariableElement == null)
             {
                 _currentFastCgiApplication.EnvironmentVariables.Add("PHP_FCGI_MAX_REQUESTS", _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture));
@@ -265,11 +272,11 @@ namespace Web.Management.PHP.Config
 
         private bool ChangePHPRC()
         {
-            bool changeHappened = false;
+            var changeHappened = false;
 
             // Set PHPRC
-            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
-            string expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
+            var envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            var expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
             if (envVariableElement == null)
             {
                 _currentFastCgiApplication.EnvironmentVariables.Add("PHPRC", expectedValue);
@@ -291,9 +298,9 @@ namespace Web.Management.PHP.Config
         {
             bool changeHappened = false;
 
-            if (_currentPHPHandler.ResourceType != ResourceType.Either)
+            if (_currentPhpHandler.ResourceType != ResourceType.Either)
             {
-                _currentPHPHandler.ResourceType = ResourceType.Either;
+                _currentPhpHandler.ResourceType = ResourceType.Either;
                 changeHappened = true;
             }
 
@@ -307,7 +314,7 @@ namespace Web.Management.PHP.Config
                 return;
             }
 
-            FileElement[] list = new FileElement[_defaultDocumentCollection.Count];
+            var list = new FileElement[_defaultDocumentCollection.Count];
             ((ICollection)_defaultDocumentCollection).CopyTo(list, 0);
 
             _defaultDocumentCollection.Clear();
@@ -325,12 +332,12 @@ namespace Web.Management.PHP.Config
                 return;
             }
 
-            HandlerElement[] list = new HandlerElement[_handlersCollection.Count];
+            var list = new HandlerElement[_handlersCollection.Count];
             ((ICollection)_handlersCollection).CopyTo(list, 0);
 
             _handlersCollection.Clear();
 
-            foreach (HandlerElement handler in list)
+            foreach (var handler in list)
             {
                 _handlersCollection.AddCopy(handler);
             }
@@ -360,11 +367,11 @@ namespace Web.Management.PHP.Config
         {
             Version result = null;
 
-            Regex r = new Regex(@"^(?<version>\d+\.\d+\.\d+(?:\.\d+)?).*");
-            Match m = r.Match(versionAsIs);
+            var r = new Regex(@"^(?<version>\d+\.\d+\.\d+(?:\.\d+)?).*");
+            var m = r.Match(versionAsIs);
             if (m.Success)
             {
-                string version = r.Match(versionAsIs).Result("${version}");
+                var version = r.Match(versionAsIs).Result("${version}");
                 result = new Version(version);
             }
 
@@ -376,7 +383,7 @@ namespace Web.Management.PHP.Config
             string prefix = String.Format("php-{0}",phpVersion);
             string name = prefix;
 
-            for (int i = 1; true; i++)
+            for (var i = 1;; i++)
             {
                 if (collection[name] != null)
                 {
@@ -394,17 +401,19 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            RemoteObjectCollection<PHPVersion> result = new RemoteObjectCollection<PHPVersion>();
+            var result = new RemoteObjectCollection<PHPVersion>();
             
-            foreach (HandlerElement handler in _handlersCollection)
+            foreach (var handler in _handlersCollection)
             {
-                if (String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
+                if (!String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
-                        File.Exists(handler.Executable))
-                    {
-                        result.Add(new PHPVersion(handler.Name, handler.Executable, GetPHPExecutableVersion(handler.Executable)));
-                    }
+                    continue;
+                }
+                
+                if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
+                    File.Exists(handler.Executable))
+                {
+                    result.Add(new PHPVersion(handler.Name, handler.Executable, GetPHPExecutableVersion(handler.Executable)));
                 }
             }
 
@@ -413,7 +422,7 @@ namespace Web.Management.PHP.Config
 
         public PHPConfigInfo GetPHPConfigInfo()
         {
-            PHPConfigInfo configInfo = new PHPConfigInfo();
+            var configInfo = new PHPConfigInfo();
 
             // If PHP is not registered properly then just return information about
             // how it registered.
@@ -424,24 +433,17 @@ namespace Web.Management.PHP.Config
             }
 
             configInfo.RegistrationType = _registrationType;
-            configInfo.HandlerName = _currentPHPHandler.Name;
-            configInfo.HandlerIsLocal = _currentPHPHandler.IsLocallyStored;
-            configInfo.Executable = _currentPHPHandler.Executable;
-            configInfo.Version = GetPHPExecutableVersion(_currentPHPHandler.Executable);
+            configInfo.HandlerName = _currentPhpHandler.Name;
+            configInfo.HandlerIsLocal = _currentPhpHandler.IsLocallyStored;
+            configInfo.Executable = _currentPhpHandler.Executable;
+            configInfo.Version = GetPHPExecutableVersion(_currentPhpHandler.Executable);
             configInfo.PHPIniFilePath = PHPIniFilePath;
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
-            PHPIniSetting setting = file.GetSetting("error_log");
-            if (setting != null)
-            {
-                configInfo.ErrorLog = setting.GetTrimmedValue();
-            }
-            else
-            {
-                configInfo.ErrorLog = String.Empty;
-            }
+            var setting = file.GetSetting("error_log");
+            configInfo.ErrorLog = setting != null ? setting.GetTrimmedValue() : String.Empty;
 
             configInfo.EnabledExtCount = file.GetEnabledExtensionsCount();
             configInfo.InstalledExtCount = file.Extensions.Count;
@@ -454,7 +456,7 @@ namespace Web.Management.PHP.Config
 
         private string GetPHPDirectory()
         {
-            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPHPHandler.Executable));
+            string phpDirectory = Path.GetDirectoryName(Environment.ExpandEnvironmentVariables(_currentPhpHandler.Executable));
             return EnsureTrailingBackslash(phpDirectory);
         }
 
@@ -468,7 +470,7 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             return file;
@@ -476,10 +478,10 @@ namespace Web.Management.PHP.Config
 
         private string GetPHPIniFilePath()
         {
-            string directoryPath = String.Empty;
+            var directoryPath = String.Empty;
 
             // If PHPRC environment variable is set per FastCGI process then use the path specified there,
-            EnvironmentVariableElement phpRcElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            var phpRcElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
             if (phpRcElement != null && !String.IsNullOrEmpty(phpRcElement.Value))
             {
                 directoryPath = phpRcElement.Value;
@@ -487,7 +489,7 @@ namespace Web.Management.PHP.Config
             else
             {
                 // If system-wide PHPRC environment variable is set then use it
-                string envVar = System.Environment.GetEnvironmentVariable("PHPRC");
+                var envVar = Environment.GetEnvironmentVariable("PHPRC");
                 if (!String.IsNullOrEmpty(envVar))
                 {
                     directoryPath = envVar;
@@ -498,14 +500,19 @@ namespace Web.Management.PHP.Config
             // Otherwise use the same path as where PHP executable is located.
             if (String.IsNullOrEmpty(directoryPath))
             {
-                directoryPath = GetPHPIniPathFromRegistry(_currentPHPHandler.Executable);
+                directoryPath = GetPHPIniPathFromRegistry(_currentPhpHandler.Executable);
                 if (String.IsNullOrEmpty(directoryPath))
                 {
-                    directoryPath = Path.GetDirectoryName(_currentPHPHandler.Executable);
+                    directoryPath = Path.GetDirectoryName(_currentPhpHandler.Executable);
+
+                    if (String.IsNullOrEmpty(directoryPath))
+                    {
+                        throw new ArgumentException("The directory path to php.ini file could not be determined from executable path.");
+                    }
                 }
             }
 
-            string phpIniPath = String.Empty;
+            string phpIniPath;
             if (IsDirectory(directoryPath))
             {
                 phpIniPath = Path.Combine(directoryPath, "php-cgi-fcgi.ini");
@@ -514,22 +521,20 @@ namespace Web.Management.PHP.Config
             {
                 phpIniPath = directoryPath;
                 directoryPath = Path.GetDirectoryName(phpIniPath);
+                if (String.IsNullOrEmpty(directoryPath))
+                {
+                    throw new ArgumentException("The directory path to php.ini file could not be determined.");
+                }
             }
 
             if (File.Exists(phpIniPath))
             {
                 return phpIniPath;
             }
-            else
-            {
-                phpIniPath = Path.Combine(directoryPath, "php.ini");
-                if (File.Exists(phpIniPath))
-                {
-                    return phpIniPath;
-                }
-            }
 
-            return String.Empty;
+            phpIniPath = Path.Combine(directoryPath, "php.ini");
+            
+            return File.Exists(phpIniPath) ? phpIniPath : String.Empty;
         }
 
         private static bool IsDirectory(string directoryPath)
@@ -591,52 +596,53 @@ namespace Web.Management.PHP.Config
 
         private static string GetPHPTimeZone()
         {
-            long ticksPerHour = TimeSpan.TicksPerHour;
-            long ticksPerMinute = TimeSpan.TicksPerMinute;
-            Dictionary<long, string> timezones = new Dictionary<long, string>();
+            const long ticksPerHour = TimeSpan.TicksPerHour;
+            const long ticksPerMinute = TimeSpan.TicksPerMinute;
+            var timezones = new Dictionary<long, string>
+                {
+                    {-12*ticksPerHour, "Kwajalein"},
+                    {-11*ticksPerHour, "Pacific/Midway"},
+                    {-10*ticksPerHour, "Pacific/Honolulu"},
+                    {-9*ticksPerHour, "America/Anchorage"},
+                    {-8*ticksPerHour, "America/Los_Angeles"},
+                    {-7*ticksPerHour, "America/Denver"},
+                    {-6*ticksPerHour, "America/Tegucigalpa"},
+                    {-5*ticksPerHour, "America/New_York"},
+                    {-4*ticksPerHour - 30*ticksPerMinute, "America/Caracas"},
+                    {-4*ticksPerHour, "America/Halifax"},
+                    {-3*ticksPerHour - 30*ticksPerMinute, "America/St_Johns"},
+                    {-3*ticksPerHour, "America/Sao_Paulo"},
+                    {-2*ticksPerHour, "Atlantic/South_Georgia"},
+                    {-1*ticksPerHour, "Atlantic/Azores"},
+                    {0, "Europe/Dublin"},
+                    {1*ticksPerHour, "Europe/Belgrade"},
+                    {2*ticksPerHour, "Europe/Minsk"},
+                    {3*ticksPerHour, "Asia/Kuwait"},
+                    {3*ticksPerHour + 30*ticksPerMinute, "Asia/Tehran"},
+                    {4*ticksPerHour, "Asia/Muscat"},
+                    {5*ticksPerHour, "Asia/Yekaterinburg"},
+                    {5*ticksPerHour + 30*ticksPerMinute, "Asia/Kolkata"},
+                    {5*ticksPerHour + 45*ticksPerMinute, "Asia/Katmandu"},
+                    {6*ticksPerHour, "Asia/Dhaka"},
+                    {6*ticksPerHour + 30*ticksPerMinute, "Asia/Rangoon"},
+                    {7*ticksPerHour, "Asia/Krasnoyarsk"},
+                    {8*ticksPerHour, "Asia/Brunei"},
+                    {9*ticksPerHour, "Asia/Seoul"},
+                    {9*ticksPerHour + 30*ticksPerMinute, "Australia/Darwin"},
+                    {10*ticksPerHour, "Australia/Canberra"},
+                    {11*ticksPerHour, "Asia/Magadan"},
+                    {12*ticksPerHour, "Pacific/Fiji"},
+                    {13*ticksPerHour, "Pacific/Tongatapu"}
+                };
 
-            timezones.Add(-12 * ticksPerHour, "Kwajalein");
-            timezones.Add(-11 * ticksPerHour, "Pacific/Midway");
-            timezones.Add(-10 * ticksPerHour, "Pacific/Honolulu");
-            timezones.Add(-9 * ticksPerHour, "America/Anchorage");
-            timezones.Add(-8 * ticksPerHour, "America/Los_Angeles");
-            timezones.Add(-7 * ticksPerHour, "America/Denver");
-            timezones.Add(-6 * ticksPerHour, "America/Tegucigalpa");
-            timezones.Add(-5 * ticksPerHour, "America/New_York");
-            timezones.Add(-4 * ticksPerHour - 30 * ticksPerMinute, "America/Caracas");
-            timezones.Add(-4 * ticksPerHour, "America/Halifax");
-            timezones.Add(-3 * ticksPerHour - 30 * ticksPerMinute, "America/St_Johns");
-            timezones.Add(-3 * ticksPerHour, "America/Sao_Paulo");
-            timezones.Add(-2 * ticksPerHour, "Atlantic/South_Georgia");
-            timezones.Add(-1 * ticksPerHour, "Atlantic/Azores");
-            timezones.Add(0, "Europe/Dublin");
-            timezones.Add(1 * ticksPerHour, "Europe/Belgrade");
-            timezones.Add(2 * ticksPerHour, "Europe/Minsk");
-            timezones.Add(3 * ticksPerHour, "Asia/Kuwait");
-            timezones.Add(3 * ticksPerHour + 30 * ticksPerMinute, "Asia/Tehran");
-            timezones.Add(4 * ticksPerHour, "Asia/Muscat");
-            timezones.Add(5 * ticksPerHour, "Asia/Yekaterinburg");
-            timezones.Add(5 * ticksPerHour + 30 * ticksPerMinute, "Asia/Kolkata");
-            timezones.Add(5 * ticksPerHour + 45 * ticksPerMinute, "Asia/Katmandu");
-            timezones.Add(6 * ticksPerHour, "Asia/Dhaka");
-            timezones.Add(6 * ticksPerHour + 30 * ticksPerMinute, "Asia/Rangoon");
-            timezones.Add(7 * ticksPerHour, "Asia/Krasnoyarsk");
-            timezones.Add(8 * ticksPerHour, "Asia/Brunei");
-            timezones.Add(9 * ticksPerHour, "Asia/Seoul");
-            timezones.Add(9 * ticksPerHour + 30 * ticksPerMinute, "Australia/Darwin");
-            timezones.Add(10 * ticksPerHour, "Australia/Canberra");
-            timezones.Add(11 * ticksPerHour, "Asia/Magadan");
-            timezones.Add(12 * ticksPerHour, "Pacific/Fiji");
-            timezones.Add(13 * ticksPerHour, "Pacific/Tongatapu");
-
-            DateTime currentTime = DateTime.Now;
-            TimeZone localZone = TimeZone.CurrentTimeZone;
-            TimeSpan offset = localZone.GetUtcOffset(currentTime);
+            var currentTime = DateTime.Now;
+            var localZone = TimeZone.CurrentTimeZone;
+            var offset = localZone.GetUtcOffset(currentTime);
 
             // Some weird code to handle daylight savings time shifts
             if (localZone.IsDaylightSavingTime(currentTime))
             {
-                DaylightTime daylightTime = localZone.GetDaylightChanges(currentTime.Year);
+                var daylightTime = localZone.GetDaylightChanges(currentTime.Year);
                 if (offset >= TimeSpan.Zero)
                 {
                     offset += daylightTime.Delta;
@@ -648,8 +654,11 @@ namespace Web.Management.PHP.Config
             }
 
             // Try to map the offset to one of the PHP time zones. If none found then use UTC time.
-            string phpTimeZone = "Europe/Dublin";
-            timezones.TryGetValue(offset.Ticks, out phpTimeZone);
+            string phpTimeZone;
+            if (!timezones.TryGetValue(offset.Ticks, out phpTimeZone))
+            {
+                phpTimeZone = "Europe/Dublin";
+            }
 
             return phpTimeZone;
         }
@@ -666,22 +675,18 @@ namespace Web.Management.PHP.Config
 
         private static PHPIniSetting GetToApplyDateTimeZone(PHPIniFile file)
         {
-            PHPIniSetting setting = file.GetSetting("date.timezone");
-            if (setting == null)
-            {
-                setting = new PHPIniSetting("date.timezone", DoubleQuotesWrap(GetPHPTimeZone()), "Date");
-            }
+            var setting = file.GetSetting("date.timezone") ?? new PHPIniSetting("date.timezone", DoubleQuotesWrap(GetPHPTimeZone()), "Date");
 
             return setting;
         }
 
         private PHPIniSetting GetToApplyErrorLog(PHPIniFile file)
         {
-            string handlerName = _currentPHPHandler.Name;
-            PHPIniSetting setting = file.GetSetting("error_log");
+            var handlerName = _currentPhpHandler.Name;
+            var setting = file.GetSetting("error_log");
             if (setting == null || !IsAbsoluteFilePath(setting.GetTrimmedValue(), true))
             {
-                string value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
+                var value = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), handlerName + "_errors.log");
                 setting = new PHPIniSetting("error_log", DoubleQuotesWrap(value), "PHP");
             }
 
@@ -738,23 +743,23 @@ namespace Web.Management.PHP.Config
             }
 
             // Get the handlers collection
-            HandlersSection handlersSection = _configurationWrapper.GetHandlersSection();
+            var handlersSection = _configurationWrapper.GetHandlersSection();
             _handlersCollection = handlersSection.Handlers;
 
             // Get the Default document collection
-            DefaultDocumentSection defaultDocumentSection = _configurationWrapper.GetDefaultDocumentSection();
+            var defaultDocumentSection = _configurationWrapper.GetDefaultDocumentSection();
             _defaultDocumentCollection = defaultDocumentSection.Files;
 
             // Get the FastCgi application collection
-            Configuration appHostConfig = _configurationWrapper.GetAppHostConfiguration();
-            FastCgiSection fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
+            var appHostConfig = _configurationWrapper.GetAppHostConfiguration();
+            var fastCgiSection = (FastCgiSection)appHostConfig.GetSection("system.webServer/fastCgi", typeof(FastCgiSection));
             _fastCgiApplicationCollection = fastCgiSection.Applications;
 
             // Assume by default that PHP is not registered
             _registrationType = PHPRegistrationType.None;
 
             // Find the currently active PHP handler and FastCGI application
-            HandlerElement handler = _handlersCollection.GetActiveHandler("*.php");
+            var handler = _handlersCollection.GetActiveHandler("*.php");
             if (handler != null)
             {
                 if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase))
@@ -775,7 +780,7 @@ namespace Web.Management.PHP.Config
                     ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(handler.Executable, handler.Arguments);
                     if (fastCgiApplication != null)
                     {
-                        _currentPHPHandler = handler;
+                        _currentPhpHandler = handler;
                         _currentFastCgiApplication = fastCgiApplication;
                         _phpIniFilePath = GetPHPIniFilePath();
                         if (String.IsNullOrEmpty(_phpIniFilePath))
@@ -794,12 +799,17 @@ namespace Web.Management.PHP.Config
 
         private static bool IsAbsoluteFilePath(string path, bool isFile)
         {
-            string directory = Environment.ExpandEnvironmentVariables(path);
+            var directory = Environment.ExpandEnvironmentVariables(path);
             if (Path.IsPathRooted(path))
             {
                 if (isFile)
                 {
                     directory = Path.GetDirectoryName(directory);
+
+                    if (String.IsNullOrEmpty(directory))
+                    {
+                        throw new ArgumentException("Directory cannot be determined from the path.");
+                    }
                 }
 
                 return Directory.Exists(directory);
@@ -810,13 +820,13 @@ namespace Web.Management.PHP.Config
 
         private static bool IsFastCgiInstalled()
         {
-            bool result = false;
+            var result = false;
 
-            string subkey = "SOFTWARE\\Microsoft\\InetStp\\Components";
-            RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey);
+            const string subkey = "SOFTWARE\\Microsoft\\InetStp\\Components";
+            var key = Registry.LocalMachine.OpenSubKey(subkey);
             if (key != null)
             {
-                object value = key.GetValue("FastCgi");
+                var value = key.GetValue("FastCgi");
                 if (value != null)
                 {
                     result = true;
@@ -831,24 +841,24 @@ namespace Web.Management.PHP.Config
             return (_registrationType == PHPRegistrationType.FastCgi);
         }
 
-        private HandlerElement MakeHandlerActive(string handlerName)
+        private void MakeHandlerActive(string handlerName)
         {
             // We have to look up the handler elements by name because we may be working
             // on the copy of the handlers collection.
-            HandlerElement handlerElement = _handlersCollection[handlerName];
-            HandlerElement activeHandlerElement = _handlersCollection[_currentPHPHandler.Name];
+            var handlerElement = _handlersCollection[handlerName];
+            var activeHandlerElement = _handlersCollection[_currentPhpHandler.Name];
             Debug.Assert(handlerElement != null && activeHandlerElement != null);
 
-            int activeHandlerIndex = _handlersCollection.IndexOf(activeHandlerElement);
+            var activeHandlerIndex = _handlersCollection.IndexOf(activeHandlerElement);
             _handlersCollection.Remove(handlerElement);
-            return _handlersCollection.AddCopyAt(activeHandlerIndex, handlerElement);
+            _handlersCollection.AddCopyAt(activeHandlerIndex, handlerElement);
         }
 
         private void MakeRecommendedFastCgiChanges()
         {
-            bool iisChangeHappened = false;
+            bool iisChangeHappened;
 
-            iisChangeHappened = ChangeDefaultDocument() || iisChangeHappened;
+            iisChangeHappened = ChangeDefaultDocument();
             iisChangeHappened = ChangeResourceType() || iisChangeHappened;
             iisChangeHappened = ChangePHPMaxRequests() || iisChangeHappened;
             iisChangeHappened = ChangePHPRC() || iisChangeHappened;
@@ -862,65 +872,67 @@ namespace Web.Management.PHP.Config
 
         private void MakeRecommendedPHPIniChanges()
         {
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             // Set the recommended php.ini settings
-            List<PHPIniSetting> settings = new List<PHPIniSetting>();
-
-            settings.Add(GetToApplyExtensionDir());
-            settings.Add(GetToApplyLogErrors());
-            settings.Add(GetToApplyErrorLog(file));
-            settings.Add(GetToApplySessionPath(file));
-            settings.Add(GetToApplyUploadTmpDir(file));
-            settings.Add(GetToApplyDateTimeZone(file));
-            settings.Add(GetToApplyCgiForceRedirect());
-            settings.Add(GetToApplyCgiPathInfo());
-            settings.Add(GetToApplyFastCgiImpersonate());
-            
-            settings.Add(new PHPIniSetting("fastcgi.logging", "0", "PHP"));
-            settings.Add(new PHPIniSetting("max_execution_time", "300", "PHP"));
-            settings.Add(new PHPIniSetting("display_errors", "Off", "PHP"));
+            var settings = new List<PHPIniSetting>
+                {
+                    GetToApplyExtensionDir(),
+                    GetToApplyLogErrors(),
+                    GetToApplyErrorLog(file),
+                    GetToApplySessionPath(file),
+                    GetToApplyUploadTmpDir(file),
+                    GetToApplyDateTimeZone(file),
+                    GetToApplyCgiForceRedirect(),
+                    GetToApplyCgiPathInfo(),
+                    GetToApplyFastCgiImpersonate(),
+                    new PHPIniSetting("fastcgi.logging", "0", "PHP"),
+                    new PHPIniSetting("max_execution_time", "300", "PHP"),
+                    new PHPIniSetting("display_errors", "Off", "PHP")
+                };
 
             // Enable the most common PHP extensions
-            List<PHPIniExtension> extensions = new List<PHPIniExtension>();
-            extensions.Add(new PHPIniExtension("php_curl.dll", true));
-            extensions.Add(new PHPIniExtension("php_gd2.dll", true));
-            extensions.Add(new PHPIniExtension("php_gettext.dll", true));
-            extensions.Add(new PHPIniExtension("php_mysql.dll", true));
-            extensions.Add(new PHPIniExtension("php_mysqli.dll", true));
-            extensions.Add(new PHPIniExtension("php_mbstring.dll", true));
-            extensions.Add(new PHPIniExtension("php_openssl.dll", true));
-            extensions.Add(new PHPIniExtension("php_soap.dll", true));
-            extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
+            var extensions = new List<PHPIniExtension>
+                {
+                    new PHPIniExtension("php_curl.dll", true),
+                    new PHPIniExtension("php_gd2.dll", true),
+                    new PHPIniExtension("php_gettext.dll", true),
+                    new PHPIniExtension("php_mysql.dll", true),
+                    new PHPIniExtension("php_mysqli.dll", true),
+                    new PHPIniExtension("php_mbstring.dll", true),
+                    new PHPIniExtension("php_openssl.dll", true),
+                    new PHPIniExtension("php_soap.dll", true),
+                    new PHPIniExtension("php_xmlrpc.dll", true)
+                };
 
             file.UpdateExtensions(extensions);
             file.AddOrUpdateSettings(settings);
             file.Save(PHPIniFilePath);
         }
 
-        private FileElement MoveIndexPhpOnTop()
+        private void MoveIndexPhpOnTop()
         {
-            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            var fileElement = _defaultDocumentCollection["index.php"];
             Debug.Assert(fileElement != null);
 
             _defaultDocumentCollection.Remove(fileElement);
-            return _defaultDocumentCollection.AddCopyAt(0, fileElement);
+            _defaultDocumentCollection.AddCopyAt(0, fileElement);
         }
 
         private static string PreparePHPIniFile(string phpDir)
         {
             // Check for existence of php.ini file. If it does not exist then copy php.ini-recommended
             // or php.ini-production to it
-            string phpIniFilePath = Path.Combine(phpDir, "php-cgi-fcgi.ini");
+            var phpIniFilePath = Path.Combine(phpDir, "php-cgi-fcgi.ini");
             if (!File.Exists(phpIniFilePath))
             {
                 phpIniFilePath = Path.Combine(phpDir, "php.ini");
 
                 if (!File.Exists(phpIniFilePath))
                 {
-                    string phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
-                    string phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
+                    var phpIniRecommendedPath = Path.Combine(phpDir, "php.ini-recommended");
+                    var phpIniProductionPath = Path.Combine(phpDir, "php.ini-production");
                     if (File.Exists(phpIniRecommendedPath))
                     {
                         File.Copy(phpIniRecommendedPath, phpIniFilePath);
@@ -959,19 +971,19 @@ namespace Web.Management.PHP.Config
             }
 
             // Check for existence of php extensions directory
-            string phpDir = EnsureTrailingBackslash(Path.GetDirectoryName(phpexePath));
-            string extDir = Path.Combine(phpDir, "ext");
+            var phpDir = EnsureTrailingBackslash(Path.GetDirectoryName(phpexePath));
+            var extDir = Path.Combine(phpDir, "ext");
             if (!Directory.Exists(extDir))
             {
                 throw new DirectoryNotFoundException(String.Format(Resources.FolderDoesNotHaveExtDirError, phpDir));
             }
 
-            string phpIniFilePath = PreparePHPIniFile(phpDir);
+            var phpIniFilePath = PreparePHPIniFile(phpDir);
 
-            bool iisUpdateHappened = false;
-            ApplicationElement fastCgiApplication = _fastCgiApplicationCollection.GetApplication(phpexePath, "");
+            var iisUpdateHappened = false;
+            var fastCgiApplication = _fastCgiApplicationCollection.GetApplication(phpexePath, "");
             // Create a FastCGI application if it does not exist
-            bool isNewFastCgi = false;
+            var isNewFastCgi = false;
             if (fastCgiApplication == null)
             {
                 fastCgiApplication = _fastCgiApplicationCollection.CreateElement();
@@ -994,9 +1006,9 @@ namespace Web.Management.PHP.Config
             }
                 
             // Check if handler mapping with this executable already exists
-            HandlerElement handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
+            var handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
             // Create a handler mapping if it does not exist
-            bool isNewHandler = false;
+            var isNewHandler = false;
 
             // We need to copy inherited handlers in order to prevent config errors
             // caused by adding the same PHP version on the upper configuration level.
@@ -1017,7 +1029,7 @@ namespace Web.Management.PHP.Config
                 isNewHandler = true;
                 iisUpdateHappened = true;
             }
-            else if (_currentPHPHandler != null && handlerElement != _currentPHPHandler)
+            else if (_currentPhpHandler != null && handlerElement != _currentPhpHandler)
             {
                 // Move the existing PHP file handler mapping on top
                 MakeHandlerActive(handlerElement.Name);
@@ -1051,7 +1063,7 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             if (file.Remove(setting))
@@ -1079,9 +1091,9 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            HandlerElement handler = _handlersCollection[name];
+            var handler = _handlersCollection[name];
             // If the handler is already an active PHP handler then no need to do anything.
-            if (handler != null && handler != _currentPHPHandler)
+            if (handler != null && handler != _currentPhpHandler)
             {
                 CopyInheritedHandlers();
                 MakeHandlerActive(name);
@@ -1091,13 +1103,13 @@ namespace Web.Management.PHP.Config
 
         private static string TryToGetIniFilePath(string version)
         {
-            string subkey = "SOFTWARE\\PHP";
+            var subkey = "SOFTWARE\\PHP";
             if (!String.IsNullOrEmpty(version))
             {
                 subkey = subkey + "\\" + version;
             }
 
-            RegistryKey key = Registry.LocalMachine.OpenSubKey(subkey);
+            var key = Registry.LocalMachine.OpenSubKey(subkey);
             if (key != null)
             {
                 object value = key.GetValue("IniFilePath");
@@ -1114,7 +1126,7 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             file.UpdateExtensions(extensions);
@@ -1126,7 +1138,7 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
             
             // Check if cgi.force_redirect is set correctly
-            PHPIniSetting setting = file.GetSetting("cgi.force_redirect");
+            var setting = file.GetSetting("cgi.force_redirect");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("cgi.force_redirect",
@@ -1154,7 +1166,7 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
             
             // Check if cgi.fix_pathinfo is set correctly
-            PHPIniSetting setting = file.GetSetting("cgi.fix_pathinfo");
+            var setting = file.GetSetting("cgi.fix_pathinfo");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("cgi.fix_pathinfo",
@@ -1181,7 +1193,7 @@ namespace Web.Management.PHP.Config
         {
             EnsurePHPIsRegistered();
 
-            PHPIniFile file = new PHPIniFile(PHPIniFilePath);
+            var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
 
             return ValidateConfiguration(file);
@@ -1190,10 +1202,10 @@ namespace Web.Management.PHP.Config
         private RemoteObjectCollection<PHPConfigIssue> ValidateConfiguration(PHPIniFile file)
         {
 
-            RemoteObjectCollection<PHPConfigIssue> configIssues = new RemoteObjectCollection<PHPConfigIssue>();
+            var configIssues = new RemoteObjectCollection<PHPConfigIssue>();
           
             // IIS and FastCGI settings
-            PHPConfigIssue configIssue = ValidateDefaultDocument();
+            var configIssue = ValidateDefaultDocument();
             if (configIssue != null)
             {
                 configIssues.Add(configIssue);
@@ -1285,7 +1297,7 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
 
-            PHPIniSetting setting = file.GetSetting("date.timezone");
+            var setting = file.GetSetting("date.timezone");
             if (setting == null)
             {
                 configIssue = new PHPConfigIssue("date.timezone",
@@ -1303,7 +1315,7 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if index.php is set as a default document
-            FileElement fileElement = _defaultDocumentCollection["index.php"];
+            var fileElement = _defaultDocumentCollection["index.php"];
             if (fileElement == null)
             {
                 configIssue = new PHPConfigIssue("Default document",
@@ -1331,8 +1343,8 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
 
             // Check if error_log is set to an absolute path and that path exists
-            PHPIniSetting setting = file.GetSetting("error_log");
-            string expectedValue = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), _currentPHPHandler.Name + "_errors.log");
+            var setting = file.GetSetting("error_log");
+            string expectedValue = Path.Combine(Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\"), _currentPhpHandler.Name + "_errors.log");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("error_log",
@@ -1359,7 +1371,7 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             
-            PHPIniSetting setting = file.GetSetting("extension_dir");
+            var setting = file.GetSetting("extension_dir");
             string expectedValue = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
@@ -1393,7 +1405,7 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
             
             // Check if fastcgi impersonation is turned on
-            PHPIniSetting setting = file.GetSetting("fastcgi.impersonate");
+            var setting = file.GetSetting("fastcgi.impersonate");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("fastcgi.impersonate",
@@ -1421,7 +1433,7 @@ namespace Web.Management.PHP.Config
             PHPConfigIssue configIssue = null;
 
             // Check if log_errors is set to On
-            PHPIniSetting setting = file.GetSetting("log_errors");
+            var setting = file.GetSetting("log_errors");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("log_errors",
@@ -1450,7 +1462,7 @@ namespace Web.Management.PHP.Config
             // Check if monitorChangesTo setting is supported and is set correctly
             if (_currentFastCgiApplication.MonitorChangesToExists())
             {
-                string path = _currentFastCgiApplication.MonitorChangesTo;
+                var path = _currentFastCgiApplication.MonitorChangesTo;
                 if (String.IsNullOrEmpty(path))
                 {
                     configIssue = new PHPConfigIssue("monitorChangesTo",
@@ -1478,7 +1490,7 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if PHP_FCGI_MAX_REQUESTS is set and is bigger than instanceMaxRequests
-            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
+            var envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHP_FCGI_MAX_REQUESTS"];
             if (envVariableElement == null)
             {
                 configIssue = new PHPConfigIssue("PHP_FCGI_MAX_REQUESTS",
@@ -1486,7 +1498,7 @@ namespace Web.Management.PHP.Config
                                                                 _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                 "ConfigIssuePHPMaxRequestsNotSet",
                                                                 "ConfigIssuePHPMaxRequestsRecommend",
-                                                                PHPConfigIssueIndex.PHPMaxRequests);
+                                                                PHPConfigIssueIndex.PhpMaxRequests);
             }
             else
             {
@@ -1499,7 +1511,7 @@ namespace Web.Management.PHP.Config
                                                                     _currentFastCgiApplication.InstanceMaxRequests.ToString(CultureInfo.InvariantCulture),
                                                                     "ConfigIssuePHPMaxRequestsIncorrect",
                                                                     "ConfigIssuePHPMaxRequestsRecommend",
-                                                                    PHPConfigIssueIndex.PHPMaxRequests);
+                                                                    PHPConfigIssueIndex.PhpMaxRequests);
                 }
             }
 
@@ -1510,8 +1522,8 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if PHPRC is set and points to a directory that has php.ini file
-            EnvironmentVariableElement envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
-            string expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
+            var envVariableElement = _currentFastCgiApplication.EnvironmentVariables["PHPRC"];
+            var expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
             if (envVariableElement == null)
             {
                 configIssue = new PHPConfigIssue("PHPRC", 
@@ -1519,7 +1531,7 @@ namespace Web.Management.PHP.Config
                                                                 expectedValue,
                                                                 "ConfigIssuePHPRCNotSet",
                                                                 "ConfigIssuePHPRCRecommend",
-                                                                PHPConfigIssueIndex.PHPRC);
+                                                                PHPConfigIssueIndex.Phprc);
             }
             else
             {
@@ -1530,7 +1542,7 @@ namespace Web.Management.PHP.Config
                                                                     expectedValue,
                                                                     "ConfigIssuePHPRCFileNotExists",
                                                                     "ConfigIssuePHPRCRecommend",
-                                                                    PHPConfigIssueIndex.PHPRC);
+                                                                    PHPConfigIssueIndex.Phprc);
                 }
             }
 
@@ -1539,16 +1551,18 @@ namespace Web.Management.PHP.Config
 
         private static bool IsValidPhpDirectory(string path)
         {
-            string pathPhpIni = String.Empty;
-            string pathPhpSapiIni = String.Empty;
-            string directoryName = path;
+            var directoryName = path;
             if (!IsDirectory(path))
             {
                 directoryName = Path.GetDirectoryName(path);
+                if (String.IsNullOrEmpty(directoryName))
+                {
+                    throw new ArgumentException("Directory name cannot be determined from the path.");
+                }
             }
 
-            pathPhpIni = Path.Combine(directoryName, "php.ini");
-            pathPhpSapiIni = Path.Combine(directoryName, "php-cgi-fcgi.ini");
+            var pathPhpIni = Path.Combine(directoryName, "php.ini");
+            var pathPhpSapiIni = Path.Combine(directoryName, "php-cgi-fcgi.ini");
 
             return (File.Exists(pathPhpIni) || File.Exists(pathPhpSapiIni));
         }
@@ -1557,10 +1571,10 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if handler mapping is configured for "File or Folder"
-            if (_currentPHPHandler.ResourceType != ResourceType.Either)
+            if (_currentPhpHandler.ResourceType != ResourceType.Either)
             {
                 configIssue = new PHPConfigIssue("resourceType",
-                                                                _currentPHPHandler.ResourceType.ToString(),
+                                                                _currentPhpHandler.ResourceType.ToString(),
                                                                 ResourceType.Either.ToString(),
                                                                 "ConfigIssueResourceTypeIncorrect",
                                                                 "ConfigIssueResourceTypeRecommend",
@@ -1574,8 +1588,8 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if session path is set to an absolute path and that path exists
-            PHPIniSetting setting = file.GetSetting("session.save_path");
-            string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+            var setting = file.GetSetting("session.save_path");
+            var expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("session.save_path",
@@ -1602,8 +1616,8 @@ namespace Web.Management.PHP.Config
         {
             PHPConfigIssue configIssue = null;
             // Check if Upload dir is set to an absolute path and that path exists
-            PHPIniSetting setting = file.GetSetting("upload_tmp_dir");
-            string expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
+            var setting = file.GetSetting("upload_tmp_dir");
+            var expectedValue = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
             {
                 configIssue = new PHPConfigIssue("upload_tmp_dir",

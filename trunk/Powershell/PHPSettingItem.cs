@@ -14,7 +14,7 @@ namespace Web.Management.PHP.Powershell
 {
     public sealed class PHPSettingItem
     {
-        private PHPIniSetting _setting;
+        private readonly PHPIniSetting _setting;
 
         public PHPSettingItem(PHPIniSetting setting)
         {
@@ -33,14 +33,7 @@ namespace Web.Management.PHP.Powershell
         {
             get
             {
-                if (String.IsNullOrEmpty(_setting.Value))
-                {
-                    return Resources.NotSetValue;
-                }
-                else
-                {
-                    return _setting.Value;
-                }
+                return String.IsNullOrEmpty(_setting.Value) ? Resources.NotSetValue : _setting.Value;
             }
         }
 

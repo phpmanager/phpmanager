@@ -29,7 +29,7 @@ namespace Web.Management.PHP.Settings
         private ErrorReportingPreset _errorReportingPreset = ErrorReportingPreset.Undefined;
         private bool _hasChanges;
 
-        private readonly string[] SettingNames = {
+        private readonly string[] _settingNames = {
             "error_reporting",
             "display_errors",
             "track_errors",
@@ -37,7 +37,7 @@ namespace Web.Management.PHP.Settings
             "log_errors",
             "fastcgi.logging"
         };
-        private readonly string[] SettingsDevValues = {
+        private readonly string[] _settingsDevValues = {
             "E_ALL | E_STRICT",
             "On",
             "On",
@@ -45,7 +45,7 @@ namespace Web.Management.PHP.Settings
             "On",
             "1"
         };
-        private readonly string[] SettingsProdValues = {
+        private readonly string[] _settingsProdValues = {
             "E_ALL & ~E_DEPRECATED",
             "Off",
             "Off",
@@ -65,7 +65,6 @@ namespace Web.Management.PHP.Settings
         private GroupBox _serverTypeGroupBox;
 
         private PageTaskList _taskList;
-        private IModulePage _parentPage;
 
         protected override bool CanApplyChanges
         {
@@ -100,17 +99,7 @@ namespace Web.Management.PHP.Settings
             }
         }
 
-        public IModulePage ParentPage
-        {
-            get
-            {
-                return _parentPage;
-            }
-            set
-            {
-                _parentPage = value;
-            }
-        }
+        public IModulePage ParentPage { get; set; }
 
         protected override TaskListCollection Tasks
         {
@@ -130,27 +119,27 @@ namespace Web.Management.PHP.Settings
 
         protected override bool ApplyChanges()
         {
-            bool appliedChanges = false;
+            var appliedChanges = false;
 
             string[] settingValues = null;
 
             Debug.Assert(_devMachineRadioButton.Checked || _prodMachineRadioButton.Checked);
             if (_devMachineRadioButton.Checked)
             {
-                settingValues = SettingsDevValues;
+                settingValues = _settingsDevValues;
             }
             else if (_prodMachineRadioButton.Checked)
             {
-                settingValues = SettingsProdValues;
+                settingValues = _settingsProdValues;
             }
 
-            RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
+            var settings = new RemoteObjectCollection<PHPIniSetting>();
             for (int i = 0; i < settingValues.Length; i++)
             {
-                settings.Add(new PHPIniSetting(SettingNames[i], settingValues[i], "PHP"));
+                settings.Add(new PHPIniSetting(_settingNames[i], settingValues[i], "PHP"));
             }
 
-            string errorLogValue = '"' + _errorLogFileTextBox.Text.Trim(new char [] {' ', '"'}) + '"';
+            string errorLogValue = '"' + _errorLogFileTextBox.Text.Trim(new[] {' ', '"'}) + '"';
             settings.Add(new PHPIniSetting("error_log", errorLogValue, "PHP"));
 
             try
@@ -225,127 +214,127 @@ namespace Web.Management.PHP.Settings
 
         private void InitializeComponent()
         {
-            this._serverTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this._prodMachineLabel = new System.Windows.Forms.Label();
-            this._prodMachineRadioButton = new System.Windows.Forms.RadioButton();
-            this._devMachineLabel = new System.Windows.Forms.Label();
-            this._selectServerTypeLabel = new System.Windows.Forms.Label();
-            this._devMachineRadioButton = new System.Windows.Forms.RadioButton();
-            this._errorLogFileLabel = new System.Windows.Forms.Label();
-            this._errorLogFileTextBox = new System.Windows.Forms.TextBox();
-            this._errorLogBrowseButton = new System.Windows.Forms.Button();
-            this._serverTypeGroupBox.SuspendLayout();
-            this.SuspendLayout();
+            _serverTypeGroupBox = new GroupBox();
+            _prodMachineLabel = new Label();
+            _prodMachineRadioButton = new RadioButton();
+            _devMachineLabel = new Label();
+            _selectServerTypeLabel = new Label();
+            _devMachineRadioButton = new RadioButton();
+            _errorLogFileLabel = new Label();
+            _errorLogFileTextBox = new TextBox();
+            _errorLogBrowseButton = new Button();
+            _serverTypeGroupBox.SuspendLayout();
+            SuspendLayout();
             // 
             // _serverTypeGroupBox
             // 
-            this._serverTypeGroupBox.Controls.Add(this._prodMachineLabel);
-            this._serverTypeGroupBox.Controls.Add(this._prodMachineRadioButton);
-            this._serverTypeGroupBox.Controls.Add(this._devMachineLabel);
-            this._serverTypeGroupBox.Controls.Add(this._selectServerTypeLabel);
-            this._serverTypeGroupBox.Controls.Add(this._devMachineRadioButton);
-            this._serverTypeGroupBox.Location = new System.Drawing.Point(4, 12);
-            this._serverTypeGroupBox.Name = "_serverTypeGroupBox";
-            this._serverTypeGroupBox.Size = new System.Drawing.Size(472, 222);
-            this._serverTypeGroupBox.TabIndex = 0;
-            this._serverTypeGroupBox.TabStop = false;
-            this._serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
+            _serverTypeGroupBox.Controls.Add(_prodMachineLabel);
+            _serverTypeGroupBox.Controls.Add(_prodMachineRadioButton);
+            _serverTypeGroupBox.Controls.Add(_devMachineLabel);
+            _serverTypeGroupBox.Controls.Add(_selectServerTypeLabel);
+            _serverTypeGroupBox.Controls.Add(_devMachineRadioButton);
+            _serverTypeGroupBox.Location = new System.Drawing.Point(4, 12);
+            _serverTypeGroupBox.Name = "_serverTypeGroupBox";
+            _serverTypeGroupBox.Size = new System.Drawing.Size(472, 222);
+            _serverTypeGroupBox.TabIndex = 0;
+            _serverTypeGroupBox.TabStop = false;
+            _serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
             // 
             // _prodMachineLabel
             // 
-            this._prodMachineLabel.Location = new System.Drawing.Point(37, 150);
-            this._prodMachineLabel.Name = "_prodMachineLabel";
-            this._prodMachineLabel.Size = new System.Drawing.Size(413, 48);
-            this._prodMachineLabel.TabIndex = 4;
-            this._prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
+            _prodMachineLabel.Location = new System.Drawing.Point(37, 150);
+            _prodMachineLabel.Name = "_prodMachineLabel";
+            _prodMachineLabel.Size = new System.Drawing.Size(413, 48);
+            _prodMachineLabel.TabIndex = 4;
+            _prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
             // 
             // _prodMachineRadioButton
             // 
-            this._prodMachineRadioButton.AutoSize = true;
-            this._prodMachineRadioButton.Location = new System.Drawing.Point(20, 130);
-            this._prodMachineRadioButton.Name = "_prodMachineRadioButton";
-            this._prodMachineRadioButton.Size = new System.Drawing.Size(119, 17);
-            this._prodMachineRadioButton.TabIndex = 3;
-            this._prodMachineRadioButton.TabStop = true;
-            this._prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
-            this._prodMachineRadioButton.UseVisualStyleBackColor = true;
-            this._prodMachineRadioButton.CheckedChanged += new System.EventHandler(this.OnProdMachineRadioButtonCheckedChanged);
+            _prodMachineRadioButton.AutoSize = true;
+            _prodMachineRadioButton.Location = new System.Drawing.Point(20, 130);
+            _prodMachineRadioButton.Name = "_prodMachineRadioButton";
+            _prodMachineRadioButton.Size = new System.Drawing.Size(119, 17);
+            _prodMachineRadioButton.TabIndex = 3;
+            _prodMachineRadioButton.TabStop = true;
+            _prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
+            _prodMachineRadioButton.UseVisualStyleBackColor = true;
+            _prodMachineRadioButton.CheckedChanged += OnProdMachineRadioButtonCheckedChanged;
             // 
             // _devMachineLabel
             // 
-            this._devMachineLabel.Location = new System.Drawing.Point(37, 75);
-            this._devMachineLabel.Name = "_devMachineLabel";
-            this._devMachineLabel.Size = new System.Drawing.Size(413, 46);
-            this._devMachineLabel.TabIndex = 2;
-            this._devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
+            _devMachineLabel.Location = new System.Drawing.Point(37, 75);
+            _devMachineLabel.Name = "_devMachineLabel";
+            _devMachineLabel.Size = new System.Drawing.Size(413, 46);
+            _devMachineLabel.TabIndex = 2;
+            _devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
             // 
             // _selectServerTypeLabel
             // 
-            this._selectServerTypeLabel.Location = new System.Drawing.Point(6, 20);
-            this._selectServerTypeLabel.Name = "_selectServerTypeLabel";
-            this._selectServerTypeLabel.Size = new System.Drawing.Size(458, 23);
-            this._selectServerTypeLabel.TabIndex = 0;
-            this._selectServerTypeLabel.Text = Resources.ErrorReportingPageSelectServerType;
+            _selectServerTypeLabel.Location = new System.Drawing.Point(6, 20);
+            _selectServerTypeLabel.Name = "_selectServerTypeLabel";
+            _selectServerTypeLabel.Size = new System.Drawing.Size(458, 23);
+            _selectServerTypeLabel.TabIndex = 0;
+            _selectServerTypeLabel.Text = Resources.ErrorReportingPageSelectServerType;
             // 
             // _devMachineRadioButton
             // 
-            this._devMachineRadioButton.AutoSize = true;
-            this._devMachineRadioButton.Location = new System.Drawing.Point(20, 55);
-            this._devMachineRadioButton.Name = "_devMachineRadioButton";
-            this._devMachineRadioButton.Size = new System.Drawing.Size(131, 17);
-            this._devMachineRadioButton.TabIndex = 1;
-            this._devMachineRadioButton.TabStop = true;
-            this._devMachineRadioButton.Text = Resources.ErrorReportingPageDevMachine;
-            this._devMachineRadioButton.UseVisualStyleBackColor = true;
-            this._devMachineRadioButton.CheckedChanged += new System.EventHandler(this.OnDevMachineRadioButtonCheckedChanged);
+            _devMachineRadioButton.AutoSize = true;
+            _devMachineRadioButton.Location = new System.Drawing.Point(20, 55);
+            _devMachineRadioButton.Name = "_devMachineRadioButton";
+            _devMachineRadioButton.Size = new System.Drawing.Size(131, 17);
+            _devMachineRadioButton.TabIndex = 1;
+            _devMachineRadioButton.TabStop = true;
+            _devMachineRadioButton.Text = Resources.ErrorReportingPageDevMachine;
+            _devMachineRadioButton.UseVisualStyleBackColor = true;
+            _devMachineRadioButton.CheckedChanged += OnDevMachineRadioButtonCheckedChanged;
             // 
             // _errorLogFileLabel
             // 
-            this._errorLogFileLabel.AutoSize = true;
-            this._errorLogFileLabel.Location = new System.Drawing.Point(3, 253);
-            this._errorLogFileLabel.Name = "_errorLogFileLabel";
-            this._errorLogFileLabel.Size = new System.Drawing.Size(65, 13);
-            this._errorLogFileLabel.TabIndex = 1;
-            this._errorLogFileLabel.Text = Resources.ErrorReportingErrorLogFile;
+            _errorLogFileLabel.AutoSize = true;
+            _errorLogFileLabel.Location = new System.Drawing.Point(3, 253);
+            _errorLogFileLabel.Name = "_errorLogFileLabel";
+            _errorLogFileLabel.Size = new System.Drawing.Size(65, 13);
+            _errorLogFileLabel.TabIndex = 1;
+            _errorLogFileLabel.Text = Resources.ErrorReportingErrorLogFile;
             // 
             // _errorLogFileTextBox
             // 
-            this._errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
-            this._errorLogFileTextBox.Name = "_errorLogFileTextBox";
-            this._errorLogFileTextBox.Size = new System.Drawing.Size(438, 20);
-            this._errorLogFileTextBox.TabIndex = 2;
-            this._errorLogFileTextBox.TextChanged += new System.EventHandler(this.OnErrorLogFileTextBoxTextChanged);
+            _errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
+            _errorLogFileTextBox.Name = "_errorLogFileTextBox";
+            _errorLogFileTextBox.Size = new System.Drawing.Size(438, 20);
+            _errorLogFileTextBox.TabIndex = 2;
+            _errorLogFileTextBox.TextChanged += OnErrorLogFileTextBoxTextChanged;
             // 
             // _errorLogBrowseButton
             // 
-            this._errorLogBrowseButton.Location = new System.Drawing.Point(451, 267);
-            this._errorLogBrowseButton.Name = "_errorLogBrowseButton";
-            this._errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
-            this._errorLogBrowseButton.TabIndex = 3;
-            this._errorLogBrowseButton.Text = "...";
-            this._errorLogBrowseButton.UseVisualStyleBackColor = true;
-            this._errorLogBrowseButton.Click += new System.EventHandler(this.OnErrorLogBrowseButtonClick);
+            _errorLogBrowseButton.Location = new System.Drawing.Point(451, 267);
+            _errorLogBrowseButton.Name = "_errorLogBrowseButton";
+            _errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
+            _errorLogBrowseButton.TabIndex = 3;
+            _errorLogBrowseButton.Text = @"...";
+            _errorLogBrowseButton.UseVisualStyleBackColor = true;
+            _errorLogBrowseButton.Click += OnErrorLogBrowseButtonClick;
             // 
             // ErrorReportingPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScroll = true;
-            this.Controls.Add(this._errorLogBrowseButton);
-            this.Controls.Add(this._errorLogFileTextBox);
-            this.Controls.Add(this._errorLogFileLabel);
-            this.Controls.Add(this._serverTypeGroupBox);
-            this.Name = "ErrorReportingPage";
-            this.Size = new System.Drawing.Size(480, 360);
-            this._serverTypeGroupBox.ResumeLayout(false);
-            this._serverTypeGroupBox.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScroll = true;
+            Controls.Add(_errorLogBrowseButton);
+            Controls.Add(_errorLogFileTextBox);
+            Controls.Add(_errorLogFileLabel);
+            Controls.Add(_serverTypeGroupBox);
+            Name = "ErrorReportingPage";
+            Size = new System.Drawing.Size(480, 360);
+            _serverTypeGroupBox.ResumeLayout(false);
+            _serverTypeGroupBox.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
         private void InitializeUI()
         {
-            if (this.IsReadOnly)
+            if (IsReadOnly)
             {
                 _devMachineRadioButton.Enabled = false;
                 _devMachineLabel.Enabled = false;
@@ -359,12 +348,12 @@ namespace Web.Management.PHP.Settings
             // Otherwise do not show auto suggest and also hide the browse button.
             if (Connection.IsLocalConnection)
             {
-                this._errorLogFileTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-                this._errorLogFileTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+                _errorLogFileTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                _errorLogFileTextBox.AutoCompleteSource = AutoCompleteSource.FileSystem;
             }
             else
             {
-                this._errorLogBrowseButton.Visible = false;
+                _errorLogBrowseButton.Visible = false;
             }
         }
 
@@ -399,7 +388,7 @@ namespace Web.Management.PHP.Settings
 
         private void OnErrorLogBrowseButtonClick(object sender, EventArgs e)
         {
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using (var dlg = new SaveFileDialog())
             {
                 dlg.Title = Resources.ErrorLogSaveDialogTitle;
                 dlg.Filter = Resources.ErrorLogSaveDialogFilter;
@@ -439,7 +428,7 @@ namespace Web.Management.PHP.Settings
             {
                 object o = e.Result;
 
-                PHPIniFile file = new PHPIniFile();
+                var file = new PHPIniFile();
                 file.SetData(o);
 
                 UpdateUI(file);
@@ -481,26 +470,26 @@ namespace Web.Management.PHP.Settings
 
         private void UpdateUI(PHPIniFile file)
         {
-            PHPIniSetting setting = file.GetSetting(SettingNames[0]);
+            PHPIniSetting setting = file.GetSetting(_settingNames[0]);
             string[] settingValues = null;
 
             if (setting != null)
             {
-                if (String.Equals(setting.GetTrimmedValue(), SettingsDevValues[0]))
+                if (String.Equals(setting.GetTrimmedValue(), _settingsDevValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Development;
-                    settingValues = SettingsDevValues;
+                    settingValues = _settingsDevValues;
                 }
-                else if (String.Equals(setting.GetTrimmedValue(), SettingsProdValues[0]))
+                else if (String.Equals(setting.GetTrimmedValue(), _settingsProdValues[0]))
                 {
                     _errorReportingPreset = ErrorReportingPreset.Production;
-                    settingValues = SettingsProdValues;
+                    settingValues = _settingsProdValues;
                 }
 
                 int i = 1;
-                while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < SettingNames.Length)
+                while (_errorReportingPreset != ErrorReportingPreset.Undefined && i < _settingNames.Length)
                 {
-                    setting = file.GetSetting(SettingNames[i]);
+                    setting = file.GetSetting(_settingNames[i]);
                     if (setting == null || !String.Equals(setting.GetTrimmedValue(), settingValues[i]))
                     {
                         _errorReportingPreset = ErrorReportingPreset.Undefined;
@@ -528,7 +517,7 @@ namespace Web.Management.PHP.Settings
 
         private class PageTaskList : TaskList
         {
-            private ErrorReportingPage _page;
+            private readonly ErrorReportingPage _page;
 
             public PageTaskList(ErrorReportingPage page)
             {
@@ -537,7 +526,7 @@ namespace Web.Management.PHP.Settings
 
             public override System.Collections.ICollection GetTaskItems()
             {
-                List<TaskItem> tasks = new List<TaskItem>();
+                var tasks = new List<TaskItem>();
 
                 if (_page.IsReadOnly)
                 {

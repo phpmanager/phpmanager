@@ -36,7 +36,6 @@ namespace Web.Management.PHP.Extensions
         private const string StateString = "State";
         private string _filterBy;
         private string _filterValue;
-        private IModulePage _parentPage;
 
         private string _updatedExtensionName;
 
@@ -73,7 +72,7 @@ namespace Web.Management.PHP.Extensions
                     _stateGrouping = new ModuleListPageGrouping(StateString, Resources.AllExtensionsPageStateField);
                 }
 
-                return new ModuleListPageGrouping[] { _stateGrouping };
+                return new[] { _stateGrouping };
             }
         }
 
@@ -94,29 +93,16 @@ namespace Web.Management.PHP.Extensions
             }
         }
 
-        public IModulePage ParentPage
-        {
-            get
-            {
-                return _parentPage;
-            }
-            set
-            {
-                _parentPage = value;
-            }
-        }
+        public IModulePage ParentPage { get; set; }
 
         protected override ModuleListPageSearchField[] SearchFields
         {
             get
             {
-                if (_searchFields == null)
-                {
-                    _searchFields = new ModuleListPageSearchField[]{
-                        new ModuleListPageSearchField(NameString, Resources.AllSettingsPageNameField)};
-                }
-
-                return _searchFields;
+                return _searchFields ?? (_searchFields = new[]
+                    {
+                        new ModuleListPageSearchField(NameString, Resources.AllSettingsPageNameField)
+                    });
             }
         }
 
@@ -151,7 +137,7 @@ namespace Web.Management.PHP.Extensions
 
         internal void AddExtension()
         {
-            using (AddExtensionDialog dlg = new AddExtensionDialog(this.Module, Connection.IsLocalConnection))
+            using (var dlg = new AddExtensionDialog(Module, Connection.IsLocalConnection))
             {
                 if (ShowDialog(dlg) == DialogResult.OK)
                 {
@@ -168,7 +154,7 @@ namespace Web.Management.PHP.Extensions
 
         protected override ListViewGroup[] GetGroups(ModuleListPageGrouping grouping)
         {
-            ListViewGroup[] result = new ListViewGroup[2];
+            var result = new ListViewGroup[2];
             result[0] = new ListViewGroup(Resources.AllExtensionsPageEnabledGroup, Resources.AllExtensionsPageEnabledGroup);
             result[1] = new ListViewGroup(Resources.AllExtensionsPageDisabledGroup, Resources.AllExtensionsPageDisabledGroup);
 
@@ -192,18 +178,14 @@ namespace Web.Management.PHP.Extensions
 
         protected override void InitializeListPage()
         {
-            _nameColumn = new ColumnHeader();
-            _nameColumn.Text = Resources.AllExtensionsPageNameField;
-            _nameColumn.Width = 160;
+            _nameColumn = new ColumnHeader {Text = Resources.AllExtensionsPageNameField, Width = 160};
 
-            _stateColumn = new ColumnHeader();
-            _stateColumn.Text = Resources.AllExtensionsPageStateField;
-            _stateColumn.Width = 60;
+            _stateColumn = new ColumnHeader {Text = Resources.AllExtensionsPageStateField, Width = 60};
 
-            ListView.Columns.AddRange(new ColumnHeader[] { _nameColumn, _stateColumn });
+            ListView.Columns.AddRange(new[] { _nameColumn, _stateColumn });
 
             ListView.MultiSelect = false;
-            ListView.SelectedIndexChanged += new EventHandler(OnListViewSelectedIndexChanged);
+            ListView.SelectedIndexChanged += OnListViewSelectedIndexChanged;
         }
 
         private void LoadExtensions(PHPIniFile file)
@@ -358,11 +340,10 @@ namespace Web.Management.PHP.Extensions
 
         private void SetExtensionState(bool enabled)
         {
-            PHPExtensionItem item = SelectedItem;
+            var item = SelectedItem;
             Debug.Assert(item != null);
             item.Extension.Enabled = enabled;
-            RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
-            extensions.Add(item.Extension);
+            var extensions = new RemoteObjectCollection<PHPIniExtension> {item.Extension};
             try
             {
                 Module.Proxy.UpdateExtensions(extensions);
@@ -389,7 +370,7 @@ namespace Web.Management.PHP.Extensions
 
         private class PageTaskList : TaskList
         {
-            private AllExtensionsPage _page;
+            private readonly AllExtensionsPage _page;
 
             public PageTaskList(AllExtensionsPage page)
             {
@@ -413,7 +394,7 @@ namespace Web.Management.PHP.Extensions
 
             public override System.Collections.ICollection GetTaskItems()
             {
-                List<TaskItem> tasks = new List<TaskItem>();
+                var tasks = new List<TaskItem>();
 
                 if (_page.IsReadOnly)
                 {
@@ -461,16 +442,16 @@ namespace Web.Management.PHP.Extensions
 
         private class PHPExtensionItem : ListViewItem
         {
-            private PHPIniExtension _extension;
+            private readonly PHPIniExtension _extension;
 
             public PHPExtensionItem(PHPIniExtension extension)
             {
                 _extension = extension;
                 Text = _extension.Name;
-                SubItems.Add(this.State);
+                SubItems.Add(State);
 
                 if (!extension.Enabled) {
-                    this.ForeColor = SystemColors.ControlDark;
+                    ForeColor = SystemColors.ControlDark;
                 }
             }
 

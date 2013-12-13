@@ -14,8 +14,8 @@ namespace Web.Management.PHP.Config
     {
         public const int DefaultDocument = 0;
         public const int ResourceType = 1;
-        public const int PHPMaxRequests = 2;
-        public const int PHPRC = 3;
+        public const int PhpMaxRequests = 2;
+        public const int Phprc = 3;
         public const int MonitorChangesTo = 4;
         public const int ExtensionDir = 5;
         public const int LogErrors = 6;

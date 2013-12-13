@@ -16,7 +16,7 @@ namespace Web.Management.PHP.Powershell
 
     public sealed class PHPExtensionItem
     {
-        private PHPIniExtension _extension;
+        private readonly PHPIniExtension _extension;
         
         public PHPExtensionItem(PHPIniExtension extension)
         {

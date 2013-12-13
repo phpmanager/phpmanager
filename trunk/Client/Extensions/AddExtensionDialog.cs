@@ -23,8 +23,8 @@ namespace Web.Management.PHP.Extensions
         TaskForm
 #endif
     {
-        private PHPModule _module;
-        private bool _isLocalConnection;
+        private readonly PHPModule _module;
+        private readonly bool _isLocalConnection;
         private bool _canAccept;
 
         private ManagementPanel _contentPanel;
@@ -38,7 +38,7 @@ namespace Web.Management.PHP.Extensions
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly System.ComponentModel.IContainer components = null;
 
         public string AddedExtensionName
         {
@@ -87,58 +87,58 @@ namespace Web.Management.PHP.Extensions
 
         private void InitializeComponent()
         {
-            this._pathToExtenionLabel = new System.Windows.Forms.Label();
-            this._extensionPathTextBox = new System.Windows.Forms.TextBox();
-            this._browseButton = new System.Windows.Forms.Button();
-            this._exampleLabel = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            _pathToExtenionLabel = new Label();
+            _extensionPathTextBox = new TextBox();
+            _browseButton = new Button();
+            _exampleLabel = new Label();
+            SuspendLayout();
             // 
             // _pathToExtenionLabel
             // 
-            this._pathToExtenionLabel.AutoSize = true;
-            this._pathToExtenionLabel.Location = new System.Drawing.Point(0, 13);
-            this._pathToExtenionLabel.Name = "_pathToExtenionLabel";
-            this._pathToExtenionLabel.Size = new System.Drawing.Size(193, 13);
-            this._pathToExtenionLabel.TabIndex = 0;
-            this._pathToExtenionLabel.Text = Resources.AddExtensionDialogProvidePath;
+            _pathToExtenionLabel.AutoSize = true;
+            _pathToExtenionLabel.Location = new System.Drawing.Point(0, 13);
+            _pathToExtenionLabel.Name = "_pathToExtenionLabel";
+            _pathToExtenionLabel.Size = new System.Drawing.Size(193, 13);
+            _pathToExtenionLabel.TabIndex = 0;
+            _pathToExtenionLabel.Text = Resources.AddExtensionDialogProvidePath;
             // 
             // _extensionPathTextBox
             // 
-            this._extensionPathTextBox.Location = new System.Drawing.Point(3, 30);
-            this._extensionPathTextBox.Name = "_extensionPathTextBox";
-            this._extensionPathTextBox.Size = new System.Drawing.Size(371, 20);
-            this._extensionPathTextBox.TabIndex = 1;
-            this._extensionPathTextBox.TextChanged += new System.EventHandler(this.OnExtensionPathTextBoxTextChanged);
+            _extensionPathTextBox.Location = new System.Drawing.Point(3, 30);
+            _extensionPathTextBox.Name = "_extensionPathTextBox";
+            _extensionPathTextBox.Size = new System.Drawing.Size(371, 20);
+            _extensionPathTextBox.TabIndex = 1;
+            _extensionPathTextBox.TextChanged += OnExtensionPathTextBoxTextChanged;
             // 
             // _browseButton
             // 
-            this._browseButton.Location = new System.Drawing.Point(380, 28);
-            this._browseButton.Name = "_browseButton";
-            this._browseButton.Size = new System.Drawing.Size(27, 23);
-            this._browseButton.TabIndex = 2;
-            this._browseButton.Text = "...";
-            this._browseButton.UseVisualStyleBackColor = true;
-            this._browseButton.Click += new System.EventHandler(this.OnBrowseButtonClick);
+            _browseButton.Location = new System.Drawing.Point(380, 28);
+            _browseButton.Name = "_browseButton";
+            _browseButton.Size = new System.Drawing.Size(27, 23);
+            _browseButton.TabIndex = 2;
+            _browseButton.Text = @"...";
+            _browseButton.UseVisualStyleBackColor = true;
+            _browseButton.Click += OnBrowseButtonClick;
             // 
             // _exampleLabel
             // 
-            this._exampleLabel.AutoSize = true;
-            this._exampleLabel.Location = new System.Drawing.Point(0, 53);
-            this._exampleLabel.Name = "_exampleLabel";
-            this._exampleLabel.Size = new System.Drawing.Size(159, 13);
-            this._exampleLabel.TabIndex = 3;
-            this._exampleLabel.Text = Resources.AddExtensionDialogExample;
+            _exampleLabel.AutoSize = true;
+            _exampleLabel.Location = new System.Drawing.Point(0, 53);
+            _exampleLabel.Name = "_exampleLabel";
+            _exampleLabel.Size = new System.Drawing.Size(159, 13);
+            _exampleLabel.TabIndex = 3;
+            _exampleLabel.Text = Resources.AddExtensionDialogExample;
             // 
             // AddExtensionDialog
             // 
-            this.ClientSize = new System.Drawing.Size(434, 142);
-            this.Controls.Add(this._exampleLabel);
-            this.Controls.Add(this._browseButton);
-            this.Controls.Add(this._extensionPathTextBox);
-            this.Controls.Add(this._pathToExtenionLabel);
-            this.Name = "AddExtensionDialog";
-            this.ResumeLayout(false);
-            this.ResumeLayout(false);
+            ClientSize = new System.Drawing.Size(434, 142);
+            Controls.Add(_exampleLabel);
+            Controls.Add(_browseButton);
+            Controls.Add(_extensionPathTextBox);
+            Controls.Add(_pathToExtenionLabel);
+            Name = "AddExtensionDialog";
+            ResumeLayout(false);
+            ResumeLayout(false);
 #if VSDesigner
             this.PerformLayout();
 #endif
@@ -153,25 +153,25 @@ namespace Web.Management.PHP.Extensions
             // Otherwise do not show auto suggest and also hide the browse button.
             if (_isLocalConnection)
             {
-                this._extensionPathTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-                this._extensionPathTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+                _extensionPathTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                _extensionPathTextBox.AutoCompleteSource = AutoCompleteSource.FileSystem;
             }
             else
             {
-                this._browseButton.Visible = false;
+                _browseButton.Visible = false;
             }
 
-            this._contentPanel.Location = new System.Drawing.Point(0, 0);
-            this._contentPanel.Dock = DockStyle.Fill;
-            this._contentPanel.Controls.Add(_pathToExtenionLabel);
-            this._contentPanel.Controls.Add(_extensionPathTextBox);
-            this._contentPanel.Controls.Add(_browseButton);
-            this._contentPanel.Controls.Add(_exampleLabel);
+            _contentPanel.Location = new System.Drawing.Point(0, 0);
+            _contentPanel.Dock = DockStyle.Fill;
+            _contentPanel.Controls.Add(_pathToExtenionLabel);
+            _contentPanel.Controls.Add(_extensionPathTextBox);
+            _contentPanel.Controls.Add(_browseButton);
+            _contentPanel.Controls.Add(_exampleLabel);
 
-            this._contentPanel.ResumeLayout(false);
-            this._contentPanel.PerformLayout();
+            _contentPanel.ResumeLayout(false);
+            _contentPanel.PerformLayout();
 
-            this.Text = Resources.AddExtensionDialogAddExtension;
+            Text = Resources.AddExtensionDialogAddExtension;
 
             SetContent(_contentPanel);
             UpdateTaskForm();
@@ -195,7 +195,7 @@ namespace Web.Management.PHP.Extensions
 
         private void OnBrowseButtonClick(object sender, EventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using (var dlg = new OpenFileDialog())
             {
                 dlg.Title = Resources.AddExtensionDialogOpenFileTitle;
                 dlg.Filter = Resources.AddExtensionDialogOpenFileFilter;

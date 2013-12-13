@@ -15,7 +15,7 @@ namespace Web.Management.PHP.Config
 
     internal sealed class ManagementUnitWrapper : IConfigurationWrapper
     {
-        private ManagementUnit _managementUnit;
+        private readonly ManagementUnit _managementUnit;
 
         public ManagementUnitWrapper(ManagementUnit managementUnit)
         {
@@ -36,13 +36,13 @@ namespace Web.Management.PHP.Config
 
         public DefaultDocument.DefaultDocumentSection GetDefaultDocumentSection()
         {
-            ManagementConfiguration config = _managementUnit.Configuration;
+            var config = _managementUnit.Configuration;
             return (DefaultDocument.DefaultDocumentSection)config.GetSection("system.webServer/defaultDocument", typeof(DefaultDocument.DefaultDocumentSection));
         }
 
         public Handlers.HandlersSection GetHandlersSection()
         {
-            ManagementConfiguration config = _managementUnit.Configuration;
+            var config = _managementUnit.Configuration;
             return (Handlers.HandlersSection)config.GetSection("system.webServer/handlers", typeof(Handlers.HandlersSection));
         }
 

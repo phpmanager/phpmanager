@@ -18,31 +18,19 @@ namespace Web.Management.PHP.Powershell
     [Cmdlet(VerbsCommon.New, "PHPVersion")]
     public sealed class NewPHPVersionCmdlet : BaseCmdlet
     {
-        private string _scriptProcessor;
-
         [Parameter(Mandatory = true, Position = 0)]
-        public string ScriptProcessor
-        {
-            get
-            {
-                return _scriptProcessor;
-            }
-            set
-            {
-                _scriptProcessor = value;
-            }
-        }
+        public string ScriptProcessor { get; set; }
 
         protected override void DoProcessing()
         {
             try
             {
-                using (ServerManager serverManager = new ServerManager())
+                using (var serverManager = new ServerManager())
                 {
-                    ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                    PHPConfigHelper _configHelper = new PHPConfigHelper(serverManagerWrapper);
-                    string phpCgiExePath = PrepareFullScriptProcessorPath(ScriptProcessor);
-                    _configHelper.RegisterPHPWithIIS(phpCgiExePath);
+                    var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                    var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                    var phpCgiExePath = PrepareFullScriptProcessorPath(ScriptProcessor);
+                    configHelper.RegisterPHPWithIIS(phpCgiExePath);
                 }
             }
             catch (DirectoryNotFoundException ex)
@@ -51,9 +39,9 @@ namespace Web.Management.PHP.Powershell
             }
         }
 
-        private string PrepareFullScriptProcessorPath(string scriptProcessor)
+        private static string PrepareFullScriptProcessorPath(string scriptProcessor)
         {
-            string fullPath = Path.GetFullPath(scriptProcessor);
+            var fullPath = Path.GetFullPath(scriptProcessor);
             if (!fullPath.EndsWith("php-cgi.exe", StringComparison.OrdinalIgnoreCase))
             {
                 fullPath = Path.Combine(fullPath, "php-cgi.exe");

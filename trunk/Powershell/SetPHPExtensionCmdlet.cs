@@ -22,8 +22,6 @@ namespace Web.Management.PHP.Powershell
             ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class SetPHPExtensionCmdlet : BaseCmdlet
     {
-
-        private string[] _name;
         private PHPExtensionStatus _status = PHPExtensionStatus.Any;
 
         private ServerManager _serverManager;
@@ -32,19 +30,9 @@ namespace Web.Management.PHP.Powershell
         private RemoteObjectCollection<PHPIniExtension> _extensions;
 
         [Parameter( Mandatory = true, 
-                    ValueFromPipelineByPropertyName = true, 
-                    Position = 0)]
-        public string[] Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+            ValueFromPipelineByPropertyName = true, 
+            Position = 0)]
+        public string[] Name { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         public PHPExtensionStatus Status
@@ -66,7 +54,7 @@ namespace Web.Management.PHP.Powershell
             try
             {
                 _serverManager = new ServerManager();
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(_serverManager, this.SiteName, this.VirtualPath);
+                var serverManagerWrapper = new ServerManagerWrapper(_serverManager, SiteName, VirtualPath);
                 _configHelper = new PHPConfigHelper(serverManagerWrapper);
                 _phpIniFile = _configHelper.GetPHPIniFile();
                 _extensions = new RemoteObjectCollection<PHPIniExtension>();
@@ -97,9 +85,9 @@ namespace Web.Management.PHP.Powershell
             Debug.Assert(_phpIniFile != null);
             Debug.Assert(_extensions != null);
 
-            foreach (string extensionName in Name)
+            foreach (var extensionName in Name)
             {
-                PHPIniExtension extension = Helper.FindExtension(_phpIniFile.Extensions, extensionName);
+                var extension = Helper.FindExtension(_phpIniFile.Extensions, extensionName);
                 if (extension != null)
                 {
                     if ((extension.Enabled && Status == PHPExtensionStatus.Disabled) ||
@@ -107,14 +95,14 @@ namespace Web.Management.PHP.Powershell
                     {
                         if (ShouldProcess(extensionName))
                         {
-                            extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled) ? true : false);
+                            extension = new PHPIniExtension(extensionName, (Status == PHPExtensionStatus.Enabled));
                             _extensions.Add(extension);
                         }
                     }
                 }
                 else
                 {
-                    ArgumentException ex = new ArgumentException(String.Format(Resources.ExtensionDoesNotExistError, extensionName));
+                    var ex = new ArgumentException(String.Format(Resources.ExtensionDoesNotExistError, extensionName));
                     ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
                     return;
                 }

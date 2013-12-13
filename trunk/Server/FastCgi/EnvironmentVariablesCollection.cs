@@ -20,10 +20,10 @@ namespace Web.Management.PHP.FastCgi
         {
             get
             {
-                for (int i = 0; (i < this.Count); i = (i + 1))
+                for (var i = 0; (i < Count); i = (i + 1))
                 {
-                    EnvironmentVariableElement element = base[i];
-                    if ((string.Equals(element.Name, name, StringComparison.OrdinalIgnoreCase) == true))
+                    var element = base[i];
+                    if (string.Equals(element.Name, name, StringComparison.OrdinalIgnoreCase))
                     {
                         return element;
                     }
@@ -34,11 +34,11 @@ namespace Web.Management.PHP.FastCgi
 
         public EnvironmentVariableElement Add(string name, string value)
         {
-            EnvironmentVariableElement element = this.CreateElement();
+            var element = CreateElement();
             element.Name = name;
             element.Value = value;
 
-            return base.Add(element);
+            return Add(element);
         }
 
     }

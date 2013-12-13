@@ -19,8 +19,8 @@ namespace Web.Management.PHP
 
     internal partial class PHPPageItemControl : UserControl
     {
-        private const int WS_EX_NOINHERITLAYOUT = 0x100000;
-        private const int WS_EX_LAYOUTRTL = 0x400000;
+        private const int WsExNoinheritlayout = 0x100000;
+        private const int WsExLayoutrtl = 0x400000;
         private const string WarningLabelName = "warningLabel";
         private bool _rightToLeftLayout;
         private int _tlpRowCount;
@@ -40,14 +40,13 @@ namespace Web.Management.PHP
             ]
             get
             {
-                CreateParams CP;
-                CP = base.CreateParams;
+                CreateParams cp = base.CreateParams;
                 if (_rightToLeftLayout)
                 {
-                    CP.ExStyle = CP.ExStyle | WS_EX_LAYOUTRTL | WS_EX_NOINHERITLAYOUT;
+                    cp.ExStyle = cp.ExStyle | WsExLayoutrtl | WsExNoinheritlayout;
                 }
 
-                return CP;
+                return cp;
             }
         }
 
@@ -148,10 +147,10 @@ namespace Web.Management.PHP
             }
 
             _handler = handler;
-            StringBuilder sb = new StringBuilder();
-            bool first = true;
-            List<LinkLabel.Link> links = new List<LinkLabel.Link>();
-            foreach (string s in actionTitles)
+            var sb = new StringBuilder();
+            var first = true;
+            var links = new List<LinkLabel.Link>();
+            foreach (var s in actionTitles)
             {
                 if (!first)
                 {
@@ -164,7 +163,7 @@ namespace Web.Management.PHP
             }
 
             _tasksLabel.Text = sb.ToString();
-            foreach (LinkLabel.Link l in links)
+            foreach (var l in links)
             {
                 _tasksLabel.Links.Add(l);
             }
@@ -225,7 +224,7 @@ namespace Web.Management.PHP
 
         protected override void OnLayout(LayoutEventArgs e)
         {
-            DoLayout(this.Size, true);
+            DoLayout(Size, true);
         }
 
         protected override void OnRightToLeftChanged(EventArgs e)

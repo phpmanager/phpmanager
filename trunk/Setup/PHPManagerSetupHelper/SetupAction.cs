@@ -22,10 +22,10 @@ namespace Web.Management.PHP.Setup
         {
             base.Install(stateSaver);
 
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            AssemblyName assemblyName = assembly.GetName();
-            string assemblyFullName = assemblyName.FullName;
-            string clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP");
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+            var assemblyFullName = assemblyName.FullName;
+            var clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP");
 
             InstallUtil.RemoveUIModuleProvider("PHP"); // This is necessary for the upgrade scenario
             InstallUtil.AddUIModuleProvider("PHP", "Web.Management.PHP.PHPProvider, " + clientAssemblyFullName);

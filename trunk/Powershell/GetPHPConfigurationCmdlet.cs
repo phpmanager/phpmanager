@@ -21,14 +21,14 @@ namespace Web.Management.PHP.Powershell
     {
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var configInfo = configHelper.GetPHPConfigInfo();
                 if (configInfo.RegistrationType == PHPRegistrationType.FastCgi)
                 {
-                    PHPConfigurationItem configurationItem = new PHPConfigurationItem(configInfo);
+                    var configurationItem = new PHPConfigurationItem(configInfo);
                     WriteObject(configurationItem);
                 }
                 else

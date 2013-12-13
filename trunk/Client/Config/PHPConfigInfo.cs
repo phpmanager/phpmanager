@@ -16,12 +16,12 @@ namespace Web.Management.PHP.Config
     {
         private object[] _data;
 
-        private const int IndexPHPRegistrationType = 0;
+        private const int IndexPhpRegistrationType = 0;
         private const int IndexHandlerName = 1;
         private const int IndexHandlerIsLocal = 2;
         private const int IndexExecutable = 3;
         private const int IndexVersion = 4;
-        private const int IndexPHPIniFilePath = 5;
+        private const int IndexPhpIniFilePath = 5;
         private const int IndexErrorLog = 6;
         private const int IndexEnabledExtCount = 7;
         private const int IndexInstalledExtCount = 8;
@@ -131,11 +131,11 @@ namespace Web.Management.PHP.Config
         {
             get
             {
-                return (string)_data[IndexPHPIniFilePath];
+                return (string)_data[IndexPhpIniFilePath];
             }
             set
             {
-                _data[IndexPHPIniFilePath] = value;
+                _data[IndexPhpIniFilePath] = value;
             }
         }
 
@@ -143,11 +143,11 @@ namespace Web.Management.PHP.Config
         {
             get
             {
-                return (PHPRegistrationType)_data[IndexPHPRegistrationType];
+                return (PHPRegistrationType)_data[IndexPhpRegistrationType];
             }
             set
             {
-                _data[IndexPHPRegistrationType] = (int)value;
+                _data[IndexPhpRegistrationType] = (int)value;
             }
         }
 

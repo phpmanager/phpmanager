@@ -20,7 +20,6 @@ namespace Web.Management.PHP.Powershell
             ConfirmImpact = ConfirmImpact.Medium)]
     public sealed class RemovePHPSettingCmdlet : BaseCmdlet
     {
-        private string _name;
         private bool _force;
 
         [Parameter(Mandatory = false)]
@@ -35,28 +34,18 @@ namespace Web.Management.PHP.Powershell
         }
 
         [Parameter(Mandatory = true,
-           Position = 0)]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+            Position = 0)]
+        public string Name { get; set; }
 
         protected override void DoProcessing()
         {
-            using (ServerManager serverManager = new ServerManager())
+            using (var serverManager = new ServerManager())
             {
-                ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(serverManager, this.SiteName, this.VirtualPath);
-                PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
-                PHPIniFile phpIniFile = configHelper.GetPHPIniFile();
+                var serverManagerWrapper = new ServerManagerWrapper(serverManager, SiteName, VirtualPath);
+                var configHelper = new PHPConfigHelper(serverManagerWrapper);
+                var phpIniFile = configHelper.GetPHPIniFile();
 
-                PHPIniSetting setting = Helper.FindSetting(phpIniFile.Settings, Name);
+                var setting = Helper.FindSetting(phpIniFile.Settings, Name);
                 if (setting != null)
                 {
                     if (ShouldProcess(Name))
@@ -70,7 +59,7 @@ namespace Web.Management.PHP.Powershell
                 }
                 else
                 {
-                    ArgumentException ex = new ArgumentException(String.Format(Resources.SettingDoesNotExistError, Name));
+                    var ex = new ArgumentException(String.Format(Resources.SettingDoesNotExistError, Name));
                     ReportNonTerminatingError(ex, "InvalidArgument", ErrorCategory.ObjectNotFound);
                 }
             }

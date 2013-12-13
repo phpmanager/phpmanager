@@ -22,7 +22,6 @@ namespace Web.Management.PHP.Setup
     [ModulePageIdentifier(Globals.PHPInfoPageIdentifier)]
     internal sealed class PHPInfoPage : ModulePage, IModuleChildPage
     {
-        private IModulePage _parentPage;
         private WebBrowser _webBrowser;
         private Panel _panel;
 
@@ -56,17 +55,7 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        public IModulePage ParentPage
-        {
-            get
-            {
-                return _parentPage;
-            }
-            set
-            {
-                _parentPage = value;
-            }
-        }
+        public IModulePage ParentPage { get; set; }
 
         protected override TaskListCollection Tasks
         {
@@ -103,13 +92,10 @@ namespace Web.Management.PHP.Setup
         {
             if (!String.IsNullOrEmpty(_configPath))
             {
-                string configPath = '/' + _configPath;
+                var configPath = '/' + _configPath;
                 return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersFolder, configPath), String.Empty);
             }
-            else
-            {
-                return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersSite, _siteName), String.Empty);
-            }
+            return new MessageTaskItem(MessageTaskItemType.Information, String.Format(Resources.PHPInfoPageLocalHandlersSite, _siteName), String.Empty);
         }
 
         private void GoBack()
@@ -120,50 +106,50 @@ namespace Web.Management.PHP.Setup
         protected override void Initialize(object navigationData)
         {
             base.Initialize(navigationData);
-            string[] siteInfo = navigationData as string[];
-            this._baseUrl = siteInfo[0];
-            this._siteName = siteInfo[1];
-            this._configPath = siteInfo[2];
+            var siteInfo = navigationData as string[];
+            _baseUrl = siteInfo[0];
+            _siteName = siteInfo[1];
+            _configPath = siteInfo[2];
         }
 
         private void InitializeComponent()
         {
-            this._webBrowser = new System.Windows.Forms.WebBrowser();
-            this._panel = new System.Windows.Forms.Panel();
-            this._panel.SuspendLayout();
-            this.SuspendLayout();
+            _webBrowser = new WebBrowser();
+            _panel = new Panel();
+            _panel.SuspendLayout();
+            SuspendLayout();
             // 
             // _webBrowser
             // 
-            this._webBrowser.AllowNavigation = false;
-            this._webBrowser.AllowWebBrowserDrop = false;
-            this._webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._webBrowser.Location = new System.Drawing.Point(0, 0);
-            this._webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this._webBrowser.Name = "_webBrowser";
-            this._webBrowser.ScriptErrorsSuppressed = true;
-            this._webBrowser.Size = new System.Drawing.Size(296, 284);
-            this._webBrowser.TabIndex = 0;
-            this._webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.OnWebBrowserDocumentCompleted);
+            _webBrowser.AllowNavigation = false;
+            _webBrowser.AllowWebBrowserDrop = false;
+            _webBrowser.Dock = DockStyle.Fill;
+            _webBrowser.Location = new System.Drawing.Point(0, 0);
+            _webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            _webBrowser.Name = "_webBrowser";
+            _webBrowser.ScriptErrorsSuppressed = true;
+            _webBrowser.Size = new System.Drawing.Size(296, 284);
+            _webBrowser.TabIndex = 0;
+            _webBrowser.DocumentCompleted += OnWebBrowserDocumentCompleted;
             // 
             // _panel
             // 
-            this._panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._panel.Controls.Add(this._webBrowser);
-            this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._panel.Location = new System.Drawing.Point(0, 12);
-            this._panel.Name = "_panel";
-            this._panel.Size = new System.Drawing.Size(300, 288);
-            this._panel.TabIndex = 0;
+            _panel.BorderStyle = BorderStyle.Fixed3D;
+            _panel.Controls.Add(_webBrowser);
+            _panel.Dock = DockStyle.Fill;
+            _panel.Location = new System.Drawing.Point(0, 12);
+            _panel.Name = "_panel";
+            _panel.Size = new System.Drawing.Size(300, 288);
+            _panel.TabIndex = 0;
             // 
             // PHPInfoPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this._panel);
-            this.Name = "PHPInfoPage";
-            this.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
-            this._panel.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            Controls.Add(_panel);
+            Name = "PHPInfoPage";
+            Padding = new Padding(0, 12, 0, 0);
+            _panel.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -180,7 +166,7 @@ namespace Web.Management.PHP.Setup
 
         private void OnCheckForLocalHandlers(object sender, DoWorkEventArgs e)
         {
-            e.Result = Module.Proxy.CheckForLocalPHPHandler(this._siteName, this._configPath);
+            e.Result = Module.Proxy.CheckForLocalPHPHandler(_siteName, _configPath);
         }
 
         private void OnCheckForLocalHandlersCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -197,7 +183,7 @@ namespace Web.Management.PHP.Setup
 
         private void OnShowPHPInfo(object sender, DoWorkEventArgs e)
         {
-            e.Result = Module.Proxy.CreatePHPInfo(this._siteName);
+            e.Result = Module.Proxy.CreatePHPInfo(_siteName);
         }
 
         private void OnShowPHPInfoCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -205,8 +191,8 @@ namespace Web.Management.PHP.Setup
             try
             {
                 _filepath = (string)e.Result;
-                Uri baseUri = new Uri(this._baseUrl);
-                Uri fullUri = new Uri(baseUri, Path.GetFileName(_filepath));
+                var baseUri = new Uri(_baseUrl);
+                var fullUri = new Uri(baseUri, Path.GetFileName(_filepath));
                 _webBrowser.AllowNavigation = true;
                 _webBrowser.Navigate(fullUri);
             }
@@ -255,7 +241,7 @@ namespace Web.Management.PHP.Setup
         private class PHPInfoTaskList : TaskList
         {
 
-            private PHPInfoPage _page;
+            private readonly PHPInfoPage _page;
 
             public PHPInfoTaskList(PHPInfoPage page)
             {
@@ -269,7 +255,7 @@ namespace Web.Management.PHP.Setup
                     return new TaskItem[] { };
                 }
 
-                List<TaskItem> tasks = new List<TaskItem>();
+                var tasks = new List<TaskItem>();
                 tasks.Add(new MethodTaskItem("RefreshPHPInfo", Resources.PHPInfoRefreshPHPInfo, "Set"));
                 tasks.Add(new MethodTaskItem("GoBack", Resources.AllPagesGoBackTask, "Tasks", null, Resources.GoBack16));
 

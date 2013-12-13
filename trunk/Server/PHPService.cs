@@ -11,10 +11,8 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
 using Web.Management.PHP.Config;
-using Web.Management.PHP.Handlers;
 
 namespace Web.Management.PHP
 {
@@ -36,8 +34,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 result = configHelper.AddExtension(extensionPath);
             }
             catch (FileNotFoundException)
@@ -65,13 +63,13 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            RemoteObjectCollection<PHPIniSetting> settings = new RemoteObjectCollection<PHPIniSetting>();
-            ((IRemoteObject)settings).SetData(settingsData);
+            var settings = new RemoteObjectCollection<PHPIniSetting>();
+            settings.SetData(settingsData);
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.AddOrUpdatePHPIniSettings(settings);
             }
             catch (FileNotFoundException)
@@ -91,8 +89,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.ApplyRecommendedSettings(configIssueIndexes);
             }
             catch (FileNotFoundException)
@@ -115,16 +113,16 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
+            var site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
             if (site == null)
             {
                 throw new InvalidOperationException();
             }
 
-            ServerManagerWrapper serverManagerWrapper = new ServerManagerWrapper(ManagementUnit.ReadOnlyServerManager, siteName, virtualPath);
-            PHPConfigHelper configHelper = new PHPConfigHelper(serverManagerWrapper);
+            var serverManagerWrapper = new ServerManagerWrapper(ManagementUnit.ReadOnlyServerManager, siteName, virtualPath);
+            var configHelper = new PHPConfigHelper(serverManagerWrapper);
 
-            PHPConfigInfo configInfo = configHelper.GetPHPConfigInfo();
+            var configInfo = configHelper.GetPHPConfigInfo();
             if (configInfo.RegistrationType != PHPRegistrationType.FastCgi)
             {
                 throw new InvalidOperationException("PHP is not registered via FastCGI, hence there is no FastCGI handler defined");
@@ -143,27 +141,27 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
+            var site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
             if (site == null)
             {
                 throw new InvalidOperationException();
             }
 
-            string navigatorPath = siteName;
+            var navigatorPath = siteName;
             if (ManagementUnit.ConfigurationPath.PathType != ConfigurationPathType.Server)
             {
                 navigatorPath = ManagementUnit.ConfigurationPath.GetEffectiveConfigurationPath(ManagementUnit.Scope);
             }
 
-            ManagementContentNavigator navigator = ManagementContentNavigator.Create(ManagementUnit);
+            var navigator = ManagementContentNavigator.Create(ManagementUnit);
             if (!navigator.MoveToPath(navigatorPath))
             {
                 throw new InvalidOperationException();
             }
 
-            string randomString = Path.GetRandomFileName();
-            string fileName = String.Format("{0}.php", Path.GetFileNameWithoutExtension(randomString));
-            string filePath = Path.Combine(Environment.ExpandEnvironmentVariables(navigator.PhysicalPath), fileName);
+            var randomString = Path.GetRandomFileName();
+            var fileName = String.Format("{0}.php", Path.GetFileNameWithoutExtension(randomString));
+            var filePath = Path.Combine(Environment.ExpandEnvironmentVariables(navigator.PhysicalPath), fileName);
 
             try
             {
@@ -201,8 +199,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 versions = configHelper.GetAllPHPVersions();
             }
             catch (FileNotFoundException)
@@ -223,8 +221,8 @@ namespace Web.Management.PHP
             RemoteObjectCollection<PHPConfigIssue> configIssues = null;
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configIssues = configHelper.ValidateConfiguration();
             }
             catch (FileNotFoundException)
@@ -247,8 +245,8 @@ namespace Web.Management.PHP
             PHPConfigInfo result = null;
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 result = configHelper.GetPHPConfigInfo();
             }
             catch (FileNotFoundException)
@@ -275,8 +273,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 phpiniPath = configHelper.PHPIniFilePath;
             }
             catch(FileNotFoundException)
@@ -295,8 +293,8 @@ namespace Web.Management.PHP
             PHPIniFile file = null;
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 file = configHelper.GetPHPIniFile();
             }
             catch (FileNotFoundException)
@@ -322,20 +320,20 @@ namespace Web.Management.PHP
                 throw new InvalidOperationException();
             }
 
-            Site site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
+            var site = ManagementUnit.ReadOnlyServerManager.Sites[siteName];
             if (site == null)
             {
                 throw new InvalidOperationException();
             }
 
-            ArrayList list = new ArrayList();
-            foreach (Binding binding in site.Bindings)
+            var list = new ArrayList();
+            foreach (var binding in site.Bindings)
             {
-                string protocol = binding.Protocol;
+                var protocol = binding.Protocol;
                 if (String.Equals(protocol, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase) ||
                     String.Equals(protocol, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
                 {
-                    list.Add(new string[] { protocol, binding.BindingInformation });
+                    list.Add(new[] { protocol, binding.BindingInformation });
                 }
             }
 
@@ -347,9 +345,9 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            SiteCollection siteCollection = ManagementUnit.ReadOnlyServerManager.Sites;
-            ArrayList sites = new ArrayList(siteCollection.Count);
-            foreach (Site site in siteCollection)
+            var siteCollection = ManagementUnit.ReadOnlyServerManager.Sites;
+            var sites = new ArrayList(siteCollection.Count);
+            foreach (var site in siteCollection)
             {
                 sites.Add(site.Name);
             }
@@ -364,8 +362,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.RegisterPHPWithIIS(phpExePath);
             }
             catch (ArgumentException)
@@ -399,13 +397,13 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            PHPIniSetting setting = new PHPIniSetting();
+            var setting = new PHPIniSetting();
             setting.SetData(settingData);
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.RemovePHPIniSetting(setting);
             }
             catch (FileNotFoundException)
@@ -425,8 +423,8 @@ namespace Web.Management.PHP
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.SelectPHPHandler(name);
             }
             catch (FileLoadException)
@@ -448,13 +446,13 @@ namespace Web.Management.PHP
         {
             EnsureServerConnection();
 
-            RemoteObjectCollection<PHPIniExtension> extensions = new RemoteObjectCollection<PHPIniExtension>();
-            ((IRemoteObject)extensions).SetData(extensionsData);
+            var extensions = new RemoteObjectCollection<PHPIniExtension>();
+            extensions.SetData(extensionsData);
 
             try
             {
-                ManagementUnitWrapper mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
-                PHPConfigHelper configHelper = new PHPConfigHelper(mgmtUnitWrapper);
+                var mgmtUnitWrapper = new ManagementUnitWrapper(ManagementUnit);
+                var configHelper = new PHPConfigHelper(mgmtUnitWrapper);
                 configHelper.UpdateExtensions(extensions);
             }
             catch (FileNotFoundException)

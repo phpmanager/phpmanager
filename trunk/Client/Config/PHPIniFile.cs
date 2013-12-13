@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Text;
+using System.Linq;
 
 namespace Web.Management.PHP.Config
 {
@@ -28,7 +28,7 @@ namespace Web.Management.PHP.Config
         private RemoteObjectCollection<PHPIniExtension> _extensions;
 
         private List<PHPIniBase> _rawEntries;
-        private string _filename;
+        private readonly string _filename;
 
         public PHPIniFile()
         {
@@ -43,14 +43,8 @@ namespace Web.Management.PHP.Config
 
         public RemoteObjectCollection<PHPIniExtension> Extensions
         {
-            get
-            {
-                if (_extensions == null)
-                {
-                    _extensions = new RemoteObjectCollection<PHPIniExtension>((ArrayList)_data[IndexExtensions]);
-                }
-
-                return _extensions;
+            get {
+                return _extensions ?? (_extensions = new RemoteObjectCollection<PHPIniExtension>((ArrayList) _data[IndexExtensions]));
             }
         }
 
@@ -64,40 +58,26 @@ namespace Web.Management.PHP.Config
 
         private IList<PHPIniBase> RawEntries
         {
-            get
-            {
-                if (_rawEntries == null)
-                {
-                    _rawEntries = new List<PHPIniBase>();
-                }
-
-                return _rawEntries;
-            }
+            get { return _rawEntries ?? (_rawEntries = new List<PHPIniBase>()); }
         }
 
         public RemoteObjectCollection<PHPIniSetting> Settings
         {
-            get
-            {
-                if (_settings == null)
-                {
-                    _settings = new RemoteObjectCollection<PHPIniSetting>((ArrayList)_data[IndexSettings]);
-                }
-
-                return _settings;
+            get {
+                return _settings ?? (_settings = new RemoteObjectCollection<PHPIniSetting>((ArrayList) _data[IndexSettings]));
             }
         }
 
         private void AddAllAvailableExtensions(string extensionDir)
         {
-            DirectoryInfo di = new DirectoryInfo(extensionDir);
-            FileInfo[] files = di.GetFiles("php*.dll");
+            var di = new DirectoryInfo(extensionDir);
+            var files = di.GetFiles("php*.dll");
 
-            int extensionCount = Extensions.Count;
-            foreach (FileInfo file in files)
+            var extensionCount = Extensions.Count;
+            foreach (var file in files)
             {
-                bool found = false;
-                for (int i = 0; i < extensionCount; i++)
+                var found = false;
+                for (var i = 0; i < extensionCount; i++)
                 {
                     if (String.Equals(Extensions[i].Name, file.Name, StringComparison.OrdinalIgnoreCase))
                     {
@@ -115,17 +95,17 @@ namespace Web.Management.PHP.Config
 
         internal void AddOrUpdateSettings(IEnumerable<PHPIniSetting> settings)
         {
-            foreach (PHPIniSetting setting in settings)
+            foreach (var setting in settings)
             {
-                bool settingFound = false;
-                int index = -1;
-                int lastIndex = -1;
+                var settingFound = false;
+                var index = -1;
+                var lastIndex = -1;
 
-                for (int i = 0; i < RawEntries.Count; i++)
+                for (var i = 0; i < RawEntries.Count; i++)
                 {
-                    PHPIniBase b = RawEntries[i];
+                    var b = RawEntries[i];
 
-                    PHPIniSetting existing = b as PHPIniSetting;
+                    var existing = b as PHPIniSetting;
                     if (existing != null)
                     {
                         lastIndex = i;
@@ -149,7 +129,7 @@ namespace Web.Management.PHP.Config
                     {
                         // This finds the index after section declaration,
                         // in case there are no settings defined in that section
-                        PHPIniSection section = b as PHPIniSection;
+                        var section = b as PHPIniSection;
                         if ((section != null) && (String.Equals(section.Name, setting.Section, StringComparison.OrdinalIgnoreCase)))
                         {
                             index = i;
@@ -194,36 +174,24 @@ namespace Web.Management.PHP.Config
 
         internal int GetEnabledExtensionsCount()
         {
-            int result = 0;
-
-            foreach (PHPIniExtension extension in Extensions)
-            {
-                if (extension.Enabled)
-                {
-                    result++;
-                }
-            }
-
-            return result;
+            return Extensions.Count(extension => extension.Enabled);
         }
 
         private static string GetExtensionSection(string extensionName)
         {
-            string sectionName = Path.GetFileNameWithoutExtension(extensionName).ToUpper(CultureInfo.InvariantCulture);
-            return '[' + sectionName + ']';
+            var extension = Path.GetFileNameWithoutExtension(extensionName);
+            if (extension != null)
+            {
+                var sectionName = extension.ToUpper(CultureInfo.InvariantCulture);
+                return '[' + sectionName + ']';
+            }
+
+            throw new ArgumentException("Cannot extract extension name from the extention file name.");
         }
 
         internal PHPIniSetting GetSetting(string name)
         {
-            foreach (PHPIniSetting setting in Settings)
-            {
-                if (String.Equals(setting.Name, name, StringComparison.OrdinalIgnoreCase))
-                {
-                    return setting;
-                }
-            }
-
-            return null;
+            return Settings.FirstOrDefault(setting => String.Equals(setting.Name, name, StringComparison.OrdinalIgnoreCase));
         }
 
         internal void Parse()
@@ -233,13 +201,13 @@ namespace Web.Management.PHP.Config
                 throw new InvalidOperationException();
             }
 
-            string extensionDir = String.Empty;
+            var extensionDir = String.Empty;
 
-            using (StreamReader reader = new StreamReader(FileName))
+            using (var reader = new StreamReader(FileName))
             {
-                foreach (object o in PHPIniFile.ParseIniFile(reader))
+                foreach (var o in ParseIniFile(reader))
                 {
-                    PHPIniSetting directive = o as PHPIniSetting;
+                    var directive = o as PHPIniSetting;
                     if (directive != null)
                     {
                         Settings.Add(directive);
@@ -253,7 +221,7 @@ namespace Web.Management.PHP.Config
                     }
                     else
                     {
-                        PHPIniExtension extension = o as PHPIniExtension;
+                        var extension = o as PHPIniExtension;
                         if (extension != null)
                         {
                             Extensions.Add(extension);
@@ -261,7 +229,7 @@ namespace Web.Management.PHP.Config
                         }
                         else
                         {
-                            PHPIniBase entry = o as PHPIniBase;
+                            var entry = o;
                             if (entry != null)
                             {
                                 RawEntries.Add(entry);
@@ -300,8 +268,8 @@ namespace Web.Management.PHP.Config
                 // Process section
                 else if (tmp.StartsWith("[", StringComparison.OrdinalIgnoreCase))
                 {
-                    int startindex = tmp.IndexOf('[');
-                    int endindex = tmp.IndexOf(']');
+                    var startindex = tmp.IndexOf('[');
+                    var endindex = tmp.IndexOf(']');
                     if ((startindex >= 0) && (endindex > startindex))
                     {
                         string name = tmp.Substring(startindex + 1, endindex - startindex - 1);
@@ -312,9 +280,9 @@ namespace Web.Management.PHP.Config
                 // Process the settings and extensions
                 else if (!String.IsNullOrEmpty(tmp))
                 {
-                    string[] split = tmp.Split(new Char[] { '=' }, 2);
-                    string name = split[0].Trim();
-                    string value = String.Empty;
+                    var split = tmp.Split(new[] { '=' }, 2);
+                    var name = split[0].Trim();
+                    var value = String.Empty;
 
                     if (split.Length > 1)
                     {
@@ -373,9 +341,9 @@ namespace Web.Management.PHP.Config
                 throw new ArgumentNullException("filename");
             }
 
-            using (StreamWriter writer = new StreamWriter(filename))
+            using (var writer = new StreamWriter(filename))
             {
-                foreach (PHPIniBase entry in RawEntries)
+                foreach (var entry in RawEntries)
                 {
                     writer.WriteLine(entry.GetText());
                 }
@@ -389,15 +357,15 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateExtensions(IEnumerable<PHPIniExtension> extensions)
         {
-            foreach (PHPIniExtension extension in extensions)
+            foreach (var extension in extensions)
             {
-                int foundIndex = -1;
+                var foundIndex = -1;
 
-                for (int i = 0; i < RawEntries.Count; i++)
+                for (var i = 0; i < RawEntries.Count; i++)
                 {
-                    PHPIniBase b = RawEntries[i];
+                    var b = RawEntries[i];
 
-                    PHPIniExtension existing = b as PHPIniExtension;
+                    var existing = b as PHPIniExtension;
                     if (existing != null)
                     {
                         if (String.Equals(existing.Name, extension.Name, StringComparison.OrdinalIgnoreCase))
@@ -414,7 +382,7 @@ namespace Web.Management.PHP.Config
                     // ... and is disabled then...
                     if (!extension.Enabled)
                     {
-                        PHPIniBase extensionLine = RawEntries[foundIndex];
+                        var extensionLine = RawEntries[foundIndex];
                         // ... remove the extension section name if it exists
                         if (foundIndex > 0 &&
                             String.Equals(RawEntries[foundIndex - 1].GetText(), GetExtensionSection(extension.Name), StringComparison.OrdinalIgnoreCase))
@@ -434,7 +402,7 @@ namespace Web.Management.PHP.Config
                         extension.UpdateText();
 
                         // Add it at the end of the file along with the extension section name
-                        int lastIndex = RawEntries.Count - 1;
+                        var lastIndex = RawEntries.Count - 1;
                         lastIndex++;
                         RawEntries.Insert(lastIndex, new PHPIniString(GetExtensionSection(extension.Name)));
                         lastIndex++;
@@ -533,13 +501,13 @@ namespace Web.Management.PHP.Config
 
         public string GetTrimmedValue()
         {
-            string result = (string)_data[IndexValue];
-            return result.Trim(new char[] {' ', '"' });
+            var result = (string)_data[IndexValue];
+            return result.Trim(new[] {' ', '"' });
         }
 
         public override bool Equals(object obj)
         {
-            PHPIniSetting setting = obj as PHPIniSetting;
+            var setting = obj as PHPIniSetting;
             if (setting == null)
             {
                 return false;
@@ -640,8 +608,6 @@ namespace Web.Management.PHP.Config
 
     internal class PHPIniSection : PHPIniBase
     {
-        private string _name;
-
         public PHPIniSection() { }
 
         public PHPIniSection(string name, string rawText) : base(rawText)
@@ -649,16 +615,6 @@ namespace Web.Management.PHP.Config
             Name = name;
         }
 
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
     }
 }

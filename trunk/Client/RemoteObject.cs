@@ -56,7 +56,7 @@ namespace Web.Management.PHP
         {
             get
             {
-                return (T)_list[index];
+                return _list[index];
             }
             set
             {
@@ -86,7 +86,7 @@ namespace Web.Management.PHP
 
         public object GetData()
         {
-            ArrayList items = new ArrayList(_list.Count);
+            var items = new ArrayList(_list.Count);
             foreach (T item in _list)
             {
                 items.Add(item.GetData());
@@ -111,7 +111,7 @@ namespace Web.Management.PHP
 
             foreach (object o in sourceList)
             {
-                T item = new T();
+                var item = new T();
                 item.SetData(o);
                 _list.Add(item);
             }
