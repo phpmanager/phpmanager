@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?define SourceDir=..\Bin\Release?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="PHPManagerForIIS" Language="1033" Version="1.3.0.0" Manufacturer="Ruslan Yakushev" UpgradeCode="bfea8c39-9ac4-4ee7-8712-890c42d066e1">
+    <Package Comments="PHP Manager for IIS is an IIS extension for managing PHP configuration." InstallerVersion="200" Languages="1033" Compressed="yes" InstallScope="perMachine" Platform="x86"/>
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <!-- Embed the cab -->
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+
+    <!-- MainFeature -->
+    <Feature Id="ProductFeature" Title="PHPManagerForIIS" Level="1">
+      <!--Assemblies installed into the GAC -->
+      <ComponentRef Id="Web.Management.PHP.dll.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.dll.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_CN.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.tr_TR.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.de_DE.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_TW.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.fr_FR.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ja_JP.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.nl_NL.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.pt_BR.GAC_comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ru_RU.GAC_comp"/>
+
+      <!-- Files installed -->
+      <ComponentRef Id="Web.Management.PHP.dll"/>
+      <ComponentRef Id="Web.Management.PHP.Client.dll"/>
+      <ComponentRef Id="Web.Management.PHP.Setup.dll"/>
+      <ComponentRef Id="Web.Management.PHP.PowerShell.dll"/>
+      <ComponentRef Id="Web.Management.PHP.PowerShell.dllHelp.xml" />
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_CN.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_TW.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.fr_FR.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.de_DE.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ja_JP.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.nl_NL.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.pt_BR.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ru_RU.comp"/>
+      <ComponentRef Id="Web.Management.PHP.Client.resources.dll.tr_BR.comp"/>
+    </Feature>
+
+    <!-- Directories and files -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="PHP Manager 1.3 for IIS 8">
+          <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
+            <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="..\Setup\License.rtf" />
+            <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" KeyPath="yes" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
+          </Component>
+          <Component Id="Web.Management.PHP.Client.dll" Guid="{319C1A86-58E7-45EA-9408-EFB366F2A2F4}">
+            <File Id="Web.Management.PHP.Client.dll" Name="Web.Management.PHP.Client.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Client.dll" />
+          </Component>
+          <Component Id="Web.Management.PHP.Setup.dll" Guid="{CAE7B77C-5A31-4C01-B997-EDEFD5387205}">
+            <File Id="Web.Management.PHP.Setup.dll" Name="Web.Management.PHP.Setup.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Setup.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Setup.dll" />
+            <File Id='ConfigFile' Name='ConfigFile.xml' DiskId='1' Vital='yes' Source='ConfigFile.xml' />
+          </Component>
+          <Component Id="Web.Management.PHP.dll" Guid="{3D24E10F-5B3F-4796-99CE-3DA5D0E947DA}">
+            <File Id="Web.Management.PHP.dll" Name="Web.Management.PHP.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.dll" />
+          </Component>
+          <Component Id="Web.Management.PHP.PowerShell.dll" Guid="{4F2601CE-2A0F-430A-ADC6-F75F318CD2E7}">
+            <File Id="Web.Management.PHP.PowerShell.dll" Name="Web.Management.PHP.PowerShell.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.PowerShell.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll" />
+          </Component>
+          <Directory Id="GACFiles_Dir" Name="GAC">
+            <Component Id="Web.Management.PHP.Client.dll.GAC_comp" Guid="{F576C18C-A14D-4732-B13F-24E7D80C797C}">
+              <File Id="Web.Management.PHP.Client.dll.GAC_comp" Name="Web.Management.PHP.Client.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Client.dll" />
+            </Component>
+            <Component Id="Web.Management.PHP.dll.GAC_comp" Guid="{100551D2-C0B0-4F89-AF68-F4BC8C759219}">
+              <File Id="Web.Management.PHP.dll.GAC" Name="Web.Management.PHP.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.dll" />
+            </Component>
+            <Directory Id="zhCN_1_Dir" Name="zh-CN">
+              <Component Id="Web.Management.PHP.Client.resources.dll.zh_CN.GAC_comp" Guid="{345AFFEE-4104-4635-BE45-02CA7A42F1CB}">
+                <File Id="Web.Management.PHP.Client.resources.dll.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\zh-CN\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="trTR_1_Dir" Name="tr-TR">
+              <Component Id="Web.Management.PHP.Client.resources.dll.tr_TR.GAC_comp" Guid="{C02B262E-6A87-4AA6-A3AF-3462842956B1}">
+                <File Id="Web.Management.PHP.Client.resources.dll.tr_TR.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\tr-TR\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="deDE_1_Dir" Name="de-DE">
+              <Component Id="Web.Management.PHP.Client.resources.dll.de_DE.GAC_comp" Guid="{2825CDE4-787A-4C2C-B202-CEA75EB4E4AC}">
+                <File Id="Web.Management.PHP.Client.resources.dll.de_DE.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\de-DE\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="zhTW_1_Dir" Name="zh-TW">
+              <Component Id="Web.Management.PHP.Client.resources.dll.zh_TW.GAC_comp" Guid="{5B978A64-612F-4509-97CF-04D65ACA1ED7}">
+                <File Id="Web.Management.PHP.Client.resources.dll.zh_TW.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\zh-TW\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="frFR_1_Dir" Name="fr-FR">
+              <Component Id="Web.Management.PHP.Client.resources.dll.fr_FR.GAC_comp" Guid="{89C62C87-EA2C-4838-8AF5-298405D61504}">
+                <File Id="Web.Management.PHP.Client.resources.dll.fr_FR.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\fr-FR\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="jaJP_1_Dir" Name="ja-JP">
+              <Component Id="Web.Management.PHP.Client.resources.dll.ja_JP.GAC_comp" Guid="{1C449E75-85C4-4CE2-A367-EC7CA53F3770}">
+                <File Id="Web.Management.PHP.Client.resources.dll.ja_JP.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\ja-JP\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="nlNL_1_Dir" Name="nl-NL">
+              <Component Id="Web.Management.PHP.Client.resources.dll.nl_NL.GAC_comp" Guid="{C6789635-39AB-42F1-869F-32F36C21D830}">
+                <File Id="Web.Management.PHP.Client.resources.dll.nl_NL.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\nl-NL\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="ptBR_1_Dir" Name="pt-BR">
+              <Component Id="Web.Management.PHP.Client.resources.dll.pt_BR.GAC_comp" Guid="{45C27C53-8215-4170-8BE0-9E877E0B6037}">
+                <File Id="Web.Management.PHP.Client.resources.dll.pt_BR.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\pt-BR\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="ruRU_1_Dir" Name="ru-RU">
+              <Component Id="Web.Management.PHP.Client.resources.dll.ru_RU.GAC_comp" Guid="{63630F8C-521B-4D96-A70D-0405EC6DC555}">
+                <File Id="Web.Management.PHP.Client.resources.dll_ru_RU.GAC" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" DiskId="1" Source="$(var.SourceDir)\ru-RU\Web.Management.PHP.Client.resources.dll" />
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="ruRU_Dir" Name="ru-RU">
+            <Component Id="Web.Management.PHP.Client.resources.dll.ru_RU.comp" Guid="{B16D8398-BEAD-4017-8029-147739F27C57}">
+              <File Id="Web.Management.PHP.Client.resources.dll.ru_RU" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.ru_RU" DiskId="1" Source="$(var.SourceDir)\ru-RU\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="ptBR_Dir" Name="pt-BR">
+            <Component Id="Web.Management.PHP.Client.resources.dll.pt_BR.comp" Guid="{8188C8A8-2193-41F8-A15B-4F5E733B1458}">
+              <File Id="Web.Management.PHP.Client.resources.dll.pt_BR" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.pt_BR" DiskId="1" Source="$(var.SourceDir)\pt-BR\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="trTR_Dir" Name="tr-TR">
+            <Component Id="Web.Management.PHP.Client.resources.dll.tr_BR.comp" Guid="{9DBFCEBD-8F07-494C-A61C-32AF7E8ECA10}">
+              <File Id="Web.Management.PHP.Client.resources.dll.tr_BR" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.tr_BR" DiskId="1" Source="$(var.SourceDir)\tr-TR\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="zhCN_Dir" Name="zh-CN">
+            <Component Id="Web.Management.PHP.Client.resources.dll.zh_CN.comp" Guid="{035238B1-8DF8-4435-8BF6-756A46931672}">
+              <File Id="Web.Management.PHP.Client.resources.dll.zh_CN" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.zh_CN" DiskId="1" Source="$(var.SourceDir)\zh-CN\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="zhTW_Dir" Name="zh-TW">
+            <Component Id="Web.Management.PHP.Client.resources.dll.zh_TW.comp" Guid="{AE0140F6-4112-4A81-9820-0A2FBB94F267}">
+              <File Id="Web.Management.PHP.Client.resources.dll.zh_TW" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.zh_TW" DiskId="1" Source="$(var.SourceDir)\zh-TW\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="frFR_Dir" Name="fr-FR">            
+            <Component Id="Web.Management.PHP.Client.resources.dll.fr_FR.comp" Guid="{B0B4615C-D9BA-4354-A47A-17BD8E51F617}">
+              <File Id="Web.Management.PHP.Client.resources.dll.fr_FR" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.fr_FR" DiskId="1" Source="$(var.SourceDir)\fr-FR\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="deDE_Dir" Name="de-DE">
+            <Component Id="Web.Management.PHP.Client.resources.dll.de_DE.comp" Guid="{08F849D3-4ADB-4BB1-8449-B2AD42E7644C}">
+              <File Id="Web.Management.PHP.Client.resources.dll.de_DE" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.de_DE" DiskId="1" Source="$(var.SourceDir)\de-DE\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="jaJP_Dir" Name="ja-JP">
+            <Component Id="Web.Management.PHP.Client.resources.dll.ja_JP.comp" Guid="{1A581AF6-5649-4DAF-8004-5E72C64E2867}">
+              <File Id="Web.Management.PHP.Client.resources.dll.ja_JP" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.ja_JP" DiskId="1" Source="$(var.SourceDir)\ja-JP\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+          <Directory Id="nlNL_Dir" Name="nl-NL">
+            <Component Id="Web.Management.PHP.Client.resources.dll.nl_NL.comp" Guid="{0F8B7132-6F23-4E2C-B461-E7A0A9A78F9B}">
+              <File Id="Web.Management.PHP.Client.resources.dll.nl_NL" Name="Web.Management.PHP.Client.resources.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.resources.dll.nl_NL" DiskId="1" Source="$(var.SourceDir)\nl-NL\Web.Management.PHP.Client.resources.dll" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+    <!--Check .NET 4.5 is installed-->
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+
+    <Binary Id='InstallUtil' SourceFile='InstallUtilLib.dll' />
+
+    <!-- Custom actions for Web.Management.PHP.Client -->
+    <CustomAction Id='InstallPHPSetupSetProp' Property='InstallPHPSetup' Value='/installtype=notransaction /action=install /LogFile= "[#Web.Management.PHP.Setup.dll]" "[#ConfigFile]"'/>
+    <CustomAction Id='InstallPHPSetup' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate='no' />    
+
+    <CustomAction Id='UnInstallPHPSetupSetProp' Property='UnInstallPHPSetup' Value='/installtype=notransaction /action=uninstall /LogFile= "[#Web.Management.PHP.Setup.dll]" "[#ConfigFile]"'/>
+    <CustomAction Id='UnInstallPHPSetup' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate='no' />
+
+    <!--<CustomAction Id='InstallPHPPowerShellSetProp' Property='InstallPHPPowerShell' Value='/installtype=notransaction /action=install /LogFile="[#Web.Management.PHP.PowerShell.dll]" "[VSDFxConfigFile]"'/>
+    <CustomAction Id='InstallPHPPowerShell' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' />
+
+    <CustomAction Id='UnInstallPHPPowerShellSetProp' Property='UnInstallPHPPowerShell' Value='/installtype=notransaction /action=uninstall /LogFile="[#Web.Management.PHP.PowerShell.dll]" "[VSDFxConfigFile]"'/>
+    <CustomAction Id='UnInstallPHPPowerShell' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' />-->
+
+    <!-- Custom Actions using Install Util -->
+    <InstallExecuteSequence>
+      
+     <Custom Action='InstallPHPSetupSetProp' After='StartServices'>$Web.Management.PHP.Setup.dll&gt;2</Custom>
+      <Custom Action='InstallPHPSetup' After='InstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll&gt;2</Custom>
+      <Custom Action='UnInstallPHPSetupSetProp' After='MsiUnpublishAssemblies'>$Web.Management.PHP.Setup.dll=2</Custom>
+      <Custom Action='UnInstallPHPSetup' After='UnInstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll=2</Custom>
+
+      <!--<Custom Action='InstallPHPPowerShellSetProp' After='StartServices'>$Web.Management.PHP.PowerShell.dll&gt;2</Custom>
+      <Custom Action='InstallPHPPowerShell' After='InstallPHPPowerShellSetProp'>$Web.Management.PHP.PowerShell.dll&gt;2</Custom>
+      <Custom Action='UnInstallPHPPowerShellSetProp' After='MsiUnpublishAssemblies'>$Web.Management.PHP.PowerShell.dll=2</Custom>
+      <Custom Action='UnInstallPHPPowerShell' After='UnInstallPHPPowerShellSetProp'>$Web.Management.PHP.PowerShell.dll=2</Custom>-->
+
+    </InstallExecuteSequence>
+
+    <UI>
+      <Error Id='1001'>Error [1]. [2]</Error>
+    </UI>
+  </Product>
+</Wix>
