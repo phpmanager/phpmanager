@@ -57,6 +57,7 @@
       <Link>SharedAssembyInfo.cs</Link>
     </Compile>
     <Compile Include="InstallUtil.cs" />
+    <EmbeddedResource Include="Program.cs" />
     <Compile Include="SetupAction.cs">
       <SubType>Component</SubType>
     </Compile>
