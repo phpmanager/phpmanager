@@ -1324,7 +1324,7 @@
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_619AF203731848F0BD5750B318AB2483"
             {
             "Name" = "8:IIS Condition"
-            "Condition" = "8:IISREGISTRYVALUE >= \"#8\" OR IISREGISTRYVALUE >= \"#10\""
+            "Condition" = "8:IISREGISTRYVALUE >= \"#8\" OR IISREGISTRYVALUE = \"#10\""
             "Message" = "8:PHP Manager for IIS requires IIS8 or higher to be installed. Do you want to learn more on how to obtain and install IIS 8?"
             "InstallUrl" = "8:http://www.iis.net/"
             }
