@@ -645,7 +645,8 @@ namespace Web.Management.PHP.Config
                 var daylightTime = localZone.GetDaylightChanges(currentTime.Year);
                 if (offset >= TimeSpan.Zero)
                 {
-                    offset += daylightTime.Delta;
+                    // TEST: #1390 on CodePlex and #7 on GitHub.
+                    offset -= daylightTime.Delta;
                 }
                 else
                 {
