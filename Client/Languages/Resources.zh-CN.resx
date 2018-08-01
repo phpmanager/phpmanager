@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddEditSettingDialogLearnMore" xml:space="preserve">
+    <value>了解有关该设置的更多信息（可能为英文）</value>
+  </data>
+  <data name="AddEditSettingDialogName" xml:space="preserve">
+    <value>名称:</value>
+  </data>
+  <data name="AddEditSettingDialogSection" xml:space="preserve">
+    <value>节:</value>
+  </data>
+  <data name="AddEditSettingDialogValue" xml:space="preserve">
+    <value>值:</value>
+  </data>
+  <data name="AddEditSettingDialogAddSetting" xml:space="preserve">
+    <value>添加 PHP 设置</value>
+  </data>
+  <data name="AllPagesGoBackTask" xml:space="preserve">
+    <value>返回主页</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Delete16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddEditSettingDialogEditSetting" xml:space="preserve">
+    <value>编辑 PHP 设置</value>
+  </data>
+  <data name="AllSettingsPageEditTask" xml:space="preserve">
+    <value>编辑...</value>
+  </data>
+  <data name="AllSettingsPageGettingSettings" xml:space="preserve">
+    <value>获取设置</value>
+  </data>
+  <data name="GoBack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goBack16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorNoPHPFilesInDirectory" xml:space="preserve">
+    <value>该目录没有包含必需的 PHP 文件：php-cgi.exe 和 php.ini。</value>
+  </data>
+  <data name="PHPExtensionItemConfigureTask" xml:space="preserve">
+    <value>配置扩展设置</value>
+  </data>
+  <data name="PHPExtensionItemEnableTask" xml:space="preserve">
+    <value>启用或禁用扩展</value>
+  </data>
+  <data name="PHPExtensions32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-extensions32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPExtensionsItemTitle" xml:space="preserve">
+    <value>PHP 扩展</value>
+  </data>
+  <data name="AllExtensionsPageDescription" xml:space="preserve">
+    <value>启用或禁用 PHP 扩展，以及编辑 PHP 扩展设置。</value>
+  </data>
+  <data name="AllExtensionsPageDisabledGroup" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="AllExtensionsPageDisableTask" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="AllExtensionsPageEnabledGroup" xml:space="preserve">
+    <value>已启用</value>
+  </data>
+  <data name="AllExtensionsPageEnableTask" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="AllExtensionsPageGettingExtensions" xml:space="preserve">
+    <value>获取扩展</value>
+  </data>
+  <data name="AllExtensionsPageLongDescription" xml:space="preserve">
+    <value>PHP 扩展为 PHP 运行时提供附加功能，例如数据库连接和调试等。使用该功能以启用或禁用 PHP 扩展，并配置 PHP 扩展的设置。</value>
+  </data>
+  <data name="AllExtensionsPageNameField" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="AllExtensionsPageStateField" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="AllExtensionsPageTitle" xml:space="preserve">
+    <value>PHP 扩展</value>
+  </data>
+  <data name="AllPagesOpenPHPIniTask" xml:space="preserve">
+    <value>打开 php.ini</value>
+  </data>
+  <data name="PHPInfoPageDescription" xml:space="preserve">
+    <value>获取 phpinfo() 函数的输出内容</value>
+  </data>
+  <data name="PHPInfoPageLongDescription" xml:space="preserve">
+    <value>获取 phpinfo() 函数的输出内容，以便于获得 PHP 的当前状态信息。这些信息可以用于检查 PHP 运行时环境的各个方面或用于调试目的。</value>
+  </data>
+  <data name="PHPInfoPageTitle" xml:space="preserve">
+    <value>phpinfo() 输出</value>
+  </data>
+  <data name="PHPInfoRefreshPHPInfo" xml:space="preserve">
+    <value>刷新 phpinfo</value>
+  </data>
+  <data name="PHPIniSettingDeleteConfirmation" xml:space="preserve">
+    <value>您确定要删除该设置吗？</value>
+  </data>
+  <data name="PHPLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-logo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPPageConfigurationFile" xml:space="preserve">
+    <value>配置文件:</value>
+  </data>
+  <data name="PHPPageDescription" xml:space="preserve">
+    <value>PHP 运行时配置和设置</value>
+  </data>
+  <data name="PHPPageExecutable" xml:space="preserve">
+    <value>PHP 可执行文件:</value>
+  </data>
+  <data name="PHPPageExtensionsPath" xml:space="preserve">
+    <value>扩展路径:</value>
+  </data>
+  <data name="PHPPageItemTaskSeparator" xml:space="preserve">
+    <value> | </value>
+  </data>
+  <data name="PHPPageLongDescription" xml:space="preserve">
+    <value>使用该功能检查 PHP 运行时设置，配置 PHP 运行时指令，以及启用或禁用 PHP 扩展。</value>
+  </data>
+  <data name="PHPPageTitle" xml:space="preserve">
+    <value>PHP 管理器</value>
+  </data>
+  <data name="PHPPageVersion" xml:space="preserve">
+    <value>PHP 版本:</value>
+  </data>
+  <data name="PHPSettings32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-settings32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSettingsItemAllSettingsTask" xml:space="preserve">
+    <value>管理所有设置</value>
+  </data>
+  <data name="PHPSettingsItemErrorReportingTask" xml:space="preserve">
+    <value>配置错误报告</value>
+  </data>
+  <data name="PHPSettingsItemTitle" xml:space="preserve">
+    <value>PHP 设置</value>
+  </data>
+  <data name="AllPagesAddTask" xml:space="preserve">
+    <value>添加...</value>
+  </data>
+  <data name="AllSettingsPageDescription" xml:space="preserve">
+    <value>配置所有 PHP 设置</value>
+  </data>
+  <data name="AllSettingsPageLongDescription" xml:space="preserve">
+    <value>配置所有存储在 php.ini 中的 PHP 设置。这些设置控制了 PHP 运行时环境的各个方面，如错误报告和安全限制等。</value>
+  </data>
+  <data name="AllSettingsPageNameField" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="AllSettingsPageSectionField" xml:space="preserve">
+    <value>节</value>
+  </data>
+  <data name="AllSettingsPageTitle" xml:space="preserve">
+    <value>PHP 设置</value>
+  </data>
+  <data name="AllSettingsPageValueField" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="PHPSetup32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\php-setup32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PHPSetupItemChangeVersionTask" xml:space="preserve">
+    <value>更改 PHP 版本</value>
+  </data>
+  <data name="PHPSetupItemCheckPHPInfoTask" xml:space="preserve">
+    <value>检查 phpinfo()</value>
+  </data>
+  <data name="PHPSetupItemRegisterPHPTask" xml:space="preserve">
+    <value>注册新 PHP 版本</value>
+  </data>
+  <data name="PHPSetupItemTitle" xml:space="preserve">
+    <value>PHP 安装</value>
+  </data>
+  <data name="RegisterPHPDialogSelectPath" xml:space="preserve">
+    <value>提供 php 可执行文件 (php-cgi.exe) 的路径:</value>
+  </data>
+  <data name="AllSettingsPageRemoveTask" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogTitle" xml:space="preserve">
+    <value>选择站点和 URL</value>
+  </data>
+  <data name="RegisterPHPDialogRegisterNew" xml:space="preserve">
+    <value>注册新 PHP 版本</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectAUrl" xml:space="preserve">
+    <value>选择所选定站点使用的 URL(&amp;U):</value>
+  </data>
+  <data name="SelectSiteAndUrlDialogSelectASite" xml:space="preserve">
+    <value>选择要检查 PHP 配置的网站(&amp;S):</value>
+  </data>
+  <data name="PHPSettingsItemLimitsTask" xml:space="preserve">
+    <value>设置运行时限制</value>
+  </data>
+  <data name="PHPPageErrorLog" xml:space="preserve">
+    <value>错误日志:</value>
+  </data>
+  <data name="PHPPageEnabledExtensions" xml:space="preserve">
+    <value>当前启用了 {0} 个扩展。</value>
+  </data>
+  <data name="PHPPageInstalledExtensions" xml:space="preserve">
+    <value>当前安装了 {0} 个扩展。</value>
+  </data>
+  <data name="ErrorReportingPageDescription" xml:space="preserve">
+    <value>PHP 错误报告和日志</value>
+  </data>
+  <data name="ErrorReportingPageLongDescription" xml:space="preserve">
+    <value>使用该功能以配置 PHP 如何报告和记录错误、警告和信息提示。</value>
+  </data>
+  <data name="ErrorReportingPageTitle" xml:space="preserve">
+    <value>PHP 错误报告</value>
+  </data>
+  <data name="ErrorReportingPageDevMachine" xml:space="preserve">
+    <value>开发环境(&amp;D)</value>
+  </data>
+  <data name="ErrorReportingPageDevMachineDesc" xml:space="preserve">
+    <value>这是一个开发环境。错误报告将会使用详细模式。所有错误、警告和信息提示都将输出到浏览器中，同时被写入日志文件。</value>
+  </data>
+  <data name="ErrorReportingPageErrorLogFile" xml:space="preserve">
+    <value>错误日志文件:</value>
+  </data>
+  <data name="ErrorReportingPageProdMachine" xml:space="preserve">
+    <value>产品环境(&amp;D)</value>
+  </data>
+  <data name="ErrorReportingPageProdMachineDesc" xml:space="preserve">
+    <value>这个一个可以通过 Internet 访问的产品环境。只有错误会被记录到日志文件。错误、警告、和信息提示不会显示在浏览器中。</value>
+  </data>
+  <data name="ErrorReportingPageSelectServerType" xml:space="preserve">
+    <value>选择一个服务器类型。该选项将影响到如何报告和记录错误。</value>
+  </data>
+  <data name="ErrorReportingPageServerType" xml:space="preserve">
+    <value>服务器类型</value>
+  </data>
+  <data name="ErrorInvalidPHPExecutablePath" xml:space="preserve">
+    <value>给定的路径必须指向 php-cgi.exe 或 php.exe。</value>
+  </data>
+  <data name="ErrorNoExtDirectory" xml:space="preserve">
+    <value>该目录不包含带有 PHP 扩展的 ext 子目录。</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP 可执行文件 (php-cgi.exe)|php-cgi.exe|所有文件 (*.*)|*.*</value>
+  </data>
+  <data name="RegisterPHPDialogOpenFileTitle" xml:space="preserve">
+    <value>选择 PHP 可执行文件</value>
+  </data>
+  <data name="ChangeVersionDialogSelectVersion" xml:space="preserve">
+    <value>选择 PHP 版本:</value>
+  </data>
+  <data name="ChangeVersionDialogTitle" xml:space="preserve">
+    <value>更改 PHP 版本</value>
+  </data>
+  <data name="RegisterPHPDialogExample" xml:space="preserve">
+    <value>示例: C:\PHP\php-cgi.exe</value>
+  </data>
+  <data name="ErrorLogSaveDialogFilter" xml:space="preserve">
+    <value>日志文件 (*.log)|*.log|所有文件 (*.*)|*.*</value>
+  </data>
+  <data name="ErrorLogSaveDialogTitle" xml:space="preserve">
+    <value>PHP 错误日志文件</value>
+  </data>
+  <data name="ErrorReportingErrorLogFile" xml:space="preserve">
+    <value>错误日志文件:</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTime" xml:space="preserve">
+    <value>最长运行时间</value>
+  </data>
+  <data name="RuntimeLimitsPageDescription" xml:space="preserve">
+    <value>配置 PHP 运行时限制，包括执行超时时间、最大上传时间等。</value>
+  </data>
+  <data name="RuntimeLimitsPageLongDescription" xml:space="preserve">
+    <value>配置 PHP 运行时限制，如最长脚本执行时间、上传文件最大尺寸，请求超时等。</value>
+  </data>
+  <data name="RuntimeLimitsPageTitle" xml:space="preserve">
+    <value>PHP 运行时限制</value>
+  </data>
+  <data name="RuntimeLimitsDataHandling" xml:space="preserve">
+    <value>数据处理</value>
+  </data>
+  <data name="RuntimeLimitsMaxExecutionTimeDescription" xml:space="preserve">
+    <value>单个脚本可以运行的最长时间，以秒为单位，超时将被解析器强制终止。该功能可以防止性能较差的脚本过度消耗服务器资源。</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploads" xml:space="preserve">
+    <value>最大上传文件数量</value>
+  </data>
+  <data name="RuntimeLimitsMaxFileUploadsDescription" xml:space="preserve">
+    <value>单个请求允许同时上传的文件数量的最大值。</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTime" xml:space="preserve">
+    <value>最长输入时间</value>
+  </data>
+  <data name="RuntimeLimitsMaxInputTimeDescription" xml:space="preserve">
+    <value>单个脚本可以用于处理输入数据，如 POST、GET 和上传文件的最长时间，以秒为单位。</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimit" xml:space="preserve">
+    <value>内存限制</value>
+  </data>
+  <data name="RuntimeLimitsMemoryLimitDescription" xml:space="preserve">
+    <value>单个脚本允许分配的内存的最大数量，以字节为单位。该功能可以防止性能较差的脚本过度消耗服务器内存资源。</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSize" xml:space="preserve">
+    <value>最大 POST 大小</value>
+  </data>
+  <data name="RuntimeLimitsPostMaxSizeDescription" xml:space="preserve">
+    <value>POST 数据所允许的最大长度，以字节为单位。该设置同时也会影响文件上传。要上传大文件，该数值必须大于 upload_max_filesize 的设置值。</value>
+  </data>
+  <data name="RuntimeLimitsResourceLimits" xml:space="preserve">
+    <value>资源限制</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesize" xml:space="preserve">
+    <value>最大上传文件尺寸</value>
+  </data>
+  <data name="RuntimeLimitsUploadMaxFilesizeDescription" xml:space="preserve">
+    <value>上传文件所允许的最大尺寸。</value>
+  </data>
+  <data name="PHPPageExtensionsNotAvailable" xml:space="preserve">
+    <value>PHP 扩展不可用</value>
+  </data>
+  <data name="PHPPagePHPNotAvailable" xml:space="preserve">
+    <value>不可用</value>
+  </data>
+  <data name="ErrorPHPIniNotFound" xml:space="preserve">
+    <value>找不到文件 php.ini。请确保 PHP 已经正确在 IIS 中注册。</value>
+  </data>
+  <data name="AllPagesPageIsReadOnly" xml:space="preserve">
+    <value>这些设置是只读的。它们只能由服务器管理员进行修改。</value>
+  </data>
+  <data name="ErrorCannotCreatePHPInfo" xml:space="preserve">
+    <value>由于权限不足，无法在服务器上创建 phpinfo 的临时文件。</value>
+  </data>
+  <data name="ErrorSomeHandlersLocked" xml:space="preserve">
+    <value>无法修改 PHP 版本，某些 IIS 处理程序映射在服务器级别被锁定。</value>
+  </data>
+  <data name="PHPExtensionItemReadOnlyEnableTask" xml:space="preserve">
+    <value>查看已启用或禁用的扩展</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyAllSettingsTask" xml:space="preserve">
+    <value>查看所有设置</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyErrorReportingTask" xml:space="preserve">
+    <value>查看错误报告</value>
+  </data>
+  <data name="PHPSettingsItemReadOnlyLimitsTask" xml:space="preserve">
+    <value>查看运行时限制</value>
+  </data>
+  <data name="ErrorFileDoesNotExist" xml:space="preserve">
+    <value>文件 {0} 不存在。</value>
+  </data>
+  <data name="Warning16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningViewRecommendations" xml:space="preserve">
+    <value>查看建议。</value>
+  </data>
+  <data name="WarningPHPConfigNotOptimal" xml:space="preserve">
+    <value>在该计算机中发现了非最优的 PHP 配置。</value>
+  </data>
+  <data name="ConfigIssueNone" xml:space="preserve">
+    <value>&lt;未设置&gt;</value>
+  </data>
+  <data name="RecommendConfigDialogCurrentValue" xml:space="preserve">
+    <value>当前值</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendation" xml:space="preserve">
+    <value>建议(&amp;R):</value>
+  </data>
+  <data name="RecommendConfigDialogDetectedIssues" xml:space="preserve">
+    <value>检测到的配置问题(&amp;D):</value>
+  </data>
+  <data name="RecommendConfigDialogRecommendedValue" xml:space="preserve">
+    <value>建议值</value>
+  </data>
+  <data name="RecommendConfigDialogSettingName" xml:space="preserve">
+    <value>设置名称</value>
+  </data>
+  <data name="RecommendConfigDialogTitle" xml:space="preserve">
+    <value>配置建议</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotCorrect" xml:space="preserve">
+    <value>PHP 指令“cgi.force_redirect”未设置为“0”。</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectNotSet" xml:space="preserve">
+    <value>PHP 指令“cgi.force_redirect”未设置。</value>
+  </data>
+  <data name="ConfigIssueCgiForceRedirectRecommend" xml:space="preserve">
+    <value>建议当使用 IIS 承载 PHP 时将“cgi.force_redirect”指令关闭。</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotCorrect" xml:space="preserve">
+    <value>PHP 指令“cgi.fix_pathinfo”未设置为“1”。</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoNotSet" xml:space="preserve">
+    <value>PHP 指令“cgi.fix_pathinfo”未设置。</value>
+  </data>
+  <data name="ConfigIssueCgiPathInfoRecommend" xml:space="preserve">
+    <value>该设置为 CGI 和 FastCGI 提供真正的 PATH_INFO/ PATH_TRANSLATED 支持。建议将该指令设置为“1”以启用该支持。</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotCorrect" xml:space="preserve">
+    <value>PHP 指令“error_log”正在使用不存在的目录。</value>
+  </data>
+  <data name="ConfigIssueErrorLogNotSet" xml:space="preserve">
+    <value>PHP 指令“error_log”不存在。</value>
+  </data>
+  <data name="ConfigIssueErrorLogRecommend" xml:space="preserve">
+    <value>“error_log”指令用于指定记录脚本错误的文件路径。建议将该指令设置为某个文件的绝对路径，并且确保该文件可以被 Web 服务器修改。</value>
+  </data>
+  <data name="ConfigIssueExtensionDirIncorrect" xml:space="preserve">
+    <value>PHP 指令“extension_dir”不是绝对路径。</value>
+  </data>
+  <data name="ConfigIssueExtensionDirNotSet" xml:space="preserve">
+    <value>PHP 指令“extension_dir”未设置。</value>
+  </data>
+  <data name="ConfigIssueExtensionDirRecommend" xml:space="preserve">
+    <value>“extension_dir”指令用于指定 PHP 搜索可动态加载扩展时所用的目录。将该指令设置为某个目录的绝对路径。</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotCorrect" xml:space="preserve">
+    <value>PHP 指令“fastcgi.impersonate”未设置为“1”。</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateNotSet" xml:space="preserve">
+    <value>PHP 指令“fastcgi.impersonate”未设置。</value>
+  </data>
+  <data name="ConfigIssueFastCgiImpersonateRecommend" xml:space="preserve">
+    <value>FastCGI 支持为调用客户端模拟安全令牌。该功能允许 IIS 为请求设定运行时的安全上下文。建议将改指令设置为“1”以打开模拟功能。 </value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotCorrect" xml:space="preserve">
+    <value>PHP 指令“log_errors”未设置为“On”。</value>
+  </data>
+  <data name="ConfigIssueLogErrorsNotSet" xml:space="preserve">
+    <value>PHP 指令“log_errors”未设置。</value>
+  </data>
+  <data name="ConfigIssueLogErrorsRecommend" xml:space="preserve">
+    <value>“"log_errors”指令控制 PHP 是否将错误和警告消息记录到日志文件中。建议将改该指令设置为“On”。</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesIncorrect" xml:space="preserve">
+    <value>FastCGI 设置“monitorChangesTo”指向了错误的文件。</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesNotSet" xml:space="preserve">
+    <value>FastCGI 设置“monitorChangesTo”未设置。</value>
+  </data>
+  <data name="ConfigIssueMonitorChangesRecommend" xml:space="preserve">
+    <value>“monitorChangesTo”设置用于控制 FastCGI 监视某个文件，并在该文件内容发生更改时回收 FastCGI 进程。建议将改设置指向 PHP 使用的 php.ini 文件，这样可以确保 php.ini 更新后所作的修改能够理解反应到 PHP 应用程序中。</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsIncorrect" xml:space="preserve">
+    <value>PHP_FCGI_MAX_REQUESTS 的值小于 instanceMaxRequests 的值。</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsNotSet" xml:space="preserve">
+    <value>没有为 PHP 进程设置 PHP_FCGI_MAX_REQUESTS 环境变量。</value>
+  </data>
+  <data name="ConfigIssuePHPMaxRequestsRecommend" xml:space="preserve">
+    <value>PHP_FCGI_MAX_REQUESTS 环境变量用于指定 PHP 可执行文件在回收前最多可以处理的请求数目。建议该值大于或等于 FastCGI 的  instanceMaxRequests 选项的设置值，这样可以确保 IIS FastCGI 进程的回收逻辑不会和 PHP 的回收行为发生冲突。</value>
+  </data>
+  <data name="ConfigIssuePHPRCFileNotExists" xml:space="preserve">
+    <value>PHPRC 环境变量指向了一个不包含 php.ini 的目录。</value>
+  </data>
+  <data name="ConfigIssuePHPRCNotSet" xml:space="preserve">
+    <value>没有为 PHP 进程设置 PHPRC 环境变量。</value>
+  </data>
+  <data name="ConfigIssuePHPRCRecommend" xml:space="preserve">
+    <value>PHPRC 环境变量用于指定包含 PHP 配置文件 php.ini 的目录位置，PHP 在启动时将会加载该配置文件。建议始终为每个 PHP 注册单独设置该环境变量，以避免 PHP 加载错误的配置文件。</value>
+  </data>
+  <data name="ConfigIssueResourceTypeIncorrect" xml:space="preserve">
+    <value>用于 PHP 的 IIS 处理程序的 resourceType 属性未设置为“Either”。</value>
+  </data>
+  <data name="ConfigIssueResourceTypeRecommend" xml:space="preserve">
+    <value>IIS 处理程序的 resourceType 属性控制当发生 Web 请求时处理程序被调用的条件。当为 PHP 配置处理程序时，出于安全方面的原因，建议将该属性设置为“Either”（文件或文件夹）。这将确保当 URL 映射到文件或文件夹时都调用处理程序。</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotCorrect" xml:space="preserve">
+    <value>PHP 指令“session.save_path”使用了一个不存在的目录。</value>
+  </data>
+  <data name="ConfigIssueSessionPathNotSet" xml:space="preserve">
+    <value>PHP 指令“session.save_path”未设置。</value>
+  </data>
+  <data name="ConfigIssueSessionPathRecommend" xml:space="preserve">
+    <value>“session.save_path”指令用于指定 PHP 保存会话数据的目录路径。建议将该指令设置为某个文件的绝对路径，并且确保该文件可以被 Web 服务器修改。</value>
+  </data>
+  <data name="RecommendConfigDialogIssueDescription" xml:space="preserve">
+    <value>问题描述(&amp;I):</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotSet" xml:space="preserve">
+    <value>index.php 没有设置为 IIS 的默认文档。</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentRecommend" xml:space="preserve">
+    <value>大部分 PHP 应用程序响应 Web 请求时使用 index.php 作为默认文件名。建议将 index.php 添加到 IIS 的默认文档列表中，并将其放置在第一位。</value>
+  </data>
+  <data name="ConfigIssueDefaultDocumentNotFirst" xml:space="preserve">
+    <value>index.php 没有设置为 IIS 的第一个默认文档。</value>
+  </data>
+  <data name="WarningPHPConfigCgi" xml:space="preserve">
+    <value>发现了非最优的 PHP 注册方式（CGI）。请注册新 PHP 版本以启用基于 FastCGI 的 PHP。</value>
+  </data>
+  <data name="WarningPHPConfigIsapi" xml:space="preserve">
+    <value>发现了非最优的 PHP 注册方式（ISAPI）。请注册新 PHP 版本以启用基于 FastCGI 的 PHP。</value>
+  </data>
+  <data name="WarningPHPConfigNotRegistered" xml:space="preserve">
+    <value>未启用 PHP。请注册新 PHP 版本以启用基于 FastCGI 的 PHP。</value>
+  </data>
+  <data name="ErrorFailedToGetConfiguration" xml:space="preserve">
+    <value>IIS 配置无效，无法获得 PHP 的相关信息。</value>
+  </data>
+  <data name="RecommendConfigDialogDescription" xml:space="preserve">
+    <value>下面是在当前服务器中检测到的 IIS 和 PHP 配置问题。请选择您希望修复的问题。</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotCorrect" xml:space="preserve">
+    <value>PHP 指令“upload_tmp_dir”指向了一个不存在的目录。</value>
+  </data>
+  <data name="ConfigIssueUploadDirNotSet" xml:space="preserve">
+    <value>PHP 指令“upload_tmp_dir”未设置。</value>
+  </data>
+  <data name="ConfigIssueUploadDirRecommend" xml:space="preserve">
+    <value>“upload_tmp_dir”用于指定进行文件上传时服务器用于存储文件的临时文件夹。必须确保 PHP 作为任何用户运行时该目录都可写入。</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneNotSet" xml:space="preserve">
+    <value>PHP 指令“date.timezone”未设置。</value>
+  </data>
+  <data name="ConfigIssueDateTimeZoneRecommend" xml:space="preserve">
+    <value>依赖系统时区设置可能会产生风险。建议使用“date.timezone”指令或 date_default_timezone_set() 函数显式设置时区信息。</value>
+  </data>
+  <data name="PHPExtensionItemAddTask" xml:space="preserve">
+    <value>添加扩展</value>
+  </data>
+  <data name="AddExtensionDialogAddExtension" xml:space="preserve">
+    <value>添加扩展</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileFilter" xml:space="preserve">
+    <value>PHP 扩展 (php*.dll)|php*.dll|所有文件 (*.*)|*.*</value>
+  </data>
+  <data name="AddExtensionDialogOpenFileTitle" xml:space="preserve">
+    <value>选择扩展二进制文件</value>
+  </data>
+  <data name="ErrorCannotAddExtension" xml:space="preserve">
+    <value>无法添加 PHP 扩展。无法将扩展文件复制到 PHP 扩展目录。</value>
+  </data>
+  <data name="AddExtensionDialogExample" xml:space="preserve">
+    <value>示例: C:\Temp\php_wincache.dll</value>
+  </data>
+  <data name="AddExtensionDialogProvidePath" xml:space="preserve">
+    <value>请提供扩展二进制文件的路径:</value>
+  </data>
+  <data name="ErrorExtensionFileAlreadyExists" xml:space="preserve">
+    <value>该扩展已经存在于 PHP 扩展目录中。请使用“启用或禁用扩展”命令以启用该扩展。</value>
+  </data>
+  <data name="ErrorPHPIsNotRegistered" xml:space="preserve">
+    <value>无法在该 IIS 服务器上找到 PHP 注册。PHP 尚未注册或注册不正确。</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersFolder" xml:space="preserve">
+    <value>“{0}”中存在改写上级设置的本地处理器映射设置。上级 PHP 设置的更改可能无法在该文件夹上生效。</value>
+  </data>
+  <data name="PHPInfoPageLocalHandlersSite" xml:space="preserve">
+    <value>“{0}”中存在改写服务器设置的本地处理器映射设置。服务器级别的 PHP 设置更改可能无法在该站点上生效。</value>
+  </data>
+  <data name="PHPPageHandlerMapping" xml:space="preserve">
+    <value>处理程序映射:</value>
+  </data>
+  <data name="PHPPageInheritedHandler" xml:space="preserve">
+    <value>继承</value>
+  </data>
+  <data name="PHPPageLocalHandler" xml:space="preserve">
+    <value>本地</value>
+  </data>
+  <data name="WarningFastCgiLearnMore" xml:space="preserve">
+    <value>了解更多信息（可能为英文）。</value>
+  </data>
+  <data name="WarningPHPConfigNoFastCgi" xml:space="preserve">
+    <value>要注册 PHP，必须打开 FastCGI 功能。</value>
+  </data>
+</root>

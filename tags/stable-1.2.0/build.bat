@@ -1,1 +1,0 @@
-%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild PHPManager.sln /property:Configuration=%1

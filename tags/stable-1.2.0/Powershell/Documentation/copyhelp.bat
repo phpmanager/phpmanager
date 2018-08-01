@@ -1,1 +1,0 @@
-copy CleanedUp_Web.Management.PHP.PowerShell.dll-Help.xml C:\windows\assembly\GAC_MSIL\Web.Management.PHP.PowerShell\1.2.0.0__8175de49a9aec91d\Web.Management.PHP.PowerShell.dll-Help.xml
