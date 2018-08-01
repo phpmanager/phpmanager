@@ -1349,8 +1349,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PHP Manager 2.0 for IIS 8"
-        "ProductCode" = "8:{C41B1AF8-EA1E-41F3-A8CB-C0EC4D8E8A83}"
-        "PackageCode" = "8:{91D90DAF-5B61-47F5-9421-31F4D1FC85D0}"
+        "ProductCode" = "8:{FF0FA5CC-21EA-4735-BAC0-CD9B51EC4A9D}"
+        "PackageCode" = "8:{3DE83AED-B416-4885-9E43-9714F0424B71}"
         "UpgradeCode" = "8:{BE0493CC-B6E5-45DA-B7E8-361D3E8164E0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
