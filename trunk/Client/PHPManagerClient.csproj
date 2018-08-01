@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\phpmgrpublic.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>true</DelaySign>
+    <DelaySign>false</DelaySign>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -52,6 +52,7 @@
       <HintPath>C:\Windows\System32\inetsrv\Microsoft.Web.Management.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -179,26 +180,16 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>CALL "%25VS110COMNTOOLS%25\vsvars32.bat" &gt; NULL
-sn –Vr $(TargetFileName)
+    <PostBuildEvent>CALL "%25VS120COMNTOOLS%25\vsvars32.bat" &gt; NULL
 gacutil.exe /if "$(TargetPath)"
-sn -Vr $(TargetDir)ru-RU\$(TargetName).resources.dll
 gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll
-sn -Vr $(TargetDir)de-DE\$(TargetName).resources.dll
 gacutil /if $(TargetDir)de-DE\$(TargetName).resources.dll
-sn -Vr $(TargetDir)nl-NL\$(TargetName).resources.dll
 gacutil /if $(TargetDir)nl-NL\$(TargetName).resources.dll
-sn -Vr $(TargetDir)tr-TR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)tr-TR\$(TargetName).resources.dll
-sn -Vr $(TargetDir)ja-JP\$(TargetName).resources.dll
 gacutil /if $(TargetDir)ja-JP\$(TargetName).resources.dll
-sn -Vr $(TargetDir)fr-FR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)fr-FR\$(TargetName).resources.dll
-sn -Vr $(TargetDir)zh-TW\$(TargetName).resources.dll
 gacutil /if $(TargetDir)zh-TW\$(TargetName).resources.dll
-sn -Vr $(TargetDir)zh-CN\$(TargetName).resources.dll
 gacutil /if $(TargetDir)zh-CN\$(TargetName).resources.dll
-sn -Vr $(TargetDir)pt-BR\$(TargetName).resources.dll
 gacutil /if $(TargetDir)pt-BR\$(TargetName).resources.dll</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -394,10 +394,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.4.5"
                     {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    "Name" = "8:Windows Installer 4.5"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.4.5"
                     }
                 }
             }
@@ -431,10 +431,10 @@
                     "Name" = "8:.NET Framework 3.5 SP1"
                     "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
                     }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.4.5"
                     {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    "Name" = "8:Windows Installer 4.5"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.4.5"
                     }
                 }
             }
@@ -1329,8 +1329,8 @@
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_619AF203731848F0BD5750B318AB2483"
             {
             "Name" = "8:IIS Condition"
-            "Condition" = "8:IISREGISTRYVALUE >= \"#7\""
-            "Message" = "8:PHP Manager for IIS requires IIS7 or higher to be installed. Do you want to learn more on how to obtain and install IIS 7?"
+            "Condition" = "8:IISREGISTRYVALUE = \"#7\""
+            "Message" = "8:PHP Manager for IIS requires IIS7 to be installed. Do you want to learn more on how to obtain and install IIS 7?"
             "InstallUrl" = "8:http://www.iis.net/"
             }
         }
