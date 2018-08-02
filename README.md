@@ -12,4 +12,6 @@ New Attempt to fully take over the old project on [CodePlex](http://phpmanager.c
 * Bug fixes and new features if needed.
 * Organize a group of new maintainers to work on this project.
 
-If you want to join, please respond to https://github.com/phpmanager/phpmanager/issues/1
+If you want to join, please respond to https://github.com/phpmanager/phpmanager/issues/1 .
+
+The new home page for this project is https://www.phpmanager.xyz .
