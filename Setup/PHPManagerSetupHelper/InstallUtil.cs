@@ -59,26 +59,36 @@ namespace Web.Management.PHP.Setup
                 File.WriteAllText(source, content);
             }
 
-            using (var process = Process.Start(compiler, string.Format("/r:{0} /out:\"{1}\" \"{2}\"", mwa, program, source)))
+            using (var process = new Process
             {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = compiler,
+                    Arguments = string.Format("/r:{0} /out:\"{1}\" \"{2}\"", mwa, program, source),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true
+                }
+            })
+            {
+                process.Start();
                 process.WaitForExit();
             }
 
             File.Delete(source);
 
-            if (type == null)
+            using (var process = new Process
             {
-                using (var process = Process.Start(program, string.Format("/u \"{0}\"", name)))
+                StartInfo = new ProcessStartInfo
                 {
-                    process.WaitForExit();
+                    FileName = program,
+                    Arguments = type == null ? string.Format("/u \"{0}\"", name) : string.Format("/i \"{0}\" \"{1}\"", name, type),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true
                 }
-            }
-            else
+            })
             {
-                using (var process = Process.Start(program, string.Format("/i \"{0}\" \"{1}\"", name, type)))
-                {
-                    process.WaitForExit();
-                }
+                process.Start();
+                process.WaitForExit();
             }
 
             File.Delete(program);
