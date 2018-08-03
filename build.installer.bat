@@ -1,0 +1,1 @@
+%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild .\Setup\PHPManagerForIIS.wixproj /property:Configuration=Release /property:TargetPlatform=x86

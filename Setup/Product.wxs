@@ -3,24 +3,26 @@
 <?define SourceDir=..\Bin\Release?>
 <?define ProductVersion="!(bind.FileVersion.Web.Management.PHP.dll)"?>
 <?define UpgradeCode="BE0493CC-B6E5-45DA-B7E8-361D3E8164E0"?>
+<?define ProductCode="FF0FA5CC-21EA-4735-BAC0-CD9B51EC4A9D"?>
+<?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-    <Product Id="*" 
+    <Product Id="$(var.ProductCode)" 
              Name="PHP Manager For IIS"
              Language="1033"
              Version="$(var.ProductVersion)"
              Manufacturer="Lex Li"
              UpgradeCode="$(var.UpgradeCode)">
 
-        <Package Id="3DE83AED-B416-4885-9E43-9714F0424B71"
+        <Package Id="$(var.PackageCode)"
                  Comments="PHP Manager for IIS is an IIS extension for managing PHP configuration."
                  InstallerVersion="200"
                  Languages="1033"
                  Compressed="yes"
                  InstallScope="perMachine" />
 
-        <Icon Id="icon.ico" SourceFile="..\Setup\php-logo16.ico"/>
+        <Icon Id="icon.ico" SourceFile="php-logo16.ico"/>
         <Property Id="ARPPRODUCTICON" Value="icon.ico" />
         
         <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -65,7 +67,7 @@
             <Directory Id="ProgramFilesFolder">
                 <Directory Id="INSTALLFOLDER" Name="PHP Manager for IIS">
                     <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
-                        <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="..\Setup\License.rtf" />
+                        <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="License.rtf" />
                         <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" KeyPath="yes" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
                     </Component>
                     <Component Id="Web.Management.PHP.Client.dll" Guid="{319C1A86-58E7-45EA-9408-EFB366F2A2F4}">
