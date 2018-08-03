@@ -20,21 +20,23 @@ namespace Web.Management.PHP {
         public const string ErrorReportingPageIdentifier = "f52b2450-4b78-4602-a7e8-c8d9257a2c25";
         public const string RuntimeLimitsPageIdentifier = "4f13ca20-adc1-4fa8-aba7-5d537746d304";
         
-        public const string PHPPageOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string PHPPageOnlineHelp = "http://www.phpmanager.xyz";
 
-        public const string RegisterPHPOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string ChangeVersionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string SelectSiteDomainOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string PHPInfoPageOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string RecommendedConfigOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string RegisterPHPOnlineHelp = "http://www.phpmanager.xyz";
+        public const string ChangeVersionOnlineHelp = "http://www.phpmanager.xyz";
+        public const string SelectSiteDomainOnlineHelp = "http://www.phpmanager.xyz";
+        public const string PHPInfoPageOnlineHelp = "http://www.phpmanager.xyz";
+        public const string RecommendedConfigOnlineHelp = "http://www.phpmanager.xyz";
 
-        public const string ErrorReportingOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string RuntimeLimitsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string AllSettingsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string ErrorReportingOnlineHelp = "http://www.phpmanager.xyz";
+        public const string RuntimeLimitsOnlineHelp = "http://www.phpmanager.xyz";
+        public const string AllSettingsOnlineHelp = "http://www.phpmanager.xyz";
+
         
-        public const string AllExtensionsOnlineHelp = "http://phpmanager.codeplex.com/documentation";
-        public const string AddExtensionOnlineHelp = "http://phpmanager.codeplex.com/documentation";
+        public const string AllExtensionsOnlineHelp = "http://www.phpmanager.xyz";
 
-        public const string EnableFastCgiLearnMore = "http://www.php.net/manual/{0}/install.windows.iis7.php";
+        public const string AddExtensionOnlineHelp = "http://www.phpmanager.xyz";
+
+        public const string EnableFastCgiLearnMore = "http://www.phpmanager.xyz/en/latest/getting-started/installation.html";
     }
 }
