@@ -7,7 +7,8 @@
 <?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:iis="http://schemas.microsoft.com/wix/IisExtension">
     <Product Id="$(var.ProductCode)" 
              Name="PHP Manager For IIS"
              Language="1033"
@@ -195,6 +196,11 @@
         <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL"/>
         <Condition Message="This application requires .NET Framework 3.5 SP1. Please install the .NET Framework then run this installer again.">
             <![CDATA[Installed OR (VersionNT >= 602) OR (VersionNT >=600 AND VersionNT < 602 AND NETFRAMEWORK35_SP_LEVEL AND NOT NETFRAMEWORK35_SP_LEVEL = "#0")]]>
+        </Condition>
+
+        <PropertyRef Id="IISMAJORVERSION" />
+        <Condition Message="This application requires IIS 7 and above. Please install IIS then run this installer again.">
+            <![CDATA[Installed OR IISMAJORVERSION >= "#7" OR IISMAJORVERSION = "#10"]]>
         </Condition>
 
         <Binary Id='InstallUtil' SourceFile='InstallUtilLib.dll' />
