@@ -6,11 +6,19 @@
 <?define ProductCode="FF0FA5CC-21EA-4735-BAC0-CD9B51EC4A9D"?>
 <?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
 
+<?if $(var.Platform) = x64 ?>
+    <?define ProductName="PHP Manager For IIS (x64)"?>
+    <?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
+<?else ?>
+    <?define ProductName="PHP Manager For IIS (x86)" ?>
+    <?define PlatformProgramFilesFolder="ProgramFilesFolder" ?>
+<?endif ?>
+
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:iis="http://schemas.microsoft.com/wix/IisExtension">
     <Product Id="$(var.ProductCode)" 
-             Name="PHP Manager For IIS"
+             Name="$(var.ProductName)"
              Language="1033"
              Version="$(var.ProductVersion)"
              Manufacturer="Lex Li"
@@ -65,7 +73,7 @@
 
         <!-- Directories and files -->
         <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="ProgramFilesFolder">
+            <Directory Id="$(var.PlatformProgramFilesFolder)">
                 <Directory Id="INSTALLFOLDER" Name="PHP Manager for IIS">
                     <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
                         <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="License.rtf" />
@@ -202,6 +210,12 @@
         <Condition Message="This application requires IIS 7 and above. Please install IIS then run this installer again.">
             <![CDATA[Installed OR IISMAJORVERSION >= "#7" OR IISMAJORVERSION = "#10"]]>
         </Condition>
+
+        <?if $(var.Platform) = x86 ?>
+        <Condition Message="This installer is for x86. Please download the x64 installer for this system.">
+            <![CDATA[Installed OR not VersionNT64]]>
+        </Condition>
+        <?endif ?>
 
         <Binary Id='InstallUtil' SourceFile='InstallUtilLib.dll' />
 

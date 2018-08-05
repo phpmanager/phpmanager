@@ -4,5 +4,5 @@ image: Visual Studio 2013
 build_script:
   - .\dist.release.bat
 artifacts:
-  - path: 'bin\Release\*.msi'
+  - path: '*.msi'
     name: installers
