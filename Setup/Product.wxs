@@ -40,7 +40,10 @@
         <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
 
         <!-- MainFeature -->
-        <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+        <Feature Id="ProductFeature"
+                 Title="$(var.ProductName)"
+                 Level="1"
+                 ConfigurableDirectory="INSTALLDIR">
             <!--Assemblies installed into the GAC -->
             <ComponentRef Id="Web.Management.PHP.dll.GAC_comp"/>
             <ComponentRef Id="Web.Management.PHP.Client.dll.GAC_comp"/>
@@ -74,7 +77,7 @@
         <!-- Directories and files -->
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="$(var.PlatformProgramFilesFolder)">
-                <Directory Id="INSTALLFOLDER" Name="PHP Manager for IIS">
+                <Directory Id="INSTALLDIR" Name="PHP Manager for IIS">
                     <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
                         <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="License.rtf" />
                         <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" KeyPath="yes" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
