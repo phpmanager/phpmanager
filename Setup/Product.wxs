@@ -7,17 +7,17 @@
 <?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
 
 <?if $(var.Platform) = x64 ?>
-    <?define ProductName="PHP Manager For IIS (x64)"?>
-    <?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
+<?define ProductName="PHP Manager For IIS (x64)"?>
+<?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
 <?else ?>
-    <?define ProductName="PHP Manager For IIS (x86)" ?>
-    <?define PlatformProgramFilesFolder="ProgramFilesFolder" ?>
+<?define ProductName="PHP Manager For IIS (x86)" ?>
+<?define PlatformProgramFilesFolder="ProgramFilesFolder" ?>
 <?endif ?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:iis="http://schemas.microsoft.com/wix/IisExtension">
-    <Product Id="$(var.ProductCode)" 
+    <Product Id="$(var.ProductCode)"
              Name="$(var.ProductName)"
              Language="1033"
              Version="$(var.ProductVersion)"
@@ -33,14 +33,14 @@
 
         <Icon Id="icon.ico" SourceFile="php-logo16.ico"/>
         <Property Id="ARPPRODUCTICON" Value="icon.ico" />
-        
+
         <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
         <!-- Embed the cab -->
         <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
 
         <!-- MainFeature -->
-        <Feature Id="ProductFeature" Title="PHPManagerForIIS" Level="1">
+        <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
             <!--Assemblies installed into the GAC -->
             <ComponentRef Id="Web.Management.PHP.dll.GAC_comp"/>
             <ComponentRef Id="Web.Management.PHP.Client.dll.GAC_comp"/>
@@ -236,8 +236,12 @@
 
         </InstallExecuteSequence>
 
+        <!-- Using WixUI -->
+        <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
         <UI>
+            <UIRef Id="WixUI_FeatureTree" />
             <Error Id='1001'>Error [1]. [2]</Error>
         </UI>
+
     </Product>
 </Wix>
