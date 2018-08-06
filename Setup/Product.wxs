@@ -5,12 +5,11 @@
 <?define UpgradeCode="BE0493CC-B6E5-45DA-B7E8-361D3E8164E0"?>
 <?define ProductCode="FF0FA5CC-21EA-4735-BAC0-CD9B51EC4A9D"?>
 <?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
+<?define ProductName="PHP Manager 2 For IIS"?>
 
 <?if $(var.Platform) = x64 ?>
-<?define ProductName="PHP Manager For IIS (x64)"?>
 <?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
 <?else ?>
-<?define ProductName="PHP Manager For IIS (x86)" ?>
 <?define PlatformProgramFilesFolder="ProgramFilesFolder" ?>
 <?endif ?>
 
@@ -29,7 +28,8 @@
                  InstallerVersion="200"
                  Languages="1033"
                  Compressed="yes"
-                 InstallScope="perMachine" />
+                 InstallScope="perMachine"
+                 Description="$(var.ProductName)"/>
 
         <Icon Id="icon.ico" SourceFile="php-logo16.ico"/>
         <Property Id="ARPPRODUCTICON" Value="icon.ico" />
@@ -77,7 +77,7 @@
         <!-- Directories and files -->
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="$(var.PlatformProgramFilesFolder)">
-                <Directory Id="INSTALLDIR" Name="PHP Manager for IIS">
+                <Directory Id="INSTALLDIR" Name="$(var.ProductName)">
                     <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
                         <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="License.rtf" />
                         <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" KeyPath="yes" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
@@ -215,7 +215,7 @@
         </Condition>
 
         <?if $(var.Platform) = x86 ?>
-        <Condition Message="This installer is for x86. Please download the x64 installer for this system.">
+        <Condition Message="The 32-bit version of $(var.ProductName) cannot be installed on a 64-bit edition of Microsoft Windows.">
             <![CDATA[Installed OR not VersionNT64]]>
         </Condition>
         <?endif ?>
