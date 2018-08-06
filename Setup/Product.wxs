@@ -5,7 +5,7 @@
 <?define UpgradeCode="BE0493CC-B6E5-45DA-B7E8-361D3E8164E0"?>
 <?define ProductCode="FF0FA5CC-21EA-4735-BAC0-CD9B51EC4A9D"?>
 <?define PackageCode="3DE83AED-B416-4885-9E43-9714F0424B71"?>
-<?define ProductName="PHP Manager 2 For IIS"?>
+<?define ProductName="PHP Manager 2 for IIS"?>
 
 <?if $(var.Platform) = x64 ?>
 <?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
