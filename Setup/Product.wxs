@@ -214,7 +214,11 @@
             <![CDATA[Installed OR IISMAJORVERSION >= "#7" OR IISMAJORVERSION = "#10"]]>
         </Condition>
 
-        <?if $(var.Platform) = x86 ?>
+        <?if $(var.Platform) = x64 ?>
+        <Condition Message="The 64-bit version of $(var.ProductName) cannot be installed on a 32-bit edition of Microsoft Windows.">
+            <![CDATA[Installed OR VersionNT64]]>
+        </Condition>
+        <?else?>
         <Condition Message="The 32-bit version of $(var.ProductName) cannot be installed on a 64-bit edition of Microsoft Windows.">
             <![CDATA[Installed OR not VersionNT64]]>
         </Condition>
