@@ -871,7 +871,7 @@ namespace Web.Management.PHP.Config
             }
         }
 
-        private void MakeRecommendedPHPIniChanges()
+        private void MakeRecommendedPHPIniChanges(string version)
         {
             var file = new PHPIniFile(PHPIniFilePath);
             file.Parse();
@@ -899,13 +899,18 @@ namespace Web.Management.PHP.Config
                     new PHPIniExtension("php_curl.dll", true),
                     new PHPIniExtension("php_gd2.dll", true),
                     new PHPIniExtension("php_gettext.dll", true),
-                    new PHPIniExtension("php_mysql.dll", true),
                     new PHPIniExtension("php_mysqli.dll", true),
                     new PHPIniExtension("php_mbstring.dll", true),
                     new PHPIniExtension("php_openssl.dll", true),
                     new PHPIniExtension("php_soap.dll", true),
                     new PHPIniExtension("php_xmlrpc.dll", true)
                 };
+
+            if (new Version(version) < new Version("7.0"))
+            {
+                // IMPORTANT: keep obsolete setting in old release.
+                extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+            }
 
             file.UpdateExtensions(extensions);
             file.AddOrUpdateSettings(settings);
@@ -1015,11 +1020,12 @@ namespace Web.Management.PHP.Config
             // caused by adding the same PHP version on the upper configuration level.
             CopyInheritedHandlers();
 
+            var version = GetPHPExecutableVersion(phpexePath);
             if (handlerElement == null)
             {
                 // Create a PHP file handler if it does not exist
                 handlerElement = _handlersCollection.CreateElement();
-                handlerElement.Name = GenerateHandlerName(_handlersCollection, GetPHPExecutableVersion(phpexePath));
+                handlerElement.Name = GenerateHandlerName(_handlersCollection, version);
                 handlerElement.Modules = "FastCgiModule";
                 handlerElement.RequireAccess = RequireAccess.Script;
                 handlerElement.Verb = "GET,HEAD,POST";
@@ -1049,7 +1055,7 @@ namespace Web.Management.PHP.Config
             }
 
             // Make the recommended changes to php.ini file
-            MakeRecommendedPHPIniChanges();
+            MakeRecommendedPHPIniChanges(version);
 
             // Make recommended changes to existing iis configuration. This is the case
             // when either FastCGI application or a handler mapping or both existed for the
