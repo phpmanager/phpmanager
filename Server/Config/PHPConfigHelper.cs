@@ -449,8 +449,9 @@ namespace Web.Management.PHP.Config
             configInfo.InstalledExtCount = file.Extensions.Count;
 
             ICollection issues = ValidateConfiguration(file);
-            configInfo.IsConfigOptimal = (issues.Count == 0);
+            configInfo.IsConfigOptimal = issues.Count == 0;
 
+            ValidateLifecycle(configInfo);
             return configInfo;
         }
 
@@ -1645,6 +1646,83 @@ namespace Web.Management.PHP.Config
             }
 
             return configIssue;
+        }
+
+        private void ValidateLifecycle(PHPConfigInfo info)
+        {
+            var knownPhpVersions = new Dictionary<string, PhpVersion>
+            {
+                { "5.6", new PhpVersion("5.6", new DateTime(2018, 12, 31), new Version(11, 0)) },
+                { "7.0", new PhpVersion("7.0", new DateTime(2018, 12, 3), new Version(14, 0)) },
+                { "7.1", new PhpVersion("7.1", new DateTime(2019, 12, 1), new Version(14, 0)) },
+                { "7.2", new PhpVersion("7.2", new DateTime(2020, 11, 30), new Version(14, 11)) }
+            };
+
+            var detected = new Version(info.Version);
+            var key = string.Format("{0}.{1}", detected.Major, detected.Minor);
+            var matched = knownPhpVersions.ContainsKey(key) ? knownPhpVersions[key] : null;
+            if (matched == null)
+            {
+                info.IsObsoleteRelease = true;
+                return;
+            }
+
+            info.IsObsoleteRelease = matched.ExpiringDate < DateTime.Now;
+            info.IsExpiringRelease = matched.ExpiringDate > DateTime.Now && (matched.ExpiringDate - DateTime.Now).TotalDays < 180;
+            var x86 = GetImageArchitecture(info.Executable) == 0x10b;
+            string windir = IntPtr.Size == 8 && x86
+                ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "..\\sysWOW64")
+                : Environment.GetFolderPath(Environment.SpecialFolder.System);
+            var cppFile = Path.Combine(
+                windir,
+                string.Format("msvcp{0}0.dll", matched.CppVersion.Major));
+            if (File.Exists(cppFile))
+            {
+                var cpp = FileVersionInfo.GetVersionInfo(cppFile);
+                if (cpp.FileMinorPart >= matched.CppVersion.Minor)
+                {
+                    return;
+                }
+            }
+
+            info.IsCppRuntimeMissing = true;
+        }
+
+        private static ushort GetImageArchitecture(string filepath)
+        {
+            using (var stream = new System.IO.FileStream(filepath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (var reader = new System.IO.BinaryReader(stream))
+            {
+                //check the MZ signature to ensure it's a valid Portable Executable image
+                if (reader.ReadUInt16() != 23117)
+                    throw new BadImageFormatException("Not a valid Portable Executable image", filepath);
+
+                // seek to, and read, e_lfanew then advance the stream to there (start of NT header)
+                stream.Seek(0x3A, System.IO.SeekOrigin.Current);
+                stream.Seek(reader.ReadUInt32(), System.IO.SeekOrigin.Begin);
+
+                // Ensure the NT header is valid by checking the "PE\0\0" signature
+                if (reader.ReadUInt32() != 17744)
+                    throw new BadImageFormatException("Not a valid Portable Executable image", filepath);
+
+                // seek past the file header, then read the magic number from the optional header
+                stream.Seek(20, System.IO.SeekOrigin.Current);
+                return reader.ReadUInt16();
+            }
+        }
+
+        private class PhpVersion
+        {
+            public PhpVersion(string version, DateTime expiringDate, Version cppVersion)
+            {
+                Version = version;
+                ExpiringDate = expiringDate;
+                CppVersion = cppVersion;
+            }
+
+            public string Version { get; set; }
+            public DateTime ExpiringDate { get; set; }
+            public Version CppVersion { get; set; }
         }
     }
 }

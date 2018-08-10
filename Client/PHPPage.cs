@@ -9,6 +9,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -399,6 +400,16 @@ namespace Web.Management.PHP
             }
         }
 
+        private void OnViewReleasesLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://php.net/supported-versions.php");
+        }
+
+        private void OnViewRuntimesLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://windows.php.net/download/");
+        }
+
         internal void OpenPhysicalFile(string physicalPath)
         {
             try
@@ -480,6 +491,63 @@ namespace Web.Management.PHP
 
             result.LinkClicked += OnViewRecommendationsLinkClicked;
             
+            return result;
+        }
+
+        private LinkLabel PrepareObsoleteReleaseWarning()
+        {
+            var result = new LinkLabel();
+            var sb = new System.Text.StringBuilder();
+
+            sb.Append(Resources.WarningObsoleteRelease);
+            var viewRecommendationsLinkStart = Resources.WarningObsoleteRelease.Length;
+            sb.Append(Resources.WarningViewReleases);
+
+            result.Text = sb.ToString();
+
+            var fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewReleases.Length, 0);
+            result.Links.Add(fixItLink);
+
+            result.LinkClicked += OnViewReleasesLinkClicked;
+
+            return result;
+        }
+
+        private LinkLabel PrepareExpiringReleaseWarning()
+        {
+            var result = new LinkLabel();
+            var sb = new System.Text.StringBuilder();
+
+            sb.Append(Resources.WarningExpiringRelease);
+            var viewRecommendationsLinkStart = Resources.WarningExpiringRelease.Length;
+            sb.Append(Resources.WarningViewReleases);
+
+            result.Text = sb.ToString();
+
+            var fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewReleases.Length, 0);
+            result.Links.Add(fixItLink);
+
+            result.LinkClicked += OnViewReleasesLinkClicked;
+
+            return result;
+        }
+
+        private LinkLabel PrepareCppRuntimeMissingWarning()
+        {
+            var result = new LinkLabel();
+            var sb = new System.Text.StringBuilder();
+
+            sb.Append(Resources.WarningCppRuntimeMissing);
+            var viewRecommendationsLinkStart = Resources.WarningCppRuntimeMissing.Length;
+            sb.Append(Resources.WarningViewRuntimes);
+
+            result.Text = sb.ToString();
+
+            var fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRuntimes.Length, 0);
+            result.Links.Add(fixItLink);
+
+            result.LinkClicked += OnViewRuntimesLinkClicked;
+
             return result;
         }
 
@@ -616,6 +684,18 @@ namespace Web.Management.PHP
                 if (!configInfo.IsConfigOptimal && Connection.IsUserServerAdministrator)
                 {
                     _phpSetupItem.SetWarning(PreparePHPConfigWarning());
+                }
+                else if (configInfo.IsObsoleteRelease)
+                {
+                    _phpSetupItem.SetWarning(PrepareObsoleteReleaseWarning());
+                }
+                else if (configInfo.IsCppRuntimeMissing)
+                {
+                    _phpSetupItem.SetWarning(PrepareCppRuntimeMissingWarning());
+                }
+                else if (configInfo.IsExpiringRelease)
+                {
+                    _phpSetupItem.SetWarning(PrepareExpiringReleaseWarning());
                 }
             }
             else if (configInfo != null)

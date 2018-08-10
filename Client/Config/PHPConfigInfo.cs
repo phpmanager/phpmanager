@@ -26,8 +26,11 @@ namespace Web.Management.PHP.Config
         private const int IndexEnabledExtCount = 7;
         private const int IndexInstalledExtCount = 8;
         private const int IndexIsConfigOptimal = 9;
+        private const int IndexIsObsoleteRelease = 10;
+        private const int IndexIsExpiringRelease = 11;
+        private const int IndexIsCppRuntimeMissing = 12;
 
-        private const int Size = 10;
+        private const int Size = 13;
 
         public PHPConfigInfo()
         {
@@ -41,6 +44,9 @@ namespace Web.Management.PHP.Config
             EnabledExtCount = 0;
             InstalledExtCount = 0;
             IsConfigOptimal = false;
+            IsObsoleteRelease = false;
+            IsExpiringRelease = false;
+            IsCppRuntimeMissing = false;
         }
 
         public int EnabledExtCount
@@ -124,6 +130,42 @@ namespace Web.Management.PHP.Config
             set
             {
                 _data[IndexIsConfigOptimal] = value;
+            }
+        }
+
+        public bool IsObsoleteRelease
+        {
+            get
+            {
+                return (bool)_data[IndexIsObsoleteRelease];
+            }
+            set
+            {
+                _data[IndexIsObsoleteRelease] = value;
+            }
+        }
+
+        public bool IsExpiringRelease
+        {
+            get
+            {
+                return (bool)_data[IndexIsExpiringRelease];
+            }
+            set
+            {
+                _data[IndexIsExpiringRelease] = value;
+            }
+        }
+
+        public bool IsCppRuntimeMissing
+        {
+            get
+            {
+                return (bool)_data[IndexIsCppRuntimeMissing];
+            }
+            set
+            {
+                _data[IndexIsCppRuntimeMissing] = value;
             }
         }
 
