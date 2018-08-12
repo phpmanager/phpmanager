@@ -88,6 +88,7 @@
                     <Component Id="Web.Management.PHP.Setup.dll" Guid="{CAE7B77C-5A31-4C01-B997-EDEFD5387205}">
                         <File Id="Web.Management.PHP.Setup.dll" Name="Web.Management.PHP.Setup.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Setup.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Setup.dll" />
                         <File Id='ConfigFile' Name='ConfigFile.xml' DiskId='1' Vital='yes' Source='ConfigFile.xml' />
+                        <RemoveFile Id="LogFile" On="uninstall" Name="Web.Management.PHP.Setup.InstallState" />
                     </Component>
                     <Component Id="Web.Management.PHP.dll" Guid="{3D24E10F-5B3F-4796-99CE-3DA5D0E947DA}">
                         <File Id="Web.Management.PHP.dll" Name="Web.Management.PHP.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.dll" />
