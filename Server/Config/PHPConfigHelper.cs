@@ -1652,6 +1652,13 @@ namespace Web.Management.PHP.Config
         {
             var knownPhpVersions = new Dictionary<string, PhpVersion>
             {
+                { "4.4", new PhpVersion("4.4", new DateTime(2008, 8, 7)) },
+                { "5.0", new PhpVersion("5.0", new DateTime(2005, 9, 5)) },
+                { "5.1", new PhpVersion("5.1", new DateTime(2006, 8, 24)) },
+                { "5.2", new PhpVersion("5.2", new DateTime(2011, 1, 6)) },
+                { "5.3", new PhpVersion("5.3", new DateTime(2014, 8, 14)) },
+                { "5.4", new PhpVersion("5.4", new DateTime(2015, 9, 3)) },
+                { "5.5", new PhpVersion("5.5", new DateTime(2016, 7, 21)) },
                 { "5.6", new PhpVersion("5.6", new DateTime(2018, 12, 31), new Version(11, 0)) },
                 { "7.0", new PhpVersion("7.0", new DateTime(2018, 12, 3), new Version(14, 0)) },
                 { "7.1", new PhpVersion("7.1", new DateTime(2019, 12, 1), new Version(14, 0)) },
@@ -1669,6 +1676,11 @@ namespace Web.Management.PHP.Config
 
             info.IsObsoleteRelease = matched.ExpiringDate < DateTime.Now;
             info.IsExpiringRelease = matched.ExpiringDate > DateTime.Now && (matched.ExpiringDate - DateTime.Now).TotalDays < 180;
+            if (matched.CppVersion == null)
+            {
+                return;
+            }
+
             var x86 = GetImageArchitecture(info.Executable) == 0x10b;
             string windir = IntPtr.Size == 8 && x86
                 ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "..\\sysWOW64")
@@ -1713,6 +1725,11 @@ namespace Web.Management.PHP.Config
 
         private class PhpVersion
         {
+            public PhpVersion(string version, DateTime expiringDate)
+                : this(version, expiringDate, null)
+            {
+            }
+
             public PhpVersion(string version, DateTime expiringDate, Version cppVersion)
             {
                 Version = version;
