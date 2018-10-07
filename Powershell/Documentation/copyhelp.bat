@@ -1,1 +1,1 @@
-copy CleanedUp_Web.Management.PHP.PowerShell.dll-Help.xml C:\windows\assembly\GAC_MSIL\Web.Management.PHP.PowerShell\2.0.0.0__41b215c155952069\Web.Management.PHP.PowerShell.dll-Help.xml
+copy CleanedUp_Web.Management.PHP.PowerShell.dll-Help.xml C:\windows\assembly\GAC_MSIL\Web.Management.PHP.PowerShell\2.1.0.0__41b215c155952069\Web.Management.PHP.PowerShell.dll-Help.xml
