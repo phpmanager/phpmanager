@@ -1362,6 +1362,9 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueErrorLogRecommend",
                                                                 PHPConfigIssueIndex.ErrorLog);
             }
+            else if (setting.Value == "syslog")
+            {
+            }
             else if (!IsAbsoluteFilePath(setting.GetTrimmedValue(), true /* this is supposed to be a file */))
             {
                 configIssue = new PHPConfigIssue("error_log",
