@@ -15,7 +15,8 @@
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
-     xmlns:iis="http://schemas.microsoft.com/wix/IisExtension">
+     xmlns:iis="http://schemas.microsoft.com/wix/IisExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
     <Product Id="*"
              Name="$(var.ProductName) $(var.ProductVersion)"
              Language="1033"
@@ -258,6 +259,14 @@
         <CustomAction Id='UnInstallPHPSetupSetProp' Property='UnInstallPHPSetup' Value='/installtype=notransaction /action=uninstall /LogFile= "[#Web.Management.PHP.Setup.dll]" "[#ConfigFile]"'/>
         <CustomAction Id='UnInstallPHPSetup' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate='no' />
 
+        <util:CloseApplication Id="CloseIisManager"
+                            CloseMessage="yes"
+                            Description="Please close IIS Manager before continuing."
+                            ElevatedCloseMessage="yes"
+                            RebootPrompt="no"
+                            PromptToContinue="yes"
+                            Target="inetmgr.exe" />
+
         <!-- Custom Actions using Install Util -->
         <InstallExecuteSequence>
 			<!--
@@ -290,6 +299,7 @@
             <Custom Action='InstallPHPSetup' After='InstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll&gt;2</Custom>
             <Custom Action='UnInstallPHPSetupSetProp' After='MsiUnpublishAssemblies'>$Web.Management.PHP.Setup.dll=2</Custom>
             <Custom Action='UnInstallPHPSetup' After='UnInstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll=2</Custom>
+            <Custom Action="WixCloseApplications" After="InstallInitialize" />
 
         </InstallExecuteSequence>
 
@@ -297,6 +307,8 @@
         <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
         <UI>
             <UIRef Id="WixUI_FeatureTree" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MsiRMFilesInUse" />
             <Error Id='1001'>Error [1]. [2]</Error>
         </UI>
 
