@@ -9,6 +9,7 @@
     <summary>The ultimate toolbox to configure PHP on Windows and IIS.</summary>
     <description>PHP Manager for IIS is a GUI for managing multiple PHP installations on the IIS server.</description>
     <projectUrl>https://www.phpmanager.xyz</projectUrl>
+    <releaseNotes>https://github.com/phpmanager/phpmanager/releases/tag/v2.4</releaseNotes>
     <tags>iis php</tags>
     <licenseUrl>https://raw.githubusercontent.com/phpmanager/phpmanager/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
