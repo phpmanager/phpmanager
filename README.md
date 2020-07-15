@@ -18,4 +18,4 @@ The new home page for this project is http://www.phpmanager.xyz .
 
 Update
 ------
-Microsoft is ending its efforts to bring PHP to Windows/IIS, so this project is also going to end in the same manner. PHP 7.x will be supported, but no plan to support PHP 8.0 and above.
+[Microsoft is ending its efforts to bring PHP to Windows/IIS](https://news-web.php.net/php.internals/110907), so this project is also going to end in the same manner. PHP 7.x will be supported, but no plan to support PHP 8.0 and above.
