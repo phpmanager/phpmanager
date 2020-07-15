@@ -1,5 +1,5 @@
 PHP Manager 2 for IIS
----------------------
+=====================
 
 |              | Windows |
 |:------------:|:-------:|
@@ -15,3 +15,7 @@ New Attempt to fully take over the old project on [CodePlex](http://phpmanager.c
 If you want to join, please respond to https://github.com/phpmanager/phpmanager/issues/1 .
 
 The new home page for this project is http://www.phpmanager.xyz .
+
+Update
+------
+Microsoft is ending its efforts to bring PHP to Windows/IIS, so this project is also going to end in the same manner. PHP 7.x will be supported, but no plan to support PHP 8.0 and above.
