@@ -1,1 +1,5 @@
-Install-ChocolateyPackage 'PHP Manager 2 for IIS' 'msi' '/quiet' 'https://github.com/phpmanager/phpmanager/releases/download/v2.4/PHPManagerForIIS_x86.msi' 'https://github.com/phpmanager/phpmanager/releases/download/v2.4/PHPManagerForIIS_x64.msi' '9B576D5241B461D84DE97DC1973DC3A219802DAB' '20C51499F6C547D1A7AC80ED65D014E4BCA1B32E' 'sha1'
+Install-ChocolateyPackage -PackageName 'PHP Manager 2 for IIS' -FileType 'msi' -SilentArgs '/quiet' `
+-File 'https://github.com/phpmanager/phpmanager/releases/download/v2.5/PHPManagerForIIS_x86.msi' `
+-File64 'https://github.com/phpmanager/phpmanager/releases/download/v2.5/PHPManagerForIIS_x64.msi' `
+-Checksum '4F81FA98E18B64D1388387BC8E534D8E41F28F39' -ChecksumType 'sha1' `
+-Checksum64 'C0550804E601402A7DC607101C4D01B571D6BF9A' -ChecksumType64 'sha1'
