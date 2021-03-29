@@ -37,7 +37,7 @@
 
         <!-- Upgrade information -->
         <Upgrade Id="$(var.UpgradeCode)">
-            <!-- The UpgradeCode must be changed to allow two versions of SharpDevelop to be installed side-by-side -->
+            <!-- The UpgradeCode must be changed to allow two versions of PHPManager to be installed side-by-side -->
 
             <!-- Checks for older versions -->
             <UpgradeVersion Minimum="2.0.0"
@@ -244,7 +244,7 @@
         <Binary Id='InstallUtil' SourceFile='InstallUtilLib.dll' />
 
         <!--
-            If a newer version of SharpDevelop is installed, show an error message.
+            If a newer version of PHPManager is installed, show an error message.
 
             This message is not displayed immediately, the FindRelatedProducts
             action occurs well into the installation after the user has
@@ -272,7 +272,7 @@
             <!--
                 Display an error message if a newer version found.
 
-                Since the installer completely removes the existing SharpDevelop installation,
+                Since the installer completely removes the existing PHPManager installation,
                 downgrades would work without any problems, but for now we
                 inform the user that a newer version already exists.
                 -> Actually, there's trouble with downgrades because Windows Installer first determines
@@ -281,7 +281,7 @@
             -->
             <Custom Action="NoDowngrade" After="FindRelatedProducts">NEWERVERSIONFOUND</Custom>
             <!--
-                Removes the older version of SharpDevelop, if we are upgrading,
+                Removes the older version of PHPManager, if we are upgrading,
                 before installing the new version.
                 Unfortunately the user is not informed of this upgrade. I think
                 we need a custom dialog showing the old installation located and
@@ -289,7 +289,7 @@
                 The best place to do this is after InstallFinalize however if we
                 do it then after we have removed a file from an addin, and changed
                 the Component Guid, the modified component is not installed. So
-                we make sure SharpDevelop is completely removed before installing
+                we make sure PHPManager is completely removed before installing
                 the newer version. This also covers us if we accidentally
                 modify a component but do not change its Guid.
                 http://msdn.microsoft.com/library/en-us/msi/setup/removeexistingproducts_action.asp
