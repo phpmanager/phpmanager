@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{218B1547-6672-43D9-9907-F8312AEFA27B}"
 	ProjectSection(SolutionItems) = preProject
-		PHPManagerFeed-2.0.xml = PHPManagerFeed-2.0.xml
-		PHPManagerFeed-3.0.xml = PHPManagerFeed-3.0.xml
 		phpmgrpublic.snk = phpmgrpublic.snk
 		SharedAssembyInfo.cs = SharedAssembyInfo.cs
 	EndProjectSection
