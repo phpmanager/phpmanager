@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -244,7 +244,7 @@ namespace Web.Management.PHP
         protected override void OnActivated(bool initialActivation)
         {
             base.OnActivated(initialActivation);
-            
+
             if (initialActivation)
             {
                 InitializeUI();
@@ -483,14 +483,14 @@ namespace Web.Management.PHP
             sb.Append(Resources.WarningPHPConfigNotOptimal);
             var viewRecommendationsLinkStart = Resources.WarningPHPConfigNotOptimal.Length;
             sb.Append(Resources.WarningViewRecommendations);
-            
+
             result.Text = sb.ToString();
-            
+
             var fixItLink = new LinkLabel.Link(viewRecommendationsLinkStart, Resources.WarningViewRecommendations.Length, 0);
             result.Links.Add(fixItLink);
 
             result.LinkClicked += OnViewRecommendationsLinkClicked;
-            
+
             return result;
         }
 

@@ -10,8 +10,8 @@
 
 namespace Web.Management.PHP {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Web.Management.PHP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Web.Management.PHP {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Web.Management.PHP {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add PHP Setting.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogAddSetting", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit PHP Setting.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogEditSetting", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Learn more about this setting.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogLearnMore", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
@@ -95,7 +95,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Section:.
         /// </summary>
@@ -104,7 +104,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogSection", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Value:.
         /// </summary>
@@ -113,7 +113,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddEditSettingDialogValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add an extension.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddExtensionDialogAddExtension", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Example: C:\Temp\php_wincache.dll.
         /// </summary>
@@ -131,7 +131,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddExtensionDialogExample", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP extension (php*.dll)|php*.dll|All files (*.*)|*.*.
         /// </summary>
@@ -140,7 +140,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddExtensionDialogOpenFileFilter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select extension binary file.
         /// </summary>
@@ -149,7 +149,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddExtensionDialogOpenFileTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Provide a path to extension&apos;s binary file:.
         /// </summary>
@@ -158,7 +158,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AddExtensionDialogProvidePath", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable or disable PHP extensions and configure PHP extensions settings..
         /// </summary>
@@ -167,7 +167,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
@@ -176,7 +176,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageDisabledGroup", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disable.
         /// </summary>
@@ -185,7 +185,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageDisableTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
@@ -194,7 +194,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageEnabledGroup", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
@@ -203,7 +203,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageEnableTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Getting extensions.
         /// </summary>
@@ -212,7 +212,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageGettingExtensions", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP extensions provide additional functionality to PHP runtime, such as database connectivity, caching, debugging and others. Use this feature to enable or disable PHP extensions and to configure PHP extensions settings..
         /// </summary>
@@ -221,7 +221,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -230,7 +230,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageNameField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to State.
         /// </summary>
@@ -239,7 +239,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageStateField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Extensions.
         /// </summary>
@@ -248,7 +248,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllExtensionsPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add....
         /// </summary>
@@ -257,7 +257,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllPagesAddTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Back to main page.
         /// </summary>
@@ -266,7 +266,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllPagesGoBackTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Open php.ini.
         /// </summary>
@@ -275,7 +275,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllPagesOpenPHPIniTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to These settings are read-only. They can only be changed by a server administrator..
         /// </summary>
@@ -284,7 +284,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllPagesPageIsReadOnly", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure all php settings.
         /// </summary>
@@ -293,7 +293,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit....
         /// </summary>
@@ -302,7 +302,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageEditTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Getting settings.
         /// </summary>
@@ -311,7 +311,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageGettingSettings", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure all php settings that are stored in php.ini file. These setting control all aspects of PHP runtime, such error reporting, security, sessions and others..
         /// </summary>
@@ -320,7 +320,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -329,7 +329,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageNameField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
@@ -338,7 +338,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageRemoveTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Section.
         /// </summary>
@@ -347,7 +347,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageSectionField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Settings.
         /// </summary>
@@ -356,7 +356,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
@@ -365,7 +365,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("AllSettingsPageValueField", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select PHP version:.
         /// </summary>
@@ -374,7 +374,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ChangeVersionDialogSelectVersion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Change PHP version.
         /// </summary>
@@ -383,7 +383,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ChangeVersionDialogTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;cgi.force_redirect&quot; is not set to &quot;0&quot;..
         /// </summary>
@@ -392,7 +392,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiForceRedirectNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;cgi.force_redirect&quot; is not set..
         /// </summary>
@@ -401,7 +401,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiForceRedirectNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to It is recommended to turn &quot;cgi.force_redirect&quot; off when PHP is run on IIS..
         /// </summary>
@@ -410,7 +410,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiForceRedirectRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;cgi.fix_pathinfo&quot; is not set to &quot;1&quot;..
         /// </summary>
@@ -419,7 +419,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiPathInfoNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;cgi.fix_pathinfo&quot; is not set..
         /// </summary>
@@ -428,7 +428,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiPathInfoNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This setting provides real PATH_INFO/ PATH_TRANSLATED support for CGI and FastCGI. It is recommended to enable this support by setting it to &quot;1&quot;..
         /// </summary>
@@ -437,7 +437,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueCgiPathInfoRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive date.timezone is not set..
         /// </summary>
@@ -446,7 +446,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueDateTimeZoneNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to It is not safe to rely on the system&apos;s timezone settings. It is recommended to explicitly set the timezone information by using date.timezone directive or the date_default_timezone_set() function..
         /// </summary>
@@ -455,7 +455,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueDateTimeZoneRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to index.php is not the first in the list of IIS default documents..
         /// </summary>
@@ -464,7 +464,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueDefaultDocumentNotFirst", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to index.php is not set as a default document..
         /// </summary>
@@ -473,7 +473,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueDefaultDocumentNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Majority of PHP applications use index.php as the default file name for web requests. It is recommended to add index.php to the list of default documents in IIS and ensure that it is the first in the list..
         /// </summary>
@@ -482,7 +482,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueDefaultDocumentRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;error_log&quot; is using a non-existent directory..
         /// </summary>
@@ -491,7 +491,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueErrorLogNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;error_log&quot; is not set..
         /// </summary>
@@ -500,7 +500,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueErrorLogNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The &quot;error_log&quot; specifies the name of the file where script errors should be logged to. It is recommended to set this to an absolute file path and the file should be writable by the web server..
         /// </summary>
@@ -509,7 +509,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueErrorLogRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;extension_dir&quot; does not contain an absolute file path..
         /// </summary>
@@ -518,7 +518,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueExtensionDirIncorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;extension_dir&quot; is not set..
         /// </summary>
@@ -527,7 +527,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueExtensionDirNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The &quot;extension_dir&quot; is used to specify a directory path in which PHP should look for dynamically loadable extensions. It is recommended to use absolute directory path for this setting..
         /// </summary>
@@ -536,7 +536,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueExtensionDirRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;fastcgi.impersonate&quot; is not set to &quot;1&quot;..
         /// </summary>
@@ -545,7 +545,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueFastCgiImpersonateNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;fastcgi.impersonate&quot; is not set..
         /// </summary>
@@ -554,7 +554,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueFastCgiImpersonateNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FastCGI supports the ability to impersonate security tokens of the calling client. This allows IIS to define the security context that the request runs under. It is recommended to enable impersonation by setting this directive to &quot;1&quot;..
         /// </summary>
@@ -563,7 +563,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueFastCgiImpersonateRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; is not set to &quot;On&quot;..
         /// </summary>
@@ -572,7 +572,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueLogErrorsNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;log_errors&quot; is not set..
         /// </summary>
@@ -581,7 +581,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueLogErrorsNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The &quot;log_errors&quot; controls whether PHP logs errors and warning to a log file. It is recommended to set this to &quot;On&quot;..
         /// </summary>
@@ -590,7 +590,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueLogErrorsRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The FastCGI setting monitorChangesTo is pointing to a wrong file..
         /// </summary>
@@ -599,7 +599,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueMonitorChangesIncorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The FastCGI setting monitorChangesTo is not set..
         /// </summary>
@@ -608,7 +608,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueMonitorChangesNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The monitorChangesTo setting is used to configure FastCGI to monitor a file so that when file is changed the FastCGI processes are recycled. It is recommended to set this to point to php.ini file that is loaded by PHP. That way the configuration changes to PHP will take effect immediately after the php.ini is updated..
         /// </summary>
@@ -617,7 +617,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueMonitorChangesRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &lt;Not set&gt;.
         /// </summary>
@@ -626,7 +626,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueNone", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The value for PHP_FCGI_MAX_REQUESTS is smaller than the value for FastCGI instanceMaxRequests setting..
         /// </summary>
@@ -635,7 +635,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPMaxRequestsIncorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The environment variable PHP_FCGI_MAX_REQUESTS is not set for PHP processes..
         /// </summary>
@@ -644,7 +644,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPMaxRequestsNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP_FCGI_MAX_REQUESTS environment variable is used to specify the number of requests that PHP executable will handle before it gets recycled. It is recommended that the value for this variable is greater or equal to the value for FastCgi instanceMaxRequests setting. That way the IIS FastCGI process recycling logic will not conflict with PHP recycling behavior..
         /// </summary>
@@ -653,7 +653,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPMaxRequestsRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHPRC environment variable points to a directory that does not contain php.ini file..
         /// </summary>
@@ -662,7 +662,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPRCFileNotExists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHPRC environment variable is not set for PHP processes..
         /// </summary>
@@ -671,7 +671,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPRCNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHPRC environment variable is used to specify the directory that contains a PHP configuration file php.ini. PHP will load that configuration file during startup. It is recommended to always set this environment variable per PHP registration, thus avoiding situations when PHP loads wrong configuration file..
         /// </summary>
@@ -680,7 +680,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssuePHPRCRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The resourceType attribute of an IIS handler for PHP is not set to &quot;Either&quot;..
         /// </summary>
@@ -689,7 +689,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueResourceTypeIncorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The IIS handler attribute resourceType is used to specify a condition when handler will be invoked for a web request. When configuring the handler for PHP, it is recommended to set this attribute to &quot;Either&quot; for security reasons. That way the handler will be invoked only if the requested URL maps to a file or a folder on the file system..
         /// </summary>
@@ -698,7 +698,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueResourceTypeRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;session.save_path&quot; uses a non-existent directory..
         /// </summary>
@@ -707,7 +707,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueSessionPathNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;session.save_path&quot; is not set..
         /// </summary>
@@ -716,7 +716,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueSessionPathNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The &quot;session.save_path&quot; sets the path to the directory where PHP session data will be stored. It is recommended to use an absolute path to the directory that is writable by the web server..
         /// </summary>
@@ -725,7 +725,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueSessionPathRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;upload_tmp_dir&quot; points to a directory that does not exist..
         /// </summary>
@@ -734,7 +734,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueUploadDirNotCorrect", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP directive &quot;upload_tmp_dir&quot; is not set..
         /// </summary>
@@ -743,7 +743,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueUploadDirNotSet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The &quot;upload_tmp_dir&quot; specifies the temporary directory used for storing files when doing file upload. The directory must be writable by whatever user PHP is running as..
         /// </summary>
@@ -752,7 +752,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ConfigIssueUploadDirRecommend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -762,7 +762,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot add PHP extension. The extension file cannot be copied to the PHP extensions directory..
         /// </summary>
@@ -771,7 +771,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorCannotAddExtension", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot create a temporary phpinfo file on the server due to insufficient privileges..
         /// </summary>
@@ -780,7 +780,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorCannotCreatePHPInfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This extension already exists in PHP extentions directory. Use &quot;Enable or disable an extension&quot; task to enable this extension..
         /// </summary>
@@ -789,7 +789,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorExtensionFileAlreadyExists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Information about PHP cannot be obtained due to invalid IIS configuration..
         /// </summary>
@@ -798,7 +798,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorFailedToGetConfiguration", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to File {0} does not exist..
         /// </summary>
@@ -807,7 +807,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorFileDoesNotExist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The provided path should point to either php-cgi.exe or php.exe..
         /// </summary>
@@ -816,7 +816,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorInvalidPHPExecutablePath", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Log file (*.log)|*.log|All files (*.*)|*.*.
         /// </summary>
@@ -825,7 +825,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorLogSaveDialogFilter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Error Log File.
         /// </summary>
@@ -834,7 +834,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorLogSaveDialogTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The directory does not contain ext subdirectory with PHP extensions..
         /// </summary>
@@ -843,7 +843,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorNoExtDirectory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The directory does not contain required PHP files: php-cgi.exe and php.ini..
         /// </summary>
@@ -852,7 +852,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorNoPHPFilesInDirectory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The php.ini file cannot be found. Make sure PHP is correctly registered with IIS..
         /// </summary>
@@ -861,7 +861,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorPHPIniNotFound", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot find PHP registration on this IIS server. PHP is either not registered or is registered incorrectly..
         /// </summary>
@@ -870,7 +870,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorPHPIsNotRegistered", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error log file:.
         /// </summary>
@@ -879,7 +879,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingErrorLogFile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP error reporting and logging.
         /// </summary>
@@ -888,7 +888,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &amp;Development machine.
         /// </summary>
@@ -897,7 +897,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageDevMachine", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This is a development machine. A verbose error reporting will be used. All errors, warnings and informational notices will be output in a web browser and also will be written into a log file..
         /// </summary>
@@ -906,7 +906,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageDevMachineDesc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error log file:.
         /// </summary>
@@ -915,7 +915,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageErrorLogFile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use this feature to configure how PHP reports and logs errors, warnings and information notices..
         /// </summary>
@@ -924,7 +924,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &amp;Production machine.
         /// </summary>
@@ -933,7 +933,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageProdMachine", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This is a production server accessible from the internet. Only errors will be written to a log file. No errors, warnings or notices will be output in a web browser..
         /// </summary>
@@ -942,7 +942,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageProdMachineDesc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select a server type. This will influence how the errors will be reported and logged..
         /// </summary>
@@ -951,7 +951,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageSelectServerType", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Type of server.
         /// </summary>
@@ -960,7 +960,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageServerType", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Error Reporting.
         /// </summary>
@@ -969,7 +969,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorReportingPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The PHP version cannot be changed because some of the IIS handler mappings are locked on a server level..
         /// </summary>
@@ -978,7 +978,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("ErrorSomeHandlersLocked", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -988,7 +988,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add an extension.
         /// </summary>
@@ -997,7 +997,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPExtensionItemAddTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure extension&apos;s settings.
         /// </summary>
@@ -1006,7 +1006,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPExtensionItemConfigureTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable or disable an extension.
         /// </summary>
@@ -1015,7 +1015,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPExtensionItemEnableTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View enabled and disabled extensions.
         /// </summary>
@@ -1024,7 +1024,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPExtensionItemReadOnlyEnableTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1034,7 +1034,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Extensions.
         /// </summary>
@@ -1043,7 +1043,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPExtensionsItemTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Get the output of the phpinfo() function.
         /// </summary>
@@ -1052,7 +1052,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the upper levels. Changes to the PHP setup on upper levels may not take effect on this folder..
         /// </summary>
@@ -1061,7 +1061,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoPageLocalHandlersFolder", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has local handler mappings that overwrite the mappings defined on the server level. Changes to the PHP setup on the server level may not take effect on this site..
         /// </summary>
@@ -1070,7 +1070,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoPageLocalHandlersSite", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Get the output of phpinfo() function that provides the information about current state of PHP. This information can be used to examine all aspects of PHP runtime and for debugging purposes..
         /// </summary>
@@ -1079,7 +1079,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to phpinfo() output.
         /// </summary>
@@ -1088,7 +1088,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Refresh phpinfo.
         /// </summary>
@@ -1097,7 +1097,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPInfoRefreshPHPInfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this setting?.
         /// </summary>
@@ -1106,7 +1106,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPIniSettingDeleteConfirmation", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1116,7 +1116,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1126,7 +1126,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configuration file:.
         /// </summary>
@@ -1135,7 +1135,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageConfigurationFile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP runtime configuration and settings.
         /// </summary>
@@ -1144,7 +1144,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to There are {0} extensions enabled..
         /// </summary>
@@ -1153,7 +1153,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageEnabledExtensions", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error log:.
         /// </summary>
@@ -1162,7 +1162,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageErrorLog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP executable:.
         /// </summary>
@@ -1171,7 +1171,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageExecutable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP extensions are not available.
         /// </summary>
@@ -1180,7 +1180,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageExtensionsNotAvailable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Extensions path:.
         /// </summary>
@@ -1189,7 +1189,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageExtensionsPath", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Handler mapping:.
         /// </summary>
@@ -1198,7 +1198,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageHandlerMapping", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Inherited.
         /// </summary>
@@ -1207,7 +1207,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageInheritedHandler", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to There are {0} extensions installed..
         /// </summary>
@@ -1216,7 +1216,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageInstalledExtensions", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to  | .
         /// </summary>
@@ -1225,7 +1225,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageItemTaskSeparator", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Local.
         /// </summary>
@@ -1234,7 +1234,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageLocalHandler", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use this feature to check the PHP runtime settings, to configure PHP runtime directives and to enable or disable PHP extensions..
         /// </summary>
@@ -1243,7 +1243,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not available.
         /// </summary>
@@ -1252,7 +1252,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPagePHPNotAvailable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Manager.
         /// </summary>
@@ -1261,7 +1261,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP version:.
         /// </summary>
@@ -1270,7 +1270,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPPageVersion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1280,7 +1280,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Manage all settings.
         /// </summary>
@@ -1289,7 +1289,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemAllSettingsTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure error reporting.
         /// </summary>
@@ -1298,7 +1298,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemErrorReportingTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Set runtime limits.
         /// </summary>
@@ -1307,7 +1307,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemLimitsTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View all settings.
         /// </summary>
@@ -1316,7 +1316,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemReadOnlyAllSettingsTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View error reporting.
         /// </summary>
@@ -1325,7 +1325,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemReadOnlyErrorReportingTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View runtime limits.
         /// </summary>
@@ -1334,7 +1334,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemReadOnlyLimitsTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Settings.
         /// </summary>
@@ -1343,7 +1343,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSettingsItemTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1353,7 +1353,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Change PHP version.
         /// </summary>
@@ -1362,7 +1362,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSetupItemChangeVersionTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Check phpinfo().
         /// </summary>
@@ -1371,7 +1371,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSetupItemCheckPHPInfoTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Register new PHP version.
         /// </summary>
@@ -1380,7 +1380,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSetupItemRegisterPHPTask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Setup.
         /// </summary>
@@ -1389,7 +1389,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPSetupItemTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Current value.
         /// </summary>
@@ -1398,7 +1398,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogCurrentValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to These are the IIS and PHP configuration issues detected on this server. Select the issues that you want to get fixed..
         /// </summary>
@@ -1407,7 +1407,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &amp;Detected configuration issues:.
         /// </summary>
@@ -1416,7 +1416,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogDetectedIssues", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &amp;Issue description:.
         /// </summary>
@@ -1425,7 +1425,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogIssueDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &amp;Recommendation:.
         /// </summary>
@@ -1434,7 +1434,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogRecommendation", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Recommended value.
         /// </summary>
@@ -1443,7 +1443,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogRecommendedValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Setting name.
         /// </summary>
@@ -1452,7 +1452,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogSettingName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configuration Recommendations.
         /// </summary>
@@ -1461,7 +1461,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RecommendConfigDialogTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Example: C:\PHP\php-cgi.exe.
         /// </summary>
@@ -1470,7 +1470,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RegisterPHPDialogExample", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP executable (php-cgi.exe)|php-cgi.exe|All files (*.*)|*.*.
         /// </summary>
@@ -1479,7 +1479,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RegisterPHPDialogOpenFileFilter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select PHP executable file.
         /// </summary>
@@ -1488,7 +1488,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RegisterPHPDialogOpenFileTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Register new PHP version.
         /// </summary>
@@ -1497,7 +1497,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RegisterPHPDialogRegisterNew", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Provide a path to the php executable file (php-cgi.exe):.
         /// </summary>
@@ -1506,7 +1506,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RegisterPHPDialogSelectPath", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Data Handling.
         /// </summary>
@@ -1515,7 +1515,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsDataHandling", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum Execution Time.
         /// </summary>
@@ -1524,7 +1524,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxExecutionTime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum time in seconds a script is allowed to run before it is terminated by the parser. This helps prevent poorly written scripts from tying up the server..
         /// </summary>
@@ -1533,7 +1533,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxExecutionTimeDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum Files To Upload.
         /// </summary>
@@ -1542,7 +1542,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxFileUploads", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum number of files that can be uploaded via a single request..
         /// </summary>
@@ -1551,7 +1551,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxFileUploadsDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum Input Time.
         /// </summary>
@@ -1560,7 +1560,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxInputTime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum time in seconds a script is allowed to parse input data, like POST, GET and file uploads..
         /// </summary>
@@ -1569,7 +1569,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMaxInputTimeDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Memory Limit.
         /// </summary>
@@ -1578,7 +1578,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMemoryLimit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server..
         /// </summary>
@@ -1587,7 +1587,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsMemoryLimitDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure PHP runtime limits, including execution timeouts, maximum upload times, etc..
         /// </summary>
@@ -1596,7 +1596,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsPageDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Configure PHP runtime limits, such as maximum script execution time, maximum size of uploaded files, request timeouts and others..
         /// </summary>
@@ -1605,7 +1605,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsPageLongDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Runtime Limits.
         /// </summary>
@@ -1614,7 +1614,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsPageTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum POST size.
         /// </summary>
@@ -1623,7 +1623,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsPostMaxSize", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum allowed size of POST data. This setting also affects file upload. To upload large files, this value must be larger than upload_max_filesize..
         /// </summary>
@@ -1632,7 +1632,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsPostMaxSizeDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Resource Limits.
         /// </summary>
@@ -1641,7 +1641,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsResourceLimits", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Upload Maximum File Size.
         /// </summary>
@@ -1650,7 +1650,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsUploadMaxFilesize", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Maximum allowed size for uploaded files..
         /// </summary>
@@ -1659,7 +1659,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("RuntimeLimitsUploadMaxFilesizeDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select a &amp;site where to check PHP configuration:.
         /// </summary>
@@ -1668,7 +1668,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("SelectSiteAndUrlDialogSelectASite", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select a &amp;URL used for the selected site:.
         /// </summary>
@@ -1677,7 +1677,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("SelectSiteAndUrlDialogSelectAUrl", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Choose Site and URL.
         /// </summary>
@@ -1686,7 +1686,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("SelectSiteAndUrlDialogTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1696,7 +1696,7 @@ namespace Web.Management.PHP {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Required Visual C++ runtime is not installed..
         /// </summary>
@@ -1705,7 +1705,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningCppRuntimeMissing", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This PHP release will expire soon..
         /// </summary>
@@ -1714,7 +1714,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningExpiringRelease", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Learn more..
         /// </summary>
@@ -1723,7 +1723,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningFastCgiLearnMore", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This PHP release is already obsolete..
         /// </summary>
@@ -1732,7 +1732,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningObsoleteRelease", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not optimal PHP registration (CGI) is found. Register new PHP version to enable PHP via FastCGI..
         /// </summary>
@@ -1741,7 +1741,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningPHPConfigCgi", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not optimal PHP registration (ISAPI) is found. Register new PHP version to enable PHP via FastCGI..
         /// </summary>
@@ -1750,7 +1750,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningPHPConfigIsapi", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FastCGI feature must be enabled in order to register PHP. .
         /// </summary>
@@ -1759,7 +1759,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningPHPConfigNoFastCgi", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not optimal PHP configuration detected on this machine. .
         /// </summary>
@@ -1768,7 +1768,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningPHPConfigNotOptimal", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP is not enabled. Register new PHP version to enable PHP via FastCGI..
         /// </summary>
@@ -1777,7 +1777,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningPHPConfigNotRegistered", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View recommendations..
         /// </summary>
@@ -1786,7 +1786,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningViewRecommendations", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View PHP supported versions..
         /// </summary>
@@ -1795,7 +1795,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("WarningViewReleases", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to View Visual C++ runtime information..
         /// </summary>

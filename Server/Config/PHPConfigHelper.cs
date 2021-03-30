@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -73,7 +73,7 @@ namespace Web.Management.PHP.Config
             var filename = Path.GetFileName(extensionPath);
             if (String.IsNullOrEmpty(filename))
             {
-                throw new ArgumentException(String.Format("Cannot extract file name from the extention path {0}.", extensionPath));   
+                throw new ArgumentException(String.Format("Cannot extract file name from the extention path {0}.", extensionPath));
             }
             var targetPath = Path.Combine(PHPDirectory, "ext");
             targetPath = Path.Combine(targetPath, filename);
@@ -83,7 +83,7 @@ namespace Web.Management.PHP.Config
 
             var extensions = new RemoteObjectCollection<PHPIniExtension> { extension };
             UpdateExtensions(extensions);
-            
+
             return extension.Name;
         }
 
@@ -354,12 +354,12 @@ namespace Web.Management.PHP.Config
         }
 
         private static string EnsureTrailingBackslash(string str)
-        {            
+        {
             if (!str.EndsWith(@"\", StringComparison.Ordinal))
             {
                 return str + @"\";
             }
-            
+
             return str;
         }
 
@@ -402,14 +402,14 @@ namespace Web.Management.PHP.Config
             EnsurePHPIsRegistered();
 
             var result = new RemoteObjectCollection<PHPVersion>();
-            
+
             foreach (var handler in _handlersCollection)
             {
                 if (!String.Equals(handler.Path, "*.php", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
-                
+
                 if (String.Equals(handler.Modules, "FastCgiModule", StringComparison.OrdinalIgnoreCase) &&
                     File.Exists(handler.Executable))
                 {
@@ -534,7 +534,7 @@ namespace Web.Management.PHP.Config
             }
 
             phpIniPath = Path.Combine(directoryPath, "php.ini");
-            
+
             return File.Exists(phpIniPath) ? phpIniPath : String.Empty;
         }
 
@@ -556,7 +556,7 @@ namespace Web.Management.PHP.Config
                 return phpIniDirectory;
             }
 
-            // Try to get the properly formatted version 
+            // Try to get the properly formatted version
             // If cannot then bail out
             Version version = ExtractVersion(versionAsIs);
             if (version == null)
@@ -719,7 +719,7 @@ namespace Web.Management.PHP.Config
                 string value = Environment.ExpandEnvironmentVariables(@"%WINDIR%\Temp\");
                 setting = new PHPIniSetting("session.save_path", DoubleQuotesWrap(value), "Session");
             }
-            
+
             return setting;
         }
 
@@ -965,10 +965,10 @@ namespace Web.Management.PHP.Config
             }
 
             string phpexePath = Environment.ExpandEnvironmentVariables(path);
-            
+
             if (!String.Equals(Path.GetFileName(phpexePath), "php-cgi.exe", StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException(String.Format(Resources.PhpCgiExePathInvalidError, phpexePath)); 
+                throw new ArgumentException(String.Format(Resources.PhpCgiExePathInvalidError, phpexePath));
             }
 
             // Check for existence of php executable in the specified directory
@@ -1011,7 +1011,7 @@ namespace Web.Management.PHP.Config
                 isNewFastCgi = true;
                 iisUpdateHappened = true;
             }
-                
+
             // Check if handler mapping with this executable already exists
             var handlerElement = _handlersCollection.GetHandler("*.php", phpexePath);
             // Create a handler mapping if it does not exist
@@ -1050,7 +1050,7 @@ namespace Web.Management.PHP.Config
             if (iisUpdateHappened)
             {
                 _configurationWrapper.CommitChanges();
-                // We need to call Initialize() again to set references to current handler and 
+                // We need to call Initialize() again to set references to current handler and
                 // fastcgi application and to avoid the read-only exception from IIS config
                 Initialize();
             }
@@ -1144,7 +1144,7 @@ namespace Web.Management.PHP.Config
         private static PHPConfigIssue ValidateCgiForceRedirect(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
-            
+
             // Check if cgi.force_redirect is set correctly
             var setting = file.GetSetting("cgi.force_redirect");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
@@ -1172,7 +1172,7 @@ namespace Web.Management.PHP.Config
         private static PHPConfigIssue ValidateCgiPathInfo(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
-            
+
             // Check if cgi.fix_pathinfo is set correctly
             var setting = file.GetSetting("cgi.fix_pathinfo");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
@@ -1211,14 +1211,14 @@ namespace Web.Management.PHP.Config
         {
 
             var configIssues = new RemoteObjectCollection<PHPConfigIssue>();
-          
+
             // IIS and FastCGI settings
             var configIssue = ValidateDefaultDocument();
             if (configIssue != null)
             {
                 configIssues.Add(configIssue);
             }
-            
+
             configIssue = ValidateResourceType();
             if (configIssue != null)
             {
@@ -1342,7 +1342,7 @@ namespace Web.Management.PHP.Config
                                                                 "ConfigIssueDefaultDocumentRecommend",
                                                                 PHPConfigIssueIndex.DefaultDocument);
             }
-            
+
             return configIssue;
         }
 
@@ -1381,7 +1381,7 @@ namespace Web.Management.PHP.Config
         private PHPConfigIssue ValidateExtensionDir(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
-            
+
             var setting = file.GetSetting("extension_dir");
             string expectedValue = EnsureTrailingBackslash(Path.Combine(PHPDirectory, "ext"));
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
@@ -1414,7 +1414,7 @@ namespace Web.Management.PHP.Config
         private static PHPConfigIssue ValidateFastCgiImpersonate(PHPIniFile file)
         {
             PHPConfigIssue configIssue = null;
-            
+
             // Check if fastcgi impersonation is turned on
             var setting = file.GetSetting("fastcgi.impersonate");
             if (setting == null || String.IsNullOrEmpty(setting.GetTrimmedValue()))
@@ -1537,7 +1537,7 @@ namespace Web.Management.PHP.Config
             var expectedValue = EnsureTrailingBackslash(Path.GetDirectoryName(PHPIniFilePath));
             if (envVariableElement == null)
             {
-                configIssue = new PHPConfigIssue("PHPRC", 
+                configIssue = new PHPConfigIssue("PHPRC",
                                                                 String.Empty,
                                                                 expectedValue,
                                                                 "ConfigIssuePHPRCNotSet",

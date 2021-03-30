@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -36,7 +36,7 @@ namespace Web.Management.PHP
                     }
                 }
             }
-                
+
             return false;
         }
 
@@ -120,7 +120,7 @@ namespace Web.Management.PHP
 
         /// <summary>
         /// returns a list of URLs based on the bindings provided and the server name.
-        ///  
+        ///
         /// </summary>
         /// <param name="serverName"></param>
         /// <param name="bindings">Arraylist of string[] {bindingProtocol, bindingInformation}</param>

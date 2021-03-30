@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -268,7 +268,7 @@ namespace Web.Management.PHP
             {
                 return null;
             }
-            
+
             string phpiniPath = null;
 
             try
@@ -384,7 +384,7 @@ namespace Web.Management.PHP
         public void RemovePHPInfo(string filePath)
         {
             EnsureServerOrSiteConnection();
-            
+
             if (!File.Exists(filePath)) {
                 return;
             }

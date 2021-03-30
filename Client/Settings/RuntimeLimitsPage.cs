@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace Web.Management.PHP.Settings
 
         protected override bool CanApplyChanges
         {
-            get 
+            get
             {
                  return true;
             }
@@ -101,7 +101,7 @@ namespace Web.Management.PHP.Settings
                     result[i] = setting.Value;
                 }
             }
-           
+
             return result;
         }
 

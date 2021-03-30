@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 //#define VSDesigner
 
@@ -16,7 +16,7 @@ using Microsoft.Web.Management.Client.Win32;
 namespace Web.Management.PHP.Setup
 {
 
-    internal sealed class RegisterPHPDialog : 
+    internal sealed class RegisterPHPDialog :
 #if VSDesigner
         Form
 #else
@@ -38,7 +38,7 @@ namespace Web.Management.PHP.Setup
         /// Required designer variable.
         /// </summary>
         private readonly System.ComponentModel.IContainer components = null;
-    
+
         public RegisterPHPDialog(PHPModule module, bool isLocalConnection) : base(module)
         {
             _module = module;
@@ -83,26 +83,26 @@ namespace Web.Management.PHP.Setup
             _browseButton = new Button();
             _exampleLabel = new Label();
             SuspendLayout();
-            // 
+            //
             // _dirPathLabel
-            // 
+            //
             _dirPathLabel.AutoSize = true;
             _dirPathLabel.Location = new System.Drawing.Point(0, 13);
             _dirPathLabel.Name = "_dirPathLabel";
             _dirPathLabel.Size = new System.Drawing.Size(265, 13);
             _dirPathLabel.TabIndex = 0;
             _dirPathLabel.Text = Resources.RegisterPHPDialogSelectPath;
-            // 
+            //
             // _dirPathTextBox
-            // 
+            //
             _dirPathTextBox.Location = new System.Drawing.Point(0, 30);
             _dirPathTextBox.Name = "_dirPathTextBox";
             _dirPathTextBox.Size = new System.Drawing.Size(373, 20);
             _dirPathTextBox.TabIndex = 1;
             _dirPathTextBox.TextChanged += OnDirPathTextBoxTextChanged;
-            // 
+            //
             // _browseButton
-            // 
+            //
             _browseButton.Location = new System.Drawing.Point(379, 28);
             _browseButton.Name = "_browseButton";
             _browseButton.Size = new System.Drawing.Size(27, 23);
@@ -110,18 +110,18 @@ namespace Web.Management.PHP.Setup
             _browseButton.Text = @"...";
             _browseButton.UseVisualStyleBackColor = true;
             _browseButton.Click += OnBrowseButtonClick;
-            // 
+            //
             // _exampleLabel
-            // 
+            //
             _exampleLabel.AutoSize = true;
             _exampleLabel.Location = new System.Drawing.Point(3, 57);
             _exampleLabel.Name = "_exampleLabel";
             _exampleLabel.Size = new System.Drawing.Size(35, 13);
             _exampleLabel.TabIndex = 3;
             _exampleLabel.Text = Resources.RegisterPHPDialogExample;
-            // 
+            //
             // RegisterPHPDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(434, 162);
             Controls.Add(_exampleLabel);
             Controls.Add(_browseButton);
@@ -198,7 +198,7 @@ namespace Web.Management.PHP.Setup
                 {
                     dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
                 }
-                
+
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     _dirPathTextBox.Text = dlg.FileName;

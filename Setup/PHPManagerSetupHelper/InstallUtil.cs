@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Diagnostics;
@@ -148,9 +148,9 @@ namespace Web.Management.PHP.Setup
             File.Delete(program);
         }
 
-        /// <summary> 
-        /// Removes the specified UI Module by name 
-        /// </summary> 
+        /// <summary>
+        /// Removes the specified UI Module by name
+        /// </summary>
         public static void RemoveUIModuleProvider(string name)
         {
             Execute(name, null);

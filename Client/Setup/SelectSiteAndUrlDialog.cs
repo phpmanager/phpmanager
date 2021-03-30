@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 //#define VSDesigner
 
@@ -152,9 +152,9 @@ namespace Web.Management.PHP.Setup
             _urlsLabel = new System.Windows.Forms.Label();
             _sitesLabel = new System.Windows.Forms.Label();
             SuspendLayout();
-            // 
+            //
             // _domainsComboBox
-            // 
+            //
             _urlsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             _urlsComboBox.FormattingEnabled = true;
             _urlsComboBox.Location = new System.Drawing.Point(0, 90);
@@ -162,9 +162,9 @@ namespace Web.Management.PHP.Setup
             _urlsComboBox.Size = new System.Drawing.Size(385, 21);
             _urlsComboBox.TabIndex = 3;
             _urlsComboBox.SelectedIndexChanged += new System.EventHandler(OnUrlsComboBoxSelectedIndexChanged);
-            // 
+            //
             // _sitesComboBox
-            // 
+            //
             _sitesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             _sitesComboBox.FormattingEnabled = true;
             _sitesComboBox.Location = new System.Drawing.Point(0, 25);
@@ -172,25 +172,25 @@ namespace Web.Management.PHP.Setup
             _sitesComboBox.Size = new System.Drawing.Size(385, 21);
             _sitesComboBox.TabIndex = 1;
             _sitesComboBox.SelectedIndexChanged += new System.EventHandler(OnSitesComboBoxSelectedIndexChanged);
-            // 
+            //
             // _domainsLabel
-            // 
+            //
             _urlsLabel.Location = new System.Drawing.Point(0, 65);
             _urlsLabel.Name = "_domainsLabel";
             _urlsLabel.Size = new System.Drawing.Size(385, 22);
             _urlsLabel.TabIndex = 2;
             _urlsLabel.Text = Resources.SelectSiteAndUrlDialogSelectAUrl;
-            // 
+            //
             // _sitesLabel
-            // 
+            //
             _sitesLabel.Location = new System.Drawing.Point(0, 0);
             _sitesLabel.Name = "_sitesLabel";
             _sitesLabel.Size = new System.Drawing.Size(385, 22);
             _sitesLabel.TabIndex = 0;
             _sitesLabel.Text = Resources.SelectSiteAndUrlDialogSelectASite;
-            // 
+            //
             // SelectSiteDomainDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(414, 192);
             Controls.Add(_sitesComboBox);
             Controls.Add(_sitesLabel);
@@ -275,7 +275,7 @@ namespace Web.Management.PHP.Setup
             StartAsyncTask(OnUrlsWorkerDoWork, OnUrlsWorkerDoWorkCompleted, null, _sitesComboBox.SelectedItem);
         }
 
-        private void OnSiteWorkerDoWork(object sender, DoWorkEventArgs e) 
+        private void OnSiteWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             e.Result = _module.Proxy.GetSites();
         }
@@ -284,7 +284,7 @@ namespace Web.Management.PHP.Setup
         {
             _sitesComboBox.BeginUpdate();
             _sitesComboBox.SuspendLayout();
-            
+
             try
             {
                 _sitesComboBox.Items.Clear();

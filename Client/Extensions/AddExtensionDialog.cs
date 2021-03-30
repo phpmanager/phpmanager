@@ -92,26 +92,26 @@ namespace Web.Management.PHP.Extensions
             _browseButton = new Button();
             _exampleLabel = new Label();
             SuspendLayout();
-            // 
+            //
             // _pathToExtenionLabel
-            // 
+            //
             _pathToExtenionLabel.AutoSize = true;
             _pathToExtenionLabel.Location = new System.Drawing.Point(0, 13);
             _pathToExtenionLabel.Name = "_pathToExtenionLabel";
             _pathToExtenionLabel.Size = new System.Drawing.Size(193, 13);
             _pathToExtenionLabel.TabIndex = 0;
             _pathToExtenionLabel.Text = Resources.AddExtensionDialogProvidePath;
-            // 
+            //
             // _extensionPathTextBox
-            // 
+            //
             _extensionPathTextBox.Location = new System.Drawing.Point(3, 30);
             _extensionPathTextBox.Name = "_extensionPathTextBox";
             _extensionPathTextBox.Size = new System.Drawing.Size(371, 20);
             _extensionPathTextBox.TabIndex = 1;
             _extensionPathTextBox.TextChanged += OnExtensionPathTextBoxTextChanged;
-            // 
+            //
             // _browseButton
-            // 
+            //
             _browseButton.Location = new System.Drawing.Point(380, 28);
             _browseButton.Name = "_browseButton";
             _browseButton.Size = new System.Drawing.Size(27, 23);
@@ -119,18 +119,18 @@ namespace Web.Management.PHP.Extensions
             _browseButton.Text = @"...";
             _browseButton.UseVisualStyleBackColor = true;
             _browseButton.Click += OnBrowseButtonClick;
-            // 
+            //
             // _exampleLabel
-            // 
+            //
             _exampleLabel.AutoSize = true;
             _exampleLabel.Location = new System.Drawing.Point(0, 53);
             _exampleLabel.Name = "_exampleLabel";
             _exampleLabel.Size = new System.Drawing.Size(159, 13);
             _exampleLabel.TabIndex = 3;
             _exampleLabel.Text = Resources.AddExtensionDialogExample;
-            // 
+            //
             // AddExtensionDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(434, 142);
             Controls.Add(_exampleLabel);
             Controls.Add(_browseButton);

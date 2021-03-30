@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 //#define VSDesigner
 
@@ -18,7 +18,7 @@ using Web.Management.PHP.Config;
 namespace Web.Management.PHP.Settings
 {
 
-    internal sealed class AddEditSettingDialog : 
+    internal sealed class AddEditSettingDialog :
 #if VSDesigner
         Form
 #else
@@ -129,61 +129,61 @@ namespace Web.Management.PHP.Settings
             _sectionTextBox = new TextBox();
             _helpLinkLabel = new LinkLabel();
             SuspendLayout();
-            // 
+            //
             // _nameLabel
-            // 
+            //
             _nameLabel.AutoSize = true;
             _nameLabel.Location = new System.Drawing.Point(0, 14);
             _nameLabel.Name = "_nameLabel";
             _nameLabel.Size = new System.Drawing.Size(38, 13);
             _nameLabel.TabIndex = 0;
             _nameLabel.Text = Resources.AddEditSettingDialogName;
-            // 
+            //
             // _nameTextBox
-            // 
+            //
             _nameTextBox.Location = new System.Drawing.Point(0, 30);
             _nameTextBox.Name = "_nameTextBox";
             _nameTextBox.Size = new System.Drawing.Size(259, 20);
             _nameTextBox.TabIndex = 1;
             _nameTextBox.TextChanged += OnTextBoxTextChanged;
-            // 
+            //
             // _valueLabel
-            // 
+            //
             _valueLabel.AutoSize = true;
             _valueLabel.Location = new System.Drawing.Point(0, 91);
             _valueLabel.Name = "_valueLabel";
             _valueLabel.Size = new System.Drawing.Size(37, 13);
             _valueLabel.TabIndex = 2;
             _valueLabel.Text = Resources.AddEditSettingDialogValue;
-            // 
+            //
             // _valueTextBox
-            // 
+            //
             _valueTextBox.Location = new System.Drawing.Point(0, 107);
             _valueTextBox.Name = "_valueTextBox";
             _valueTextBox.Size = new System.Drawing.Size(259, 20);
             _valueTextBox.TabIndex = 3;
             _valueTextBox.TextChanged += OnTextBoxTextChanged;
-            // 
+            //
             // _sectionLabel
-            // 
+            //
             _sectionLabel.AutoSize = true;
             _sectionLabel.Location = new System.Drawing.Point(0, 143);
             _sectionLabel.Name = "_sectionLabel";
             _sectionLabel.Size = new System.Drawing.Size(46, 13);
             _sectionLabel.TabIndex = 4;
             _sectionLabel.Text = Resources.AddEditSettingDialogSection;
-            // 
+            //
             // _sectionTextBox
-            // 
+            //
             _sectionTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             _sectionTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             _sectionTextBox.Location = new System.Drawing.Point(0, 160);
             _sectionTextBox.Name = "_sectionTextBox";
             _sectionTextBox.Size = new System.Drawing.Size(259, 20);
             _sectionTextBox.TabIndex = 5;
-            // 
+            //
             // _helpLinkLabel
-            // 
+            //
             _helpLinkLabel.AutoSize = true;
             _helpLinkLabel.Enabled = false;
             _helpLinkLabel.Location = new System.Drawing.Point(0, 57);
@@ -193,9 +193,9 @@ namespace Web.Management.PHP.Settings
             _helpLinkLabel.TabStop = true;
             _helpLinkLabel.Text = Resources.AddEditSettingDialogLearnMore;
             _helpLinkLabel.LinkClicked += OnHelpLinkLabelLinkClicked;
-            // 
+            //
             // AddEditSettingDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(284, 262);
             Controls.Add(_helpLinkLabel);
             Controls.Add(_sectionTextBox);

@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace Web.Management.PHP.Settings
         private string _filterBy;
         private string _filterValue;
 
-        // This is used to remember the name of added/updated setting so that 
+        // This is used to remember the name of added/updated setting so that
         // it can be re-selected during refresh.
         private string _updatedSettingName;
 

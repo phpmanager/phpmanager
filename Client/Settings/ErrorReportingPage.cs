@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -68,7 +68,7 @@ namespace Web.Management.PHP.Settings
 
         protected override bool CanApplyChanges
         {
-            get 
+            get
             {
                 return _hasChanges && (_devMachineRadioButton.Checked || _prodMachineRadioButton.Checked);
             }
@@ -153,7 +153,7 @@ namespace Web.Management.PHP.Settings
             {
                 Module.Proxy.AddOrUpdateSettings(settings);
                 appliedChanges = true;
-                
+
                 // Update the values used for determining if changes have been made
                 _errorLogFile = _errorLogFileTextBox.Text;
                 if (_devMachineRadioButton.Checked)
@@ -232,9 +232,9 @@ namespace Web.Management.PHP.Settings
             _errorLogBrowseButton = new Button();
             _serverTypeGroupBox.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // _serverTypeGroupBox
-            // 
+            //
             _serverTypeGroupBox.Controls.Add(_prodMachineLabel);
             _serverTypeGroupBox.Controls.Add(_prodMachineRadioButton);
             _serverTypeGroupBox.Controls.Add(_devMachineLabel);
@@ -246,17 +246,17 @@ namespace Web.Management.PHP.Settings
             _serverTypeGroupBox.TabIndex = 0;
             _serverTypeGroupBox.TabStop = false;
             _serverTypeGroupBox.Text = Resources.ErrorReportingPageServerType;
-            // 
+            //
             // _prodMachineLabel
-            // 
+            //
             _prodMachineLabel.Location = new System.Drawing.Point(37, 150);
             _prodMachineLabel.Name = "_prodMachineLabel";
             _prodMachineLabel.Size = new System.Drawing.Size(413, 48);
             _prodMachineLabel.TabIndex = 4;
             _prodMachineLabel.Text = Resources.ErrorReportingPageProdMachineDesc;
-            // 
+            //
             // _prodMachineRadioButton
-            // 
+            //
             _prodMachineRadioButton.AutoSize = true;
             _prodMachineRadioButton.Location = new System.Drawing.Point(20, 130);
             _prodMachineRadioButton.Name = "_prodMachineRadioButton";
@@ -266,25 +266,25 @@ namespace Web.Management.PHP.Settings
             _prodMachineRadioButton.Text = Resources.ErrorReportingPageProdMachine;
             _prodMachineRadioButton.UseVisualStyleBackColor = true;
             _prodMachineRadioButton.CheckedChanged += OnProdMachineRadioButtonCheckedChanged;
-            // 
+            //
             // _devMachineLabel
-            // 
+            //
             _devMachineLabel.Location = new System.Drawing.Point(37, 75);
             _devMachineLabel.Name = "_devMachineLabel";
             _devMachineLabel.Size = new System.Drawing.Size(413, 46);
             _devMachineLabel.TabIndex = 2;
             _devMachineLabel.Text = Resources.ErrorReportingPageDevMachineDesc;
-            // 
+            //
             // _selectServerTypeLabel
-            // 
+            //
             _selectServerTypeLabel.Location = new System.Drawing.Point(6, 20);
             _selectServerTypeLabel.Name = "_selectServerTypeLabel";
             _selectServerTypeLabel.Size = new System.Drawing.Size(458, 23);
             _selectServerTypeLabel.TabIndex = 0;
             _selectServerTypeLabel.Text = Resources.ErrorReportingPageSelectServerType;
-            // 
+            //
             // _devMachineRadioButton
-            // 
+            //
             _devMachineRadioButton.AutoSize = true;
             _devMachineRadioButton.Location = new System.Drawing.Point(20, 55);
             _devMachineRadioButton.Name = "_devMachineRadioButton";
@@ -294,26 +294,26 @@ namespace Web.Management.PHP.Settings
             _devMachineRadioButton.Text = Resources.ErrorReportingPageDevMachine;
             _devMachineRadioButton.UseVisualStyleBackColor = true;
             _devMachineRadioButton.CheckedChanged += OnDevMachineRadioButtonCheckedChanged;
-            // 
+            //
             // _errorLogFileLabel
-            // 
+            //
             _errorLogFileLabel.AutoSize = true;
             _errorLogFileLabel.Location = new System.Drawing.Point(3, 253);
             _errorLogFileLabel.Name = "_errorLogFileLabel";
             _errorLogFileLabel.Size = new System.Drawing.Size(65, 13);
             _errorLogFileLabel.TabIndex = 1;
             _errorLogFileLabel.Text = Resources.ErrorReportingErrorLogFile;
-            // 
+            //
             // _errorLogFileTextBox
-            // 
+            //
             _errorLogFileTextBox.Location = new System.Drawing.Point(7, 269);
             _errorLogFileTextBox.Name = "_errorLogFileTextBox";
             _errorLogFileTextBox.Size = new System.Drawing.Size(438, 20);
             _errorLogFileTextBox.TabIndex = 2;
             _errorLogFileTextBox.TextChanged += OnErrorLogFileTextBoxTextChanged;
-            // 
+            //
             // _errorLogBrowseButton
-            // 
+            //
             _errorLogBrowseButton.Location = new System.Drawing.Point(451, 267);
             _errorLogBrowseButton.Name = "_errorLogBrowseButton";
             _errorLogBrowseButton.Size = new System.Drawing.Size(25, 23);
@@ -321,9 +321,9 @@ namespace Web.Management.PHP.Settings
             _errorLogBrowseButton.Text = @"...";
             _errorLogBrowseButton.UseVisualStyleBackColor = true;
             _errorLogBrowseButton.Click += OnErrorLogBrowseButtonClick;
-            // 
+            //
             // ErrorReportingPage
-            // 
+            //
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScroll = true;
             Controls.Add(_errorLogBrowseButton);
@@ -407,7 +407,7 @@ namespace Web.Management.PHP.Settings
                 {
                     dlg.InitialDirectory = Environment.ExpandEnvironmentVariables("%SystemDrive%");
                 }
-                
+
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     _errorLogFileTextBox.Text = dlg.FileName;

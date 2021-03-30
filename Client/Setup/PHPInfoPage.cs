@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -118,9 +118,9 @@ namespace Web.Management.PHP.Setup
             _panel = new Panel();
             _panel.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // _webBrowser
-            // 
+            //
             _webBrowser.AllowNavigation = false;
             _webBrowser.AllowWebBrowserDrop = false;
             _webBrowser.Dock = DockStyle.Fill;
@@ -131,9 +131,9 @@ namespace Web.Management.PHP.Setup
             _webBrowser.Size = new System.Drawing.Size(296, 284);
             _webBrowser.TabIndex = 0;
             _webBrowser.DocumentCompleted += OnWebBrowserDocumentCompleted;
-            // 
+            //
             // _panel
-            // 
+            //
             _panel.BorderStyle = BorderStyle.Fixed3D;
             _panel.Controls.Add(_webBrowser);
             _panel.Dock = DockStyle.Fill;
@@ -141,9 +141,9 @@ namespace Web.Management.PHP.Setup
             _panel.Name = "_panel";
             _panel.Size = new System.Drawing.Size(300, 288);
             _panel.TabIndex = 0;
-            // 
+            //
             // PHPInfoPage
-            // 
+            //
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             Controls.Add(_panel);
             Name = "PHPInfoPage";
@@ -276,7 +276,7 @@ namespace Web.Management.PHP.Setup
             {
                 _page.ShowPHPInfo();
             }
-            
+
         }
     }
 }

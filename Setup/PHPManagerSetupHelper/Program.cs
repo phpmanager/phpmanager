@@ -50,7 +50,7 @@ namespace Web.Management.PHP.Setup
             using (var mgr = new ServerManager())
             {
 
-                // First register the Module Provider  
+                // First register the Module Provider
                 var adminConfig = mgr.GetAdministrationConfiguration();
 
                 var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
@@ -63,7 +63,7 @@ namespace Web.Management.PHP.Setup
                     moduleProviders.Add(moduleProvider);
                 }
 
-                // Now register it so that all Sites have access to this module 
+                // Now register it so that all Sites have access to this module
                 var modulesSection = adminConfig.GetSection("modules");
                 var modules = modulesSection.GetCollection();
                 if (FindByAttribute(modules, "name", name) == null)
@@ -77,22 +77,22 @@ namespace Web.Management.PHP.Setup
             }
         }
 
-        /// <summary> 
-        /// Helper method to find an element based on an attribute 
-        /// </summary> 
+        /// <summary>
+        /// Helper method to find an element based on an attribute
+        /// </summary>
         private static ConfigurationElement FindByAttribute(IEnumerable<ConfigurationElement> collection, string attributeName, string value)
         {
             return collection.FirstOrDefault(element => String.Equals((string)element.GetAttribute(attributeName).Value, value, StringComparison.OrdinalIgnoreCase));
         }
 
-        /// <summary> 
-        /// Removes the specified UI Module by name 
-        /// </summary> 
+        /// <summary>
+        /// Removes the specified UI Module by name
+        /// </summary>
         public static void RemoveUIModuleProvider(string name)
         {
             using (var mgr = new ServerManager())
             {
-                // First remove it from the sites 
+                // First remove it from the sites
                 var adminConfig = mgr.GetAdministrationConfiguration();
                 var modulesSection = adminConfig.GetSection("modules");
                 var modules = modulesSection.GetCollection();
@@ -102,7 +102,7 @@ namespace Web.Management.PHP.Setup
                     modules.Remove(module);
                 }
 
-                // now remove the ModuleProvider 
+                // now remove the ModuleProvider
                 var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
                 var moduleProviders = moduleProvidersSection.GetCollection();
                 var moduleProvider = FindByAttribute(moduleProviders, "name", name);

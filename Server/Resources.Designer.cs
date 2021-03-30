@@ -10,8 +10,8 @@
 
 namespace Web.Management.PHP {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Web.Management.PHP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Web.Management.PHP {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Web.Management.PHP {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot find a php.ini file associated with PHP executable {0}..
         /// </summary>
@@ -68,7 +68,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("CannotFindPhpIniForExecutableError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot register PHP because FastCGI module is not enabled in IIS..
         /// </summary>
@@ -77,7 +77,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("FastCgiNotEnabledError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The folder {0} does not contain &quot;ext&quot; folder with PHP extensions..
         /// </summary>
@@ -86,7 +86,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("FolderDoesNotHaveExtDirError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to There is no php executable file (php-cgi.exe) at the specified location {0}..
         /// </summary>
@@ -95,7 +95,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PhpCgiExeDoesNotExistError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The provided php executable path {0} is invalid..
         /// </summary>
@@ -104,7 +104,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PhpCgiExePathInvalidError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot file php.ini or php.ini-recommended or php.ini-production in {0}..
         /// </summary>
@@ -113,7 +113,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PhpIniFilesDoNotExistError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Manager for IIS.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Web.Management.PHP {
                 return ResourceManager.GetString("PHPManagerFriendlyName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cannot perform the action because PHP is not registered properly..
         /// </summary>

@@ -10,8 +10,8 @@
 
 namespace Web.Management.PHP.Powershell {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Web.Management.PHP.Powershell {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Web.Management.PHP.Powershell {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Web.Management.PHP.Powershell {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Warning!.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("DeleteSettingWarningCaption", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The setting &quot;{0}&quot; and its value &quot;{1}&quot; will be removed from php.ini file. Are you sure you want to continue?.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("DeleteSettingWarningMessage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Extension with name &quot;{0}&quot; does not exist..
         /// </summary>
@@ -86,7 +86,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("ExtensionDoesNotExistError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Handler with name &quot;{0}&quot; does not exist..
         /// </summary>
@@ -95,7 +95,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("HandlerDoesNotExistError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &lt;Not set&gt;.
         /// </summary>
@@ -104,7 +104,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("NotSetValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP is not registered on this configuration level..
         /// </summary>
@@ -113,7 +113,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("PHPIsNotRegisteredError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; already exists. Use Set-PHPSetting cmdlet to change its value or Remove-PHPSetting to remove it..
         /// </summary>
@@ -122,7 +122,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("SettingAlreadyExistsError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Setting with name &quot;{0}&quot; does not exist..
         /// </summary>
@@ -131,7 +131,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("SettingDoesNotExistError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to A PowerShell snapin for managing PHP installations on IIS 7..
         /// </summary>
@@ -140,7 +140,7 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("SnapInDescription", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PHP Manager Project.
         /// </summary>
@@ -149,9 +149,9 @@ namespace Web.Management.PHP.Powershell {
                 return ResourceManager.GetString("SnapInVendor", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to You do not have permission to view or modify IIS configuration. 
+        ///   Looks up a localized string similar to You do not have permission to view or modify IIS configuration.
         ///Is PowerShell console launched in elevated mode (Run As Administrator)?.
         /// </summary>
         internal static string UserIsNotAdminError {

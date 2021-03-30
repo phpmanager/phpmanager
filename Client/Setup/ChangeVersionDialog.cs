@@ -77,27 +77,27 @@ namespace Web.Management.PHP.Setup
             _selectVersionLabel = new Label();
             _versionComboBox = new ComboBox();
             SuspendLayout();
-            // 
+            //
             // _selectVersionLabel
-            // 
+            //
             _selectVersionLabel.AutoSize = true;
             _selectVersionLabel.Location = new System.Drawing.Point(0, 13);
             _selectVersionLabel.Name = "_selectVersionLabel";
             _selectVersionLabel.Size = new System.Drawing.Size(102, 13);
             _selectVersionLabel.TabIndex = 0;
             _selectVersionLabel.Text = Resources.ChangeVersionDialogSelectVersion;
-            // 
+            //
             // _versionComboBox
-            // 
+            //
             _versionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             _versionComboBox.FormattingEnabled = true;
             _versionComboBox.Location = new System.Drawing.Point(3, 30);
             _versionComboBox.Name = "_versionComboBox";
             _versionComboBox.Size = new System.Drawing.Size(326, 21);
             _versionComboBox.TabIndex = 1;
-            // 
+            //
             // ChangeVersionDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(364, 142);
             Controls.Add(_versionComboBox);
             Controls.Add(_selectVersionLabel);

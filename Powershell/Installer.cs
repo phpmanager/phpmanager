@@ -20,7 +20,7 @@ namespace Web.Management.PHP.Powershell
 
         public override string Description
         {
-            get 
+            get
             {
                 return Resources.SnapInDescription;
             }
@@ -28,7 +28,7 @@ namespace Web.Management.PHP.Powershell
 
         public override string Name
         {
-            get 
+            get
             {
                 return "PHPManagerSnapin";
             }
@@ -36,7 +36,7 @@ namespace Web.Management.PHP.Powershell
 
         public override string Vendor
         {
-            get 
+            get
             {
                 return Resources.SnapInVendor;
             }

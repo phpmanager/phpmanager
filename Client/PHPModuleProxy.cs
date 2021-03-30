@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System.Collections;
 using Microsoft.Web.Management.Client;
@@ -78,7 +78,7 @@ namespace Web.Management.PHP
             {
                 result = new PHPConfigInfo();
                 result.SetData(o);
-            }            
+            }
             return result;
         }
 

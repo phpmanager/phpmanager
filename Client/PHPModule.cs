@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 using System.Diagnostics;
@@ -78,7 +78,7 @@ namespace Web.Management.PHP
 
 
             //PHPPage - PHP feature start page
-            modulePageInfo = new ModulePageInfo(this, 
+            modulePageInfo = new ModulePageInfo(this,
                 typeof(PHPPage), Resources.PHPPageTitle, Resources.PHPPageDescription,
                 Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPPageLongDescription);
 

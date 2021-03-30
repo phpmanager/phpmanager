@@ -5,7 +5,7 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 using System;
 
@@ -19,7 +19,7 @@ namespace Web.Management.PHP {
         public const string PHPExtensionsPageIdentifier = "3449ff77-1f5c-4ba1-80cb-80f12512e367";
         public const string ErrorReportingPageIdentifier = "f52b2450-4b78-4602-a7e8-c8d9257a2c25";
         public const string RuntimeLimitsPageIdentifier = "4f13ca20-adc1-4fa8-aba7-5d537746d304";
-        
+
         public const string PHPPageOnlineHelp = "http://www.phpmanager.xyz";
 
         public const string RegisterPHPOnlineHelp = "http://www.phpmanager.xyz";
@@ -32,7 +32,7 @@ namespace Web.Management.PHP {
         public const string RuntimeLimitsOnlineHelp = "http://www.phpmanager.xyz";
         public const string AllSettingsOnlineHelp = "http://www.phpmanager.xyz";
 
-        
+
         public const string AllExtensionsOnlineHelp = "http://www.phpmanager.xyz";
 
         public const string AddExtensionOnlineHelp = "http://www.phpmanager.xyz";

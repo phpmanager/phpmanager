@@ -5,17 +5,17 @@
 // This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
 // See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
 // </copyright>
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 
 
 namespace Web.Management.PHP {
     partial class PHPPageItemControl {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -28,8 +28,8 @@ namespace Web.Management.PHP {
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
@@ -43,17 +43,17 @@ namespace Web.Management.PHP {
             this._warningPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._warningPicture)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // _pictureBox
-            // 
+            //
             this._pictureBox.Location = new System.Drawing.Point(24, 10);
             this._pictureBox.Name = "_pictureBox";
             this._pictureBox.Size = new System.Drawing.Size(32, 32);
             this._pictureBox.TabIndex = 0;
             this._pictureBox.TabStop = false;
-            // 
+            //
             // _titleLabel
-            // 
+            //
             this._titleLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this._titleLabel.LinkColor = System.Drawing.SystemColors.ControlText;
             this._titleLabel.Location = new System.Drawing.Point(62, 4);
@@ -61,9 +61,9 @@ namespace Web.Management.PHP {
             this._titleLabel.Size = new System.Drawing.Size(442, 32);
             this._titleLabel.TabIndex = 0;
             this._titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _tasksLabel
-            // 
+            //
             this._tasksLabel.AutoSize = true;
             this._tasksLabel.Location = new System.Drawing.Point(65, 116);
             this._tasksLabel.Name = "_tasksLabel";
@@ -71,9 +71,9 @@ namespace Web.Management.PHP {
             this._tasksLabel.TabIndex = 2;
             this._tasksLabel.TabStop = true;
             this._tasksLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnTasksLabelLinkClicked);
-            // 
+            //
             // _infoTlp
-            // 
+            //
             this._infoTlp.AutoSize = true;
             this._infoTlp.BackColor = System.Drawing.Color.Transparent;
             this._infoTlp.ColumnCount = 2;
@@ -85,9 +85,9 @@ namespace Web.Management.PHP {
             this._infoTlp.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this._infoTlp.Size = new System.Drawing.Size(491, 47);
             this._infoTlp.TabIndex = 3;
-            // 
+            //
             // _warningPanel
-            // 
+            //
             this._warningPanel.BackColor = System.Drawing.SystemColors.Info;
             this._warningPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._warningPanel.Controls.Add(this._warningPicture);
@@ -96,9 +96,9 @@ namespace Web.Management.PHP {
             this._warningPanel.Size = new System.Drawing.Size(439, 23);
             this._warningPanel.TabIndex = 4;
             this._warningPanel.Visible = false;
-            // 
+            //
             // _warningPicture
-            // 
+            //
             this._warningPicture.Image = global::Web.Management.PHP.Resources.Warning16;
             this._warningPicture.Location = new System.Drawing.Point(1, 3);
             this._warningPicture.Name = "_warningPicture";
@@ -106,9 +106,9 @@ namespace Web.Management.PHP {
             this._warningPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this._warningPicture.TabIndex = 1;
             this._warningPicture.TabStop = false;
-            // 
+            //
             // PHPPageItemControl
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._warningPanel);

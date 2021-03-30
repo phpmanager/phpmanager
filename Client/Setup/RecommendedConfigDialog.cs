@@ -104,9 +104,9 @@ namespace Web.Management.PHP.Setup
             _issueDescriptionTextBox = new TextBox();
             _formDescriptionLabel = new Label();
             SuspendLayout();
-            // 
+            //
             // _configIssuesListView
-            // 
+            //
             _configIssuesListView.CheckBoxes = true;
             _configIssuesListView.Columns.AddRange(new[] {
             _nameHeader,
@@ -122,24 +122,24 @@ namespace Web.Management.PHP.Setup
             _configIssuesListView.View = View.Details;
             _configIssuesListView.ItemChecked += OnConfigIssuesListViewItemChecked;
             _configIssuesListView.SelectedIndexChanged += OnConfigIssuesListViewSelectedIndexChanged;
-            // 
+            //
             // _nameHeader
-            // 
+            //
             _nameHeader.Text = Resources.RecommendConfigDialogSettingName;
             _nameHeader.Width = 170;
-            // 
+            //
             // _currentValueHeader
-            // 
+            //
             _currentValueHeader.Text = Resources.RecommendConfigDialogCurrentValue;
             _currentValueHeader.Width = 150;
-            // 
+            //
             // _recommendedValueHeader
-            // 
+            //
             _recommendedValueHeader.Text = Resources.RecommendConfigDialogRecommendedValue;
             _recommendedValueHeader.Width = 150;
-            // 
+            //
             // _configIssueLabel
-            // 
+            //
             _configIssueLabel.AutoSize = true;
             _configIssueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 204);
             _configIssueLabel.Location = new System.Drawing.Point(0, 58);
@@ -147,9 +147,9 @@ namespace Web.Management.PHP.Setup
             _configIssueLabel.Size = new System.Drawing.Size(180, 13);
             _configIssueLabel.TabIndex = 1;
             _configIssueLabel.Text = Resources.RecommendConfigDialogDetectedIssues;
-            // 
+            //
             // _recommendationLabel
-            // 
+            //
             _recommendationLabel.AutoSize = true;
             _recommendationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 204);
             _recommendationLabel.Location = new System.Drawing.Point(0, 298);
@@ -157,9 +157,9 @@ namespace Web.Management.PHP.Setup
             _recommendationLabel.Size = new System.Drawing.Size(108, 13);
             _recommendationLabel.TabIndex = 5;
             _recommendationLabel.Text = Resources.RecommendConfigDialogRecommendation;
-            // 
+            //
             // _recommendationTextBox
-            // 
+            //
             _recommendationTextBox.Location = new System.Drawing.Point(0, 314);
             _recommendationTextBox.Multiline = true;
             _recommendationTextBox.Name = "_recommendationTextBox";
@@ -167,9 +167,9 @@ namespace Web.Management.PHP.Setup
             _recommendationTextBox.ScrollBars = ScrollBars.Vertical;
             _recommendationTextBox.Size = new System.Drawing.Size(480, 60);
             _recommendationTextBox.TabIndex = 6;
-            // 
+            //
             // _issueDescriptionLabel
-            // 
+            //
             _issueDescriptionLabel.AutoSize = true;
             _issueDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 204);
             _issueDescriptionLabel.Location = new System.Drawing.Point(0, 225);
@@ -177,27 +177,27 @@ namespace Web.Management.PHP.Setup
             _issueDescriptionLabel.Size = new System.Drawing.Size(107, 13);
             _issueDescriptionLabel.TabIndex = 3;
             _issueDescriptionLabel.Text = Resources.RecommendConfigDialogIssueDescription;
-            // 
+            //
             // _issueDescriptionTextBox
-            // 
+            //
             _issueDescriptionTextBox.Location = new System.Drawing.Point(0, 242);
             _issueDescriptionTextBox.Multiline = true;
             _issueDescriptionTextBox.Name = "_issueDescriptionTextBox";
             _issueDescriptionTextBox.ReadOnly = true;
             _issueDescriptionTextBox.Size = new System.Drawing.Size(480, 41);
             _issueDescriptionTextBox.TabIndex = 4;
-            // 
+            //
             // _formDescriptionLabel
-            // 
+            //
             _formDescriptionLabel.Dock = DockStyle.Top;
             _formDescriptionLabel.Location = new System.Drawing.Point(0, 0);
             _formDescriptionLabel.Name = "_formDescriptionLabel";
             _formDescriptionLabel.Size = new System.Drawing.Size(504, 38);
             _formDescriptionLabel.TabIndex = 0;
             _formDescriptionLabel.Text = Resources.RecommendConfigDialogDescription;
-            // 
+            //
             // RecommendedConfigDialog
-            // 
+            //
             ClientSize = new System.Drawing.Size(504, 452);
             Controls.Add(_formDescriptionLabel);
             Controls.Add(_issueDescriptionTextBox);
@@ -286,7 +286,7 @@ namespace Web.Management.PHP.Setup
                             listViewItem.SubItems.Add(configIssue.CurrentValue);
                         }
                         listViewItem.SubItems.Add(configIssue.RecommendedValue);
-                        listViewItem.Tag = new object[] { GetResourceStringByName(configIssue.IssueDescription), 
+                        listViewItem.Tag = new object[] { GetResourceStringByName(configIssue.IssueDescription),
                                                            GetResourceStringByName(configIssue.Recommendation),
                                                            configIssue.IssueIndex
                                                          };
