@@ -56,9 +56,6 @@
       <Name>WixUtilExtension</Name>
     </WixExtension>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConfigFile.xml" />
-  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

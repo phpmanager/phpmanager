@@ -78,7 +78,6 @@
             <ComponentRef Id="License.rtf" />
             <ComponentRef Id="Web.Management.PHP.dll" />
             <ComponentRef Id="Web.Management.PHP.Client.dll" />
-            <ComponentRef Id="Web.Management.PHP.Setup.dll" />
             <ComponentRef Id="Web.Management.PHP.PowerShell.dll" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_CN.comp" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_TW.comp" />
@@ -100,11 +99,6 @@
                     </Component>
                     <Component Id="Web.Management.PHP.Client.dll" Guid="{319C1A86-58E7-45EA-9408-EFB366F2A2F4}">
                         <File Id="Web.Management.PHP.Client.dll" Name="Web.Management.PHP.Client.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Client.dll" />
-                    </Component>
-                    <Component Id="Web.Management.PHP.Setup.dll" Guid="{CAE7B77C-5A31-4C01-B997-EDEFD5387205}">
-                        <File Id="Web.Management.PHP.Setup.dll" Name="Web.Management.PHP.Setup.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Setup.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Setup.dll" />
-                        <File Id='ConfigFile' Name='ConfigFile.xml' DiskId='1' Vital='yes' Source='ConfigFile.xml' />
-                        <RemoveFile Id="LogFile" On="uninstall" Name="Web.Management.PHP.Setup.InstallState" />
                     </Component>
                     <Component Id="Web.Management.PHP.dll" Guid="{3D24E10F-5B3F-4796-99CE-3DA5D0E947DA}">
                         <File Id="Web.Management.PHP.dll" Name="Web.Management.PHP.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.dll" />
@@ -244,7 +238,7 @@
         </Condition>
         <?endif ?>
 
-        <Binary Id='InstallUtil' SourceFile='InstallUtilLib.dll' />
+        <Binary Id="SetupDll" SourceFile="$(var.SourceDir)\Web.Management.PHP.Setup.CA.dll" />
 
         <!--
             If a newer version of PHPManager is installed, show an error message.
@@ -256,11 +250,8 @@
         <CustomAction Id="NoDowngrade" Error="A later version of [ProductName] is already installed." />
 
         <!-- Custom actions for Web.Management.PHP.Client -->
-        <CustomAction Id='InstallPHPSetupSetProp' Property='InstallPHPSetup' Value='/installtype=notransaction /action=install /LogFile= "[#Web.Management.PHP.Setup.dll]" "[#ConfigFile]"'/>
-        <CustomAction Id='InstallPHPSetup' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate='no' />
-
-        <CustomAction Id='UnInstallPHPSetupSetProp' Property='UnInstallPHPSetup' Value='/installtype=notransaction /action=uninstall /LogFile= "[#Web.Management.PHP.Setup.dll]" "[#ConfigFile]"'/>
-        <CustomAction Id='UnInstallPHPSetup' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate='no' />
+        <CustomAction Id="InstallPHPSetup" BinaryKey="SetupDll" DllEntry="AddUIModuleProvider" Return="check" />
+        <CustomAction Id="UninstallPHPSetup" BinaryKey="SetupDll" DllEntry="RemoveUIModuleProvider" Return="check" />
 
         <util:CloseApplication Id="CloseIisManager"
                             CloseMessage="yes"
@@ -270,7 +261,7 @@
                             PromptToContinue="yes"
                             Target="inetmgr.exe" />
 
-        <!-- Custom Actions using Install Util -->
+        <!-- Custom Actions -->
         <InstallExecuteSequence>
             <!--
                 Display an error message if a newer version found.
@@ -298,10 +289,8 @@
                 http://msdn.microsoft.com/library/en-us/msi/setup/removeexistingproducts_action.asp
             -->
             <RemoveExistingProducts Before="InstallInitialize"/>
-            <Custom Action='InstallPHPSetupSetProp' After='StartServices'>$Web.Management.PHP.Setup.dll&gt;2</Custom>
-            <Custom Action='InstallPHPSetup' After='InstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll&gt;2</Custom>
-            <Custom Action='UnInstallPHPSetupSetProp' After='MsiUnpublishAssemblies'>$Web.Management.PHP.Setup.dll=2</Custom>
-            <Custom Action='UnInstallPHPSetup' After='UnInstallPHPSetupSetProp'>$Web.Management.PHP.Setup.dll=2</Custom>
+            <Custom Action="InstallPHPSetup" After="StartServices">NOT Installed</Custom>
+            <Custom Action="UninstallPHPSetup" After="MsiUnpublishAssemblies">REMOVE="ALL"</Custom>
             <Custom Action="WixCloseApplications" After="InstallInitialize" />
 
         </InstallExecuteSequence>
