@@ -43,7 +43,6 @@ namespace Web.Management.PHP.Setup
                             iisVersion == 7 ? "v3.5" : "v4.0.30319"))));
             var assembly = Assembly.GetExecutingAssembly();
             RegisterIIS(framework, assembly, name, type);
-            RegisterSnapin(framework, assembly, type);
         }
 
         private static void RegisterIIS(string framework, Assembly assembly, string name, string type)
@@ -88,54 +87,6 @@ namespace Web.Management.PHP.Setup
                 {
                     FileName = program,
                     Arguments = type == null ? string.Format("/u \"{0}\"", name) : string.Format("/i \"{0}\" \"{1}\"", name, type),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true
-                }
-            })
-            {
-                process.Start();
-                process.WaitForExit();
-            }
-
-            File.Delete(program);
-        }
-
-        private static void RegisterSnapin(string framework, Assembly assembly, string type)
-        {
-            var compiler = Path.Combine(framework, "csc.exe");
-
-            var source = Path.GetTempFileName();
-            var program = source + ".powershell.exe";
-            using (var stream = assembly.GetManifestResourceStream("Web.Management.PHP.Setup.Program2.cs"))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                var content = reader.ReadToEnd();
-                File.WriteAllText(source, content);
-            }
-
-            using (var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = compiler,
-                    Arguments = string.Format("/out:\"{0}\" \"{1}\"", program, source),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true
-                }
-            })
-            {
-                process.Start();
-                process.WaitForExit();
-            }
-
-            File.Delete(source);
-
-            using (var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = program,
-                    Arguments = type == null ? string.Format("/u \"{0}\"", assembly.Location) : string.Format("/i \"{0}\"", assembly.Location),
                     WindowStyle = ProcessWindowStyle.Hidden,
                     CreateNoWindow = true
                 }
