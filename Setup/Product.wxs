@@ -75,11 +75,11 @@
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ru_RU.GAC_comp" />
 
             <!-- Files installed -->
+            <ComponentRef Id="License.rtf" />
             <ComponentRef Id="Web.Management.PHP.dll" />
             <ComponentRef Id="Web.Management.PHP.Client.dll" />
             <ComponentRef Id="Web.Management.PHP.Setup.dll" />
             <ComponentRef Id="Web.Management.PHP.PowerShell.dll" />
-            <ComponentRef Id="Web.Management.PHP.PowerShell.dllHelp.xml" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_CN.comp" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.zh_TW.comp" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.fr_FR.comp" />
@@ -95,9 +95,8 @@
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="$(var.PlatformProgramFilesFolder)">
                 <Directory Id="INSTALLDIR" Name="$(var.ProductName)">
-                    <Component Id="Web.Management.PHP.PowerShell.dllHelp.xml" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
-                        <File Id="License.rtf" Name="License.rtf" Vital="no" DiskId="1" Source="License.rtf" />
-                        <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" KeyPath="yes" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
+                    <Component Id="License.rtf" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
+                        <File Id="License.rtf" Name="License.rtf" KeyPath="yes" Vital="no" DiskId="1" Source="License.rtf" />
                     </Component>
                     <Component Id="Web.Management.PHP.Client.dll" Guid="{319C1A86-58E7-45EA-9408-EFB366F2A2F4}">
                         <File Id="Web.Management.PHP.Client.dll" Name="Web.Management.PHP.Client.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.Client.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.Client.dll" />
@@ -114,6 +113,7 @@
                         <File Id="Web.Management.PHP.PowerShell.dll" Name="Web.Management.PHP.PowerShell.dll" KeyPath="yes" Vital="no" Assembly=".net" AssemblyApplication="Web.Management.PHP.PowerShell.dll" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll">
                             <ps:SnapIn Id="PHPManagerSnapin" Description="PHP Manager for IIS" Vendor="PHP Manager Project" />
                         </File>
+                        <File Id="Web.Management.PHP.PowerShell.dllHelp.xml" Name="Web.Management.PHP.PowerShell.dll-Help.xml" Vital="no" DiskId="1" Source="$(var.SourceDir)\Web.Management.PHP.PowerShell.dll-Help.xml" />
                     </Component>
                     <Directory Id="GACFiles_Dir" Name="GAC">
                         <Component Id="Web.Management.PHP.Client.dll.GAC_comp" Guid="{F576C18C-A14D-4732-B13F-24E7D80C797C}">
