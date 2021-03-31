@@ -133,7 +133,7 @@ namespace Web.Management.PHP.Powershell {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A PowerShell snapin for managing PHP installations on IIS 7..
+        ///   Looks up a localized string similar to A PowerShell snapin for managing PHP installations on IIS..
         /// </summary>
         internal static string SnapInDescription {
             get {
