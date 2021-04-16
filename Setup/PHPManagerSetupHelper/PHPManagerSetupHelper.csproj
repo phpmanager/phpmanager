@@ -58,7 +58,6 @@
     </Compile>
     <Compile Include="InstallUtil.cs" />
     <EmbeddedResource Include="Program.cs" />
-    <EmbeddedResource Include="Program2.cs" />
     <Compile Include="SetupAction.cs">
       <SubType>Component</SubType>
     </Compile>

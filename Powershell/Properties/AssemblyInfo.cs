@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Web.Management.PHP.Powershell")]
-[assembly: AssemblyDescription("Powershell snapin for managing PHP installations on IIS 7")]
+[assembly: AssemblyDescription("Powershell snapin for managing PHP installations on IIS")]
 [assembly: AssemblyConfiguration("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

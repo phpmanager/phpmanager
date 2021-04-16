@@ -121,7 +121,7 @@
     <value>&lt;Not set&gt;</value>
   </data>
   <data name="SnapInDescription" xml:space="preserve">
-    <value>A PowerShell snapin for managing PHP installations on IIS 7.</value>
+    <value>A PowerShell snapin for managing PHP installations on IIS.</value>
   </data>
   <data name="SnapInVendor" xml:space="preserve">
     <value>PHP Manager Project</value>
