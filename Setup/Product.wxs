@@ -230,8 +230,8 @@
         </Condition>
 
         <PropertyRef Id="IISMAJORVERSION" />
-        <Condition Message="This application requires IIS 7 and above. Please install IIS then run this installer again.">
-            <![CDATA[Installed OR IISMAJORVERSION >= "#7" OR IISMAJORVERSION = "#10"]]>
+        <Condition Message="This application requires IIS 8 and above. Please install IIS then run this installer again.">
+            <![CDATA[Installed OR IISMAJORVERSION >= "#8" OR IISMAJORVERSION = "#10"]]>
         </Condition>
 
         <?if $(var.Platform) = x64 ?>
