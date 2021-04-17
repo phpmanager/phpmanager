@@ -1,56 +1,38 @@
-﻿using Microsoft.Web.Administration;
+//-----------------------------------------------------------------------
+// <copyright>
+// Copyright (C) Ruslan Yakushev for the PHP Manager for IIS project.
+//
+// This file is subject to the terms and conditions of the Microsoft Public License (MS-PL).
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL for more details.
+// </copyright>
+//-----------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Microsoft.Deployment.WindowsInstaller;
+using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.Setup
 {
-    class Program
+    public class CustomActions
     {
-        public static void Main(string[] args)
+        [CustomAction]
+        public static ActionResult AddUIModuleProvider(Session session)
         {
-            if (args.Length < 2)
-            {
-                return;
-            }
+            var assembly = Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+            var assemblyFullName = assemblyName.FullName;
+            var clientAssemblyFullName = assemblyFullName.Replace(assemblyName.Name, "Web.Management.PHP");
 
-            bool add;
-            if (args[0] == "/i")
-            {
-                add = true;
-            }
-            else if (args[0] == "/u")
-            {
-                add = false;
-            }
-            else
-            {
-                return;
-            }
+            var name = "PHP";
+            var type = "Web.Management.PHP.PHPProvider, " + clientAssemblyFullName;
 
-            var name = args[1];
-            var type = args.Length > 2 ? args[2] : string.Empty;
-            if (add)
-            {
-                if (string.IsNullOrEmpty(type))
-                {
-                    return;
-                }
-
-                AddUIModuleProvider(name, type);
-            }
-            else
-            {
-                RemoveUIModuleProvider(name);
-            }
-        }
-
-        public static void AddUIModuleProvider(string name, string type)
-        {
             using (var mgr = new ServerManager())
             {
 
-                // First register the Module Provider  
+                // First register the Module Provider
                 var adminConfig = mgr.GetAdministrationConfiguration();
 
                 var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
@@ -63,7 +45,7 @@ namespace Web.Management.PHP.Setup
                     moduleProviders.Add(moduleProvider);
                 }
 
-                // Now register it so that all Sites have access to this module 
+                // Now register it so that all Sites have access to this module
                 var modulesSection = adminConfig.GetSection("modules");
                 var modules = modulesSection.GetCollection();
                 if (FindByAttribute(modules, "name", name) == null)
@@ -75,24 +57,18 @@ namespace Web.Management.PHP.Setup
 
                 mgr.CommitChanges();
             }
+
+            return ActionResult.Success;
         }
 
-        /// <summary> 
-        /// Helper method to find an element based on an attribute 
-        /// </summary> 
-        private static ConfigurationElement FindByAttribute(IEnumerable<ConfigurationElement> collection, string attributeName, string value)
+        [CustomAction]
+        public static ActionResult RemoveUIModuleProvider(Session session)
         {
-            return collection.FirstOrDefault(element => String.Equals((string)element.GetAttribute(attributeName).Value, value, StringComparison.OrdinalIgnoreCase));
-        }
+            var name = "PHP";
 
-        /// <summary> 
-        /// Removes the specified UI Module by name 
-        /// </summary> 
-        public static void RemoveUIModuleProvider(string name)
-        {
             using (var mgr = new ServerManager())
             {
-                // First remove it from the sites 
+                // First remove it from the sites
                 var adminConfig = mgr.GetAdministrationConfiguration();
                 var modulesSection = adminConfig.GetSection("modules");
                 var modules = modulesSection.GetCollection();
@@ -102,7 +78,7 @@ namespace Web.Management.PHP.Setup
                     modules.Remove(module);
                 }
 
-                // now remove the ModuleProvider 
+                // now remove the ModuleProvider
                 var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
                 var moduleProviders = moduleProvidersSection.GetCollection();
                 var moduleProvider = FindByAttribute(moduleProviders, "name", name);
@@ -113,6 +89,17 @@ namespace Web.Management.PHP.Setup
 
                 mgr.CommitChanges();
             }
+
+            return ActionResult.Success;
         }
+
+        /// <summary>
+        /// Helper method to find an element based on an attribute
+        /// </summary>
+        private static ConfigurationElement FindByAttribute(IEnumerable<ConfigurationElement> collection, string attributeName, string value)
+        {
+            return collection.FirstOrDefault(element => String.Equals((string)element.GetAttribute(attributeName).Value, value, StringComparison.OrdinalIgnoreCase));
+        }
+
     }
 }
