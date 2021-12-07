@@ -898,19 +898,29 @@ namespace Web.Management.PHP.Config
             var extensions = new List<PHPIniExtension>
                 {
                     new PHPIniExtension("php_curl.dll", true),
-                    new PHPIniExtension("php_gd2.dll", true),
                     new PHPIniExtension("php_gettext.dll", true),
                     new PHPIniExtension("php_mysqli.dll", true),
                     new PHPIniExtension("php_mbstring.dll", true),
                     new PHPIniExtension("php_openssl.dll", true),
                     new PHPIniExtension("php_soap.dll", true),
-                    new PHPIniExtension("php_xmlrpc.dll", true)
                 };
 
             if (new Version(version) < new Version("7.0"))
             {
                 // IMPORTANT: keep obsolete setting in old release.
                 extensions.Add(new PHPIniExtension("php_mysql.dll", true));
+            }
+
+            if (new Version(version) < new Version("8.0"))
+            {
+                // IMPORTANT: keep obsolete setting in old release.
+                extensions.Add(new PHPIniExtension("php_xmlrpc.dll", true));
+                extensions.Add(new PHPIniExtension("php_gd2.dll", true));
+            }
+
+            if (new Version(version) >= new Version("8.0"))
+            {
+                extensions.Add(new PHPIniExtension("php_gd.dll", true));
             }
 
             file.UpdateExtensions(extensions);
@@ -1669,6 +1679,7 @@ namespace Web.Management.PHP.Config
                 { "7.3", new PhpVersion("7.3", new DateTime(2021, 12, 6), new Version(14, 11)) },
                 { "7.4", new PhpVersion("7.4", new DateTime(2022, 11, 28), new Version(14, 11)) },
                 { "8.0", new PhpVersion("8.0", new DateTime(2023, 11, 26), new Version(14, 21)) },
+                { "8.1", new PhpVersion("8.1", new DateTime(2024, 11, 25), new Version(14, 21)) },
             };
 
             var detected = new Version(info.Version);
