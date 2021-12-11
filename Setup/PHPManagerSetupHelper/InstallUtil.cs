@@ -31,7 +31,6 @@ namespace Web.Management.PHP.Setup
                 return;
             }
 
-            var iisVersion = (int)registry.GetValue("MajorVersion", 6);
             var framework = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.System),
                 Path.Combine(
@@ -40,7 +39,7 @@ namespace Web.Management.PHP.Setup
                         "Microsoft.NET",
                         Path.Combine(
                             "Framework",
-                            iisVersion == 7 ? "v3.5" : "v4.0.30319"))));
+                            "v4.0.30319"))));
             var assembly = Assembly.GetExecutingAssembly();
             RegisterIIS(framework, assembly, name, type);
         }

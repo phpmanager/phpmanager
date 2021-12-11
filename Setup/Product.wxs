@@ -220,13 +220,7 @@
         <!--Check .NET 4.5.2 is installed for Windows 8 and above-->
         <PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED" />
         <Condition Message="This application requires .NET Framework 4.5.2. Please install the .NET Framework then run this installer again.">
-            <![CDATA[Installed OR (VersionNT >=600 AND VersionNT < 602) OR (VersionNT >= 602 AND WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED)]]>
-        </Condition>
-
-        <!--Check .NET 3.5.1 is installed for Windows 7 and Windows Server 2008/R2-->
-        <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL" />
-        <Condition Message="This application requires .NET Framework 3.5 SP1. Please install the .NET Framework then run this installer again.">
-            <![CDATA[Installed OR (VersionNT >= 602) OR (VersionNT >=600 AND VersionNT < 602 AND NETFRAMEWORK35_SP_LEVEL AND NOT NETFRAMEWORK35_SP_LEVEL = "#0")]]>
+            <![CDATA[Installed OR (VersionNT >= 602 AND WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED)]]>
         </Condition>
 
         <PropertyRef Id="IISMAJORVERSION" />
