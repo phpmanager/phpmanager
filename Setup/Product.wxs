@@ -217,10 +217,10 @@
             </Directory>
         </Directory>
 
-        <!--Check .NET 4.5.2 is installed for Windows 8 and above-->
-        <PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED" />
-        <Condition Message="This application requires .NET Framework 4.5.2. Please install the .NET Framework then run this installer again.">
-            <![CDATA[Installed OR (VersionNT >= 602 AND WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED)]]>
+        <!--Check .NET 4.6.2 is required-->
+        <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED" />
+        <Condition Message="This application requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
+            <![CDATA[Installed OR (VersionNT >= 602 AND WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED)]]>
         </Condition>
 
         <PropertyRef Id="IISMAJORVERSION" />

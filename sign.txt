@@ -1,0 +1,4 @@
+bin\Release\Web.Management.PHP.Client.dll
+bin\Release\Web.Management.PHP.dll
+bin\Release\Web.Management.PHP.PowerShell.dll
+bin\Release\Web.Management.PHP.Setup.dll

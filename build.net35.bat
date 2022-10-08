@@ -1,1 +1,10 @@
-%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild PHPManager.sln /property:Configuration=%1
+rmdir /S /Q bin
+powershell -ExecutionPolicy Bypass -file release.ps1 %1
+IF %ERRORLEVEL% NEQ 0 goto failed
+
+echo succeeded.
+exit /b 0
+
+:failed
+echo failed.
+exit /b 1
