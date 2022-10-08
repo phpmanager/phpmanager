@@ -417,7 +417,8 @@ namespace Web.Management.PHP
                 if (!String.IsNullOrEmpty(physicalPath) &&
                     File.Exists(physicalPath))
                 {
-                    System.Diagnostics.Process.Start(physicalPath);
+                    // Open Windows Explorer
+                    NativeMethods.OpenFile(physicalPath);
                 }
                 else
                 {

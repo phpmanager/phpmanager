@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,6 +15,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\phpmgrpublic.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <LangVersion>8.0</LangVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -55,6 +56,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.63-beta">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssembyInfo.cs">
@@ -71,6 +76,7 @@
     <Compile Include="Extensions\AllExtensionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Settings\AddEditSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NativeMethods.txt" />
     <Content Include="Resources\Delete16.png" />
     <None Include="..\phpmgrpublic.snk">
       <Link>phpmgrpublic.snk</Link>
@@ -185,6 +192,7 @@ IF EXIST "%25VS140COMNTOOLS%25\vsvars32.bat" (SET VSPROMPT="%25VS140COMNTOOLS%25
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat")
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat")
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat")
+IF EXIST "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat")
 IF EXIST %25VSPROMPT%25 CALL %25VSPROMPT%25 &gt; NULL
 gacutil.exe /if "$(TargetPath)"
 gacutil /if $(TargetDir)ru-RU\$(TargetName).resources.dll
