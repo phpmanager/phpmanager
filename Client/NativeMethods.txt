@@ -1,2 +1,0 @@
-SHOpenFolderAndSelectItems
-SHParseDisplayName

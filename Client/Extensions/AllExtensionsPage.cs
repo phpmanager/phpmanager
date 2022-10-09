@@ -306,7 +306,7 @@ namespace Web.Management.PHP.Extensions
                     String.Equals(Path.GetExtension(physicalPath), ".ini", StringComparison.OrdinalIgnoreCase) &&
                     File.Exists(physicalPath))
                 {
-                    NativeMethods.OpenFile(physicalPath);
+                    ShowSelectedInExplorer.FileOrFolder(physicalPath);
                 }
                 else
                 {

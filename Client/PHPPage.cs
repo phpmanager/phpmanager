@@ -418,7 +418,7 @@ namespace Web.Management.PHP
                     File.Exists(physicalPath))
                 {
                     // Open Windows Explorer
-                    NativeMethods.OpenFile(physicalPath);
+                    ShowSelectedInExplorer.FileOrFolder(physicalPath);
                 }
                 else
                 {

@@ -56,10 +56,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.63-beta">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssembyInfo.cs">
@@ -170,6 +166,7 @@
     <None Include="..\phpmgrpublic.snk">
       <Link>phpmgrpublic.snk</Link>
     </None>
+    <None Include="NativeMethods.json" />
     <None Include="Resources\goBack16.png" />
     <Content Include="Resources\php-extensions32.png" />
     <Content Include="Resources\php-logo16.png" />
