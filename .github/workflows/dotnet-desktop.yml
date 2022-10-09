@@ -62,6 +62,6 @@ jobs:
       with:
         arch: x64
         
-    - name: Build foo.exe
+    - name: Build everything
       run: |
-        dist.release.bat
+        ./dist.release.bat
