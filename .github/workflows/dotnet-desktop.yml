@@ -59,7 +59,7 @@ jobs:
 
     - name: Install IIS Manager
       run: |
-        Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole
+        Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
     - name: Set up Visual Studio shell
       uses: egor-tensin/vs-shell@v2
