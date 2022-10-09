@@ -57,6 +57,10 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install IIS Manager
+      run: |
+        Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole
+
     - name: Set up Visual Studio shell
       uses: egor-tensin/vs-shell@v2
       with:
