@@ -129,6 +129,7 @@ IF EXIST "%25VS140COMNTOOLS%25\vsvars32.bat" (SET VSPROMPT="%25VS140COMNTOOLS%25
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat")
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat")
 IF EXIST "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat")
+IF EXIST "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat")
 IF EXIST "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat")
 IF EXIST %25VSPROMPT%25 CALL %25VSPROMPT%25 &gt; NULL
 gacutil.exe /if "$(TargetPath)"</PostBuildEvent>
