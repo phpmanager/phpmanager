@@ -1,8 +1,0 @@
-version: 1.0.{build}
-skip_tags: true
-image: Visual Studio 2013
-build_script:
-  - .\dist.release.bat
-artifacts:
-  - path: '*.msi'
-    name: installers
