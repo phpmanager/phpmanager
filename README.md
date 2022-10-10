@@ -5,7 +5,7 @@ PHP Manager 2 for IIS
 
 |              | Windows |
 |:------------:|:-------:|
-| Build status | [![Build status](https://img.shields.io/appveyor/ci/lextm/phpmanager/master.svg?label=appveyor&style=flat-square)](https://ci.appveyor.com/project/lextm/phpmanager) |
+| Build status | [![Build](https://img.shields.io/github/workflow/status/phpmanager/phpmanager/.NET%20Framework%20Desktop?style=flat-square)](https://github.com/phpmanager/phpmanager/actions/workflows/dotnet-desktop.yml) |
 | Downloads    | [![Github All Releases](https://img.shields.io/github/downloads/phpmanager/phpmanager/total.svg?label=total&style=flat-square)](https://github.com/phpmanager/phpmanager/releases) |
 
 New Attempt to fully take over the old project on [CodePlex](http://phpmanager.codeplex.com),
