@@ -66,10 +66,6 @@ jobs:
       with:
         arch: x64
         
-    - name: Build everything
+    - name: Build everything and verify
       run: |
         ./dist.release.bat
-
-    - name: Verify
-      run: |
-        ./verify.ps1
