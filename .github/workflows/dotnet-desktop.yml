@@ -71,4 +71,5 @@ jobs:
         ./dist.release.bat
 
     - name: Verify
-      run: verify.ps1
+      run: |
+        ./verify.ps1
