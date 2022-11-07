@@ -71,17 +71,4 @@ jobs:
         ./dist.release.bat
 
     - name: Verify
-      run: |
-        choco install asmspy
-        $output = AsmSpy.exe .\bin\Release --all --nonsystem | Out-String
-        if ($output.Contains("Microsoft.Web.Administration, Version=7.9")) {
-            exit 1
-        }
-
-        if (!(Test-Path("PHPManagerForIIS_x64.msi"))) {
-            exit 1
-        }
-
-        if (!(Test-Path("PHPManagerForIIS_x86.msi"))) {
-            exit 1
-        }
+      run: verify.ps1
