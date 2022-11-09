@@ -387,7 +387,7 @@ namespace Web.Management.PHP.Settings
                     String.Equals(Path.GetExtension(physicalPath), ".ini", StringComparison.OrdinalIgnoreCase) &&
                     File.Exists(physicalPath))
                 {
-                    Process.Start(physicalPath);
+                    ShowSelectedInExplorer.FileOrFolder(physicalPath);
                 }
                 else
                 {
