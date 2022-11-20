@@ -161,12 +161,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NativeMethods.txt" />
     <Content Include="Resources\Delete16.png" />
     <None Include="..\phpmgrpublic.snk">
       <Link>phpmgrpublic.snk</Link>
     </None>
-    <None Include="NativeMethods.json" />
     <None Include="Resources\goBack16.png" />
     <Content Include="Resources\php-extensions32.png" />
     <Content Include="Resources\php-logo16.png" />

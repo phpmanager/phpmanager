@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Microsoft.Win32;
 
 namespace Web.Management.PHP.Config
 {
@@ -293,7 +294,8 @@ namespace Web.Management.PHP.Config
                         name = RemoveInlineComment(name);
                     }
 
-                    if (String.Equals(name, "extension", StringComparison.OrdinalIgnoreCase) && !String.IsNullOrEmpty(value))
+                    if ((string.Equals(name, "extension", StringComparison.OrdinalIgnoreCase) || string.Equals(name, "zend_extension", StringComparison.OrdinalIgnoreCase))
+                        && !String.IsNullOrEmpty(value))
                     {
                         yield return new PHPIniExtension(value, true, line);
                     }
@@ -601,7 +603,19 @@ namespace Web.Management.PHP.Config
 
         internal void UpdateText()
         {
-            _text = "extension=" + Name;
+            List<string> names = new List<string>();
+            const string subkey = "SOFTWARE\\LeXtudio\\PhpManager\\ZendExtensions";
+            var key = Registry.LocalMachine.CreateSubKey(subkey);
+            if (key != null)
+            {
+                var value = key.GetValue("Names", "");
+                if (value != null)
+                {
+                    names.AddRange(value.ToString().Split(new[] { ';' }));
+                }
+            }
+
+            _text = (names.Contains(Name) ? "zend_extension=" : "extension=") + Name;
         }
 
     }
