@@ -89,12 +89,20 @@
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.pt_BR.comp" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.ru_RU.comp" />
             <ComponentRef Id="Web.Management.PHP.Client.resources.dll.tr_BR.comp" />
+
+            <!-- Registry keys -->
+            <ComponentRef Id="InstallRegistryComponent" />
         </Feature>
 
         <!-- Directories and files -->
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="$(var.PlatformProgramFilesFolder)">
                 <Directory Id="INSTALLDIR" Name="$(var.ProductName)">
+                    <Component Id="InstallRegistryComponent" Guid="{54203E79-DF9E-488F-8E37-1042FB9CCFF2}">
+                        <RegistryKey Root='HKLM' Key='Software\LeXtudio\PhpManager\ZendExtensions'>
+                            <RegistryValue Type='string' Name='Names' Value="php_opcache.dll" Action="write" KeyPath="yes" />
+                        </RegistryKey>
+                    </Component>
                     <Component Id="License.rtf" Guid="{268F5728-D8FB-4397-BC1B-4922BC8FD7AD}">
                         <File Id="License.rtf" Name="License.rtf" KeyPath="yes" Vital="no" DiskId="1" Source="License.rtf" />
                     </Component>
