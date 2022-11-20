@@ -76,11 +76,11 @@ namespace Web.Management.PHP
 
             controlPanel.RegisterPage(modulePageInfo);
 
-
+            string description = $"[{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(2)}] {Resources.PHPPageLongDescription}";
             //PHPPage - PHP feature start page
             modulePageInfo = new ModulePageInfo(this, 
                 typeof(PHPPage), Resources.PHPPageTitle, Resources.PHPPageDescription,
-                Resources.PHPLogo16, Resources.PHPLogo32, Resources.PHPPageLongDescription);
+                Resources.PHPLogo16, Resources.PHPLogo32, description);
 
             controlPanel.RegisterPage(ControlPanelCategoryInfo.Iis, modulePageInfo);
             controlPanel.RegisterPage(ControlPanelCategoryInfo.ApplicationDevelopment, modulePageInfo);
