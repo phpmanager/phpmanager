@@ -1680,7 +1680,7 @@ namespace Web.Management.PHP.Config
                 { "7.4", new PhpVersion("7.4", new DateTime(2022, 11, 28), new Version(14, 11)) },
                 { "8.0", new PhpVersion("8.0", new DateTime(2023, 11, 26), new Version(14, 21)) },
                 { "8.1", new PhpVersion("8.1", new DateTime(2024, 11, 25), new Version(14, 21)) },
-                { "8.2", new PhpVersion("8.2", new DateTime(2025, 11, 24), new Version(14, 21)) },
+                { "8.2", new PhpVersion("8.2", new DateTime(2025, 12, 8), new Version(14, 21)) },
             };
 
             var detected = new Version(info.Version);
