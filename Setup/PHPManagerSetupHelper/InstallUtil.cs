@@ -8,94 +8,54 @@
 //----------------------------------------------------------------------- 
 
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using Microsoft.Win32;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Web.Administration;
 
 namespace Web.Management.PHP.Setup
 {
 
     public static class InstallUtil
     {
+
         public static void AddUIModuleProvider(string name, string type)
         {
-            Execute(name, type);
+            using (var mgr = new ServerManager())
+            {
+
+                // First register the Module Provider  
+                var adminConfig = mgr.GetAdministrationConfiguration();
+
+                var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
+                var moduleProviders = moduleProvidersSection.GetCollection();
+                if (FindByAttribute(moduleProviders, "name", name) == null)
+                {
+                    var moduleProvider = moduleProviders.CreateElement();
+                    moduleProvider.SetAttributeValue("name", name);
+                    moduleProvider.SetAttributeValue("type", type);
+                    moduleProviders.Add(moduleProvider);
+                }
+
+                // Now register it so that all Sites have access to this module 
+                var modulesSection = adminConfig.GetSection("modules");
+                var modules = modulesSection.GetCollection();
+                if (FindByAttribute(modules, "name", name) == null)
+                {
+                    var module = modules.CreateElement();
+                    module.SetAttributeValue("name", name);
+                    modules.Add(module);
+                }
+
+                mgr.CommitChanges();
+            }
         }
 
-        private static void Execute(string name, string type)
+        /// <summary> 
+        /// Helper method to find an element based on an attribute 
+        /// </summary> 
+        private static ConfigurationElement FindByAttribute(IEnumerable<ConfigurationElement> collection, string attributeName, string value)
         {
-            var registry = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\W3SVC\Parameters");
-            if (registry == null)
-            {
-                return;
-            }
-
-            var framework = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.System),
-                Path.Combine(
-                    "..",
-                    Path.Combine(
-                        "Microsoft.NET",
-                        Path.Combine(
-                            "Framework",
-                            "v4.0.30319"))));
-            var assembly = Assembly.GetExecutingAssembly();
-            RegisterIIS(framework, assembly, name, type);
-        }
-
-        private static void RegisterIIS(string framework, Assembly assembly, string name, string type)
-        {
-            var compiler = Path.Combine(framework, "csc.exe");
-
-            var mwa = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.System),
-                Path.Combine(
-                    "inetsrv",
-                    "Microsoft.Web.Administration.dll"));
-
-            var source = Path.GetTempFileName();
-            var program = source + ".iis.exe";
-            using (var stream = assembly.GetManifestResourceStream("Web.Management.PHP.Setup.Program.cs"))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                var content = reader.ReadToEnd();
-                File.WriteAllText(source, content);
-            }
-
-            using (var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = compiler,
-                    Arguments = string.Format("/r:{0} /out:\"{1}\" \"{2}\"", mwa, program, source),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true
-                }
-            })
-            {
-                process.Start();
-                process.WaitForExit();
-            }
-
-            File.Delete(source);
-
-            using (var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = program,
-                    Arguments = type == null ? string.Format("/u \"{0}\"", name) : string.Format("/i \"{0}\" \"{1}\"", name, type),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true
-                }
-            })
-            {
-                process.Start();
-                process.WaitForExit();
-            }
-
-            File.Delete(program);
+            return collection.FirstOrDefault(element => String.Equals((string) element.GetAttribute(attributeName).Value, value, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary> 
@@ -103,7 +63,29 @@ namespace Web.Management.PHP.Setup
         /// </summary> 
         public static void RemoveUIModuleProvider(string name)
         {
-            Execute(name, null);
+            using (var mgr = new ServerManager())
+            {
+                // First remove it from the sites 
+                var adminConfig = mgr.GetAdministrationConfiguration();
+                var modulesSection = adminConfig.GetSection("modules");
+                var modules = modulesSection.GetCollection();
+                var module = FindByAttribute(modules, "name", name);
+                if (module != null)
+                {
+                    modules.Remove(module);
+                }
+
+                // now remove the ModuleProvider 
+                var moduleProvidersSection = adminConfig.GetSection("moduleProviders");
+                var moduleProviders = moduleProvidersSection.GetCollection();
+                var moduleProvider = FindByAttribute(moduleProviders, "name", name);
+                if (moduleProvider != null)
+                {
+                    moduleProviders.Remove(moduleProvider);
+                }
+
+                mgr.CommitChanges();
+            }
         }
     }
 }
