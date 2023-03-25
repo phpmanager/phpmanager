@@ -111,7 +111,10 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>CALL "%25VS90COMNTOOLS%25\vsvars32.bat" &gt; NULL
+    <PostBuildEvent>IF EXIST "%25VS120COMNTOOLS%25\VsDevCmd.bat" (SET VSPROMPT="%25VS120COMNTOOLS%25\VsDevCmd.bat")
+IF EXIST "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat")
+IF EXIST "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat" (SET VSPROMPT="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat")
+IF EXIST %25VSPROMPT%25 CALL %25VSPROMPT%25 &gt; NULL
 gacutil -if $(TargetPath)
 InstallUtil $(TargetPath)
 copy $(ProjectDir)Documentation\Web.Management.PHP.PowerShell.dll-Help.xml $(TargetDir) /Y</PostBuildEvent>

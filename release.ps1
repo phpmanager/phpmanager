@@ -32,9 +32,12 @@ param(
 
     Write-Host "MSBuild found. Compile the projects."
 
-    & $msBuild /m /p:Configuration=$Configuration /t:restore
-    & $msBuild /m /p:Configuration=$Configuration /t:clean
-    & $msBuild /m /p:Configuration=$Configuration
+    $vsBatch = $installDir + '\Common7\Tools'
+    Set-Item -Path Env:VS120COMNTOOLS -Value $vsBatch
+    Set-Item -Path Env:VS90COMNTOOLS -Value $vsBatch
+    & $msBuild /p:Configuration=$Configuration /t:restore
+    & $msBuild /p:Configuration=$Configuration /t:clean
+    & $msBuild /p:Configuration=$Configuration
 
 if ($LASTEXITCODE -ne 0)
 {
