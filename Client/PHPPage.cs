@@ -9,7 +9,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -402,12 +401,12 @@ namespace Web.Management.PHP
 
         private void OnViewReleasesLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://php.net/supported-versions.php");
+            Helper.Browse("http://php.net/supported-versions.php");
         }
 
         private void OnViewRuntimesLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://windows.php.net/download/");
+            Helper.Browse("https://windows.php.net/download/");
         }
 
         internal void OpenPhysicalFile(string physicalPath)

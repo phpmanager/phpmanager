@@ -10,7 +10,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Web.Management.PHP
@@ -28,7 +27,9 @@ namespace Web.Management.PHP
                 {
                     try
                     {
-                        Process.Start(url);
+                        var dialog = new NoticeForm();
+                        dialog.SetLink(url);
+                        dialog.ShowDialog();
                         return true;
                     }
                     catch

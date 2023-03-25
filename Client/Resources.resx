@@ -697,4 +697,7 @@
   <data name="WarningExpiringRelease" xml:space="preserve">
     <value>This PHP release will expire soon.</value>
   </data>
+  <data name="WarningProcessBlocked" xml:space="preserve">
+    <value>PHP Manager cannot open links due to IIS Manager security changes. The link below is now in Windows clipboard. Please paste it to the browser address bar, navigate to the web page, and read the contents.</value>
+  </data>
 </root>

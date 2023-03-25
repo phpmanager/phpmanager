@@ -19,7 +19,7 @@ namespace Web.Management.PHP {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1775,6 +1775,15 @@ namespace Web.Management.PHP {
         internal static string WarningPHPConfigNotRegistered {
             get {
                 return ResourceManager.GetString("WarningPHPConfigNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHP Manager cannot open links due to IIS Manager security changes. The link below is now in Windows clipboard. Please paste it to the browser address bar, navigate to the web page, and read the contents..
+        /// </summary>
+        internal static string WarningProcessBlocked {
+            get {
+                return ResourceManager.GetString("WarningProcessBlocked", resourceCulture);
             }
         }
         
